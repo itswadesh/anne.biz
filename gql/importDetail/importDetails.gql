@@ -1,0 +1,32 @@
+query importDetails(
+  $importNo: String
+  $type: String
+  $page: Int
+  $limit: Int
+  $search: String
+  $sort: String
+) {
+  importDetails(
+    importNo: $importNo
+    type: $type
+    page: $page
+    search: $search
+    limit: $limit
+    sort: $sort
+  ) {
+    count
+    pageSize
+    page
+    data {
+      id
+      importNo
+      rawNo
+      totalItems
+      message
+      fileName
+      type
+      success
+      user
+    }
+  }
+}

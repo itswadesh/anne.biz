@@ -1,0 +1,113 @@
+query order($id: ID!) {
+  order(id: $id) {
+    id
+    orderNo
+    otp
+    createdAt
+    paySuccess
+    paymentMode
+    paymentStatus
+    paymentCurrency
+    paymentReferenceId
+    paymentOrderId
+    paymentReceipt
+    paymentId
+    invoiceId
+    paymentGateway
+    codPaid
+    amountPaid
+    amountDue
+    paymentStatus
+    paymentMsg
+    paymentTime
+    paid
+    amount {
+      qty
+      subtotal
+      tax
+      discount
+      total
+      shipping
+    }
+    userFirstName
+    userLastName
+    userPhone
+    addressId {
+      id
+      firstName
+      lastName
+      town
+      city
+      state
+      zip
+      address
+      lat
+      lng
+    }
+    address {
+      firstName
+      lastName
+      town
+      city
+      state
+      zip
+      address
+      lat
+      lng
+    }
+    items {
+      pid
+      posInvoiceNo
+      itemOrderNo
+      name
+      barcode
+      img
+      slug
+      price
+      qty
+      shippingCharge
+      tax
+      time
+      options
+      brandName
+      brandImg
+      orderStatus {
+        id
+        event
+        tracking_id
+        courier_name
+      }
+      vendor {
+        firstName
+        lastName
+        phone
+        address {
+          address
+        }
+        store
+      }
+      status
+    }
+    orderItems {
+      id
+      status
+      pid
+      posInvoiceNo
+      itemOrderNo
+      name
+      slug
+      img
+      tracking
+      shippingCharge
+      tax
+      brandName
+      brandImg
+      orderStatus{
+        id
+        event
+        tracking_id
+        courier_name
+      }
+    }
+  }
+}

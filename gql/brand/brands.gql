@@ -1,0 +1,39 @@
+query brands(
+  $page: Int
+  $search: String
+  $limit: Int
+  $sort: String
+  $featured: Boolean
+) {
+  brands(
+    page: $page
+    search: $search
+    limit: $limit
+    sort: $sort
+    featured: $featured
+  ) {
+    count
+    page
+    pageSize
+    data {
+      id
+      brand_id
+      name
+      slug
+      img
+      position
+      meta
+      metaTitle
+      metaDescription
+      metaKeywords
+      active
+      featured
+      parent {
+        id
+        name
+      }
+      createdAt
+      updatedAt
+    }
+  }
+}

@@ -1,0 +1,6 @@
+[submodule "gql"]
+	path = gql
+	url = https://onlineprojectteam:bx2idx5ocnjepglrntaapv3sdu3lbvuaiyvp4m3nht55mzfvlgqa@dev.azure.com/tablezind/tablez-gql/_git/tablez-gql
+[submodule "shared"]
+	path = shared
+	url = https://onlineprojectteam:bx2idx5ocnjepglrntaapv3sdu3lbvuaiyvp4m3nht55mzfvlgqa@dev.azure.com/tablezind/tablez-gql/_git/tablez-shared

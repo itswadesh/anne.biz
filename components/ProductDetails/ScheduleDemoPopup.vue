@@ -1,0 +1,34 @@
+<template>
+  <div>
+    <VueCtkDateTimePicker v-model="demo.scheduleDate" class="shadow-md" />
+  </div>
+</template>
+
+<script>
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker'
+export default {
+  components: {
+    VueCtkDateTimePicker,
+  },
+  props: {
+    show: { type: Boolean, default: false },
+  },
+  data() {
+    return {
+      demo: { name: null, email: null, pid: null, scheduleDate: new Date() },
+    }
+  },
+  computed: {
+    user() {
+      return (this.$store.state.auth || {}).user || {}
+    },
+  },
+  created() {
+    this.demo.name = this.user.firstName
+    this.demo.email = this.user.email
+    this.demo.pid = this.$route.query.id
+  },
+}
+</script>
+
+<style></style>

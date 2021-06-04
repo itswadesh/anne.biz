@@ -9,7 +9,7 @@
         <img :src="i.img" alt="" class="h-60 w-full object-cover object-top" />
         <div class="p-4">
           <h4 class="font-medium">{{ i.title }}</h4>
-          <h6 class="mt-2 text-sm text-gray-600">{{ i.description }}</h6>
+          <h6 class="mt-2 text-sm text-gray-600">{{ i.scheduleDateTime }}</h6>
         </div>
       </div>
     </div>
@@ -20,42 +20,19 @@
 </template>
 
 <script>
+import LIVE_STREAMS from '~/gql/liveStream/liveStreams.gql'
 export default {
   data() {
     return {
-      items: [
-        {
-          img: '/img/mencat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/womencat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/themecat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/mencat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/womencat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/themecat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-      ],
+      items: null,
     }
+  },
+  async created() {
+    const video = await this.$apollo.query({
+      query: LIVE_STREAMS,
+    })
+    this.items = video.data.liveStreams.data
+    console.log(video)
   },
 }
 </script>

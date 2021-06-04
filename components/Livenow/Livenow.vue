@@ -24,6 +24,7 @@
           allowFullScreen
         ></iframe>
       </div>
+      <img src="" alt="" />
       <!-- video section end -->
       <div class="p-1 rounded-md hover:bg-gray-200">
         <svg
@@ -135,6 +136,7 @@
 import LiveVideoCard from '~/components/Livenow/LiveVideoCard.vue'
 import BannerCard from '~/components/Livenow/BannerCard.vue'
 import ShowMore from '~/components/Livenow/ShowMore.vue'
+import LIVE_STREAMS from '~/gql/liveStream/liveStreams.gql'
 
 export default {
   components: {
@@ -144,38 +146,8 @@ export default {
   },
   data() {
     return {
-      videocards: [
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: `[Nopixel] X BECOMES SUPERHUMAN AND TAKES OVER THE CITY. ABSOLUTE
-          CRIMINAL MASTERMIND PHARAOH WARLORD (GONE BAD)(PRISON STREAM) NEW PC`,
-          name: '307k viewers',
-          description: 'Grand Theft Auto V',
-          button1: 'English',
-          button2: 'Anime',
-        },
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: `[Nopixel] X BECOMES SUPERHUMAN AND TAKES OVER THE CITY. ABSOLUTE
-          CRIMINAL MASTERMIND PHARAOH WARLORD (GONE BAD)(PRISON STREAM) NEW PC`,
-          name: '307k viewers',
-          description: 'Grand Theft Auto V',
-          button1: 'English',
-          button2: 'Anime',
-        },
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: `[Nopixel] X BECOMES SUPERHUMAN AND TAKES OVER THE CITY. ABSOLUTE
-          CRIMINAL MASTERMIND PHARAOH WARLORD (GONE BAD)(PRISON STREAM) NEW PC`,
-          name: '307k viewers',
-          description: 'Grand Theft Auto V',
-          button1: 'English',
-          button2: 'Anime',
-        },
-      ],
+      videocards: null,
+
       cards: [
         {
           link: '#',
@@ -228,6 +200,13 @@ export default {
         },
       ],
     }
+  },
+  async created() {
+    const vdo = await this.$apollo.query({
+      query: LIVE_STREAMS,
+    })
+    this.videocards = vdo.data.liveStreams.data
+    console.log(vdo)
   },
 }
 </script>

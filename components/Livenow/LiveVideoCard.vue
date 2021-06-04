@@ -1,10 +1,13 @@
 <template>
-  <section v-if="video" class="w-full mb-5 mr-2 md:w-1/2 lg:w-1/4">
+  <section
+    v-if="video && video.product"
+    class="w-full mb-5 mr-2 md:w-1/2 lg:w-1/4"
+  >
     <!-- video section start  -->
     <div id="responsiveVideoWrapper" className="relative h-full w-full">
       <iframe
+        v-lazy="video.product.img"
         className="absolute top-0 left-0 w-full h-full zoom"
-        src="https://www.youtube.com/embed/zihoyz0u_cs"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
@@ -17,7 +20,7 @@
         alt=""
         class="object-cover object-top w-10 h-10 rounded-full"
       />
-      <div class="flex flex-col ml-4">
+      <div v-if="video.product" class="flex flex-col ml-4">
         <nuxt-link
           to="#"
           class="
@@ -28,7 +31,7 @@
             hover:text-purple-500
           "
         >
-          {{ video.title }}
+          {{ video.product.id }}
         </nuxt-link>
         <nuxt-link
           to="#"
@@ -40,7 +43,7 @@
             max-w-max
           "
         >
-          {{ video.name }}
+          {{ video.price }}
         </nuxt-link>
         <nuxt-link
           to="#"
@@ -97,7 +100,7 @@
 <script>
 export default {
   props: {
-    video: { type: Object },
+    video: { type: Object, default: () => {} },
   },
 }
 </script>

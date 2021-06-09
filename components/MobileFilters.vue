@@ -98,8 +98,7 @@
         h-full
         bg-white
         z-50
-        inset-0
-        top-0
+        top-24
         fixed
         w-full
         filters-demo
@@ -109,7 +108,6 @@
         class="
           flex
           w-full
-          mt-4
           px-4
           py-4
           text-base

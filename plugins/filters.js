@@ -78,7 +78,7 @@ Vue.filter('titlecase', function (str) {
   if (str) {
     return str.replace(/\w\S*/g, function (txt) {
       let t
-      if (txt) {
+      if (txt && txt.substr(1)) {
         t = txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
       } else {
         t = str

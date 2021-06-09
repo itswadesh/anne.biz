@@ -31,6 +31,6 @@ module.exports = {
     'no-proto': 'off',
     'array-callback-return': 'off',
     'node/handle-callback-err': 'off',
-    'vue/no-v-html': 'off',
+    'vue/no-unused-components': 'warn',
   },
 }

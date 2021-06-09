@@ -194,6 +194,7 @@ export default {
       sortBy: null,
     }
   },
+  // eslint-disable-next-line require-await
   async created() {
     // await this.getSortOptions()
     this.sortBy = this.$route.query.sort || '-createdAt'

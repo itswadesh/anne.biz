@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col-reverse lg:flex-row">
+  <section class="flex">
     <SidebarOfStoredVideos />
     <AllStoredVideos />
   </section>

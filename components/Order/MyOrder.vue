@@ -340,6 +340,13 @@
                     </td>
                     <td class="text-sm text-center text-gray-900" scope="col">
                       {{ i.reviewed }}
+                      <a
+                        v-if="settings.liveCommerce"
+                        :href="`${NETEASE_WWW}/netease?channelName=${order.id}-${i.pid}`"
+                        target="_"
+                      >
+                        Live Call
+                      </a>
                     </td>
                   </tr>
                 </tbody>
@@ -434,21 +441,30 @@
               "
             >
               <div v-for="i in order.items" :key="i.pid" class="">
-                <div class="flex flex-row justify-between my-2">
-                  <div class="text-xs">
-                    <nuxt-link :to="localePath(`/${i.slug}?id=${i.pid}`)">
+                <div class="my-2">
+                  <div class="text-sm">
+                    <nuxt-link
+                      :to="localePath(`/${i.slug}?id=${i.pid}`)"
+                      class="text-sm"
+                    >
                       {{ i.name }}
                     </nuxt-link>
-                    <div class="text-gray-400">
-                      {{ order.createdAt | date }}
+                    <div class="flex flex-row text-xs w-full justify-between">
+                      <div class="text-gray-400">
+                        {{ order.createdAt | date }}
+                      </div>
+                      <div class="text-gray-400 ml-3">
+                        OrderNo: {{ order.orderNo }}
+                      </div>
                     </div>
                   </div>
                 </div>
-                <!-- <div class="my-3 text-gray-400" v-if="order.tracking">Tracking ID: #12ER44412PX</div> -->
+                <!-- v-if="order.tracking" -->
+
                 <div
                   class="flex items-center justify-between my-3 text-gray-400"
                 >
-                  <img v-lazy="i.img" alt="" class="object-cover w-12" />
+                  <img v-lazy="i.img" alt="" class="object-cover w-16" />
                   <div>
                     Quantity:
                     <b class="text-gray-500">{{ i.qty }}</b>
@@ -463,19 +479,27 @@
                 <div
                   class="flex items-center justify-between my-3 mt-5 text-sm"
                 >
-                  Status:
-                  <div
-                    class="
-                      p-1
-                      px-3
-                      my-auto
-                      text-primary-500
-                      focus:outline-none
-                      rounded-2xl
-                    "
-                  >
-                    {{ i.status }}
+                  <div class="flex flex-row">
+                    Status:
+                    <div
+                      class="
+                        px-3
+                        my-auto
+                        text-primary-500
+                        focus:outline-none
+                        rounded-2xl
+                      "
+                    >
+                      {{ i.status }}
+                    </div>
                   </div>
+                  <a
+                    v-if="settings.liveCommerce"
+                    :href="`${NETEASE_WWW}/netease?channelName=${order.id}-${i.pid}`"
+                    target="_"
+                  >
+                    Live Call
+                  </a>
                 </div>
               </div>
             </div>
@@ -488,23 +512,12 @@
   </div>
 </template>
 
-<style scoped>
-.track {
-  border-radius: 25px;
-  font-size: 11px;
-}
-</style>
-
 <script>
 import { mapGetters } from 'vuex'
 import OrderListSkeleton from '~/components/AllSkeletons/OrderListSkeleton'
 import MY_ORDERS from '~/gql/order/myOrders.gql'
+import { NETEASE_WWW } from '~/shared/config'
 export default {
-  computed: {
-    ...mapGetters({
-      settings: 'settings',
-    }),
-  },
   components: { OrderListSkeleton },
   data() {
     return {
@@ -512,7 +525,13 @@ export default {
       statuses: [{ b: 'delivered' }, { b: 'In-track' }, { b: 'pending' }],
       loading: false,
       myOrders: null,
+      NETEASE_WWW,
     }
+  },
+  computed: {
+    ...mapGetters({
+      settings: 'settings',
+    }),
   },
   async created() {
     await this.getOrders()
@@ -540,3 +559,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.track {
+  border-radius: 25px;
+  font-size: 11px;
+}
+</style>

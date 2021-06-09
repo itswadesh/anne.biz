@@ -143,7 +143,7 @@
               />
             </a>
             <a :href="settings.twitter" target="blank">
-              <img v-lazy="'/img/tttttttt.png'" alt="" class="w-10 h-10 mx-5" />
+              <img v-lazy="'/img/twitter.png'" alt="" class="w-10 h-10 mx-5" />
             </a>
             <a :href="settings.instagram" target="blank">
               <img v-lazy="'/img/insta.jpg'" alt="" class="w-10 h-10" />

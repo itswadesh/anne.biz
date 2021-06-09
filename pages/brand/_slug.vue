@@ -7,19 +7,19 @@
       :banners="heroBanners"
       class="z-0 p-1 sm:order-first lg:px-28 md:p-10 md:px-24"
     />
-    <Deals />
-    <ProductSlider
+    <BrandBanners :brands="childBrands && childBrands.data" />
+    <VideoBanner :banners="videoBanners" />
+    <!-- <Deals /> -->
+    <!-- <ProductSlider
       class="px-3 mt-6 md:px-0 md:mx-6 sm:mt-0"
       :details="youMayLikeProducts && youMayLikeProducts.data"
       :heading="'You May Like'"
-    />
-    <VideoBanner :banners="videoBanners" />
-    <ProductSlider2
+    /> -->
+    <!-- <ProductSlider2
       class="sm:mt-12"
       :details="hotProducts && hotProducts.data"
       :heading="'Trending'"
-    />
-    <BrandBanners :ishome="true" :brands="brandBanners && brandBanners.data" />
+    /> -->
     <!-- <Discounts /> -->
     <!-- <div>
       <SelectedCategoryDetails />
@@ -43,6 +43,7 @@ import PRODUCTS from '~/gql/product/products.gql'
 import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 import BANNERS from '~/gql/banner/banners.gql'
 import BRANDS from '~/gql/brand/brands.gql'
+import BRAND from '~/gql/brand/brand.gql'
 import VideoBanner from '~/components/Home/VideoBanner.vue'
 export default {
   components: {
@@ -57,10 +58,23 @@ export default {
     // Discounts,
     VideoBanner,
   },
-  middleware: ['landing'],
-  asyncData({ params, app, store }) {
+  async asyncData({ params, app, store, error }) {
+    let brand = {}
     const { title, keywords, description } = store.state.settings || {} // err = null
-    return { title, keywords, description }
+    const client = app.apolloProvider.defaultClient
+    try {
+      brand = (
+        await client.query({
+          query: BRAND,
+          variables: { slug: params.slug },
+          fetchPolicy: 'no-cache',
+        })
+      ).data.brand
+      if (!brand || !brand.id) error('Brand not found')
+    } catch (e) {
+      error('Brand not found')
+    }
+    return { brand, title, keywords, description }
   },
   data() {
     return {
@@ -68,7 +82,7 @@ export default {
       youMayLikeProducts: null,
       visible: false,
       banners: null,
-      brandBanners: null,
+      childBrands: null,
       sliderBanners: null,
       heroBanners: null,
       videoBanners: null,
@@ -80,28 +94,28 @@ export default {
       ? this.$ssrContext.req.headers.host
       : window.location.host
     return {
-      title: this.title || TITLE,
+      title: this.brand.title || this.brand.name || TITLE,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.description || DESCRIPTION,
+          content: this.brand.description || DESCRIPTION,
         },
         {
           hid: 'og:description',
           name: 'Description',
           property: 'og:description',
-          content: this.description || DESCRIPTION,
+          content: this.brand.description || DESCRIPTION,
         },
         {
           name: 'Keywords',
-          content: this.keywords || KEYWORDS,
+          content: this.brand.keywords || KEYWORDS,
         },
         {
           hid: 'og:title',
           name: 'og_title',
           property: 'og:title',
-          content: this.title || TITLE,
+          content: this.brand.title || TITLE,
         },
         {
           name: 'og_url',
@@ -116,12 +130,12 @@ export default {
 
         {
           name: 'twitter:title',
-          content: this.title || TITLE,
+          content: this.brand.title || TITLE,
         },
         {
           hid: 'twitter_description',
           name: 'twitter:description',
-          content: this.description || DESCRIPTION,
+          content: this.brand.description || DESCRIPTION,
         },
       ],
     }
@@ -144,14 +158,19 @@ export default {
     async getBrands() {
       // this.loading = true
       try {
-        this.brandBanners = (
+        this.childBrands = (
           await this.$apollo.query({
             query: BRANDS,
-            variables: { parent: null, limit: 5, page: 0, sort: 'sort' },
+            variables: {
+              limit: 5,
+              page: 0,
+              sort: 'sort',
+              parent: this.brand.id,
+            },
             fetchPolicy: 'no-cache',
           })
         ).data.brands
-        // console.log('brands to show', this.brandBanners)
+        // console.log('brands to show', this.childBrands)
       } catch (e) {
         // console.log(e)
       } finally {
@@ -167,7 +186,7 @@ export default {
             query: BANNERS,
             variables: {
               sort: 'sort',
-              pageId: 'home',
+              pageId: this.brand.id,
               active: true,
             },
             fetchPolicy: 'no-cache',

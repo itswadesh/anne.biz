@@ -256,7 +256,6 @@ h4
         </li>
       </ul>
     </div>
-
     <div
       v-if="
         facets.sizes &&
@@ -282,6 +281,70 @@ h4
             :count="b.doc_count"
             :value="b.key"
             @change="changed({ model: 'sizes', checked: fl.sizes })"
+            ><span class="my-auto"> {{ b.key }}</span>
+          </Checkbox>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      v-if="
+        facets.price &&
+        facets.price.all &&
+        facets.price.all.buckets &&
+        facets.price.all.buckets.length > 0 &&
+        getTotalDocCount(facets.price.all.buckets) > 0
+      "
+      class="pt-3 pb-3 my-3 border-b"
+      color="primary"
+    >
+      <h4 class="px-2 text-base font-medium uppercase ms-2">PRICE RANGE</h4>
+      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+        <li
+          v-for="b in facets.price &&
+          facets.price.all &&
+          facets.price.all.buckets"
+          :key="b.key"
+          v-if="b.doc_count > 0"
+        >
+          <Checkbox
+            v-model="fl.price"
+            class="flex flex-row my-2 tracking-wider"
+            color="primary"
+            :count="b.doc_count"
+            :value="b.from"
+            @change="changed({ model: 'price', checked: b.from + ',' + b.to })"
+            ><span class="my-auto"> {{ b.key }}</span>
+          </Checkbox>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      v-if="
+        facets.age &&
+        facets.age.all &&
+        facets.age.all.buckets &&
+        facets.age.all.buckets.length > 0 &&
+        getTotalDocCount(facets.age.all.buckets) > 0
+      "
+      class="pt-3 pb-3 my-3 border-b"
+      color="primary"
+    >
+      <h4 class="px-2 text-base font-medium uppercase ms-2">AGE GROUP</h4>
+      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+        <li
+          v-for="b in facets.age && facets.age.all && facets.age.all.buckets"
+          :key="b.key"
+          v-if="b.doc_count > 0"
+        >
+          <Checkbox
+            v-model="fl.age"
+            class="flex flex-row my-2 tracking-wider"
+            color="primary"
+            :count="b.doc_count"
+            :value="b.from"
+            @change="changed({ model: 'age', checked: b.from + ',' + b.to })"
             ><span class="my-auto"> {{ b.key }}</span>
           </Checkbox>
         </li>
@@ -365,6 +428,7 @@ export default {
     clear: Boolean,
     fl: {
       type: [Object, Array],
+      default: null,
     },
     facets: {
       type: [Object, Array],
@@ -391,6 +455,13 @@ export default {
     } catch (e) {}
   },
   methods: {
+    getTotalDocCount(arr) {
+      let total = 0
+      for (const a of arr) {
+        total += a.doc_count
+      }
+      return total
+    },
     scrollToTop() {
       if (process.client) {
         window.scroll({ behavior: 'smooth', left: 0, top: 150 })

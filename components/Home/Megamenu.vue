@@ -13,11 +13,12 @@
           hoverable
         "
         :class="{
-          'hover:border-purple-500 ': index % 5 == 0,
-          'hover:border-red-500': index % 5 == 1,
-          'hover:border-green-500 ': index % 5 == 2,
-          'hover:border-pink-500 ': index % 5 == 3,
-          'hover:border-blue-500 ': index % 5 == 4,
+          'hover:border-yellow-500 ': index % 6 == 0,
+          'hover:border-purple-500': index % 6 == 1,
+          'hover:border-red-500 ': index % 6 == 2,
+          'hover:border-green-500 ': index % 6 == 3,
+          'hover:border-pink-500 ': index % 6 == 4,
+          'hover:border-blue-500 ': index % 6 == 5,
         }"
       >
         <nuxt-link
@@ -36,11 +37,12 @@
             text-gray-600
           "
           :class="{
-            'hover:text-purple-600': index % 5 == 0,
-            'hover:text-red-600': index % 5 == 1,
-            'hover:text-green-600': index % 5 == 2,
-            'hover:text-pink-600': index % 5 == 3,
-            'hover:text-blue-600': index % 5 == 4,
+            'hover:text-yellow-500 ': index % 6 == 0,
+            'hover:text-purple-500': index % 6 == 1,
+            'hover:text-red-500 ': index % 6 == 2,
+            'hover:text-green-500 ': index % 6 == 3,
+            'hover:text-pink-500 ': index % 6 == 4,
+            'hover:text-blue-500 ': index % 6 == 5,
           }"
         >
           {{ category.name }}
@@ -144,11 +146,12 @@
           border-b-4 border-gray-100
           cursor-pointer
           hover:border-black
+          hover:text-black
           hoverable
         "
       >
         <div class="flex flex-row my-auto">
-          <p>Brand</p>
+          <p>Brands</p>
           <svg
             class="w-4 h-4 my-auto"
             xmlns="http://www.w3.org/2000/svg"
@@ -176,12 +179,32 @@
               :key="b.id"
               class="py-10 mx-auto"
             >
-              <nuxt-link :to="localePath(`/b/${b.slug}`)" class="p-3">
+              <nuxt-link :to="localePath(`/brand/${b.slug}`)" class="p-3">
                 <img
+                  v-if="b.img"
                   v-lazy="b.img"
                   alt="bab"
-                  class="object-contain h-12 sm:h-16"
+                  class="object-contain h-16"
                 />
+                <div
+                  v-else
+                  class="
+                    h-16
+                    w-16
+                    flex
+                    justify-center
+                    items-center
+                    text-center
+                    my-auto
+                    text-primary-500
+                    font-semibold
+                    rounded-full
+                    border-2 border-primary-500
+                    text-2xl
+                  "
+                >
+                  {{ b.name | first }}
+                </div>
               </nuxt-link>
             </div>
           </div>

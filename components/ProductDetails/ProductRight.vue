@@ -114,8 +114,27 @@
               >
                 Add a Review
               </nuxt-link>
-              <!-- <button @click="openScheduleDemoPopup">Schedule a demo</button> -->
+              <!-- <a
+                v-if="settings.liveCommerce"
+                :href="`${NETEASE_WWW}/netease?channelName=${product.id}`"
+                target="_"
+              >
+                Watch Live
+              </a> -->
+              <!-- <button
+                v-if="settings.liveCommerce"
+                @click="showOffers = !showOffers"
+              >
+                Schedule a demo
+              </button> -->
             </div>
+            <span v-if="showOffers">
+              <Scheduler
+                :class="showOffers ? 'open' : 'close'"
+                :product="product"
+                @hide="hideOffers"
+              />
+            </span>
             <div class="">
               <div class="sm:py-2">
                 <div
@@ -641,21 +660,19 @@
         </div>
       </div>
     </div>
-    <ScheduleDemoPopup v-if="showScheduleDemoPopup" />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
-import ScheduleDemoPopup from '~/components/ProductDetails/ScheduleDemoPopup'
 import REVIEWS from '~/gql/review/reviewSummary.gql'
-
+import Scheduler from '~/components/ProductDetails/Scheduler'
 // import Share from '~/components/ProductDetails/Share'
 // import { Checkbox } from '~/shared/components/ui'
 // import WishButton from '~/components/WishButton.vue'
 // import ProductSizeChart from '~/components/ProductDetails/ProductSizeChart'
 export default {
-  components: { ScheduleDemoPopup },
+  components: { Scheduler },
   props: {
     host: { type: String, default: null },
     pg: { type: Object, default: null },
@@ -664,6 +681,7 @@ export default {
   },
   data() {
     return {
+      showOffers: false,
       sidebar: false,
       selectedRadio: null,
       reviewSummary: null,
@@ -714,10 +732,13 @@ export default {
   // ProductSizeChart,
   // },
   methods: {
-    openScheduleDemoPopup() {
-      this.showScheduleDemoPopup = true
-      console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz')
+    hideOffers() {
+      this.showOffers = false
     },
+    // openScheduleDemoPopup() {
+    //   this.showScheduleDemoPopup = true
+    //   console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz')
+    // },
     async getReviews() {
       const product = this.$route.query.id
       if (!product) return

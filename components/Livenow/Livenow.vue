@@ -1,6 +1,6 @@
 <template>
-  <section class="p-8">
-    <div class="flex items-center justify-between h-72">
+  <section class="px-4">
+    <!-- <div class="flex items-center justify-between h-72">
       <div class="p-1 rounded-md hover:bg-gray-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +15,6 @@
           />
         </svg>
       </div>
-      <!-- video section start  -->
       <div id="responsiveVideoWrapper" className="relative h-full w-full">
         <iframe
           className="absolute top-0 left-0 w-full h-full"
@@ -25,7 +24,6 @@
         ></iframe>
       </div>
       <img src="" alt="" />
-      <!-- video section end -->
       <div class="p-1 rounded-md hover:bg-gray-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,11 +38,11 @@
           />
         </svg>
       </div>
-    </div>
+    </div> -->
 
     <!-- Live channels we think you’ll like section start  -->
-    <div class="my-10">
-      <h3 class="my-4 text-xl font-semibold">
+    <div class="my-2">
+      <h3 class="my-2 text-xl font-semibold">
         Live channels we think you’ll like
       </h3>
 
@@ -56,7 +54,7 @@
             items-center
             justify-start
             mx-auto
-            mb-5
+            mb-12
             space-x-2
           "
         >
@@ -69,7 +67,7 @@
     <!-- Live channels we think you’ll like section end -->
     <!-- Categories we think you’ll like section start -->
 
-    <div class="my-10">
+    <!-- <div class="my-10">
       <h3 class="my-4 text-xl font-semibold">
         <nuxt-link
           to="#"
@@ -95,11 +93,11 @@
         </div>
         <ShowMore />
       </div>
-    </div>
+    </div> -->
 
     <!-- Categories we think you’ll like section end -->
     <!-- Live channels we think you’ll like section start  -->
-    <div class="my-10">
+    <!-- <div class="my-10">
       <h3 class="my-4 text-xl font-semibold">
         Recommended
         <nuxt-link
@@ -126,7 +124,7 @@
         </div>
         <ShowMore />
       </div>
-    </div>
+    </div> -->
 
     <!-- Live channels we think you’ll like section end -->
   </section>
@@ -147,58 +145,6 @@ export default {
   data() {
     return {
       videocards: null,
-
-      cards: [
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: 'Just Chatting',
-          viewers: '307k viewers',
-          button: 'IRL',
-        },
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: 'Just Chatting',
-          viewers: '307k viewers',
-          button: 'IRL',
-        },
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: 'Just Chatting',
-          viewers: '307k viewers',
-          button: 'IRL',
-        },
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: 'Just Chatting',
-          viewers: '307k viewers',
-          button: 'IRL',
-        },
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: 'Just Chatting',
-          viewers: '307k viewers',
-          button: 'IRL',
-        },
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: 'Just Chatting',
-          viewers: '307k viewers',
-          button: 'IRL',
-        },
-        {
-          link: '#',
-          img: '/img/eyeshadow-woman.jpg',
-          title: 'Just Chatting',
-          viewers: '307k viewers',
-          button: 'IRL',
-        },
-      ],
     }
   },
   async created() {
@@ -206,7 +152,7 @@ export default {
       query: LIVE_STREAMS,
     })
     this.videocards = vdo.data.liveStreams.data
-    console.log(vdo)
+    // console.log(vdo)
   },
 }
 </script>

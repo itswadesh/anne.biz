@@ -1,28 +1,29 @@
 <template>
-  <section
-    v-if="video && video.product"
-    class="w-full mb-5 mr-2 md:w-1/2 lg:w-1/4"
-  >
+  <section v-if="video" class="w-full mb-5 mr-2 md:w-1/2 lg:w-1/4">
     <!-- video section start  -->
-    <div id="responsiveVideoWrapper" className="relative h-full w-full">
-      <iframe
-        v-lazy="video.product.img"
-        className="absolute top-0 left-0 w-full h-full zoom"
+    <a
+      :href="`https://litekartlive.netlify.app/netease/watch?channelName=${video.id}`"
+      target="_blank"
+      className="relative h-full w-full"
+    >
+      <img
+        v-lazy="video.img"
+        class="w-full h-64"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-      ></iframe>
-    </div>
+      />
+    </a>
     <!-- video section end -->
     <!-- Video details start  -->
     <div class="flex justify-start mt-2">
       <img
-        v-lazy="video.img"
+        v-lazy="video.user.avatar"
         alt=""
         class="object-cover object-top w-10 h-10 rounded-full"
       />
-      <div v-if="video.product" class="flex flex-col ml-4">
-        <nuxt-link
-          to="#"
+      <div class="flex flex-col ml-4">
+        <a
+          :href="`https://litekartlive.netlify.app/netease/watch?channelName=${video.id}`"
           class="
             font-semibold
             truncate
@@ -31,10 +32,9 @@
             hover:text-purple-500
           "
         >
-          {{ video.product.id }}
-        </nuxt-link>
-        <nuxt-link
-          to="#"
+          {{ video.title }}
+        </a>
+        <div
           class="
             text-sm
             font-light
@@ -43,8 +43,8 @@
             max-w-max
           "
         >
-          {{ video.price }}
-        </nuxt-link>
+          {{ video.description }}
+        </div>
         <nuxt-link
           to="#"
           class="

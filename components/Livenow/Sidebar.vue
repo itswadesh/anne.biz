@@ -1,7 +1,7 @@
 <template>
   <section class="w-64 py-3 text-sm bg-gray-100">
     <!-- Recommended channels section start  -->
-    <div class="flex items-center justify-between px-2">
+    <!-- <div class="flex items-center justify-between px-2">
       <h4 class="font-semibold uppercase">Recommemded Channels</h4>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -15,10 +15,10 @@
           clip-rule="evenodd"
         />
       </svg>
-    </div>
+    </div> -->
     <!-- Recommended channels section end -->
     <!-- Channels section start  -->
-    <div class="pt-2">
+    <!-- <div class="pt-2">
       <div v-for="(i, ix) in items" :key="ix" class="">
         <nuxt-link
           to="#"
@@ -47,7 +47,7 @@
           </div>
         </nuxt-link>
       </div>
-    </div>
+    </div> -->
     <!-- Channels section end -->
     <!-- Sign up section start  -->
     <div class="p-4 m-2 bg-white rounded-md shadow-md">
@@ -83,58 +83,7 @@
 <script>
 export default {
   data() {
-    return {
-      items: [
-        {
-          name: 'xQcOW',
-          whatsplaying: 'Grand Theft Auto V',
-          live: '124k',
-          img: '/img/eyeshadow-woman.jpg',
-        },
-        {
-          name: 'Shroud',
-          whatsplaying: 'VALORANT',
-          live: '19.7k',
-          img: '/img/eyeshadow-woman.jpg',
-        },
-        {
-          name: 'ESL-CSGO',
-          whatsplaying: 'Counter-Strike: Global Offensive',
-          live: '11k',
-          img: '/img/eyeshadow-woman.jpg',
-        },
-        {
-          name: 'VALORANT',
-          whatsplaying: 'VALORANT',
-          live: '5.5k',
-          img: '/img/eyeshadow-woman.jpg',
-        },
-        {
-          name: 'xQcOW',
-          whatsplaying: 'Grand Theft Auto V',
-          live: '124k',
-          img: '/img/eyeshadow-woman.jpg',
-        },
-        {
-          name: 'Shroud',
-          whatsplaying: 'VALORANT',
-          live: '19.7k',
-          img: '/img/eyeshadow-woman.jpg',
-        },
-        {
-          name: 'ESL-CSGO',
-          whatsplaying: 'Counter-Strike: Global Offensive',
-          live: '11k',
-          img: '/img/eyeshadow-woman.jpg',
-        },
-        {
-          name: 'VALORANT',
-          whatsplaying: 'VALORANT',
-          live: '5.5k',
-          img: '/img/eyeshadow-woman.jpg',
-        },
-      ],
-    }
+    return {}
   },
 }
 </script>

@@ -114,13 +114,13 @@
               >
                 Add a Review
               </nuxt-link>
-              <!-- <a
+              <a
                 v-if="settings.liveCommerce"
                 :href="`${NETEASE_WWW}/netease?channelName=${product.id}`"
                 target="_"
               >
                 Watch Live
-              </a> -->
+              </a>
               <!-- <button
                 v-if="settings.liveCommerce"
                 @click="showOffers = !showOffers"
@@ -667,6 +667,7 @@
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import REVIEWS from '~/gql/review/reviewSummary.gql'
 import Scheduler from '~/components/ProductDetails/Scheduler'
+import { NETEASE_WWW } from '~/shared/config'
 // import Share from '~/components/ProductDetails/Share'
 // import { Checkbox } from '~/shared/components/ui'
 // import WishButton from '~/components/WishButton.vue'
@@ -692,6 +693,7 @@ export default {
       userSelectedVariant: null,
       addedToCart: false,
       showScheduleDemoPopup: false,
+      NETEASE_WWW,
     }
   },
   computed: {

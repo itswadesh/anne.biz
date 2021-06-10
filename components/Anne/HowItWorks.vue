@@ -1,6 +1,7 @@
 <template>
   <div v-if="product" class="w-full p-3">
-    <div
+    <nuxt-link
+      :to="product.link"
       rel="prefetch"
       class="
         flex-1
@@ -27,14 +28,14 @@
           v-html="product.description"
         ></div>
       </div>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    product: { type: Object, default: null },
+    product: { type: Object },
   },
 }
 </script>

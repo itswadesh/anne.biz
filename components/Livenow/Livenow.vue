@@ -1,158 +1,144 @@
 <template>
-  <section class="px-4">
-    <!-- <div class="flex items-center justify-between h-72">
-      <div class="p-1 rounded-md hover:bg-gray-200">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-7 h-7"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+  <section class="w-full p-4 bg-gray-50">
+    <!-- All abord the Hype Train! section start -->
+    <div class="">
+      <h4 class="pb-2 font-semibold tracking-wide">All Live Broadcasts</h4>
+      <div class="flex flex-wrap justify-start w-full my-5">
+        <nuxt-link
+          :to="`/live/${i.id}`"
+          v-for="(i, ix) in items"
+          :key="ix"
+          :product="i"
+          class=""
         >
-          <path
-            fill-rule="evenodd"
-            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
+          {{ ix + 1 }}
+          {{ i.title }}
+          <div>{{ i.products.length }} products</div>
+          <div>
+            {{ i.user.firstName }}
+            {{ i.user.lastName }}
+          </div>
+        </nuxt-link>
       </div>
-      <div id="responsiveVideoWrapper" className="relative h-full w-full">
-        <iframe
-          className="absolute top-0 left-0 w-full h-full"
-          src="https://www.youtube.com/embed/zihoyz0u_cs"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
-      <img src="" alt="" />
-      <div class="p-1 rounded-md hover:bg-gray-200">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-7 h-7"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </div>
-    </div> -->
-
-    <!-- Live channels we think you’ll like section start  -->
-    <div class="my-2">
-      <h3 class="my-2 text-xl font-semibold">
-        Live channels we think you’ll like
-      </h3>
-
-      <div>
+      <!-- <div class="flex items-center my-5">
+        <hr class="w-full border-t border-gray-500" />
         <div
-          class="
-            container
-            flex flex-wrap
-            items-center
-            justify-start
-            mx-auto
-            mb-12
-            space-x-2
-          "
+          class="flex cursor-pointer -mt-0.5 items-center px-4 text-indigo-500 max-w-max whitespace-nowrap hover:text-indigo-700"
         >
-          <LiveVideoCard v-for="(v, vx) in videocards" :key="vx" :video="v" />
+          <h5 class="font-semibold">Show more</h5>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 ml-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
         </div>
-        <ShowMore />
-      </div>
+        <hr class="w-full border-t border-gray-500" />
+      </div> -->
     </div>
+    <!-- All abord the Hype Train! section end -->
 
-    <!-- Live channels we think you’ll like section end -->
-    <!-- Categories we think you’ll like section start -->
-
-    <!-- <div class="my-10">
-      <h3 class="my-4 text-xl font-semibold">
-        <nuxt-link
-          to="#"
-          class="text-purple-500 hover:text-purple-700 hover:underline"
-          >Categories</nuxt-link
-        >
-        we think you’ll like
-      </h3>
-
-      <div>
-        <div
-          class="
-            container
-            flex flex-wrap
-            items-center
-            justify-between
-            mx-auto
-            mb-5
-            space-x-2
-          "
-        >
-          <BannerCard v-for="(c, cx) in cards" :key="cx" :banner="c" />
-        </div>
-        <ShowMore />
-      </div>
-    </div> -->
-
-    <!-- Categories we think you’ll like section end -->
-    <!-- Live channels we think you’ll like section start  -->
-    <!-- <div class="my-10">
-      <h3 class="my-4 text-xl font-semibold">
+    <!-- Recommended Minecraft Channels section start -->
+    <!-- <div class="">
+      <h4 class="pb-2 font-semibold tracking-wide">
         Recommended
-        <nuxt-link
-          to="#"
-          class="text-purple-500 hover:text-purple-700 hover:underline"
-          >Just Chatting</nuxt-link
-        >
-        channels
-      </h3>
-
-      <div>
+        <span class="text-indigo-500 uppercase"> Minecraft</span> Channels
+      </h4>
+      <div class="flex flex-wrap justify-start w-full">
+        <FreeProduct v-for="(i, ix) in items" :key="ix" :product="i" class="" />
+      </div>
+      <div class="flex items-center my-5">
+        <hr class="w-full border-t border-gray-500" />
         <div
-          class="
-            container
-            flex flex-wrap
-            items-center
-            justify-start
-            mx-auto
-            mb-5
-            space-x-2
-          "
+          class="flex cursor-pointer -mt-0.5 items-center px-4 text-indigo-500 max-w-max whitespace-nowrap hover:text-indigo-700"
         >
-          <LiveVideoCard v-for="(v, vx) in videocards" :key="vx" :video="v" />
+          <h5 class="font-semibold">Show more</h5>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 ml-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
         </div>
-        <ShowMore />
+        <hr class="w-full border-t border-gray-500" />
       </div>
     </div> -->
+    <!-- Recommended Minecraft Channels section end -->
 
-    <!-- Live channels we think you’ll like section end -->
+    <!-- Recommended Valorant Channels section start -->
+    <!-- <div class="">
+      <h4 class="pb-2 font-semibold tracking-wide">
+        Recommended
+        <span class="text-indigo-500 uppercase"> Valorant</span> Channels
+      </h4>
+      <div class="flex flex-wrap justify-start w-full my-5">
+        <FreeProduct v-for="(i, ix) in items" :key="ix" :product="i" class="" />
+      </div>
+      <div class="flex items-center my-5">
+        <hr class="w-full border-t border-gray-500" />
+        <div
+          class="flex cursor-pointer -mt-0.5 items-center px-4 text-indigo-500 max-w-max whitespace-nowrap hover:text-indigo-700"
+        >
+          <h5 class="font-semibold">Show more</h5>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 ml-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+        <hr class="w-full border-t border-gray-500" />
+      </div>
+    </div> -->
+    <!-- Recommended Valorant Channels section end -->
   </section>
 </template>
 
 <script>
-import LiveVideoCard from '~/components/Livenow/LiveVideoCard.vue'
-import BannerCard from '~/components/Livenow/BannerCard.vue'
-import ShowMore from '~/components/Livenow/ShowMore.vue'
+import FreeProduct from '~/components/Anne/FreeProduct'
 import LIVE_STREAMS from '~/gql/liveStream/liveStreams.gql'
-
 export default {
   components: {
-    LiveVideoCard,
-    BannerCard,
-    ShowMore,
+    FreeProduct,
   },
+
   data() {
     return {
-      videocards: null,
+      items: null,
     }
   },
   async created() {
-    const vdo = await this.$apollo.query({
-      query: LIVE_STREAMS,
-    })
-    this.videocards = vdo.data.liveStreams.data
-    // console.log(vdo)
+    this.items =
+      (
+        await this.$apollo.query({
+          query: LIVE_STREAMS,
+          fetchPolicy: 'no-cache',
+        })
+      ).data.liveStreams.data || []
   },
 }
 </script>

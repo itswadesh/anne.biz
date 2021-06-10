@@ -32,5 +32,6 @@ module.exports = {
     'array-callback-return': 'off',
     'node/handle-callback-err': 'off',
     'vue/no-unused-components': 'warn',
+    'vue/no-v-html': 'off',
   },
 }

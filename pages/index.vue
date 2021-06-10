@@ -42,6 +42,7 @@ import BrandBanners from '~/components/Home/BrandBanners'
 import PRODUCTS from '~/gql/product/products.gql'
 import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 import BANNERS from '~/gql/banner/banners.gql'
+import GROUP_BY_BANNER from '~/gql/banner/groupByBanner.gql'
 import BRANDS from '~/gql/brand/brands.gql'
 import VideoBanner from '~/components/Home/VideoBanner.vue'
 export default {
@@ -174,8 +175,16 @@ export default {
           })
         ).data.banners
         this.sliderBanners = banners.data.filter((b) => b.type === 'slider')
-        this.heroBanners = banners.data.filter((b) => b.type === 'hero')
         this.videoBanners = banners.data.filter((b) => b.type === 'video')
+        this.heroBanners = (
+          await this.$apollo.query({
+            query: GROUP_BY_BANNER,
+            variables: {
+              pageId: 'home',
+            },
+            fetchPolicy: 'no-cache',
+          })
+        ).data.groupByBanner
       } catch (e) {
         // console.log(e)
       } finally {

@@ -1,5 +1,9 @@
 <template>
-  <div v-if="product" class="container w-full mx-auto my-5 lg:my-20">
+  <div
+    v-if="product"
+    :id="product.id"
+    class="container w-full mx-auto my-5 lg:my-20"
+  >
     <nuxt-link
       :to="product.link"
       rel="prefetch"
@@ -7,8 +11,8 @@
     >
       <!-- Data section start  -->
       <div
-        class="flex-1 mt-5 lg:w-1/2 lg:mt-0"
-        :class="ix % 2 == !0 ? 'order-2' : ''"
+        class="flex-1 mt-5 mx-6 lg:w-1/2 lg:mt-0"
+        :class="ix % 2 == !0 ? 'lg:order-2' : ''"
       >
         <div class="mx-4 lg:mx-auto lg:w-108">
           <button
@@ -42,7 +46,7 @@
       <!-- Image section start  -->
       <div
         class="lg:w-1/2"
-        :class="ix % 2 == !0 ? 'order-1 ml-0 max-w-max' : ''"
+        :class="ix % 2 == !0 ? 'lg:order-1 ml-0 max-w-max' : ''"
       >
         <img v-lazy="product.img" class="ml-auto h-96 lg:h-116 max-w-max" />
       </div>
@@ -54,8 +58,8 @@
 <script>
 export default {
   props: {
-    product: { type: Object },
-    ix: { type: Number },
+    product: { type: Object, default: null },
+    ix: { type: Number, default: 0 },
   },
 }
 </script>

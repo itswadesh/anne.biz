@@ -1,5 +1,5 @@
 <template>
-  <section class="w-64 py-3 text-sm bg-gray-100">
+  <section class="w-64 py-3 text-sm bg-gray-100 min-h-screen">
     <!-- Recommended channels section start  -->
     <!-- <div class="flex items-center justify-between px-2">
       <h4 class="font-semibold uppercase">Recommemded Channels</h4>

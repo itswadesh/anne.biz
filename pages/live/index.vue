@@ -1,6 +1,6 @@
 <template>
   <section class="flex bg-gray-50">
-    <div>
+    <div class="hidden md:block">
       <Sidebar />
     </div>
     <div class="w-full">

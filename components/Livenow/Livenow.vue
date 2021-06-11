@@ -41,7 +41,7 @@
     </div> -->
 
     <!-- Live channels we think you’ll like section start  -->
-    <div class="my-2">
+    <div class="my-4 max-w-sm mx-auto sm:max-w-full">
       <h3 class="my-2 text-xl font-semibold">
         Live channels we think you’ll like
       </h3>
@@ -49,13 +49,13 @@
       <div>
         <div
           class="
-            container
-            flex flex-wrap
-            items-center
-            justify-start
-            mx-auto
-            mb-12
-            space-x-2
+            grid grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-3
+            xl:grid-cols-4
+            gap-2
+            sm:gap-4
+            lg:gap-6
           "
         >
           <LiveVideoCard v-for="(v, vx) in videocards" :key="vx" :video="v" />
@@ -130,13 +130,13 @@
 
 <script>
 import LiveVideoCard from '~/components/Livenow/LiveVideoCard.vue'
-import BannerCard from '~/components/Livenow/BannerCard.vue'
+// import BannerCard from '~/components/Livenow/BannerCard.vue'
 import ShowMore from '~/components/Livenow/ShowMore.vue'
 import LIVE_STREAMS from '~/gql/liveStream/liveStreams.gql'
 export default {
   components: {
     LiveVideoCard,
-    BannerCard,
+    // BannerCard,
     ShowMore,
   },
   data() {

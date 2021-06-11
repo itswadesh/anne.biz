@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full m-5 md:m-10 xl:m-20">
+  <section class="w-full p-5 md:p-10">
     <div>
       <SingleStoredVideoCard />
     </div>

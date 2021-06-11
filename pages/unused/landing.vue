@@ -33,22 +33,18 @@
         class="
           w-full
           text-center
-          lg:bg-white
-          lg:absolute
-          lg:bg-opacity-60
-          top-56
-          h-60
+          lg:bg-white lg:absolute lg:bg-opacity-60 lg:bottom-0
         "
       >
         <div class="mx-4 lg:mx-auto lg:w-2/3">
-          <h1 class="pt-8 text-2xl font-bold lg:text-4xl">
+          <h1 class="pt-5 text-2xl font-bold lg:text-4xl">
             Lorem Ipsum Heading Test
           </h1>
           <p class="mt-2 text-sm lg:mt-5">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nemo
             fugit qui dolores blanditiis eos eveniet .
           </p>
-          <div class="mt-10">
+          <div class="my-5">
             <button
               class="
                 py-3
@@ -58,8 +54,7 @@
                 focus:outline-none
                 px-9
                 bg-primary-500
-                hover:bg-gray-200
-                hover:text-primary-500
+                hover:bg-gray-200 hover:text-primary-500
               "
               @click="saveLanding()"
             >

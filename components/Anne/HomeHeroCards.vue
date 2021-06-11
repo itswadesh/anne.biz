@@ -11,10 +11,10 @@
     >
       <!-- Data section start  -->
       <div
-        class="flex-1 mt-5 mx-6 lg:w-1/2 lg:mt-0"
-        :class="ix % 2 == !0 ? 'lg:order-2' : ''"
+        class="flex-1 max-w-md mx-auto mt-5 lg:w-1/2 lg:mt-0"
+        :class="ix % 2 == !0 ? 'lg:order-2 ' : 'mx-6'"
       >
-        <div class="mx-4 lg:mx-auto lg:w-108">
+        <div class="mx-4">
           <button
             class="
               px-6

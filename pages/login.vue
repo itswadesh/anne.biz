@@ -18,9 +18,6 @@ export default {
     const { title, keywords, description } = store.state.settings || {} // err = null
     return { title, keywords, description }
   },
-  computed: {
-    ...mapGetters({ settings: 'settings' }),
-  },
   head() {
     return {
       title: 'Login to ' + (this.settings || {}).websiteName,
@@ -53,6 +50,9 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    ...mapGetters({ settings: 'settings' }),
   },
 }
 </script>

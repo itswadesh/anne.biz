@@ -110,7 +110,20 @@
         />
       </div> -->
       <!--  -->
-      <div v-if="login" class="p-6 my-auto bg-white lg:p-3 lg:px-20 md:flex-1">
+      <div
+        v-if="login"
+        class="
+          flex
+          justify-center
+          flex-col
+          p-6
+          my-auto
+          bg-white
+          lg:p-3
+          lg:px-20
+          md:flex-1
+        "
+      >
         <div class="flex justify-center sm:-mt-10 h-36 lg:py-1">
           <img
             v-lazy="settings.logo"
@@ -119,8 +132,8 @@
           />
           <!-- <img v-lazy="settings.logoMobile" alt="" class="w-32 h-20" /> -->
         </div>
-        <span class="font-medium text-center text-accent-600">
-          SignIn using social account
+        <span class="mb-4 font-medium text-center text-accent-600">
+          SignIn using email and password
         </span>
         <!-- <span class="flex flex-row items-center justify-center pb-3">
           <nuxt-link to="/">
@@ -145,9 +158,9 @@
             />
           </nuxt-link>
         </span>-->
-        <span class="py-3 text-sm text-center text-gray-500">
+        <!-- <span class="py-3 text-sm text-center text-gray-500">
           Or you can use your account
-        </span>
+        </span> -->
         <form
           novalidate
           autocomplete="off"

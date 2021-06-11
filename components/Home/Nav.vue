@@ -94,7 +94,7 @@
                   sm:mb-0
                   text-primary-500 text-normal
                 "
-                @click="$emit('showLogin', true)"
+                @click="findLoginScreen"
               >
                 <!-- {{ showLogin }} -->
                 <!-- login icon  -->
@@ -287,6 +287,13 @@ export default {
   // await this.getCart()
   // },
   methods: {
+    findLoginScreen() {
+      if (this.settings.topLogin) {
+        this.$emit('showLogin', true)
+      } else {
+        this.$router.push('/login')
+      }
+    },
     // showLogin() {
     //   if (!this.user) {
     //     this.$router.push('/login')

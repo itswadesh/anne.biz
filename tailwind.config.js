@@ -32,6 +32,9 @@ module.exports = {
           900: '#FF461B;', // red
         },
       },
+      height: {
+        125: '500px',
+      },
       fontFamily: {
         sans: ['sofia-pro'],
       },

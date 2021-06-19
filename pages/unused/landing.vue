@@ -2,7 +2,7 @@
   <div class="bg-gray-100">
     <div class="relative justify-center w-full">
       <video
-        class="object-cover w-full h-48 md:h-96 lg:h-116"
+        class="object-cover w-full h-48 md:h-96 lg:h-125"
         :src="'https://res.cloudinary.com/itswadesh/video/upload/v1620190766/Anne/video.mp4'"
         autoplay
         loop
@@ -64,7 +64,7 @@
         </div>
       </div>
     </div>
-    <div class="mx-auto my-10 lg:pt-4 lg:container">
+    <div class="mx-auto my-5 lg:container">
       <HomeHeroCards
         v-for="(i, ix) in items"
         :key="ix"

@@ -23,9 +23,9 @@
             md:text-base
             mx-4
             text-primary-500
-            hover:border-b
+            border-b-2 border-transparent
+            hover:border-accent-500
             focus:outline-none
-            border-accent-500
           "
           @click="scrollTo('live-now-section')"
         >
@@ -37,9 +37,9 @@
             md:text-base
             mx-4
             text-primary-500
-            hover:border-b
+            border-b-2 border-transparent
+            hover:border-accent-500
             focus:outline-none
-            border-accent-500
           "
           @click="scrollTo('stored-videos-section')"
         >
@@ -51,9 +51,9 @@
             md:text-base
             mx-4
             text-primary-500
-            hover:border-b
+            border-b-2 border-transparent
+            hover:border-accent-500
             focus:outline-none
-            border-accent-500
           "
           @click="scrollTo('prime-streaming-section')"
         >

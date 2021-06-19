@@ -11,8 +11,8 @@
     >
       <!-- Data section start  -->
       <div
-        class="flex-1 max-w-md mx-auto mt-5 lg:w-1/2 lg:mt-0"
-        :class="ix % 2 == !0 ? 'lg:order-2 ' : 'mx-6'"
+        class="flex-1 max-w-md lg:mx-auto mt-5 lg:w-1/2 lg:mt-0"
+        :class="ix % 2 == !0 ? 'lg:order-2 ml-auto' : 'mx-6'"
       >
         <div class="mx-4">
           <button
@@ -46,9 +46,9 @@
       <!-- Image section start  -->
       <div
         class="lg:w-1/2"
-        :class="ix % 2 == !0 ? 'lg:order-1 ml-0 max-w-max' : ''"
+        :class="ix % 2 == !0 ? '' : 'lg:order-1 ml-auto  max-w-max'"
       >
-        <img v-lazy="product.img" class="ml-auto h-96 lg:h-116 max-w-max" />
+        <img v-lazy="product.img" class="h-96 lg:h-116" />
       </div>
       <!-- Image section end -->
     </nuxt-link>

@@ -28,7 +28,7 @@
 <script>
 // import Sidebar from '~/components/Livenow/Sidebar.vue'
 // import Livenow from '~/components/Livenow/Livenow.vue'
-import LIVE_STREAMS from '~/gql/liveStream/liveStreams.gql'
+import CHANNELS from '~/gql/channel/channels.gql'
 export default {
   components: {
     // Sidebar,
@@ -43,10 +43,10 @@ export default {
     this.items =
       (
         await this.$apollo.query({
-          query: LIVE_STREAMS,
+          query: CHANNELS,
           fetchPolicy: 'no-cache',
         })
-      ).data.liveStreams.data || []
+      ).data.channels.data || []
   },
 }
 </script>

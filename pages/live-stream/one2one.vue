@@ -20,13 +20,13 @@
             ></StreamPlayer>
           </div>
         </div>
-        <div v-if="myLiveStreams && myLiveStreams.length > 0" class="">
+        <div v-if="myChannels && myChannels.length > 0" class="">
           <div class="mb-2 text-2xl font-bold text-primary-500">
             <div>Scheduled</div>
           </div>
           <div class="grid gap-4 lg:grid-cols-3 xl:grid-cols-5">
             <div
-              v-for="item in myLiveStreams"
+              v-for="item in myChannels"
               :key="item.title"
               class="px-4 py-2 bg-white rounded shadow"
             >
@@ -62,7 +62,7 @@ import { mapMutations } from 'vuex'
 import RTCClient from './agora-rtc-client'
 import Nav from '~/components/Home/Nav'
 import StreamPlayer from '~/components/Video/stream-player'
-import MY_LIVE_STREAMS from '~/gql/liveStream/myLiveStreams.gql'
+import MY_CHANNELS from '~/gql/channel/myChannels.gql'
 import {
   AGORA_APP_ID,
   AGORA_APP_TOKEN,
@@ -97,7 +97,7 @@ export default {
       disableJoin: false,
       localStream: null,
       remoteStreams: [],
-      myLiveStreams: [],
+      myChannels: [],
     }
   },
 
@@ -174,13 +174,13 @@ export default {
     },
 
     async getData() {
-      const myLiveStreams = (
+      const myChannels = (
         await this.$apollo.query({
-          query: MY_LIVE_STREAMS,
+          query: MY_CHANNELS,
           fetchPolicy: 'no-cache',
         })
-      ).data.myLiveStreams
-      this.myLiveStreams = myLiveStreams
+      ).data.myChannels
+      this.myChannels = myChannels
     },
   },
 

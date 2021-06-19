@@ -132,7 +132,7 @@
 import LiveVideoCard from '~/components/Livenow/LiveVideoCard.vue'
 // import BannerCard from '~/components/Livenow/BannerCard.vue'
 import ShowMore from '~/components/Livenow/ShowMore.vue'
-import LIVE_STREAMS from '~/gql/liveStream/liveStreams.gql'
+import CHANNELS from '~/gql/channel/channels.gql'
 export default {
   components: {
     LiveVideoCard,
@@ -146,9 +146,9 @@ export default {
   },
   async created() {
     const vdo = await this.$apollo.query({
-      query: LIVE_STREAMS,
+      query: CHANNELS,
     })
-    this.videocards = vdo.data.liveStreams.data
+    this.videocards = vdo.data.channels.data
     // console.log(vdo)
   },
 }

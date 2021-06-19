@@ -106,8 +106,8 @@ import moment from 'moment'
 import { mapMutations } from 'vuex'
 import { Modal, Button } from '~/shared/components/ui'
 
-import LIVE_STREAM from '~/gql/liveStream/liveStream.gql'
-import SAVE_LIVE_STREAM from '~/gql/liveStream/saveLiveStream.gql'
+import CHANNEL from '~/gql/channel/channel.gql'
+import SAVE_CHANNEL from '~/gql/channel/saveChannel.gql'
 import PRODUCTS from '~/gql/product/products.gql'
 import zego from '~/shared/mixins/zego'
 export default {
@@ -169,7 +169,7 @@ export default {
         this.clearErr()
         const live = (
           await this.$apollo.mutate({
-            mutation: SAVE_LIVE_STREAM,
+            mutation: SAVE_CHANNEL,
             variables: {
               id,
               title: this.live.title,
@@ -178,8 +178,8 @@ export default {
               products,
             },
           })
-        ).data.saveLiveStream
-        if (id == 'new' || !id || id == undefined || id == 'undefined')
+        ).data.saveChannel
+        if (id === 'new' || !id || id === undefined || id === 'undefined')
           this.$router.push(`/live/${live.id}`)
       } catch (e) {
         this.setErr(e)
@@ -190,7 +190,7 @@ export default {
     async getData() {
       this.loading = true
       const id = this.$route.params.id
-      if (id == 'new' || !id || id == undefined || id == 'undefined') {
+      if (id === 'new' || !id || id === undefined || id === 'undefined') {
         this.live = { products: [] }
       } else {
         try {
@@ -198,11 +198,11 @@ export default {
           this.live =
             (
               await this.$apollo.query({
-                query: LIVE_STREAM,
+                query: CHANNEL,
                 variables: { id },
                 fetchPolicy: 'no-cache',
               })
-            ).data.liveStream || {}
+            ).data.channel || {}
           this.live.scheduleDateTime = moment(
             this.live.scheduleDateTime
           ).format('YYYY-MM-DD hh:mm:ss a')

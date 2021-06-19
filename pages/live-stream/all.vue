@@ -19,7 +19,7 @@
 
 <script>
 // import StreamPlayer from '~/components/Video/stream-player'
-import CHANNEL_LIST from '~/gql/liveStream/channelList.gql'
+import CHANNEL_LIST from '~/gql/channel/channelList.gql'
 
 export default {
   components: {

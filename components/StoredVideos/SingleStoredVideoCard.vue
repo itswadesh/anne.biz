@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import LIVE_STREAMS from '~/gql/liveStream/liveStreams.gql'
+import CHANNELS from '~/gql/channel/channels.gql'
 
 export default {
   data() {
@@ -59,10 +59,10 @@ export default {
 
   async created() {
     const video = await this.$apollo.query({
-      query: LIVE_STREAMS,
+      query: CHANNELS,
     })
-    this.allvideos = video.data.liveStreams.data
-    // console.log(video.data.liveStreams)
+    this.allvideos = video.data.channels.data
+    // console.log(video.data.channels)
   },
 }
 </script>

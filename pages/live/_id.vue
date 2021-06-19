@@ -59,10 +59,10 @@
               clip-rule="evenodd"
             />
           </svg>
-          <p class="mt-8 text-sm font-semibold text-center text-gray-100">
+          <!-- <p class="mt-8 text-sm font-semibold text-center text-gray-100">
             Click to add
-          </p>
-          <nuxt-link to="/live">
+          </p> -->
+          <!-- <nuxt-link to="/live">
             <p
               class="
                 mt-8
@@ -76,13 +76,14 @@
             >
               View
             </p>
-          </nuxt-link>
+          </nuxt-link> -->
         </div>
       </div>
     </div>
     <div class="bg-red-100">
       <video
         v-for="vd in useLocalStreamList"
+        :key="vd.id"
         autoplay
         muted
         :srcObject.prop="vd.stream"
@@ -94,8 +95,8 @@
 </template>
 
 <script>
-import ZEGO from '~/gql/liveStream/zego.gql'
-import LIVE_STREAM from '~/gql/liveStream/liveStream.gql'
+import ZEGO from '~/gql/channel/zego.gql'
+import CHANNEL from '~/gql/channel/channel.gql'
 
 export default {
   data() {
@@ -119,11 +120,11 @@ export default {
     this.live =
       (
         await this.$apollo.query({
-          query: LIVE_STREAM,
+          query: CHANNEL,
           variables: { id: this.$route.params.id },
           fetchPolicy: 'no-cache',
         })
-      ).data.liveStream || {}
+      ).data.channel || {}
     const ZegoExpressEngine =
       require('zego-express-engine-webrtc').ZegoExpressEngine
     const zg = (this.zg = new ZegoExpressEngine(

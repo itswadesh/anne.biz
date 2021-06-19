@@ -17,7 +17,7 @@
           <input
             v-model="selectedVal"
             :placeholder="
-              (settings && settings.searchbar_text) ||
+              (settings && settings.searchbarText) ||
               'Search for products, brands...'
             "
             class="
@@ -50,7 +50,7 @@
           <!-- mobile view input -->
           <input
             :placeholder="
-              (settings && settings.searchbar_text) ||
+              (settings && settings.searchbarText) ||
               'Search for products, brands...'
             "
             class="

@@ -45,7 +45,7 @@
         "
       >
         <span>Items Subtotal</span>
-        <span>{{ cart.subtotal | currency(settings.currency_symbol, 2) }}</span>
+        <span>{{ cart.subtotal | currency(settings.currencySymbol, 2) }}</span>
       </div>
       <div
         class="
@@ -78,7 +78,7 @@
       >
         <span>Your Savings</span>
         <span class="text-accent-900">
-          -{{ cart.discount.amount | currency(settings.currency_symbol, 2) }}
+          -{{ cart.discount.amount | currency(settings.currencySymbol, 2) }}
         </span>
       </div>
 
@@ -125,7 +125,7 @@
           </h6>
         </nuxt-link>
         <span>{{
-          cart.shipping.charge | currency(settings.currency_symbol, 2)
+          cart.shipping.charge | currency(settings.currencySymbol, 2)
         }}</span>
       </div>
 
@@ -145,7 +145,7 @@
         <span class="text-xl">Total Amount</span>
         <!-- class="text-secondary-400" -->
         <span class="text-xl">
-          {{ cart.total | currency(settings.currency_symbol, 2) }}
+          {{ cart.total | currency(settings.currencySymbol, 2) }}
         </span>
       </div>
       <div class="fixed bottom-0 w-full sm:relative">

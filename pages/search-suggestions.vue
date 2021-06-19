@@ -30,7 +30,7 @@
                 ref="q"
                 autofocus
                 :placeholder="
-                  (settings && settings.searchbar_text) ||
+                  (settings && settings.searchbarText) ||
                   'Search for products, brands...'
                 "
                 :value="q"

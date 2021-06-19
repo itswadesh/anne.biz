@@ -24,7 +24,7 @@
             </div>
             <h2 v-if="order" class="text-3xl font-bold text-center">
               Paid:
-              {{ order.amount.total | currency(settings.currency_symbol, 2) }}
+              {{ order.amount.total | currency(settings.currencySymbol, 2) }}
             </h2>
             <h3
               class="
@@ -240,7 +240,7 @@
                           </div>
                           <div class="text-secondary-200">
                             {{
-                              item.price | currency(settings.currency_symbol, 2)
+                              item.price | currency(settings.currencySymbol, 2)
                             }}
                           </div>
                         </div>
@@ -252,7 +252,7 @@
               >
                 <div class="text-gray-400 me-1">Price:</div>
                 <div class="text-green-400">
-                  {{ item.price | currency(settings.currency_symbol,2) }}
+                  {{ item.price | currency(settings.currencySymbol,2) }}
                 </div>
               </div> -->
                 </div>
@@ -362,27 +362,27 @@
                     <strong> Subtotal:</strong>
                     {{
                       order.amount.subtotal
-                        | currency(settings.currency_symbol, 2)
+                        | currency(settings.currencySymbol, 2)
                     }}
                   </div>
                   <div v-if="order.amount.discount" class="w-2/3 my-2">
                     <strong> Discount:</strong>
                     {{
                       order.amount.discount
-                        | currency(settings.currency_symbol, 2)
+                        | currency(settings.currencySymbol, 2)
                     }},
                   </div>
                   <div v-if="order.amount.shipping" class="my-2">
                     <strong> Shipping: </strong>
                     {{
                       order.amount.shipping
-                        | currency(settings.currency_symbol, 2)
+                        | currency(settings.currencySymbol, 2)
                     }}
                   </div>
                   <div v-if="order.amount.total" class="underline">
                     <strong>Total:</strong>
                     {{
-                      order.amount.total | currency(settings.currency_symbol, 2)
+                      order.amount.total | currency(settings.currencySymbol, 2)
                     }}
                   </div>
                 </div>

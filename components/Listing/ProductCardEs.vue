@@ -141,7 +141,7 @@
                 </div>
                 <div class="flex items-center h-8 text-xs">
                   <div class="text-sm text-gray-900">
-                    {{ product.price | currency(settings.currency_symbol, 2) }}
+                    {{ product.price | currency(settings.currencySymbol, 2) }}
                   </div>
                   <div v-if="product.price < product.mrp" class="flex flex-row">
                     <strike
@@ -154,7 +154,7 @@
                         text-gray-400
                       "
                     >
-                      {{ product.mrp | currency(settings.currency_symbol, 2) }}
+                      {{ product.mrp | currency(settings.currencySymbol, 2) }}
                     </strike>
                     <div
                       v-if="product.price < product.mrp"

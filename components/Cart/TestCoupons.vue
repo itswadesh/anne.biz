@@ -138,13 +138,13 @@
                     </div>
                     <div class="mt-3 text-xs font-medium text-gray-700">
                       Save up to
-                      {{ c.maxAmount | currency(settings.currency_symbol, 2) }}
+                      {{ c.maxAmount | currency(settings.currencySymbol, 2) }}
                     </div>
                     <div class="mt-3 text-xs font-medium text-gray-700">
                       {{ c.text }} on minimum purchase of
                       {{
                         c.minimumCartValue
-                          | currency(settings.currency_symbol, 2)
+                          | currency(settings.currencySymbol, 2)
                       }}
                       | Expires on {{ c.validToDate | date }}
                       {{ c.terms }}
@@ -161,7 +161,7 @@
             @submit.stop.prevent="applyOffer(coupon_code)"
           >
             <div class="my-auto text-sm text-gray-500">
-              <!-- Minimum saving {{ 125 | currency(settings.currency_symbol,2) }} -->
+              <!-- Minimum saving {{ 125 | currency(settings.currencySymbol,2) }} -->
             </div>
             <button
               :disabled="disabled"

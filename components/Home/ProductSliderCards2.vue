@@ -58,7 +58,7 @@
               }}</span>
               <div>
                 <span class="text-base font-normal text-center text-accent-900">
-                  {{ product.price | currency(settings.currency_symbol, 2) }}
+                  {{ product.price | currency(settings.currencySymbol, 2) }}
                 </span>
               </div>
             </span>

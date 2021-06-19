@@ -117,7 +117,7 @@
                             <div class="text-accent-900">
                               {{
                                 w.product.price
-                                  | currency(settings.currency_symbol, 2)
+                                  | currency(settings.currencySymbol, 2)
                               }}
                             </div>
                             <strike
@@ -126,7 +126,7 @@
                             >
                               {{
                                 w.product.mrp
-                                  | currency(settings.currency_symbol, 2)
+                                  | currency(settings.currencySymbol, 2)
                               }}
                             </strike>
                             <div

@@ -67,13 +67,13 @@
               <div class="flex flex-row justify-between m-2 mx-auto text-xs">
                 <span class="flex flex-row">
                   <div class="my-auto text-center me-2 text-secondary-200">
-                    {{ product.price | currency(settings.currency_symbol, 2) }}
+                    {{ product.price | currency(settings.currencySymbol, 2) }}
                   </div>
                   <strike
                     v-if="product.price < product.mrp"
                     class="my-auto font-light"
                   >
-                    {{ product.mrp | currency(settings.currency_symbol, 2) }}
+                    {{ product.mrp | currency(settings.currencySymbol, 2) }}
                   </strike>
                 </span>
                 <div

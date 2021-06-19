@@ -154,11 +154,11 @@
                       v-if="product.price < product.mrp"
                       class="font-light"
                     >
-                      {{ product.mrp | currency(settings.currency_symbol, 2) }}
+                      {{ product.mrp | currency(settings.currencySymbol, 2) }}
                     </strike>
                   </div>
                   <b class="mx-2 my-auto mr-2">
-                    {{ product.price | currency(settings.currency_symbol, 2) }}
+                    {{ product.price | currency(settings.currencySymbol, 2) }}
                   </b>
                   <!--  -->
                   <div v-if="discount > 0" class="my-auto mr-1 text-red-600">

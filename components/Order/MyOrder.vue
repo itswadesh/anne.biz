@@ -333,7 +333,7 @@
                       {{ i.qty }}
                     </td>
                     <td class="text-sm text-center text-gray-900" scope="col">
-                      {{ i.price | currency(settings.currency_symbol, 2) }}
+                      {{ i.price | currency(settings.currencySymbol, 2) }}
                     </td>
                     <td class="pl-4 text-sm text-gray-900" scope="col">
                       <span class="text-primary-500">{{ i.status }}</span>
@@ -472,7 +472,7 @@
                   <div>
                     Price:
                     <b class="text-gray-500">
-                      {{ i.price | currency(settings.currency_symbol, 2) }}
+                      {{ i.price | currency(settings.currencySymbol, 2) }}
                     </b>
                   </div>
                 </div>

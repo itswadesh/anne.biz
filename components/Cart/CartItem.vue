@@ -64,7 +64,7 @@
             </div>
             <div>
               <span class="my-3 text-md text-secondary-200 md:text-base">
-                {{ item.price | currency(settings.currency_symbol, 2) }}
+                {{ item.price | currency(settings.currencySymbol, 2) }}
               </span>
             </div>
 

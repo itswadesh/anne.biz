@@ -73,7 +73,7 @@
           </div>
           <div class="w-1/4 px-6 text-right">22/02/2025</div>
           <div class="w-1/4 text-right">
-            {{ 125 | currency(settings.currency_symbol, 2) }}
+            {{ 125 | currency(settings.currencySymbol, 2) }}
           </div>
         </div>
       </label>
@@ -100,7 +100,7 @@
                     <span class="my-2">Payment: Credit Card</span>
                 </div>
                 <div class="w-1/4 px-6 text-right">22/02/2025</div>
-                <div class="w-1/4 text-right">{{125 | currency(settings.currency_symbol,2)}}</div>
+                <div class="w-1/4 text-right">{{125 | currency(settings.currencySymbol,2)}}</div>
                 </div>
             </label> -->
     </div>

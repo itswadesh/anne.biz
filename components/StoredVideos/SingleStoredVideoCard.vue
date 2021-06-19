@@ -1,15 +1,43 @@
 <template>
   <section>
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8">
+    <div
+      v-if="allvideos"
+      class="
+        grid grid-cols-1
+        sm:grid-cols-2
+        lg:grid-cols-3
+        xl:grid-cols-4
+        gap-4
+        justify-items-center
+      "
+    >
       <div
-        v-for="(i, ix) in items"
-        :key="ix"
-        class="bg-white rounded-md p-2 md:p-4 hover:shadow shadow-md w-full"
+        v-for="(v, vx) in allvideos"
+        :key="vx.id"
+        class="
+          bg-white
+          rounded-md
+          p-2
+          md:p-4
+          hover:shadow
+          shadow-md
+          w-full
+          max-w-xs
+          flex-1
+        "
       >
-        <img :src="i.img" alt="" class="h-60 w-full object-cover object-top" />
-        <div class="p-4">
-          <h4 class="font-medium">{{ i.title }}</h4>
-          <h6 class="mt-2 text-sm text-gray-600">{{ i.description }}</h6>
+        <div class="flex items-center justify-center">
+          <img
+            :src="v.img"
+            alt=""
+            class="h-52 w-52 xl:w-full object-cover object-top"
+          />
+        </div>
+        <div class="py-4">
+          <h4 class="font-medium">
+            {{ v.user.firstName }} {{ v.user.lastName }}
+          </h4>
+          <h6 class="mt-2 text-sm text-gray-600">{{ v.title }}</h6>
         </div>
       </div>
     </div>
@@ -20,42 +48,21 @@
 </template>
 
 <script>
+import LIVE_STREAMS from '~/gql/liveStream/liveStreams.gql'
+
 export default {
   data() {
     return {
-      items: [
-        {
-          img: '/img/mencat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/womencat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/themecat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/mencat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/womencat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-        {
-          img: '/img/themecat.jpeg',
-          title: `Lorem Ipsom Dolar`,
-          description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. `,
-        },
-      ],
+      allvideos: null,
     }
+  },
+
+  async created() {
+    const video = await this.$apollo.query({
+      query: LIVE_STREAMS,
+    })
+    this.allvideos = video.data.liveStreams.data
+    // console.log(video.data.liveStreams)
   },
 }
 </script>

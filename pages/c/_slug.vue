@@ -160,7 +160,9 @@ export default {
           qry[k] &&
           !Array.isArray(qry[k]) &&
           qry[k] !== null &&
-          qry[k] !== ''
+          qry[k] !== '' &&
+          k !== 'price' &&
+          k !== 'age'
         )
           qry[k] = qry[k].split(',')
       })
@@ -174,7 +176,7 @@ export default {
       } else {
         err = e
       }
-      // console.log('err...', e)
+      console.log('/c/_slug err...', e)
       return { products, category, productCount, facets: [], fl: {}, err }
     }
   },
@@ -265,29 +267,29 @@ export default {
     //     window.scroll({ behavior: 'smooth', left: 0, top: 80 })
     //   }
     // },
-    async getData() {
-      const q = this.$route.query || {}
-      // q.categories = this.$route.path.substr(1)
-      try {
-        this.loading = true
-        const p = params.slug || null
-        q.categories = p
-        const products = await this.$axios.$get('/api/products/es', {
-          params: q,
-        })
-        this.productCount = products.count
-        this.products = products.data
-        this.facets = products.facets && products.facets.all_aggs
-      } catch (e) {
-      } finally {
-        this.loading = false
-      }
-    },
+    // async getData() {
+    //   const q = this.$route.query || {}
+    //   // q.categories = this.$route.path.substr(1)
+    //   try {
+    //     this.loading = true
+    //     const p = params.slug || null
+    //     q.categories = p
+    //     const products = await this.$axios.$get('/api/products/es', {
+    //       params: q,
+    //     })
+    //     this.productCount = products.count
+    //     this.products = products.data
+    //     this.facets = products.facets && products.facets.all_aggs
+    //   } catch (e) {
+    //   } finally {
+    //     this.loading = false
+    //   }
+    // },
   },
 }
 </script>
 <style>
-.pagination {
+/* .pagination {
   list-style-type: none !important;
   display: flex !important;
   padding-left: 0 !important;
@@ -321,5 +323,5 @@ export default {
   color: #fff !important;
   background-color: #007bff !important;
   border-color: #007bff !important;
-}
+} */
 </style>

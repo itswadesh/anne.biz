@@ -119,7 +119,7 @@
                 :href="`${NETEASE_WWW}/netease?channelName=${product.id}`"
                 target="_"
               >
-                Watch Live
+                Schedule a demo
               </a>
               <!-- <button
                 v-if="settings.liveCommerce"

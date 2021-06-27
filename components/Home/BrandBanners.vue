@@ -33,14 +33,7 @@
         "
       >
         <div v-for="b in brands" :key="b.id" class="mx-auto">
-          <nuxt-link
-            :to="
-              localePath(
-                `/search?${ishome ? 'parentBrands' : 'brands'}=${b.slug}`
-              )
-            "
-            class="p-1"
-          >
+          <button class="p-1" @click="go(b.slug)">
             <img
               v-if="b.img"
               v-lazy="b.img"
@@ -68,7 +61,7 @@
             >
               {{ b.name | first }}
             </div>
-          </nuxt-link>
+          </button>
         </div>
       </div>
     </div>
@@ -108,7 +101,6 @@ export default {
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: 6,
         slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
@@ -168,6 +160,12 @@ export default {
     // await this.getBrands()
   },
   methods: {
+    go(url) {
+      if (url)
+        this.$router.push(
+          `/search?${this.ishome ? 'parentBrands' : 'brands'}=${url}`
+        )
+    },
     //   async getBrands() {
     //     // this.loading = true
     //     try {

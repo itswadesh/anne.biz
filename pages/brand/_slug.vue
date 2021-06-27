@@ -1,63 +1,59 @@
 <template>
   <div class="z-auto pb-0 bg-gray-50">
-    <Megamenu class="hidden xl:flex" />
-    <HeroSlider :banners="sliderBanners" />
-    <Categories class="" />
-    <HeroBanners
-      :banners="heroBanners"
-      class="z-0 p-1 sm:order-first lg:px-28 md:p-10 md:px-24"
+    <Megamenu class="hidden xl:flex" :brand="brand.id" />
+    <HeroSlider
+      v-if="sliderBanners && sliderBanners.length"
+      :banners="sliderBanners"
     />
-    <BrandBanners :brands="childBrands && childBrands.data" />
+    <div class="max-w-6xl mx-auto w-full">
+      <AllBrands
+        v-if="childBrands && childBrands.data && childBrands.data.length"
+        :brands="childBrands && childBrands.data"
+        class="mt-5"
+      />
+      <div v-if="pickedBanners && pickedBanners.length" class="my-5">
+        <div v-for="(p, ix) in pickedBanners" :key="ix">
+          <HeroBannersSlider
+            class=""
+            :banners="p && p.data"
+            :title="p._id && p._id.title"
+          />
+        </div>
+      </div>
+      <HeroBanners :banners="heroBanners" class="my-5" />
+    </div>
+    <!-- <BrandBanners :brands="childBrands && childBrands.data" /> -->
     <VideoBanner :banners="videoBanners" />
-    <!-- <Deals /> -->
-    <!-- <ProductSlider
-      class="px-3 mt-6 md:px-0 md:mx-6 sm:mt-0"
-      :details="youMayLikeProducts && youMayLikeProducts.data"
-      :heading="'You May Like'"
-    /> -->
-    <!-- <ProductSlider2
-      class="sm:mt-12"
-      :details="hotProducts && hotProducts.data"
-      :heading="'Trending'"
-    /> -->
-    <!-- <Discounts /> -->
-    <!-- <div>
-      <SelectedCategoryDetails />
-    </div> -->
-    <!-- <FooterSection class="hidden lg:block" /> -->
-    <!-- <GridComponents /> -->
-    <!--    -->
+    <WeProvides :brand="brand" class="lg:mb-5 max-w-6xl mx-auto w-full" />
   </div>
 </template>
 
 <script>
 import Megamenu from '~/components/Home/Megamenu'
 import HeroSlider from '~/components/Home/HeroSlider'
+import AllBrands from '~/components/Home/AllBrands'
 import HeroBanners from '~/components/Home/HeroBanners'
-import Categories from '~/components/Home/Categories'
-import Deals from '~/components/Home/Deals'
-import ProductSlider from '~/components/Home/ProductSlider'
-import ProductSlider2 from '~/components/Home/ProductSlider2'
-import BrandBanners from '~/components/Home/BrandBanners'
 import PRODUCTS from '~/gql/product/products.gql'
 import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 import BANNERS from '~/gql/banner/banners.gql'
 import BRANDS from '~/gql/brand/brands.gql'
 import BRAND from '~/gql/brand/brand.gql'
 import GROUP_BY_BANNER from '~/gql/banner/groupByBanner.gql'
+// import BrandBanners from '~/components/Home/BrandBanners'
 import VideoBanner from '~/components/Home/VideoBanner.vue'
+import HeroBannersSlider from '~/components/Home/HeroBannersSlider.vue'
+import WeProvides from '~/components/Home/WeProvides.vue'
 export default {
   components: {
     Megamenu,
     HeroSlider,
+    AllBrands,
     HeroBanners,
-    Categories,
-    Deals,
-    ProductSlider,
-    ProductSlider2,
-    BrandBanners,
+    // BrandBanners,
+    HeroBannersSlider,
     // Discounts,
     VideoBanner,
+    WeProvides,
   },
   async asyncData({ params, app, store, error }) {
     let brand = {}
@@ -86,8 +82,10 @@ export default {
       childBrands: null,
       sliderBanners: null,
       heroBanners: null,
+      pickedBanners: null,
       videoBanners: null,
       loadingVideoBanners: false,
+      brand: null,
     }
   },
   head() {
@@ -163,10 +161,11 @@ export default {
           await this.$apollo.query({
             query: BRANDS,
             variables: {
-              limit: 5,
+              limit: 10,
               page: 0,
               sort: 'sort',
               parent: this.brand.id,
+              featured: true,
             },
             fetchPolicy: 'no-cache',
           })
@@ -201,6 +200,19 @@ export default {
             query: GROUP_BY_BANNER,
             variables: {
               pageId: this.brand.id,
+              type: 'hero',
+              sort: 'sort',
+            },
+            fetchPolicy: 'no-cache',
+          })
+        ).data.groupByBanner
+        this.pickedBanners = (
+          await this.$apollo.query({
+            query: GROUP_BY_BANNER,
+            variables: {
+              pageId: this.brand.id,
+              type: 'picked',
+              sort: 'sort',
             },
             fetchPolicy: 'no-cache',
           })

@@ -43,7 +43,7 @@
     <!-- Live channels we think you’ll like section start  -->
     <div class="my-4 max-w-sm mx-auto sm:max-w-full">
       <h3 class="my-2 text-xl font-semibold">
-        Live channels we think you’ll like
+        Live sales
       </h3>
 
       <div>
@@ -58,9 +58,9 @@
             lg:gap-6
           "
         >
-          <LiveVideoCard v-for="(v, vx) in videocards" :key="vx" :video="v" />
+          <LiveVideoCard v-for="(c, ix) in channels" :key="ix" :channel="c" />
         </div>
-        <ShowMore />
+        <!-- <ShowMore /> -->
       </div>
     </div>
 
@@ -141,14 +141,14 @@ export default {
   },
   data() {
     return {
-      videocards: null,
+      channels: null,
     }
   },
   async created() {
     const vdo = await this.$apollo.query({
       query: CHANNELS,
     })
-    this.videocards = vdo.data.channels.data
+    this.channels = vdo.data.channels.data
     // console.log(vdo)
   },
 }

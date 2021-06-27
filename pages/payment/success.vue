@@ -436,6 +436,30 @@ export default {
   //     },
   //   },
   // },
+  computed: {
+    ...mapGetters({
+      settings: 'settings',
+      user: 'auth/user',
+      cart: 'cart/cart',
+    }),
+  },
+  async mounted() {
+    const paySuccessPageHit = await this.getPaySuccessPageHit()
+    if (paySuccessPageHit < 2) {
+      await this.clearCart()
+      // await this.fetchCart()
+    }
+    await this.refresh()
+    try {
+      this.$refs.map.route(
+        `${this.order.delivery.start.lat},${this.order.delivery.start.lng}`,
+        `${this.order.delivery.finish.lat},${this.order.delivery.finish.lng}`
+      )
+    } catch (e) {
+    } finally {
+      this.loading = false
+    }
+  },
   methods: {
     ...mapMutations({
       clearErr: 'clearErr',
@@ -479,30 +503,6 @@ export default {
         this.loading = false
       }
     },
-  },
-  async mounted() {
-    const paySuccessPageHit = await this.getPaySuccessPageHit()
-    if (paySuccessPageHit < 2) {
-      await this.clearCart()
-      // await this.fetchCart()
-    }
-    await this.refresh()
-    try {
-      this.$refs.map.route(
-        `${this.order.delivery.start.lat},${this.order.delivery.start.lng}`,
-        `${this.order.delivery.finish.lat},${this.order.delivery.finish.lng}`
-      )
-    } catch (e) {
-    } finally {
-      this.loading = false
-    }
-  },
-  computed: {
-    ...mapGetters({
-      settings: 'settings',
-      user: 'auth/user',
-      cart: 'cart/cart',
-    }),
   },
 }
 </script>

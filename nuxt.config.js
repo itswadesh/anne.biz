@@ -55,12 +55,18 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv',
     'cookie-universal-nuxt',
     'vue-sweetalert2/nuxt',
     ['nuxt-i18n', I18N],
     ['@nuxtjs/firebase', firebaseConfig],
   ],
+  publicRuntimeConfig: {
+    WWW_URL: `${WWW_URL}`,
+    HTTP_ENDPOINT: `${HTTP_ENDPOINT}`,
+  },
+  privateRuntimeConfig: {
+    firebaseAppId: process.env.FIREBASE_APP_ID,
+  },
   pageTransition: 'slide-bottom',
   layoutTransition: 'slide-bottom',
   pwa: {
@@ -91,11 +97,12 @@ export default {
   },
   apollo: {
     clientConfigs: {
-      default: {
-        httpEndpoint: `${WWW_URL}/graphql`,
-        browserHttpEndpoint: '/graphql',
-        // wsEndpoint: server.replace('http', 'ws') + '/graphql',
-      },
+      default: '~/plugins/apollo-config.js',
+      // {
+      //   httpEndpoint: `${WWW_URL}/graphql`,
+      //   browserHttpEndpoint: '/graphql',
+      //   // wsEndpoint: server.replace('http', 'ws') + '/graphql',
+      // },
     },
     defaultOptions: {
       $query: {

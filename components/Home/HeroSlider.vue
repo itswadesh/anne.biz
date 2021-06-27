@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white focus:outline-none h-52 md:h-64 lg:h-80 xl:h-96">
+  <div class="focus:outline-none h-52 md:h-64 lg:h-80 xl:h-96">
     <div class="flex justify-center">
       <progress
         v-if="loading"
@@ -39,6 +39,7 @@
             <img
               v-lazy="b.img"
               class="
+                bg-white
                 object-cover
                 w-full
                 my-auto
@@ -72,7 +73,7 @@ export default {
   data() {
     return {
       settings: {
-        centerMode: false,
+        centerMode: true,
         centerPadding: '150px',
         centerMargin: '20px',
         focusOnSelect: false,

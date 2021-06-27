@@ -217,20 +217,48 @@
 <script>
 import { mapGetters } from 'vuex'
 import PARENT_BRANDS from '~/gql/brand/parentBrands.gql'
+import MEGAMENU from '~/gql/category/megamenu.gql'
+import BRAND from '~/gql/brand/brand.gql'
 
 export default {
+  props: {
+    brand: { type: String, default: null },
+  },
   data() {
     return {
+      megamenu: null,
       parentBrands: false,
     }
   },
-  computed: {
-    ...mapGetters({ megamenu: 'megamenu' }),
-  },
-  async created() {
-    await this.getParentBrands()
+  // computed: {
+  // ...mapGetters({ megamenu: 'megamenu' }),
+  // },
+  created() {
+    this.getMegamenu()
+    this.getParentBrands()
   },
   methods: {
+    async getMegamenu() {
+      // this.loading = true
+      try {
+        const brand = (
+          await this.$apollo.query({
+            query: BRAND,
+            variables: { slug: this.$route.params.slug },
+          })
+        ).data.brand
+        let variables = { active: true }
+        if (this.brand) {
+          variables.brand = brand.id
+        }
+        this.megamenu = (
+          await this.$apollo.query({
+            query: MEGAMENU,
+            variables,
+          })
+        ).data.megamenu
+      } catch (e) {}
+    },
     async getParentBrands() {
       // this.loading = true
       try {

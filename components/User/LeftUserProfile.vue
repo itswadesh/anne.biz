@@ -74,7 +74,7 @@
                 border-b
               "
             >
-              <div class="px-3">
+              <div v-if="user" class="px-3">
                 <img
                   v-lazy="user.avatar"
                   alt=""

@@ -127,15 +127,16 @@
             "
             @click="onselect(v)"
           >
-            <img
-              :key="v._id"
-              v-lazy="v._source.img"
+            <!-- <img
+              v-if="v.img"
+              :key="i"
+              v-lazy="v.img"
               alt=""
               class="object-contain w-12 h-10 mx-2"
-            />
-            <span class="p-3 text-sm font-light text-gray-600 truncate">{{
-              v._source.name
-            }}</span>
+            /> -->
+            <span class="p-3 text-sm font-light text-gray-600 truncate">
+              {{ v.key }}
+            </span>
           </div>
         </div>
       </div>
@@ -173,12 +174,13 @@ export default {
       this.fillValue(val)
       this.onUnfocused()
 
-      this.$router.push(`/${this.product._source.slug}?id=${this.product._id}`)
+      this.$router.push(`/search/${val.key}`)
+      // this.$router.push(`/${this.product._source.slug}?id=${this.product._id}`)
       // console.log(this.selectedVal)
     },
     fillValue(val) {
       this.product = val
-      this.selectedVal = this.product._source.name
+      this.selectedVal = this.product.key
     },
     onSelectValue(e) {
       // console.log(e);

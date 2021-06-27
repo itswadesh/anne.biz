@@ -1,32 +1,21 @@
 <template>
   <section
-    v-if="video"
-    class="
-      w-full
-      rounded-md
-      shadow-md
-      hover:shadow
-      bg-white
-      p-2
-      sm:p-4
-      text-gray-800
-    "
+    v-if="channel"
+    class="w-full rounded-md shadow-md hover:shadow bg-white text-gray-800"
   >
-    <!-- video section start  -->
+    <!-- channel section start  -->
     <div class="relative">
-      <a
-        :href="`https://litekartlive.netlify.app/netease/watch?channelName=${video.id}`"
-        target="_blank"
-        className=" h-full w-full"
-      >
+      <!-- <a
+        :href="`https://litekartlive.netlify.app/netease/watch?channelName=${channel.id}`"
+        target="_blank" -->
+      <nuxt-link :to="`/live/${channel.id}`" class="h-full w-full">
         <img
-          v-lazy="video.img"
-          class="w-full h-64 rounded-t-lg object-cover"
+          v-lazy="channel.img"
+          class="w-full h-40 rounded-t-lg object-cover"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-      </a>
-
+      </nuxt-link>
       <div class="absolute right-0 top-0 border rounded-full border-gray-200">
         <div class="mx-2 my-0.5 flex items-center">
           <div class="h-2 w-2 rounded-full bg-red-500 mr-1 animate-pulse"></div>
@@ -34,28 +23,23 @@
         </div>
       </div>
     </div>
-    <!-- video section end -->
-    <!-- Video details start  -->
-    <div class="flex justify-start mt-2">
+    <!-- channel section end -->
+    <!-- channel details start  -->
+    <div class="p-2 flex justify-start mt-2">
       <img
-        v-lazy="video.user.avatar"
+        v-lazy="channel.user.avatar"
         alt=""
         class="object-cover w-10 h-10 rounded-full border border-gray-300"
       />
       <div class="flex flex-col ml-4">
-        <a
-          :href="`https://litekartlive.netlify.app/netease/watch?channelName=${video.id}`"
-          class="
-            font-semibold
-            truncate
-            cursor-pointer
-            w-60
-            hover:text-purple-500
-            uppercase
-          "
+        <!-- <a
+          :href="`https://litekartlive.netlify.app/netease/watch?channelName=${channel.id}`" -->
+        <nuxt-link
+          :to="`/live/${channel.id}`"
+          class="font-semibold truncate cursor-pointer hover:text-purple-500"
         >
-          {{ video.user.firstName }} {{ video.user.lastName }}
-          <span
+          {{ channel.title }}
+          <!-- <span
             class="
               bg-gray-100
               border
@@ -67,9 +51,9 @@
               text-gray-600
               ml-3
             "
-            >ENGLISh</span
-          >
-        </a>
+            >ENGLISH</span
+          > -->
+        </nuxt-link>
         <div
           class="
             text-sm
@@ -80,12 +64,10 @@
             mt-1
           "
         >
-          {{ video.__typename }}
-          {{ video.scheduleDateTime }}
+          {{ channel.user.firstName }} {{ channel.user.lastName }}
         </div>
 
-        <nuxt-link
-          to="#"
+        <div
           class="
             text-sm
             font-light
@@ -94,52 +76,19 @@
             max-w-max
           "
         >
-          {{ video.user.email }}
-        </nuxt-link>
-        <div class="flex mt-2 space-x-2">
-          <nuxt-link to="#">
-            <button
-              class="
-                px-3
-                py-0.5
-                text-gray-700 text-sm
-                font-semibold
-                bg-gray-200
-                rounded-full
-                focus:outline-none
-                hover:bg-gray-300
-              "
-            >
-              {{ video.button1 }}
-            </button>
-          </nuxt-link>
-          <nuxt-link to="#">
-            <button
-              class="
-                px-3
-                py-0.5
-                text-gray-700 text-sm
-                font-semibold
-                bg-gray-200
-                rounded-full
-                focus:outline-none
-                hover:bg-gray-300
-              "
-            >
-              {{ video.button2 }}
-            </button>
-          </nuxt-link>
+          {{ channel.scheduleDateTime | date }}
         </div>
+        <div class="flex mt-2 space-x-2"></div>
       </div>
     </div>
-    <!-- Video details end -->
+    <!-- channel details end -->
   </section>
 </template>
 
 <script>
 export default {
   props: {
-    video: { type: Object, default: () => {} },
+    channel: { type: Object, default: () => {} },
   },
 }
 </script>

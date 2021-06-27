@@ -300,6 +300,9 @@ h4
     >
       <h4 class="px-2 text-base font-medium uppercase ms-2">PRICE RANGE</h4>
       <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+        {{
+          fl.price
+        }}
         <li
           v-for="b in facets.price &&
           facets.price.all &&
@@ -307,15 +310,15 @@ h4
           :key="b.key"
           v-if="b.doc_count > 0"
         >
-          <Checkbox
+          <Radio
             v-model="fl.price"
             class="flex flex-row my-2 tracking-wider"
             color="primary"
             :count="b.doc_count"
-            :value="b.from"
-            @change="changed({ model: 'price', checked: b.from + ',' + b.to })"
+            :value="b.from + ',' + b.to"
+            @change="changed({ model: 'price', checked: fl.price })"
             ><span class="my-auto"> {{ b.key }}</span>
-          </Checkbox>
+          </Radio>
         </li>
       </ul>
     </div>
@@ -338,15 +341,15 @@ h4
           :key="b.key"
           v-if="b.doc_count > 0"
         >
-          <Checkbox
+          <Radio
             v-model="fl.age"
             class="flex flex-row my-2 tracking-wider"
             color="primary"
             :count="b.doc_count"
-            :value="b.from"
-            @change="changed({ model: 'age', checked: b.from + ',' + b.to })"
+            :value="b.from + ',' + b.to"
+            @change="changed({ model: 'age', checked: fl.age })"
             ><span class="my-auto"> {{ b.key }}</span>
-          </Checkbox>
+          </Radio>
         </li>
       </ul>
     </div>
@@ -419,16 +422,18 @@ h4
   </div>
 </template>
 <script>
-import { Checkbox } from '~/shared/components/ui'
+import { Checkbox, Radio } from '~/shared/components/ui'
 import { constructURL } from '~/lib/'
 import GET_MEGAMENU from '~/gql/category/megamenu.gql'
 export default {
-  components: { Checkbox },
+  components: { Checkbox, Radio },
   props: {
     clear: Boolean,
     fl: {
       type: [Object, Array],
-      default: null,
+      default: () => {
+        return {}
+      },
     },
     facets: {
       type: [Object, Array],

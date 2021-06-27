@@ -400,11 +400,6 @@ export default {
   //   `api/addresses/${this.$route.query.address}`
   // );
   // },
-  async created() {
-    this.$store.dispatch('cart/fetch')
-    await this.getPaymentMethods()
-    await this.loadStripe()
-  },
   computed: {
     ...mapGetters({
       user: 'auth/user',
@@ -416,6 +411,11 @@ export default {
         return !this.complete || this.errors.any()
       else return this.errors.any()
     },
+  },
+  async created() {
+    this.$store.dispatch('cart/fetch')
+    await this.getPaymentMethods()
+    await this.loadStripe()
   },
   methods: {
     ...mapActions({

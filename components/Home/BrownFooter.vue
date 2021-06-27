@@ -167,7 +167,7 @@
           "
         >
           <nuxt-link
-            v-for="(s, ix) in popular_searches"
+            v-for="(s, ix) in popularSearches"
             :key="ix"
             :to="`/search/${s.text}`"
             class="
@@ -208,7 +208,7 @@
           />
           <span class="object-cover pl-4 my-auto lg:w-2/3">
             <strong class="font-light"> 100% ORIGINAL </strong> guarantee for
-            all products at tablez.com
+            all products at {{ settings.websiteName }}
           </span>
         </div>
         <!-- <div class="flex flex-col my-8 md:flex-row">
@@ -395,14 +395,14 @@
 </template>
 <script>
 // import LanguageSwitcher from '~/components/LanguageSwitcher'
-import SEARCH from '~/gql/search/popularSearches.gql'
+import POPULAR_SEARCHES from '~/gql/search/popularSearches.gql'
 
 export default {
   // components: { LanguageSwitcher },
   data() {
     return {
       year: new Date().getFullYear(),
-      popular_searches: null,
+      popularSearches: null,
     }
   },
   computed: {
@@ -411,15 +411,15 @@ export default {
     },
   },
   created() {
-    this.getSearches()
+    this.getPopularSearches()
   },
   methods: {
-    async getSearches() {
-      this.loading = true
+    async getPopularSearches() {
       try {
-        this.popular_searches = (
+        this.loading = true
+        this.popularSearches = (
           await this.$apollo.query({
-            query: SEARCH,
+            query: POPULAR_SEARCHES,
             variables: {
               sort: '-popularity',
             },

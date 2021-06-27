@@ -114,7 +114,9 @@ export default {
           qry[k] &&
           !Array.isArray(qry[k]) &&
           qry[k] !== null &&
-          qry[k] !== ''
+          qry[k] !== '' &&
+          k !== 'price' &&
+          k !== 'age'
         )
           qry[k] = qry[k].split(',')
       })
@@ -137,26 +139,33 @@ export default {
       title: 'Search Product',
     }
   },
+  watchQuery: true,
+  created() {
+    this.scrollToTop()
+    this.currentPage = parseInt(this.$route.query.page)
+    // let query = { ...this.$route.query };
+    // this.fl = query;
+  },
   methods: {
-    async getData(query) {
-      try {
-        this.loading = true
-        const products = await this.$axios.$get('/api/products/es', {
-          params: { ...query },
-        })
-        this.productCount = products.count
-        this.products = products.data
-        this.facets = products.facets.all_aggs
-      } catch (e) {
-      } finally {
-        this.loading = false
-      }
-    },
+    // async getData(query) {
+    //   try {
+    //     this.loading = true
+    //     const products = await this.$axios.$get('/api/products/es', {
+    //       params: { ...query },
+    //     })
+    //     this.productCount = products.count
+    //     this.products = products.data
+    //     this.facets = products.facets.all_aggs
+    //   } catch (e) {
+    //   } finally {
+    //     this.loading = false
+    //   }
+    // },
   },
 }
 </script>
 <style>
-.pagination {
+/* .pagination {
   list-style-type: none !important;
   display: flex !important;
   padding-left: 0 !important;
@@ -190,5 +199,5 @@ export default {
   color: #fff !important;
   background-color: #007bff !important;
   border-color: #007bff !important;
-}
+} */
 </style>

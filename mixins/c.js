@@ -60,7 +60,7 @@ export default {
   },
   watch: {
     '$route.query': {
-      immediate: false,
+      immediate: true,
       handler(value, oldValue) {
         const q = this.$route.params.q
         const query = { ...this.$route.query }
@@ -73,21 +73,22 @@ export default {
             query[k] &&
             !Array.isArray(query[k]) &&
             query[k] !== null &&
-            query[k] !== ''
+            query[k] !== '' &&
+            k !== 'price' &&
+            k !== 'age'
           )
             query[k] = query[k].split(',')
         })
         this.fl = query // For selected filters
         if (q) qry.q = q
-        this.getData(qry)
+        // this.getData(qry)
       },
     },
   },
   methods: {
     changePage(p) {
-      this.$route.params.q
       const query = this.$route.query
-      query.page = p
+      query.page = +p
       query._ = new Date().getTime()
       this.scrollToTop()
       const url = constructURL('/', query)
@@ -165,7 +166,7 @@ export default {
     },
     sortNow() {
       this.flush() // To allow http get request
-      this.getData()
+      // this.getData()
     },
     flush() {
       this.meta.end = false

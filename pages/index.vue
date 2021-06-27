@@ -8,15 +8,28 @@
       class="z-0 p-1 sm:order-first lg:px-28 md:p-10 md:px-24"
     />
     <Deals />
+    <div class="pb-20">
+      <div
+        v-for="(p, ix) in pickedBanners"
+        :key="ix"
+        v-if="pickedBanners && pickedBanners.length"
+      >
+        <HeroBannersSlider
+          class="px-3 mt-6 md:px-0 md:mx-6 sm:mt-0"
+          :banners="p && p.data"
+          :title="p._id && p._id.title"
+        />
+      </div>
+    </div>
     <ProductSlider
       class="px-3 mt-6 md:px-0 md:mx-6 sm:mt-0"
-      :details="youMayLikeProducts && youMayLikeProducts.data"
+      :details="youMayLikeProducts"
       :heading="'You May Like'"
     />
     <VideoBanner :banners="videoBanners" />
     <ProductSlider2
       class="sm:mt-12"
-      :details="hotProducts && hotProducts.data"
+      :details="hotProducts"
       :heading="'Trending'"
     />
     <BrandBanners :ishome="true" :brands="brandBanners && brandBanners.data" />
@@ -39,7 +52,8 @@ import Deals from '~/components/Home/Deals'
 import ProductSlider from '~/components/Home/ProductSlider'
 import ProductSlider2 from '~/components/Home/ProductSlider2'
 import BrandBanners from '~/components/Home/BrandBanners'
-import PRODUCTS from '~/gql/product/products.gql'
+import HeroBannersSlider from '~/components/Home/HeroBannersSlider'
+import TRENDING from '~/gql/product/trending.gql'
 import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 import BANNERS from '~/gql/banner/banners.gql'
 import GROUP_BY_BANNER from '~/gql/banner/groupByBanner.gql'
@@ -52,13 +66,13 @@ export default {
     HeroBanners,
     Categories,
     Deals,
+    HeroBannersSlider,
     ProductSlider,
     ProductSlider2,
     BrandBanners,
     // Discounts,
     VideoBanner,
   },
-  middleware: ['landing'],
   asyncData({ params, app, store }) {
     const { title, keywords, description } = store.state.settings || {} // err = null
     return { title, keywords, description }
@@ -74,6 +88,7 @@ export default {
       heroBanners: null,
       videoBanners: null,
       loadingVideoBanners: false,
+      pickedBanners: null,
     }
   },
   head() {
@@ -181,6 +196,17 @@ export default {
             query: GROUP_BY_BANNER,
             variables: {
               pageId: 'home',
+              type: 'hero',
+            },
+            fetchPolicy: 'no-cache',
+          })
+        ).data.groupByBanner
+        this.pickedBanners = (
+          await this.$apollo.query({
+            query: GROUP_BY_BANNER,
+            variables: {
+              pageId: 'home',
+              type: 'picked',
             },
             fetchPolicy: 'no-cache',
           })
@@ -205,13 +231,13 @@ export default {
       try {
         this.youMayLikeProducts = (
           await this.$apollo.query({
-            query: PRODUCTS,
+            query: TRENDING,
             variables: {
-              sale: true,
+              type: 'sale',
             },
             fetchPolicy: 'no-cache',
           })
-        ).data.products
+        ).data.trending
       } catch (e) {
         // console.log(e)
       } finally {
@@ -223,13 +249,13 @@ export default {
       try {
         this.hotProducts = (
           await this.$apollo.query({
-            query: PRODUCTS,
+            query: TRENDING,
             variables: {
-              hot: true,
+              type: 'hot',
             },
             fetchPolicy: 'no-cache',
           })
-        ).data.products
+        ).data.trending
       } catch (e) {
         // console.log(e)
       } finally {

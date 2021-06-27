@@ -53,7 +53,7 @@
     <div class="p-4 m-2 bg-white rounded-md shadow-md">
       <h1 class="text-xl font-bold tracking-wide uppercase">
         join the
-        <span class="text-purple-500 cursor-pointer">twitch</span> community!!!
+        <span class="text-purple-500 cursor-pointer">litekart</span> community!!!
       </h1>
       <h5 class="mt-1 text-gray-600">
         Discover the best live streams anywhere

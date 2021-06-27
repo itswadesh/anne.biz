@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center">
-    <div class="p-1">
+    <!-- <div class="p-1">
       <form
         id="enter-pin"
         class="
@@ -40,69 +40,69 @@
           />
         </span>
       </form>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      value: [],
-    }
-  },
-  methods: {
-    onEnterOtp(i) {
-      let Otp = ''
-      if (i === 3) {
-        this.value.forEach((val) => {
-          Otp = Otp + val
-        })
-        this.$emit('verifyOtp', Otp)
-      }
-    },
-    handlePaste(i) {
-      for (let j = i; j < 4; j++) {
-        this.$nextTick(() => {
-          this.value[j] = ''
-        })
-      }
-      setTimeout(() => {
-        let index = 0
-        const data = this.value[i]
-        for (let pos = i; (index = 0); pos < 3, pos++) {
-          this.value[pos]
-        }
-        let pos = i
-        this.value.splice(i - 1, 4 - i + 1)
-        while (pos <= 4) {
-          this.value.push(data[index])
-          index++
-          pos++
-        }
-      }, 100)
-    },
-    removeItem(e, i, length) {
-      if (i > 0) {
-        const a = i - 1
-        if (this.value[length - 1] !== undefined) this.value.splice(i, 1)
-        else {
-          this.$refs['content' + a][0].focus()
-          this.value.splice(a, 1)
-        }
-      }
-    },
-    handleInput(e, i, length) {
-      if (
-        i < length - 1 &&
-        e.key !== 'Backspace' &&
-        this.value[i] !== undefined
-      ) {
-        const a = i + 1
-        this.$refs['content' + a][0].focus()
-        this.$refs['content' + a][0].value = ''
-      }
-    },
-  },
+  // data() {
+  //   return {
+  //     value: [],
+  //   }
+  // },
+  // methods: {
+  //   onEnterOtp(i) {
+  //     let Otp = ''
+  //     if (i === 3) {
+  //       this.value.forEach((val) => {
+  //         Otp = Otp + val
+  //       })
+  //       this.$emit('verifyOtp', Otp)
+  //     }
+  //   },
+  //   handlePaste(i) {
+  //     for (let j = i; j < 4; j++) {
+  //       this.$nextTick(() => {
+  //         this.value[j] = ''
+  //       })
+  //     }
+  //     setTimeout(() => {
+  //       let index = 0
+  //       const data = this.value[i]
+  //       for (let pos = i; (index = 0); pos < 3, pos++) {
+  //         this.value[pos]
+  //       }
+  //       let pos = i
+  //       this.value.splice(i - 1, 4 - i + 1)
+  //       while (pos <= 4) {
+  //         this.value.push(data[index])
+  //         index++
+  //         pos++
+  //       }
+  //     }, 100)
+  //   },
+  //   removeItem(e, i, length) {
+  //     if (i > 0) {
+  //       const a = i - 1
+  //       if (this.value[length - 1] !== undefined) this.value.splice(i, 1)
+  //       else {
+  //         this.$refs['content' + a][0].focus()
+  //         this.value.splice(a, 1)
+  //       }
+  //     }
+  //   },
+  //   handleInput(e, i, length) {
+  //     if (
+  //       i < length - 1 &&
+  //       e.key !== 'Backspace' &&
+  //       this.value[i] !== undefined
+  //     ) {
+  //       const a = i + 1
+  //       this.$refs['content' + a][0].focus()
+  //       this.$refs['content' + a][0].value = ''
+  //     }
+  //   },
+  // },
 }
 </script>

@@ -33,7 +33,10 @@
         class="
           w-full
           text-center
-          lg:bg-white lg:absolute lg:bg-opacity-60 lg:bottom-0
+          lg:bg-white
+          lg:absolute
+          lg:bg-opacity-60
+          lg:bottom-0
         "
       >
         <div class="mx-4 lg:mx-auto lg:w-2/3">
@@ -54,7 +57,8 @@
                 focus:outline-none
                 px-9
                 bg-primary-500
-                hover:bg-gray-200 hover:text-primary-500
+                hover:bg-gray-200
+                hover:text-primary-500
               "
               @click="saveLanding()"
             >
@@ -125,7 +129,7 @@ export default {
         },
         {
           id: 'stored-videos-section',
-          link: '/live/stored',
+          link: '/videos',
           title: 'Stored Videos',
           img: '/live-commerce/stored-videos-image.png',
           name: `“Anne.Biz travels the globe in search of the world’s most amazing
@@ -137,7 +141,7 @@ your life. “`,
         },
         {
           id: 'prime-streaming-section',
-          link: '/puma-modern-sports-polo-black?id=60a2b89bcea32a040d00207c',
+          link: '/womens-fancy-sunglasses-black?id=60bb4351217f06075f56dea9',
           title: 'Prime Streaming',
           img: '/live-commerce/prime-streaming-image.png',
           name: `ENJOY UNPARALEL LIVE SHOPPING EXPERIENCE!

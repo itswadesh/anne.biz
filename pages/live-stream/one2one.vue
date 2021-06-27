@@ -126,12 +126,12 @@ export default {
                 this.localStream = stream
               })
               .catch((err) => {
-                console.log('the error is', err)
+                // console.log('the error is', err)
                 // console.log('publish local error', err)
               })
           })
           .catch((err) => {
-            console.log('the error is', err)
+            // console.log('the error is', err)
             // console.log('join channel error', err)
           })
       } else {
@@ -144,7 +144,7 @@ export default {
             // })
           })
           .catch((err) => {
-            console.log('the error is', err)
+            // console.log('the error is', err)
             // console.log('join channel error', err)
           })
       }
@@ -162,7 +162,7 @@ export default {
           // })
         })
         .catch((err) => {
-          console.log('the error is', err)
+          // console.log('the error is', err)
           // log('leave error', err)
         })
       this.localStream = null

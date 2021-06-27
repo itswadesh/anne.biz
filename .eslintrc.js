@@ -33,5 +33,8 @@ module.exports = {
     'node/handle-callback-err': 'off',
     'vue/no-unused-components': 'warn',
     'vue/no-v-html': 'off',
+    'prefer-const': 'warn',
+    'no-case-declarations': 'warn',
+    'no-console': 'off',
   },
 }

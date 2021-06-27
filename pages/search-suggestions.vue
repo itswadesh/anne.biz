@@ -113,7 +113,7 @@
               "
             >
               <div
-                v-for="(v, i) in products"
+                v-for="(v, i) in autocomplete"
                 :key="i"
                 class="
                   flex flex-row
@@ -130,15 +130,15 @@
                 @click="onselect(v)"
               >
                 <div class="flex flex-row w-10/12">
-                  <div class="w-1/6 my-auto">
+                  <div v-if="v.img" class="w-1/6 my-auto">
                     <img
                       :key="v._id"
-                      v-lazy="v._source.img"
+                      v-lazy="v.img"
                       alt=""
                       class="object-contain h-10 mx-auto my-auto"
                     />
                   </div>
-                  <span class="w-5/6 p-3 truncate">{{ v._source.name }}</span>
+                  <span class="w-5/6 p-3 truncate">{{ v.key }}</span>
                 </div>
                 <svg
                   class="mx-2"
@@ -164,12 +164,11 @@
     </div>
     <div class="h-auto p-3 mt-16 bg-white border-t border-b shadow">
       <span class="text-sm font-light text-gray-600">Discover More</span>
-      <div v-if="popular" class="grid grid-cols-2 mt-2">
-        <!-- {{popular.count}} -->
+      <div v-if="popularSearches" class="grid grid-cols-2 mt-2">
         <nuxt-link
-          v-for="p in popular.data"
+          v-for="p in popularSearches"
           :key="p.id"
-          :to="`/search/${p.name}`"
+          :to="`/search/${p.text}`"
           class="
             w-auto
             h-auto
@@ -185,21 +184,22 @@
             text-primary-500
           "
         >
-          <span>{{ p.name }}</span>
+          <span>{{ p.text }}</span>
         </nuxt-link>
       </div>
     </div>
   </div>
 </template>
 <script>
-import PRODUCTS from '~/gql/product/popular.gql'
+import POPULAR_SEARCHES from '~/gql/search/popularSearches.gql'
+
 export default {
   layout: 'none',
   data() {
     return {
-      popular: null,
-      products: null,
+      popularSearches: null,
       q: '',
+      autocomplete: null,
     }
   },
   computed: {
@@ -207,33 +207,34 @@ export default {
       return this.$store.state.settings || {}
     },
   },
-  async created() {
-    await this.getProducts()
+  created() {
+    this.getPopularSearches()
   },
   methods: {
-    async getProducts() {
+    async getPopularSearches() {
       try {
-        this.popular = (
+        this.loading = true
+        this.popularSearches = (
           await this.$apollo.query({
-            query: PRODUCTS,
-            variables: {},
+            query: POPULAR_SEARCHES,
+            variables: {
+              sort: '-popularity',
+            },
             fetchPolicy: 'no-cache',
           })
-        ).data.popular
+        ).data.popularSearches.data
       } catch (e) {
         // console.log(e)
+      } finally {
+        this.loading = false
       }
     },
     submit() {
-      if (this.product)
-        this.$router.push(
-          `/${this.product._source.slug}?id=${this.product._id}`
-        )
-      else this.$router.push(`/search/${this.q}`)
+      // const q1 = q ? `/search/${q}` : `/search/${this.q}`
+      this.$router.push(`/search/${this.q}`)
     },
-    onselect(product) {
-      if (product)
-        this.$router.push(`/${product._source.slug}?id=${product._id}`)
+    onselect(v) {
+      if (v) this.$router.push(`/search/${v.key}`)
     },
     fillValue(val) {
       this.product = val
@@ -253,8 +254,7 @@ export default {
         const result = await this.$axios.$get('/api/products/autocomplete', {
           params: { q: this.q },
         })
-        // console.log(result)
-        this.products = result.data
+        this.autocomplete = result.data
       } catch (e) {
         // console.log(e)
       }

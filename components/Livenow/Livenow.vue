@@ -42,9 +42,7 @@
 
     <!-- Live channels we think you’ll like section start  -->
     <div class="my-4 max-w-sm mx-auto sm:max-w-full">
-      <h3 class="my-2 text-xl font-semibold">
-        Live sales
-      </h3>
+      <h3 class="my-2 text-xl font-semibold">Live sales</h3>
 
       <div>
         <div

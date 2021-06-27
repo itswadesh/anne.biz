@@ -10,6 +10,9 @@
 // import FlvPlayer from '~/components/Video/FlvPlayer'
 import Hls from 'hls.js'
 export default {
+  components: {
+    // FlvPlayer,
+  },
   props: {
     src: { type: String, default: null },
   },
@@ -17,9 +20,6 @@ export default {
     return {
       channel: null,
     }
-  },
-  components: {
-    // FlvPlayer,
   },
   mounted() {
     // const Hls = require('hls.js')

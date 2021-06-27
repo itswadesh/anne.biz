@@ -307,8 +307,8 @@ h4
           v-for="b in facets.price &&
           facets.price.all &&
           facets.price.all.buckets"
-          :key="b.key"
           v-if="b.doc_count > 0"
+          :key="b.key"
         >
           <Radio
             v-model="fl.price"
@@ -338,8 +338,8 @@ h4
       <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
         <li
           v-for="b in facets.age && facets.age.all && facets.age.all.buckets"
-          :key="b.key"
           v-if="b.doc_count > 0"
+          :key="b.key"
         >
           <Radio
             v-model="fl.age"

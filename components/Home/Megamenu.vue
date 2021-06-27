@@ -247,7 +247,7 @@ export default {
             variables: { slug: this.$route.params.slug },
           })
         ).data.brand
-        let variables = { active: true }
+        const variables = { active: true }
         if (this.brand) {
           variables.brand = brand.id
         }

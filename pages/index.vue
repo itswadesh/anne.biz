@@ -11,8 +11,8 @@
     <div class="pb-20">
       <div
         v-for="(p, ix) in pickedBanners"
-        :key="ix"
         v-if="pickedBanners && pickedBanners.length"
+        :key="ix"
       >
         <HeroBannersSlider
           class="px-3 mt-6 md:px-0 md:mx-6 sm:mt-0"

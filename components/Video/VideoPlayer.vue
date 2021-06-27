@@ -2,10 +2,10 @@
   <div>
     <section class="container">
       <div
+        v-video-player:myVideoPlayer="playerOptions"
         class="video-player-box"
         :playsinline="playsinline"
         @play="onPlayerPlay($event)"
-        v-video-player:myVideoPlayer="playerOptions"
         @pause="onPlayerPause($event)"
         @ended="onPlayerEnded($event)"
         @loadeddata="onPlayerLoadeddata($event)"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FlvPlayer :src="$route.query.url.replace('http://', 'https://')"  />
+    <FlvPlayer :src="$route.query.url.replace('http://', 'https://')" />
     <!-- <VideoPlayer
       :video-src="$route.query.url"
     /> -->

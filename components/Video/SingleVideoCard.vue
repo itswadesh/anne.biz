@@ -15,7 +15,9 @@
         {{ video.updateTime | date }}
       </h4>
       <h6 class="mt-2 text-sm text-gray-600">
-        Duration: {{ video.duration }} second<span v-if="video.duration > 1">s</span>
+        Duration: {{ video.duration }} second<span v-if="video.duration > 1"
+          >s</span
+        >
       </h6>
       <p class="mt-2 text-sm text-gray-600">{{ video.channel }}</p>
       <p v-if="video.user" class="mt-2 text-sm text-gray-600 flex items-center">

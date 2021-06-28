@@ -4,6 +4,7 @@
     <HeroSlider
       v-if="sliderBanners && sliderBanners.length"
       :banners="sliderBanners"
+      class="md:mb-12 lg:mb-16"
     />
     <div class="max-w-6xl mx-auto w-full">
       <AllBrands

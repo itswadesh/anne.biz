@@ -16,6 +16,23 @@
             lg:mx-auto
           "
         >
+          <a
+            :href="settings.adminPanelLink"
+            target="blank"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              border-r border-white
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
+          >
+            Merchant Dashboard
+          </a>
           <nuxt-link
             to="/legal/contact-us"
             class="
@@ -32,9 +49,8 @@
           >
             Contact Us
           </nuxt-link>
-          <a
-            target="blank"
-            href="https://www.tablez.com/"
+          <nuxt-link
+            to="/legal/about-us"
             class="
               w-auto
               px-1
@@ -48,7 +64,7 @@
             "
           >
             About Us
-          </a>
+          </nuxt-link>
           <nuxt-link
             to="/faq"
             class="
@@ -81,24 +97,64 @@
           >
             Terms Of Use
           </nuxt-link>
-          <!-- <nuxt-link
+          <nuxt-link
             to="/legal/shipping-policy"
-            class="w-auto px-1 my-auto tracking-wider text-center border-r border-white cursor-pointer hover:bg-white hover:text-primary-500"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              border-r border-white
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
           >
             Shipping Policy
-          </nuxt-link> -->
-          <!-- <nuxt-link
-            to="/legal/shipping-policy"
-            class="w-auto px-1 my-auto tracking-wider text-center border-r border-white cursor-pointer hover:bg-white hover:text-primary-500"
+          </nuxt-link>
+          <nuxt-link
+            to="/my/orders"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              border-r border-white
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
           >
             Track Order
           </nuxt-link>
-          <span
-            class="w-auto px-1 my-auto tracking-wider text-center border-r border-white cursor-pointer hover:bg-white hover:text-primary-500"
+          <!-- <span
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              border-r border-white
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
             >Shipping</span
           >
           <span
-            class="w-auto px-1 my-auto tracking-wider text-center border-r border-white cursor-pointer hover:bg-white hover:text-primary-500"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              border-r border-white
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
           >
             Cancellation
           </span> -->

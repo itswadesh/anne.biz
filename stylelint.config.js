@@ -5,5 +5,6 @@ module.exports = {
   rules: {
     'no-empty-source': null,
     'length-zero-no-unit': null,
+    'no-descending-specificity': null,
   },
 }

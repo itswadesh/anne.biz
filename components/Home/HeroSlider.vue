@@ -73,7 +73,7 @@ export default {
   data() {
     return {
       settings: {
-        centerMode: true,
+        centerMode: false,
         centerPadding: '150px',
         centerMargin: '20px',
         focusOnSelect: false,

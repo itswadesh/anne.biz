@@ -10,7 +10,9 @@
       </div>
       <div class="flex-1 ml-5">
         <h4 class="font-semibold leading-none">Sign up.</h4>
-        <h6 class="mt-1 text-gray-400">Create your Litekart account</h6>
+        <h6 class="mt-1 text-gray-400">
+          Create your {{ settings.websiteName }} account
+        </h6>
       </div>
     </div>
     <div class="flex items-start mt-10">
@@ -19,7 +21,7 @@
       </div>
       <div class="flex-1 ml-5">
         <h4 class="font-semibold leading-none">
-          Enter the Litekart Dashboard.
+          Enter the {{ settings.websiteName }} Dashboard.
         </h4>
         <h6 class="mt-1 text-gray-400">
           Create a store and get your store URL.
@@ -50,7 +52,14 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters({
+      settings: 'settings',
+    }),
+  },
+}
 </script>
 
 <style scoped>

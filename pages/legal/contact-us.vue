@@ -152,11 +152,6 @@
         </div>
       </div>
     </div>
-    <!-- <h1 class="mt-4 mb-4 text-3xl font-bold text-center">Contact Us</h1>
-    <div class="container flex items-center justify-center">
-      Email:
-      <div class="text-primary-500 ms-1">care@tablez.com</div>
-    </div> -->
   </div>
 </template>
 

@@ -11,7 +11,7 @@
       <div>Orders below Rs. 750 : Rs.100/-</div>
 
       <div class="my-6">
-        2. Tablez & Toys products: For Delivery In a Week, charges are:
+        2. Anne products: For Delivery In a Week, charges are:
       </div>
       <div>Orders below Rs. 750 : Rs.100/-</div>
       <div>Orders above Rs. 750 : Rs. 0/-</div>

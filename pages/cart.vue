@@ -122,17 +122,17 @@ export default {
   },
   head() {
     return {
-      title: 'Tablez Cart',
+      title: 'Anne Cart',
     }
-  },
-  created() {
-    this.$store.dispatch('cart/fetch')
   },
   computed: {
     ...mapGetters({
       cart: 'cart/cart',
       getItemQty: 'cart/getItemQty',
     }),
+  },
+  created() {
+    this.$store.dispatch('cart/fetch')
   },
 }
 </script>

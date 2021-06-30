@@ -66,7 +66,6 @@
             />
           </div>
           <div class="h-full my-auto lg:mt-1">
-            <!-- TABLEZ -->
             <nuxt-link :to="localePath('/')">
               <div class="my-auto">
                 <img

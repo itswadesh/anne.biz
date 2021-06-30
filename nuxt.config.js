@@ -71,9 +71,9 @@ export default {
   layoutTransition: 'slide-bottom',
   pwa: {
     manifest: {
-      short_name: 'Tablez',
-      name: 'Tablez',
-      description: 'Tablez ecommerce',
+      short_name: 'Anne',
+      name: 'Anne',
+      description: 'Anne ecommerce',
     },
   },
   toast: {

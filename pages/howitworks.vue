@@ -3,8 +3,8 @@
     <div class="relative">
       <img src="/img/mushroom.jpg" alt="" class="object-cover w-full h-96" />
       <div class="absolute inset-0 bg-black opacity-50"></div>
-      <div class="absolute inset-0">
-        <h1 class="mt-16 md:mt-32 text-white text-center text-4xl px-5">
+      <div class="absolute inset-0 px-5">
+        <h1 class="mt-16 md:mt-32 text-white text-center text-4xl">
           Everything you need to start selling online!
         </h1>
         <h1 class="mt-5 text-white text-center text-lg font-semibold">
@@ -30,7 +30,7 @@
     </div>
 
     <div class="my-10">
-      <div class="text-center">
+      <div class="text-center px-5">
         <h1 class="text-3xl font-bold">HOW IT WORKS</h1>
         <div class="mt-5 text-gray-500">
           <i>It's Good To Know How The System Works, Before You Register</i>

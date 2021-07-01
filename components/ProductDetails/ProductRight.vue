@@ -117,7 +117,7 @@
               <a
                 v-if="settings.liveCommerce"
                 :href="`${NETEASE_WWW}/netease?channelName=${product.id}`"
-                target="_"
+                target="blank"
               >
                 Schedule a demo
               </a>
@@ -607,32 +607,32 @@
                     placeholder="Enter Pin"
                   />
                 </div> -->
-                <div class="flex flex-row">
-                  <div class="me-3">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M13.64 2.35C12.19 0.9 10.2 0 7.99 0C3.57 0 0 3.58 0 8C0 12.42 3.57 16 7.99 16C11.72 16 14.83 13.45 15.72 10H13.64C12.82 12.33 10.6 14 7.99 14C4.68 14 1.99 11.31 1.99 8C1.99 4.69 4.68 2 7.99 2C9.65 2 11.13 2.69 12.21 3.78L8.99 7H15.99V0L13.64 2.35Z"
-                        fill="#4A4A4A"
-                      />
-                    </svg>
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="-mt-2 text-lg font-light text-gray-500"
-                      >{{ product.returnInfo }}
-                    </span>
+                <div class="flex">
+                  <div class="flex flex-wrap items-center">
+                    <div class="mr-3">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.64 2.35C12.19 0.9 10.2 0 7.99 0C3.57 0 0 3.58 0 8C0 12.42 3.57 16 7.99 16C11.72 16 14.83 13.45 15.72 10H13.64C12.82 12.33 10.6 14 7.99 14C4.68 14 1.99 11.31 1.99 8C1.99 4.69 4.68 2 7.99 2C9.65 2 11.13 2.69 12.21 3.78L8.99 7H15.99V0L13.64 2.35Z"
+                          fill="#4A4A4A"
+                        />
+                      </svg>
+                    </div>
+                    <div class="text-lg font-light text-gray-500">
+                      {{ product.returnInfo }}
+                    </div>
                     <!-- <span class="my-auto text-lg font-light text-gray-500"
                       >Cash on Delivery available</span >-->
                   </div>
                 </div>
               </div>
               <div class="my-5">
-                <div class="flex flex-row">
+                <div class="flex flex-row items-center">
                   <span class="my-auto text-lg font-light text-gray-500">
                     Delivery by:
                   </span>

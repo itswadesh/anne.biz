@@ -112,7 +112,7 @@ export default {
           id: 'live',
           link: '/live',
           title: 'Live Now',
-          img: '/live-commerce/live-now-image.png',
+          img: '/img/home/live-now.jpg',
           name: 'Enjoy tech-enabled Live Shopping e-Commerce brands.',
           description: `<ul><li class="flex items-start py-1 "><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Seamless Checkout</li>
 <li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>In-video purchase</li>
@@ -127,7 +127,7 @@ export default {
           id: 'stored-videos-section',
           link: '/videos',
           title: 'Stored Videos',
-          img: '/live-commerce/stored-videos-image.png',
+          img: '/img/home/stored-videos.jpg',
           name: `“Anne.Biz travels the globe in search of the world’s most amazing
 products. Products that are innovative, unique, effective and easy to
 use. Products that really matter and can make a positive impact in
@@ -139,7 +139,7 @@ your life. “`,
           id: 'prime-streaming-section',
           link: '/womens-fancy-sunglasses-black?id=60bb4351217f06075f56dea9',
           title: 'Prime Streaming',
-          img: '/live-commerce/prime-streaming-image.png',
+          img: '/img/home/prime-streaming.jpg',
           name: `ENJOY UNPARALEL LIVE SHOPPING EXPERIENCE!
 Unlock engagement, awareness with tech-enabled Live Shopping eCommerce brands.`,
           description: `<ul><li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Schedule Streaming</li>

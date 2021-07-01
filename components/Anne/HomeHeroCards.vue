@@ -48,7 +48,17 @@
         class="lg:w-1/2"
         :class="ix % 2 == !0 ? '' : 'lg:order-1 ml-auto  max-w-max'"
       >
-        <img v-lazy="product.img" class="h-96 lg:h-116" />
+        <img
+          v-lazy="product.img"
+          class="
+            md:h-96
+            object-top object-cover
+            transition
+            duration-700
+            transform
+            hover:scale-105
+          "
+        />
       </div>
       <!-- Image section end -->
     </nuxt-link>

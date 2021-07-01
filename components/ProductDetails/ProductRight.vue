@@ -742,13 +742,13 @@ export default {
     //   console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz')
     // },
     async getReviews() {
-      const product = this.$route.query.id
-      if (!product) return
+      const pid = this.$route.query.id
+      if (!pid) return
       try {
         this.reviewSummary = (
           await this.$apollo.query({
             query: REVIEWS,
-            variables: { product },
+            variables: { pid },
             fetchPolicy: 'no-cache',
           })
         ).data.reviewSummary

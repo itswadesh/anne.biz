@@ -177,7 +177,6 @@ export default {
         // console.log("reviesssss",this.reviews)
       } catch (e) {
         // console.log(e)
-      } finally {
       }
     },
   },

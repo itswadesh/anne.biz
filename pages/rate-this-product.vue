@@ -139,7 +139,7 @@ export default {
       product: null,
       saveReview: {
         id: 'new',
-        product: this.$route.query.id,
+        pid: this.$route.query.id,
         message: '',
         rating: null,
       },
@@ -150,14 +150,14 @@ export default {
       title: 'Rate This Product',
     }
   },
-  async created() {
-    // console.log('id..........', this.$route.query.id)
-    await this.getProduct()
-  },
   computed: {
     ...mapGetters({
       settings: 'settings',
     }),
+  },
+  async created() {
+    // console.log('id..........', this.$route.query.id)
+    await this.getProduct()
   },
   methods: {
     ...mapMutations({ success: 'success', setErr: 'setErr' }),
@@ -173,7 +173,6 @@ export default {
         ).data.product
         this.updatedDeliveryDates()
       } catch (e) {
-        // console.log(e)
       } finally {
         this.loading = false
       }
@@ -187,13 +186,11 @@ export default {
             variables: this.saveReview,
           })
         ).data.saveReview
-        // console.log('review', this.saveReview)
         this.success(msg)
         if (this.product)
           this.$router.push(`/${this.product.slug}?id=${this.product.id}`)
       } catch (e) {
-        this.setErr(e.toString())
-        // console.log(e)
+        this.setErr(e)
       }
     },
   },

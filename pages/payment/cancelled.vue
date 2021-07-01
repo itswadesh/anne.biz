@@ -209,7 +209,7 @@
                         {{ item.name }}
                       </nuxt-link>
                       <div class="mt-2 text-xs text-primary-500 lg:text-sm">
-                        Brand
+                        {{ item.brandName }}
                       </div>
                       <!-- <div class="mt-1 text-xs text-primary-500 lg:text-sm">
                     <div v-for="(v, k) in JSON.parse(item.options)" :key="v">
@@ -439,6 +439,26 @@ export default {
   //     },
   //   },
   // },
+
+  computed: {
+    ...mapGetters({
+      settings: 'settings',
+      user: 'auth/user',
+      cart: 'cart/cart',
+    }),
+  },
+  async mounted() {
+    await this.refresh()
+    try {
+      this.$refs.map.route(
+        `${this.order.delivery.start.lat},${this.order.delivery.start.lng}`,
+        `${this.order.delivery.finish.lat},${this.order.delivery.finish.lng}`
+      )
+    } catch (e) {
+    } finally {
+      this.loading = false
+    }
+  },
   methods: {
     ...mapMutations({
       clearErr: 'clearErr',
@@ -469,25 +489,6 @@ export default {
         this.loading = false
       }
     },
-  },
-  async mounted() {
-    await this.refresh()
-    try {
-      this.$refs.map.route(
-        `${this.order.delivery.start.lat},${this.order.delivery.start.lng}`,
-        `${this.order.delivery.finish.lat},${this.order.delivery.finish.lng}`
-      )
-    } catch (e) {
-    } finally {
-      this.loading = false
-    }
-  },
-  computed: {
-    ...mapGetters({
-      settings: 'settings',
-      user: 'auth/user',
-      cart: 'cart/cart',
-    }),
   },
 }
 </script>

@@ -107,8 +107,9 @@
               <nuxt-link
                 :to="localePath('cart')"
                 class="my-auto text-sm text-blue-400 underline lg:hidden"
-                >Back to Cart</nuxt-link
               >
+                Back to Cart
+              </nuxt-link>
               <div class="flex flex-row">
                 <div
                   class="
@@ -184,11 +185,11 @@
               :key="ix + 's'"
               class="hidden w-full mx-auto mb-2 lg:container lg:block"
             >
-              <div class="p-3 text-sm text-gray-500">
-                <div>OrderNo: {{ order.orderNo }}</div>
-                <!-- <div class="">
+              <div class="flex items-center p-3 text-sm text-gray-500">
+                <div>Order No: {{ order.orderNo }}</div>
+                <div class="ml-2 text-xs text-gray-400">
                   Order Date: {{ order.createdAt | date }}
-                </div> -->
+                </div>
               </div>
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -281,7 +282,7 @@
                         text-start
                       "
                     >
-                      Status
+                      Shipping
                     </th>
                     <th
                       scope="col"
@@ -296,13 +297,47 @@
                         text-start
                       "
                     >
-                      Reviewed
+                      Total
                     </th>
+                    <th
+                      scope="col"
+                      class="
+                        px-6
+                        py-3
+                        text-xs
+                        font-medium
+                        tracking-wider
+                        text-gray-500
+                        uppercase
+                        text-start
+                      "
+                    >
+                      Status
+                    </th>
+                    <!-- <th
+                      scope="col"
+                      class="
+                        px-6
+                        py-3
+                        text-xs
+                        font-medium
+                        tracking-wider
+                        text-gray-500
+                        uppercase
+                        text-start
+                      "
+                    >
+                      Reviewed
+                    </th> -->
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <!-- :class="{ 'bg-gray-100': ix % 2 == 0 }" -->
-                  <tr v-for="(i, ix) in order.items" :key="ix" class="bg-white">
+                  <tr
+                    v-for="(i, iix) in order.items"
+                    :key="iix"
+                    class="bg-white"
+                  >
                     <td
                       class="
                         px-6
@@ -312,7 +347,7 @@
                         hover:bg-gray-50
                       "
                     >
-                      {{ ix + 1 }}
+                      {{ iix + 1 }}
                     </td>
                     <td
                       class="text-sm text-gray-900 text-start"
@@ -335,11 +370,16 @@
                     <td class="text-sm text-center text-gray-900" scope="col">
                       {{ i.price | currency(settings.currencySymbol, 2) }}
                     </td>
-                    <td class="pl-4 text-sm text-gray-900" scope="col">
-                      <span class="text-primary-500">{{ i.status }}</span>
+                    <td class="text-sm text-center text-gray-900" scope="col">
+                      {{
+                        i.shippingCharge | currency(settings.currencySymbol, 2)
+                      }}
                     </td>
                     <td class="text-sm text-center text-gray-900" scope="col">
-                      {{ i.reviewed }}
+                      {{ i.total | currency(settings.currencySymbol, 2) }}
+                    </td>
+                    <td class="pl-4 text-sm text-gray-900" scope="col">
+                      <span class="text-primary-500">{{ i.status }}</span>
                       <a
                         v-if="settings.liveCommerce"
                         :href="`${NETEASE_WWW}/netease?channelName=${order.id}-${i.pid}`"
@@ -348,6 +388,9 @@
                         Live Call
                       </a>
                     </td>
+                    <!-- <td class="text-sm text-center text-gray-900" scope="col">
+                     
+                    </td> -->
                   </tr>
                 </tbody>
               </table>
@@ -465,15 +508,25 @@
                   class="flex items-center justify-between my-3 text-gray-400"
                 >
                   <img v-lazy="i.img" alt="" class="object-cover w-16" />
-                  <div>
-                    Quantity:
-                    <b class="text-gray-500">{{ i.qty }}</b>
-                  </div>
+
                   <div>
                     Price:
                     <b class="text-gray-500">
                       {{ i.price | currency(settings.currencySymbol, 2) }}
+                      * {{ i.qty }}
                     </b>
+                  </div>
+                  <div>
+                    Delivery:
+                    <b class="text-gray-500">
+                      {{
+                        i.shippingCharge | currency(settings.currencySymbol, 2)
+                      }}
+                    </b>
+                  </div>
+                  <div>
+                    Total:
+                    <b class="text-gray-500">{{ i.total }}</b>
                   </div>
                 </div>
                 <div

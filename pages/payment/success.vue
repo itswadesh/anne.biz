@@ -206,7 +206,7 @@
                         {{ item.name }}
                       </nuxt-link>
                       <div class="mt-2 text-xs text-primary-500 lg:text-sm">
-                        Brand
+                        {{ item.brandName }}
                       </div>
                       <!-- <div class="mt-1 text-xs text-primary-500 lg:text-sm">
                     <div v-for="(v, k) in JSON.parse(item.options)" :key="v">

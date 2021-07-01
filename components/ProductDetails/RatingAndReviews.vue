@@ -61,7 +61,7 @@
             <p v-if="r.rating == 5" class="text-accent-800">Awesome</p>
           </div>
         </div>
-        <div class="flex flex-row my-auto text-gray-600">
+        <!-- <div class="flex flex-row my-auto text-gray-600">
           <div class="flex flex-row cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,13 +100,13 @@
               />
             </svg>
           </div>
-        </div>
+        </div> -->
       </div>
       {{ r.message }}
-      <div class="flex flex-row mt-4 text-base font-light">
+      <!-- <div class="flex flex-row mt-4 text-base font-light">
         <span class="my-auto">Table Customer</span>
         <span class="my-auto text-xs leading-7 ms-3">1 Month</span>
-      </div>
+      </div> -->
       <div class="mt-3 text-base font-light ps-8">
         Certified Buyer, {{ r.user.firstName }} {{ r.user.lastName }}
       </div>
@@ -139,13 +139,13 @@ export default {
   },
   methods: {
     async getReviews() {
-      const product = this.$route.query.id
-      if (!product) return
+      const pid = this.$route.query.id
+      if (!pid) return
       try {
         this.productReviews = (
           await this.$apollo.query({
             query: PRODUCT_REVIEWS,
-            variables: { product },
+            variables: { pid },
             fetchPolicy: 'no-cache',
           })
         ).data.productReviews

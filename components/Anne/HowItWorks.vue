@@ -35,7 +35,7 @@
 <script>
 export default {
   props: {
-    product: { type: Object },
+    product: { type: Object, default: null },
   },
 }
 </script>

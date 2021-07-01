@@ -12,30 +12,6 @@
           <span class="text-base font-thin text-center text-gray-400"
             >Please enter Mobile Number</span
           >
-          <!-- <span class="my-3 text-gray-600">
-          <img src="/img/flag.png" alt="flag" class="w-8 h-5 me-3" />
-          <select
-            class="w-full px-8 py-2 transition duration-300 border border-gray-300 rounded focus:outline-none focus:border-transparent focus:ring-1 focus:ring-blue-200"
-            v-model="country_code"
-          >
-            <option
-              v-for="(c, ix) in countries"
-              :key="ix"
-              :value="c.dial_code"
-              class="flex flex-row px-2 mx-auto my-auto"
-            >
-              {{ c.name }}({{ c.dial_code }})
-            </option>
-          </select>
-        </span>-->
-          <!-- <Textbox 
-          label="Enter Phone Number" 
-          class="w-4/5 mx-auto"
-          v-model="phone"
-          maxlength="13"
-          required
-          autofocus
-        /> -->
           <input
             id="number"
             ref="mobile"
@@ -196,7 +172,6 @@ import { mapMutations } from 'vuex'
 import EnterEmail from '~/components/Login/Email/EnterEmail'
 import { Button } from '~/shared/components/ui'
 import GET_OTP from '~/gql/user/getOtp.gql'
-import countries from '~/config/countries'
 export default {
   components: {
     EnterEmail,
@@ -209,7 +184,6 @@ export default {
       loading: false,
       phone: null,
       country_code: '+91',
-      countries,
       title: 'aboutpage',
     }
   },

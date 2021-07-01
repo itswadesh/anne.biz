@@ -44,10 +44,10 @@
             <option
               v-for="(c, ix) in countries"
               :key="ix"
-              :value="c.dial_code"
+              :value="c.dialCode"
               class="flex flex-row px-2 mx-auto my-auto"
             >
-              {{ c.name }}({{ c.dial_code }})
+              {{ c.name }}({{ c.dialCode }})
             </option>
           </select>
         </p>
@@ -137,7 +137,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import getOtp from '~/gql/user/getOtp.gql'
-import countries from '~/config/countries'
+import COUNTRIES from '~/gql/country/countries'
 export default {
   name: 'EnterMobileNumber',
   data() {
@@ -146,7 +146,7 @@ export default {
       loading: false,
       phone: null,
       country_code: '+91',
-      countries,
+      countries: null,
       title: 'aboutpage',
     }
   },
@@ -155,8 +155,18 @@ export default {
       return this.$store.state.settings || {}
     },
   },
+  created() {
+    this.getCountries()
+  },
   methods: {
     ...mapMutations({ setErr: 'setErr' }),
+    async getCountries() {
+      try {
+        this.countries = (
+          await this.$apollo.query({ query: COUNTRIES })
+        ).data.countries
+      } catch (e) {}
+    },
     async requestOtp() {
       this.loading = true
       try {

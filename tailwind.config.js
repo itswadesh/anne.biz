@@ -33,7 +33,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['sofia-pro'],
+        sans: ['Inter'],
       },
       animation: {
         float: 'float 6s linear infinite',

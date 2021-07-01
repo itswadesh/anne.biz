@@ -129,6 +129,38 @@
           >
             Track Order
           </nuxt-link>
+          <nuxt-link
+            to="/how-it-works"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              border-r border-white
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
+          >
+            How it works
+          </nuxt-link>
+          <a
+            :href="`${settings.adminPanelLink}/account/signup`"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              border-r border-white
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
+          >
+            Become a merchant
+          </a>
           <!-- <span
             class="
               w-auto
@@ -200,6 +232,66 @@
             "
           >
             Privacy policy
+          </nuxt-link>
+          <nuxt-link
+            to="/career"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
+          >
+            Career
+          </nuxt-link>
+          <nuxt-link
+            to="/contact-us"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
+          >
+            Disputes
+          </nuxt-link>
+          <nuxt-link
+            to="/my/orders"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
+          >
+            Contaact Seller
+          </nuxt-link>
+          <nuxt-link
+            to="/features"
+            class="
+              w-auto
+              px-1
+              my-auto
+              tracking-wider
+              text-center
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
+          >
+            Features
           </nuxt-link>
 
           <nuxt-link

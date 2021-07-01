@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed z-20 w-full py-4 shadow-lg frosted">
+  <header class="fixed z-20 w-full shadow-lg frosted">
     <nav class="container flex-wrap justify-center flex items-center mx-auto">
       <div
         class="
@@ -12,15 +12,16 @@
           text-orange
         "
       >
-        <nuxt-link to="/">
-          <img v-lazy="`${settings.logo}`" class="h-6 mx-2" alt="Home" />
+        <nuxt-link to="/" class="flex items-center">
+          <img v-lazy="`${settings.logo}`" class="h-12 mx-2 mt-1" alt="Home" />
         </nuxt-link>
       </div>
-      <div class="flex justify-center order-4 w-full md:w-2/3 md:order-3">
+      <div class="py-4 flex justify-center order-4 w-full md:w-2/3 md:order-3">
         <button
           class="
             text-center text-sm
-            md:text-base
+            lg:text-lg
+            lg:font-semibold
             mx-4
             text-primary-500
             border-b-2 border-transparent
@@ -34,7 +35,8 @@
         <button
           class="
             text-center text-sm
-            md:text-base
+            lg:text-lg
+            lg:font-semibold
             mx-4
             text-primary-500
             border-b-2 border-transparent
@@ -48,7 +50,8 @@
         <button
           class="
             text-center text-sm
-            md:text-base
+            lg:text-lg
+            lg:font-semibold
             mx-4
             text-primary-500
             border-b-2 border-transparent

@@ -220,12 +220,7 @@ export default {
         },
         {
           property: 'og:image',
-          content:
-            host +
-            ((this.category &&
-              this.category.imgA &&
-              this.category.imgA.large) ||
-              sharingLogo),
+          content: host + ((this.category && this.category.img) || sharingLogo),
         },
         {
           property: 'og:image:width',

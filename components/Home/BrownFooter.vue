@@ -202,12 +202,21 @@
             Privacy policy
           </nuxt-link>
 
-          <!-- <nuxt-link
-            to="/live-stream/all"
-            class="w-auto px-1 my-auto text-center border border-white cursor-pointer hover:bg-white hover:text-primary-500"
+          <nuxt-link
+            to="/blog"
+            class="
+              w-auto
+              px-1
+              my-auto
+              text-center
+              border border-white
+              cursor-pointer
+              hover:bg-white
+              hover:text-primary-500
+            "
           >
-            Live Vendors
-          </nuxt-link> -->
+            Blog
+          </nuxt-link>
         </div>
         <span class="pl-1 my-4 mt-6 text-lg font-medium uppercase lg:mx-auto"
           >Popular searches</span

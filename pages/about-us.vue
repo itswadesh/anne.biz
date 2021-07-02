@@ -121,7 +121,7 @@
       <div class="px-2 my-8 text-center md:my-16">
         <h4 class="text-2xl font-bold md:text-4xl">About Us</h4>
         <h4 class="mt-5 md:mt-10">
-          <nuxt-link to="/" class="link">lrnr.in </nuxt-link> provides a
+          <nuxt-link to="/" class="link">anne.biz </nuxt-link> provides a
           platform to learn from the Experts (e.g. Educators, Learning
           Specialists, Researchers) to promote learning, covering academic,
           competitive and skills through customized designed content in the form
@@ -132,7 +132,7 @@
         Our mission is to share knowledge through customized designed content in the form of Videos,
         Notes, MCQs as well as Online and Offline Tuitions in all Indian Languages and to provide
         interactive, fun and superior learning experience.
-        <span class="text-blue-500 cursor-pointer">Lrnr.in</span> provides a platform to learn from
+        <span class="text-blue-500 cursor-pointer">anne.biz</span> provides a platform to learn from
         the Experts (e.g. Educators, Learning Specialists, Researchers) to promote learning,
         including academic, social-emotional, physical and creative learning, learning basic life
         skills, critical thinking, problem solving and more.
@@ -286,7 +286,7 @@
           in the form of Videos, Notes, MCQs as well as Online and Offline
           Tuitions in all Indian Languages and to provide interactive, fun and
           superior learning experience.
-          <nuxt-link to="/" class="link">lrnr.in </nuxt-link> provides a
+          <nuxt-link to="/" class="link">anne.biz </nuxt-link> provides a
           platform to learn from the Experts (e.g. Educators, Learning
           Specialists, Researchers) to promote learning, including academic,
           social-emotional, physical and creative learning, learning basic life
@@ -383,12 +383,12 @@ export default {
         {
           name: 'FaceBook',
           image: '/img/instagram2.png',
-          link: 'https://www.facebook.com/lrnr.in',
+          link: 'https://www.facebook.com/anne.biz',
         },
         {
           name: 'Twitter',
           image: '/img/instagram3.png',
-          link: 'https://twitter.com/lrnr_India',
+          link: 'https://twitter.com/anne_India',
         },
         {
           name: 'Youtube',
@@ -398,7 +398,7 @@ export default {
         {
           name: 'Instagram',
           image: '/img/instagram.png',
-          link: 'https://www.instagram.com/lrnr.in/',
+          link: 'https://www.bizstagram.com/anne.biz/',
         },
       ],
     }

@@ -34,7 +34,7 @@
             Merchant Dashboard
           </a>
           <nuxt-link
-            to="/legal/contact-us"
+            to="/contact-us"
             class="
               w-auto
               px-1

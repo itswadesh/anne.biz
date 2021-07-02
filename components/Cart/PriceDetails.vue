@@ -96,7 +96,7 @@
         "
       >
         <nuxt-link
-          to="/delivery_charges"
+          to="/delivery-charges"
           class="
             flex
             font-light
@@ -178,7 +178,7 @@ import TestCoupons from '~/components/Cart/TestCoupons'
 export default {
   components: { TestCoupons, Button },
   props: {
-    selectedAddress: { type: String },
+    selectedAddress: { type: String, default: null },
     details: {
       type: Array,
       default: null,

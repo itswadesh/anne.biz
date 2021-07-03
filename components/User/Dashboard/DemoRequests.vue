@@ -143,11 +143,23 @@
                       </div>
                     </div>
                   </nuxt-link>
-                  <div class="w-full flex justify-center">
+                  <div
+                    class="
+                      w-full
+                      flex
+                      items-center
+                      pt-2
+                      flex-col
+                      justify-center
+                      px-2
+                    "
+                  >
+                    {{ w.scheduleDateTime | date }}
                     <a
                       :href="`${NETEASE_WWW}/netease?channelName=${w.product.id}`"
                       target="blank"
                       class="
+                        w-full
                         block
                         text-center
                         bg-primary-500

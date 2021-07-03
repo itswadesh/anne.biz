@@ -73,6 +73,7 @@
             </button>
           </div>
           <form
+            v-if="schedule.scheduleDateTime"
             novalidate
             autocomplete="off"
             class="
@@ -88,6 +89,7 @@
           >
             <VueCtkDateTimePicker
               v-model="schedule.scheduleDateTime"
+              :min-date="minDate"
               class="shadow-md"
             />
             <div class="my-6">
@@ -121,7 +123,7 @@
                 p-2
                 mx-auto
                 focus:ring-2 focus:ring-primary-500
-                bg-primary-500
+                bg-secondary-500
               "
             >
               <span v-if="loading">
@@ -157,6 +159,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker'
 import { mapMutations } from 'vuex'
 import { Button } from '~/shared/components/ui'
@@ -173,11 +176,12 @@ export default {
   },
   data() {
     return {
+      minDate: null,
       loading: false,
       schedule: {
         id: 'new',
         title: 'Product demo request',
-        scheduleDateTime: new Date(),
+        scheduleDateTime: null,
       },
     }
   },
@@ -193,6 +197,10 @@ export default {
     },
   },
   created() {
+    const tomorrow = dayjs().add(1, 'day').format('YYYY-MM-DD hh:mm:ss a')
+    this.schedule.scheduleDateTime = tomorrow
+    this.minDate = tomorrow
+    // 2021-08-08 08:08 am
     if (!this.user) {
       this.$router.push(`/login?ref=${this.$route.fullPath}`)
     }

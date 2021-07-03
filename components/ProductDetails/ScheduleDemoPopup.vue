@@ -1,6 +1,11 @@
 <template>
   <div>
-    <VueCtkDateTimePicker v-model="demo.scheduleDate" class="shadow-md" />
+    {{ minDate }}
+    <VueCtkDateTimePicker
+      v-model="demo.scheduleDate"
+      :min-date="minDate"
+      class="shadow-md"
+    />
   </div>
 </template>
 
@@ -15,6 +20,7 @@ export default {
   },
   data() {
     return {
+      minDate: null,
       demo: { name: null, email: null, pid: null, scheduleDate: new Date() },
     }
   },
@@ -24,6 +30,7 @@ export default {
     },
   },
   created() {
+    this.minDate = new Date()
     this.demo.name = this.user.firstName
     this.demo.email = this.user.email
     this.demo.pid = this.$route.query.id

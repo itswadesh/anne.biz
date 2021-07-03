@@ -420,8 +420,7 @@
         </span>
       </div>
     </main>
-    <!--   -->
-
+    <!-- 
     <div class="">
       <div class="flex flex-col items-start justify-start">
         <span
@@ -449,7 +448,6 @@
               <div class="w-1/2 mt-1">
                 <img v-lazy="i.image" class="w-12 h-12 rounded-md" alt="" />
               </div>
-              <!--  -->
               <div class="absolute top-3 right-2">
                 <div class="relative cursor-pointer dropdown">
                   <button
@@ -479,7 +477,6 @@
                 </div>
               </div>
 
-              <!--  -->
               <div class="py-2 text-left">
                 <span
                   v-if="i.juniorsection"
@@ -689,7 +686,6 @@
       </div>
     </div>
 
-    <!-- Author Details -->
     <div
       class="flex-row items-center justify-between w-full pt-4 mt-2 bg-gray-100"
     >
@@ -707,7 +703,6 @@
         Life at Anne
       </h3>
     </div>
-    <!-- Life at Anne -->
     <div class="-mt-4 bg-gray-100">
       <VueSlickCarousel class="text-purple-400" v-bind="setting">
         <div
@@ -815,6 +810,7 @@
         </div>
       </VueSlickCarousel>
     </div>
+     -->
   </div>
 </template>
 <script>

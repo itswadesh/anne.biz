@@ -218,6 +218,7 @@ export default {
         ).data.saveScheduleDemo
         // console.log('dsfsdfsdf', this.saveCustomerMessage)
         this.success(msg)
+        this.$router.push(`/my/demo-requests`)
       } catch (e) {
         this.setErr(e)
       } finally {

@@ -22,7 +22,7 @@
         <button class="text-xs" @click="$emit('reRequest')">Change</button>
       </label>
       <!-- otp Enter -->
-      <OtpDesign @verifyOtp="VerifyOtp" />
+      <!-- <OtpDesign @verifyOtp="VerifyOtp" /> -->
     </div>
 
     <!-- <div
@@ -52,16 +52,18 @@
 
 <script>
 import { mapActions, mapMutations } from 'vuex'
-import OtpDesign from './OtpDesign'
+// import OtpDesign from './OtpDesign'
 import getOtp from '~/gql/user/getOtp.gql'
 export default {
-  components: { OtpDesign },
+  // components: { OtpDesign },
   props: {
-    country_code: {
+    countryCode: {
       type: String,
+      default: null,
     },
     phone: {
       type: String,
+      default: null,
     },
   },
   data() {
@@ -72,6 +74,18 @@ export default {
   computed: {
     user() {
       return this.$store.state.auth.user
+    },
+  },
+  watch: {
+    timerCount: {
+      handler(value) {
+        if (value > 0) {
+          setTimeout(() => {
+            this.timerCount--
+          }, 1000)
+        }
+      },
+      immediate: true, // This ensures the watcher is triggered upon creation
     },
   },
   mounted() {
@@ -94,7 +108,6 @@ export default {
         this.success('OTP Send Successfully')
       } catch (e) {
         this.setErr(e)
-      } finally {
       }
     },
     async VerifyOtp(val) {
@@ -109,19 +122,6 @@ export default {
       } catch (e) {
         // this.setErr(e.toString())
       }
-    },
-  },
-
-  watch: {
-    timerCount: {
-      handler(value) {
-        if (value > 0) {
-          setTimeout(() => {
-            this.timerCount--
-          }, 1000)
-        }
-      },
-      immediate: true, // This ensures the watcher is triggered upon creation
     },
   },
 }

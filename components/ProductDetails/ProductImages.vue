@@ -132,12 +132,12 @@
               :focus-on-select="true"
             >
               <div
-                v-for="(img, ix) in images"
+                v-for="(im, ix) in images"
                 :key="ix"
                 class="bg-white border h-80 focus:outline-none"
               >
                 <img
-                  v-lazy="img"
+                  v-lazy="im"
                   class="object-cover w-full h-full bg-gray-300"
                 />
               </div>
@@ -152,12 +152,12 @@
               class="mx-auto"
             >
               <div
-                v-for="(img, ix) in images"
+                v-for="(ig, ix) in images"
                 :key="ix"
                 class="h-20 mx-auto focus:outline-none"
               >
                 <img
-                  v-lazy="img"
+                  v-lazy="ig"
                   class="
                     object-cover
                     w-16
@@ -197,12 +197,12 @@ export default {
     Share,
   },
   props: {
-    loading: Boolean,
-    images: Array,
-    pid: String,
-    img: String,
-    product: Object,
-    host: String,
+    loading: { type: Boolean, default: false },
+    images: { type: Array, default: null },
+    pid: { type: String, default: null },
+    img: { type: String, default: null },
+    host: { type: String, default: null },
+    product: { type: Object, default: null },
   },
   data() {
     return {

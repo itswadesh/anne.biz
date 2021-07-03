@@ -33,10 +33,10 @@
 <script>
 export default {
   props: {
-    label: { type: String },
+    label: { type: String, default: null },
     type: { type: String, default: 'text' },
-    value: { type: String },
-    ref: { type: String },
+    value: { type: String, default: null },
+    ref: { type: String, default: null },
   },
 }
 </script>

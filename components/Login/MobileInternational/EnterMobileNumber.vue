@@ -27,7 +27,7 @@
         <p class="my-3 text-gray-600">
           <!-- <img src="/img/flag.png" alt="flag" class="w-8 h-5 mr-3" /> -->
           <select
-            v-model="country_code"
+            v-model="countryCode"
             class="
               w-full
               px-8
@@ -145,7 +145,7 @@ export default {
       transition: 'page',
       loading: false,
       phone: null,
-      country_code: '+91',
+      countryCode: '+91',
       countries: null,
       title: 'aboutpage',
     }
@@ -173,12 +173,12 @@ export default {
         const result = (
           await this.$apollo.mutate({
             mutation: getOtp,
-            variables: { phone: this.country_code + this.phone },
+            variables: { phone: this.countryCode + this.phone },
           })
         ).data
         this.$emit('sendOtp', {
           phone: this.phone,
-          country_code: this.country_code,
+          countryCode: this.countryCode,
         })
       } catch (e) {
         this.setErr(e)

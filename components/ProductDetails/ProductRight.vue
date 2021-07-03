@@ -114,19 +114,19 @@
               >
                 Add a Review
               </nuxt-link>
-              <a
+              <!-- <a
                 v-if="settings.liveCommerce"
                 :href="`${NETEASE_WWW}/netease?channelName=${product.id}`"
                 target="blank"
               >
                 Schedule a demo
-              </a>
-              <!-- <button
+              </a> -->
+              <button
                 v-if="settings.liveCommerce"
                 @click="showOffers = !showOffers"
               >
                 Schedule a demo
-              </button> -->
+              </button>
             </div>
             <span v-if="showOffers">
               <Scheduler
@@ -568,22 +568,22 @@
               >
                 <div
                   v-if="product.brand"
-                  class="flex-row hidden my-auto md:flex"
+                  class="items-center hidden my-auto md:flex"
                 >
-                  <span class="my-auto text-gray-500">Brand: </span>
-                  <span class="my-auto text-primary-500 ms-1">
+                  <span class="text-gray-500">Brand: </span>
+                  <span class="text-primary-500 ms-1">
                     {{ product.brand.name }}
                   </span>
                 </div>
-                <div class="flex flex-row my-auto">
-                  <span class="my-auto text-gray-500">Availability :</span>
+                <div class="flex items-center my-auto">
+                  <span class="text-gray-500">Availability:</span>
                   <span
                     v-if="product.stock > 0"
-                    class="my-auto text-secondary-200 ms-1"
+                    class="text-secondary-200 ms-1"
                   >
                     {{ product.stock }} In Stock
                   </span>
-                  <span v-else class="my-auto ms-1 text-accent-900">
+                  <span v-else class="ms-1 text-accent-900">
                     Not Available
                   </span>
                 </div>
@@ -607,7 +607,7 @@
                     placeholder="Enter Pin"
                   />
                 </div> -->
-                <div class="flex">
+                <div v-if="product.returnInfo" class="flex">
                   <div class="flex flex-wrap items-center">
                     <div class="mr-3">
                       <svg
@@ -633,10 +633,10 @@
               </div>
               <div class="my-5">
                 <div class="flex flex-row items-center">
-                  <span class="my-auto text-lg font-light text-gray-500">
+                  <span class="text-lg font-light text-gray-500">
                     Delivery by:
                   </span>
-                  <span class="my-auto text-lg font-light text-gray-700 ms-1">
+                  <span class="text-lg font-light text-gray-700 ms-1">
                     {{ deliveryDate }}
                   </span>
                 </div>

@@ -5,6 +5,8 @@
       relative
       z-0
       flex flex-col
+      justify-center
+      items-center
       pb-2
       my-5
       overflow-hidden
@@ -24,8 +26,8 @@
         v-for="(img, ix) in images"
         :key="ix"
         class="
+          justify-center
           items-center
-          my-auto
           overflow-hidden
           md:w-full
           focus:outline-none
@@ -70,8 +72,8 @@
 import { getIdFromUrl } from 'vue-youtube'
 export default {
   props: {
-    images: { type: Array },
-    selectedImage: { type: String },
+    images: { type: Array, default: null },
+    selectedImage: { type: String, default: null },
   },
   // ['images', 'selectedImage'],
   data() {
@@ -145,16 +147,16 @@ export default {
     width: 5rem;
   }
   .custom-arrow {
-    height: 80px;
-    width: 46px;
+    height: 109px;
+    width: 49px;
     z-index: 20;
   }
-  .custom-arrow2[data-v-f2d6c0b2] {
-    margin-right: 25px;
+  .custom-arrow2 {
+    margin-right: 55px;
     margin-left: 25px;
   }
-  .custom-arrow1[data-v-f2d6c0b2] {
-    margin-left: 25px;
+  .custom-arrow1 {
+    margin-left: 1px;
     margin-right: 25px;
   }
   .slick-prev {
@@ -163,8 +165,9 @@ export default {
     transform: rotate(90deg);
   }
   .slick-next {
+    right: -1px;
     z-index: 999;
-    margin-top: 171px;
+    margin-top: 150px;
     transform: rotate(90deg);
   }
   .slick-prev::before,

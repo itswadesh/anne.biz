@@ -183,7 +183,7 @@ export default {
       transition: 'page',
       loading: false,
       phone: null,
-      country_code: '+91',
+      countryCode: '+91',
       title: 'aboutpage',
     }
   },
@@ -202,11 +202,11 @@ export default {
       try {
         await this.$apollo.mutate({
           mutation: GET_OTP,
-          variables: { phone: this.country_code + this.phone },
+          variables: { phone: this.countryCode + this.phone },
         })
         this.$emit('sendOtp', {
           phone: this.phone,
-          country_code: this.country_code,
+          countryCode: this.countryCode,
         })
       } catch (e) {
         this.setErr(e)

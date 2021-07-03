@@ -46,7 +46,7 @@
           <!--enter otp -->
           <div v-else>
             <EnterOtp
-              :country_code="country_code"
+              :country-code="countryCode"
               :phone="phone"
               @reRequest="isRequestSent = false"
             />
@@ -67,13 +67,13 @@ export default {
     return {
       isRequestSent: false,
       phone: null,
-      country_code: null,
+      countryCode: null,
     }
   },
   methods: {
     onSendOtp(val) {
       this.phone = val.phone
-      this.country_code = val.country_code
+      this.countryCode = val.countryCode
       this.isRequestSent = true
     },
   },

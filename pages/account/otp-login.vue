@@ -53,7 +53,7 @@
             <!--enter otp -->
             <div v-else class="mt-8">
               <EnterOtp
-                :country_code="country_code"
+                :country-code="countryCode"
                 :phone="phone"
                 @reRequest="isRequestSent = false"
               />
@@ -196,11 +196,11 @@ export default {
       try {
         await this.$apollo.mutate({
           mutation: GET_OTP,
-          variables: { phone: this.country_code + this.phone },
+          variables: { phone: this.countryCode + this.phone },
         })
         // this.$emit('sendOtp', {
         //   phone: this.phone,
-        //   country_code: this.country_code,
+        //   countryCode: this.countryCode,
         // })
       } catch (e) {
         this.setErr(e)
@@ -210,7 +210,7 @@ export default {
     },
     onSendOtp(val) {
       this.phone = val.phone
-      this.country_code = val.country_code
+      this.countryCode = val.countryCode
       this.isRequestSent = true
     },
   },

@@ -101,7 +101,7 @@ export default {
         this.categories = (
           await this.$apollo.query({
             query: CATEGORIES,
-            variables: { shopbycategory: true },
+            variables: { img: true, shopbycategory: true },
             fetchPolicy: 'no-cache',
           })
         ).data.categories

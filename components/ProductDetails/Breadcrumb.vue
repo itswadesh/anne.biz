@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row my-auto text-sm font-thin">
+  <div class="flex items-center my-auto text-sm font-thin">
     <nuxt-link :to="localePath('/')">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -20,15 +20,50 @@
         />
       </svg>
     </nuxt-link>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-4 w-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
     >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
     <nuxt-link
       v-for="(p, ix) in path"
       v-if="p"
       :key="ix"
       :to="`/c/${p.slug}`"
-      class="my-auto capitalize cursor-pointer ms-1 hover:text-primary-500"
+      class="
+        my-auto
+        flex flex-wrap
+        items-center
+        capitalize
+        cursor-pointer
+        ms-1
+        hover:text-primary-500
+      "
     >
       {{ p.name }}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-4 w-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
     </nuxt-link>
     <span class="my-auto capitalize truncate text-accent-800 ms-1">
       {{ name }}

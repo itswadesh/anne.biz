@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 z-10 overflow-y-auto">
+  <div v-if="show" class="fixed inset-0 z-10 overflow-y-auto">
     <div
       class="
         flex

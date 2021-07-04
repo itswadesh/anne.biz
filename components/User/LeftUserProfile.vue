@@ -54,12 +54,13 @@
         <!-- <LeftOptions /> -->
         <div
           v-if="
-            $router.currentRoute.path == '/my' ||
+            $router.currentRoute.path == '/my/' ||
             $router.currentRoute.path == '/my/orders' ||
             $router.currentRoute.path == '/my/profile' ||
             $router.currentRoute.path == '/my/wishlist' ||
             $router.currentRoute.path == '/my/reviews' ||
-            $router.currentRoute.path == '/my/manage-address'
+            $router.currentRoute.path == '/my/manage-address' ||
+            $router.currentRoute.path == '/my/demo-requests'
           "
           class=""
         >

@@ -123,18 +123,18 @@
               </a> -->
               <button
                 v-if="settings.liveCommerce"
-                @click="showOffers = !showOffers"
+                @click="populateDemoScheduler(product)"
               >
                 Schedule a demo
               </button>
             </div>
-            <span v-if="showOffers">
+            <!-- <span v-if="showDemoScheduler">
               <Scheduler
-                :class="showOffers ? 'open' : 'close'"
+                :class="showDemoScheduler ? 'open' : 'close'"
                 :product="product"
                 @hide="hideOffers"
               />
-            </span>
+            </span> -->
             <div class="">
               <div class="sm:py-2">
                 <div
@@ -660,20 +660,28 @@
         </div>
       </div>
     </div>
+    <div v-if="selectedProduct">
+      <DemoRequestModal
+        :show="showDemoScheduler"
+        :product="selectedProduct"
+        @close="showDemoScheduler = false"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import REVIEWS from '~/gql/review/reviewSummary.gql'
-import Scheduler from '~/components/ProductDetails/Scheduler'
 import { NETEASE_WWW } from '~/shared/config'
+import DemoRequestModal from '~/components/ProductDetails/DemoRequestModal'
+
 // import Share from '~/components/ProductDetails/Share'
 // import { Checkbox } from '~/shared/components/ui'
 // import WishButton from '~/components/WishButton.vue'
 // import ProductSizeChart from '~/components/ProductDetails/ProductSizeChart'
 export default {
-  components: { Scheduler },
+  components: { DemoRequestModal },
   props: {
     host: { type: String, default: null },
     pg: { type: Object, default: null },
@@ -682,7 +690,8 @@ export default {
   },
   data() {
     return {
-      showOffers: false,
+      selectedProduct: {},
+      showDemoScheduler: false,
       sidebar: false,
       selectedRadio: null,
       reviewSummary: null,
@@ -734,13 +743,10 @@ export default {
   // ProductSizeChart,
   // },
   methods: {
-    hideOffers() {
-      this.showOffers = false
+    populateDemoScheduler(p) {
+      this.selectedProduct = { id: p.id, name: p.name }
+      this.showDemoScheduler = true
     },
-    // openScheduleDemoPopup() {
-    //   this.showScheduleDemoPopup = true
-    //   console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz')
-    // },
     async getReviews() {
       const pid = this.$route.query.id
       if (!pid) return

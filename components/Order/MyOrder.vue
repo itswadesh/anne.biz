@@ -380,13 +380,21 @@
                     </td>
                     <td class="pl-4 text-sm text-gray-900" scope="col">
                       <span class="text-primary-500">{{ i.status }}</span>
-                      <a
+                      <!-- <a
                         v-if="settings.liveCommerce"
                         :href="`${NETEASE_WWW}/netease?channelName=${order.id}-${i.pid}`"
                         target="_"
                       >
-                        Live Call
-                      </a>
+                        Schedule Demo
+                      </a> -->
+                      <button
+                        v-if="settings.liveCommerce"
+                        type="button"
+                        @click="populateDemoScheduler(i)"
+                      >
+                        Schedule a demo
+                      </button>
+                      <!-- :class="showDemoScheduler ? 'open' : 'close'" -->
                     </td>
                     <!-- <td class="text-sm text-center text-gray-900" scope="col">
                      
@@ -546,13 +554,13 @@
                       {{ i.status }}
                     </div>
                   </div>
-                  <a
+                  <button
                     v-if="settings.liveCommerce"
-                    :href="`${NETEASE_WWW}/netease?channelName=${order.id}-${i.pid}`"
-                    target="_"
+                    type="button"
+                    @click="populateDemoScheduler(i)"
                   >
-                    Live Call
-                  </a>
+                    Schedule a demo
+                  </button>
                 </div>
               </div>
             </div>
@@ -562,18 +570,28 @@
       </div>
       <!-- if no product found -->
     </div>
+    <div v-if="selectedProduct">
+      <DemoRequestModal
+        :show="showDemoScheduler"
+        :product="selectedProduct"
+        @close="showDemoScheduler = false"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import OrderListSkeleton from '~/components/AllSkeletons/OrderListSkeleton'
+import DemoRequestModal from '~/components/ProductDetails/DemoRequestModal'
 import MY_ORDERS from '~/gql/order/myOrders.gql'
 import { NETEASE_WWW } from '~/shared/config'
 export default {
-  components: { OrderListSkeleton },
+  components: { OrderListSkeleton, DemoRequestModal },
   data() {
     return {
+      selectedProduct: {},
+      showDemoScheduler: false,
       select: 0,
       statuses: [{ b: 'delivered' }, { b: 'In-track' }, { b: 'pending' }],
       loading: false,
@@ -590,6 +608,10 @@ export default {
     await this.getOrders()
   },
   methods: {
+    populateDemoScheduler(p) {
+      this.selectedProduct = { id: p.pid, name: p.name }
+      this.showDemoScheduler = true
+    },
     onSelect(val) {
       this.select = val
     },

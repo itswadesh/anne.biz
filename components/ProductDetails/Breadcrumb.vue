@@ -73,6 +73,9 @@
 
 <script>
 export default {
-  props: { path: { type: Array }, name: { type: String } },
+  props: {
+    path: { type: Array, default: () => [] },
+    name: { type: String, default: null },
+  },
 }
 </script>

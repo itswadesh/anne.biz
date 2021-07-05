@@ -123,6 +123,7 @@
               </a> -->
               <button
                 v-if="settings.liveCommerce"
+                type="button"
                 @click="populateDemoScheduler(product)"
               >
                 Schedule a demo

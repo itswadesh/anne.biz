@@ -180,12 +180,15 @@ export default {
   props: {
     category: {
       type: Object,
+      default: () => {},
     },
     count: {
       type: Number,
+      default: null,
     },
     fl: {
       type: [Object, Array],
+      default: () => {},
     },
   },
   data() {

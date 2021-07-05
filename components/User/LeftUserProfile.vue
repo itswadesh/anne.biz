@@ -54,7 +54,7 @@
         <!-- <LeftOptions /> -->
         <div
           v-if="
-            $router.currentRoute.path == '/my/' ||
+            $router.currentRoute.path == '/my' ||
             $router.currentRoute.path == '/my/orders' ||
             $router.currentRoute.path == '/my/profile' ||
             $router.currentRoute.path == '/my/wishlist' ||

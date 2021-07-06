@@ -164,7 +164,13 @@ export default {
         this.brandBanners = (
           await this.$apollo.query({
             query: BRANDS,
-            variables: { parent: null, limit: 5, page: 0, sort: 'sort' },
+            variables: {
+              parent: null,
+              limit: 30,
+              page: 0,
+              sort: 'sort',
+              featured: true,
+            },
             fetchPolicy: 'no-cache',
           })
         ).data.brands

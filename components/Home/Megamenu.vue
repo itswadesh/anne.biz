@@ -172,13 +172,9 @@
         >
           <div
             v-if="parentBrands"
-            class="container flex flex-row flex-wrap mx-auto"
+            class="container flex flex-wrap px-2 lg:px-8 justify-center"
           >
-            <div
-              v-for="b in parentBrands.data"
-              :key="b.id"
-              class="py-10 mx-auto"
-            >
+            <div v-for="b in parentBrands.data" :key="b.id" class="py-4 mx-6">
               <nuxt-link :to="localePath(`/brand/${b.slug}`)" class="p-3">
                 <img
                   v-if="b.img"
@@ -265,7 +261,7 @@ export default {
         this.parentBrands = (
           await this.$apollo.query({
             query: PARENT_BRANDS,
-            variables: { featured: true, limit: 5, page: 0 },
+            variables: { featured: true, limit: 30, page: 0 },
             fetchPolicy: 'no-cache',
           })
         ).data.parentBrands

@@ -205,7 +205,7 @@ import Breadcrumb from '~/components/ProductDetails/Breadcrumb'
 import AddToCart from '~/components/ProductDetails/AddToCart.vue'
 import BuyNow from '~/components/ProductDetails/BuyNow.vue'
 import ProductSlider from '~/components/Home/ProductSlider'
-import { TITLE } from '~/shared/config'
+import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 import PRODUCTS from '~/gql/product/products.gql'
 import PRODUCT from '~/gql/product/product.gql'
 import PRODUCT_GROUP from '~/gql/product/product_group.gql'
@@ -281,6 +281,123 @@ export default {
       selectedOptions: null,
       // savingWishlist: false,
       // alertToSelectMandatoryOptions: false,
+    }
+  },
+
+  head() {
+    // const host = process.server
+    //   ? this.$ssrContext.req.headers.host
+    //   : window.location.host
+
+    return {
+      title:
+        (this.product && this.product.metaTitle) ||
+        (this.product && this.product.name) ||
+        TITLE,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            (this.product && this.product.metaDescription) ||
+            (this.product && this.product.description) ||
+            DESCRIPTION,
+        },
+        {
+          hid: 'keywords',
+          name: 'Keywords',
+          property: 'keywords',
+          content:
+            (this.product && this.product.metaKeywords) ||
+            (this.product && this.product.keywords) ||
+            KEYWORDS,
+        },
+
+        // OpenGraph data
+        {
+          hid: 'og:title',
+          name: 'og_title',
+          property: 'og:title',
+          content:
+            (this.product && this.product.metaTitle) ||
+            (this.product && this.product.name) ||
+            TITLE,
+        },
+        {
+          hid: 'og:description',
+          name: 'Description',
+          property: 'og:description',
+          content:
+            (this.product && this.product.metaDescription) ||
+            (this.product && this.product.description) ||
+            DESCRIPTION,
+        },
+        {
+          name: 'og_url',
+          property: 'og:url',
+          content:
+            this.host + '/' + this.product &&
+            this.product.slug + '?id=' + this.product &&
+            this.product.id,
+        },
+        {
+          name: 'og_image',
+          property: 'og:image',
+          content: (this.product && this.product.img) || sharingLogo,
+        },
+        {
+          property: 'og:image:width',
+          content: '600',
+        },
+        {
+          property: 'og:image:height',
+          content: '600',
+        },
+        // Twitter
+        {
+          name: 'twitter:title',
+          content:
+            (this.product && this.product.metaTitle) ||
+            (this.product && this.product.name) ||
+            TITLE,
+        },
+        {
+          name: 'twitter:description',
+          content:
+            (this.product && this.product.metaDescription) ||
+            (this.product && this.product.description) ||
+            DESCRIPTION,
+        },
+        {
+          name: 'twitter:image:src',
+          content: (this.product && this.product.img) || sharingLogo,
+        },
+        // Google / Schema.org markup:
+        {
+          hid: 'product_name',
+          itemprop: 'name',
+          content: (this.product && this.product.name) || TITLE,
+        },
+        {
+          hid: 'product_description',
+          itemprop: 'description',
+          content:
+            (this.product && this.product.metaDescription) ||
+            (this.product && this.product.description) ||
+            DESCRIPTION,
+        },
+        {
+          hid: 'product_image',
+          itemprop: 'image',
+          content: (this.product && this.product.img) || sharingLogo,
+        },
+        {
+          hid: 'product_price',
+          name: 'product_price',
+          property: 'product:price',
+          content: this.product && this.product.price,
+        },
+      ],
     }
   },
   created() {
@@ -381,142 +498,6 @@ export default {
         this.loading = false
       }
     },
-  },
-
-  head() {
-    // const host = process.server
-    //   ? this.$ssrContext.req.headers.host
-    //   : window.location.host
-
-    return {
-      title:
-        (this.product && this.product.metaTitle) ||
-        (this.product && this.product.name) ||
-        TITLE,
-      // meta: [
-      //   {
-      //     hid: 'description',
-      //     name: 'description',
-      //     content:
-      //       (this.product && this.product.metaDescription) ||
-      //       (this.product && this.product.description) ||
-      //       DESCRIPTION,
-      //   },
-      //   {
-      //     hid: 'keywords',
-      //     name: 'Keywords',
-      //     property: 'keywords',
-      //     content:
-      //       (this.product && this.product.metaKeywords) ||
-      //       (this.product && this.product.keywords) ||
-      //       KEYWORDS,
-      //   },
-
-      //   // OpenGraph data
-      //   {
-      //     hid: 'og:title',
-      //     name: 'og_title',
-      //     property: 'og:title',
-      //     content:
-      //       (this.product && this.product.metaTitle) ||
-      //       (this.product && this.product.name) ||
-      //       TITLE,
-      //   },
-      //   {
-      //     hid: 'og:description',
-      //     name: 'Description',
-      //     property: 'og:description',
-      //     content:
-      //       (this.product && this.product.metaDescription) ||
-      //       (this.product && this.product.description) ||
-      //       DESCRIPTION,
-      //   },
-      //   {
-      //     name: 'og_url',
-      //     property: 'og:url',
-      //     content:
-      //       host + '/' + this.product &&
-      //       this.product.slug + '?id=' + this.product &&
-      //       this.product.id,
-      //   },
-      //   {
-      //     name: 'og_image',
-      //     property: 'og:image',
-      //     content:
-      //       (this.product &&
-      //         this.product.imgA &&
-      //         this.product.imgA[0] &&
-      //         this.product.imgA[0].original) ||
-      //       sharingLogo,
-      //   },
-      //   {
-      //     property: 'og:image:width',
-      //     content: '600',
-      //   },
-      //   {
-      //     property: 'og:image:height',
-      //     content: '600',
-      //   },
-      //   // Twitter
-      //   {
-      //     name: 'twitter:title',
-      //     content:
-      //       (this.product && this.product.metaTitle) ||
-      //       (this.product && this.product.name) ||
-      //       TITLE,
-      //   },
-      //   {
-      //     name: 'twitter:description',
-      //     content:
-      //       (this.product && this.product.metaDescription) ||
-      //       (this.product && this.product.description) ||
-      //       DESCRIPTION,
-      //   },
-      //   {
-      //     name: 'twitter:image:src',
-      //     content:
-      //       (this.product &&
-      //         this.product.imgA &&
-      //         this.product.imgA[0] &&
-      //         this.product.imgA[0].original) ||
-      //       sharingLogo,
-      //   },
-      //   // Google / Schema.org markup:
-      //   {
-      //     hid: 'product_name',
-      //     itemprop: 'name',
-      //     content: (this.product && this.product.name) || TITLE,
-      //   },
-      //   {
-      //     hid: 'product_description',
-      //     itemprop: 'description',
-      //     content:
-      //       (this.product && this.product.metaDescription) ||
-      //       (this.product && this.product.description) ||
-      //       DESCRIPTION,
-      //   },
-      //   {
-      //     hid: 'product_image',
-      //     itemprop: 'image',
-      //     content:
-      //       (this.product &&
-      //         this.product.imgA &&
-      //         this.product.imgA[0] &&
-      //         this.product.imgA[0].original) ||
-      //       sharingLogo,
-      //   },
-      //   {
-      //     hid: 'product_price',
-      //     name: 'product_price',
-      //     property: 'product:price',
-      //     content:
-      //       this.product &&
-      //       this.product.variants &&
-      //       this.product.variants[0] &&
-      //       this.product.variants[0].price,
-      //   },
-      // ],
-    }
   },
 }
 </script>

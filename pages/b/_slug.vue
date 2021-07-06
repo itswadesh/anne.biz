@@ -282,7 +282,7 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
 .pagination {
   list-style-type: none !important;
   display: flex !important;

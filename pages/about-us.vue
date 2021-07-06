@@ -406,7 +406,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .slick-prev {
   margin-left: -10px;
 }

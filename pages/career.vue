@@ -1072,7 +1072,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .dropdown:hover .dropdown-menu {
   display: block;
 }

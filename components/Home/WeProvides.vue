@@ -72,19 +72,23 @@ export default {
       ],
       socialmedias: [
         {
-          link: `https://www.facebook.com/${this.brand.facebookUrl}`,
+          // link: `https://www.facebook.com/${this.brand.facebookUrl}`,
+          link: `${this.brand.facebookUrl}`,
           img: '/img/socialmedia/facebook.png',
         },
         {
-          link: `https://twitter.com/${this.brand.twitterUrl}`,
+          // link: `https://twitter.com/${this.brand.twitterUrl}`,
+          link: `${this.brand.twitterUrl}`,
           img: '/img/socialmedia/twitter.png',
         },
         {
-          link: `https://www.instagram.com/${this.brand.instaUrl}`,
+          // link: `https://www.instagram.com/${this.brand.instaUrl}`,
+          link: `${this.brand.instaUrl}`,
           img: '/img/socialmedia/instagram.png',
         },
         {
-          link: `https://www.youtube.com/user/${this.brand.youtubeUrl}`,
+          // link: `https://www.youtube.com/user/${this.brand.youtubeUrl}`,
+          link: `${this.brand.youtubeUrl}`,
           img: '/img/socialmedia/youtube.png',
         },
       ],

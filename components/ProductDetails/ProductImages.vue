@@ -2,7 +2,7 @@
   <div class="flex flex-col flex-shrink-0 bg-white hfull nowrap">
     <div class="sm:ms-3 xl:me-0">
       <div class="flex flex-row justify-end pb-4 pe-4 md:hidden">
-        <Share :data="product" :host="host" />
+        <Share :product="product" :host="host" />
         <WishButton
           v-if="product.id"
           :rounded="true"
@@ -11,9 +11,9 @@
         />
       </div>
       <!-- desktop xl and above -->
-      <div
+      <!-- <div
         v-if="!loading"
-        class="flex-col hidden w-full md:flex-row-reverse xl:flex widths"
+        class="flex-col hidden w-full md:flex-row-reverse xl:hidden widths"
       >
         <div
           class="
@@ -61,9 +61,8 @@
             />
           </div>
         </div>
-
         <div class="">
-          <ProductImgThumbnails
+        <ProductImgThumbnails
             v-if="images && images.length > 1"
             :images="images"
             :selected-image="selectedImage || img"
@@ -71,14 +70,16 @@
             @selectedImage="popup"
           />
         </div>
-      </div>
-      <!-- below xl --tablet -->
+      </div> -->
+
+      <!-- desktop view -->
       <div
         v-if="img"
-        class="flex-col hidden w-auto md:flex-row-reverse sm:flex xl:hidden"
+        class="flex-col hidden w-auto md:flex-row-reverse sm:flex"
       >
         <div
           class="
+            relative
             z-10
             mx-auto
             overflow-hidden
@@ -88,6 +89,14 @@
             widths
           "
         >
+          <div class="absolute right-0 flex justify-end m-3">
+            <WishButton
+              v-if="product.id"
+              :rounded="true"
+              :pid="product.id"
+              class="z-50 hidden w-8 h-8 p-1 md:flex"
+            />
+          </div>
           <img
             v-if="!youtubeVideoId(selectedImage)"
             v-lazy="selectedImage"
@@ -112,7 +121,7 @@
             />
           </div>
         </div>
-        <div v-if="images && images.length > 1">
+        <div>
           <ProductImgThumbnails
             :images="images"
             :selected-image="selectedImage || img"
@@ -121,10 +130,10 @@
           />
         </div>
       </div>
-      <!-- mobile -->
 
+      <!-- mobile view -->
       <div class="w-full">
-        <div v-if="images && images.length > 0" class="mx-auto sm:hidden">
+        <div v-if="images && images.length" class="mx-auto sm:hidden">
           <div class="w-full mx-auto widths">
             <VueSlickCarousel
               ref="c1"

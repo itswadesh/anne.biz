@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="images"
+    v-if="images && images.length > 1"
     class="
       relative
       z-0
@@ -11,12 +11,12 @@
       my-5
       overflow-hidden
       md:-mt-0
-      hfull
+      h-full
       md:mx-0
       md:w-24
     "
   >
-    <VueSlickCarousel v-bind="settings" :arrows="true" class="w-auto my-auto">
+    <VueSlickCarousel v-bind="settings" :arrows="true" class="w-auto">
       <template #prevArrow="arrowOption" class="absolute top-0">
         <div class="invisible custom-arrow custom-arrow1 sm:visible">
           {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
@@ -26,11 +26,13 @@
         v-for="(img, ix) in images"
         :key="ix"
         class="
+          flex
           justify-center
           items-center
           overflow-hidden
           md:w-full
           focus:outline-none
+          h-full
         "
       >
         <div class="">
@@ -72,7 +74,7 @@
 import { getIdFromUrl } from 'vue-youtube'
 export default {
   props: {
-    images: { type: Array, default: null },
+    images: { type: Array, default: () => [] },
     selectedImage: { type: String, default: null },
   },
   // ['images', 'selectedImage'],
@@ -90,7 +92,7 @@ export default {
               centerPadding: '70px',
               centerMargin: '15px',
               vertical: false,
-              slidesToShow: 5,
+              slidesToShow: 4,
               slidesToScroll: 1,
               focusOnSelect: true,
               infinite: true,

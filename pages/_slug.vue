@@ -28,7 +28,7 @@
           class="w-full"
         />
         <div>
-          <Share :data="product" :host="host" />
+          <Share :product="product" :host="host" />
         </div>
       </div>
       <div class="container flex flex-col mx-auto">

@@ -1,7 +1,7 @@
 <template>
   <div class="w-full xl:ms-3">
     <!-- <div class="flex flex-row justify-end">
-          <Share :data="product" :host="host" />
+          <Share :product="product" :host="host" />
           <WishButton :rounded="true" :pid="product.id" v-if="product.id" class="p-1 w-7 h-7"/>
       </div> -->
     <div class="flex flex-row w-full afterSizeSelector">
@@ -399,7 +399,7 @@
                       <span class="text-lg font-light text-gray-700 me-6">
                         Sizes:
                       </span>
-                      <div class="flex">
+                      <div class="flex flex-wrap">
                         <nuxt-link
                           v-for="(i, ix) in pg.sizeGroup"
                           :key="ix + 's'"

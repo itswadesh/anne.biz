@@ -24,7 +24,7 @@
           v-for="(s, sx) in socialmedias"
           :key="sx"
           target="_blank"
-          :href="s.href"
+          :href="s.link"
         >
           <img
             :src="s.img"
@@ -59,32 +59,32 @@ export default {
       items: [
         {
           img: '/img/other/tick.png',
-          detail: '30 day <b>money back guarantee</b>',
+          detail: '15 days <b>money back guarantee</b>',
         },
         {
           img: '/img/other/support.png',
-          detail: '<b>Support</b> terms accross the world',
+          detail: '<b>Support</b> teams across the world',
         },
         {
           img: '/img/other/lock.png',
-          detail: '<b>Safe & Secure</b>online payment',
+          detail: '<b>Safe & Secure</b> online payment',
         },
       ],
       socialmedias: [
         {
-          hreflink: 'brand.facebookUrl',
+          link: `https://www.facebook.com/${this.brand.facebookUrl}`,
           img: '/img/socialmedia/facebook.png',
         },
         {
-          hreflink: 'brand.twitterUrl',
+          link: `https://twitter.com/${this.brand.twitterUrl}`,
           img: '/img/socialmedia/twitter.png',
         },
         {
-          hreflink: 'brand.instaUrl',
+          link: `https://www.instagram.com/${this.brand.instaUrl}`,
           img: '/img/socialmedia/instagram.png',
         },
         {
-          hreflink: 'brand.youtubeUrl',
+          link: `https://www.youtube.com/user/${this.brand.youtubeUrl}`,
           img: '/img/socialmedia/youtube.png',
         },
       ],

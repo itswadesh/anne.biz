@@ -1,14 +1,5 @@
 <template>
-  <div
-    v-if="
-      data.vendor &&
-      data.vendor.firstName &&
-      data.slug &&
-      data.name &&
-      data.description &&
-      settings.keywords
-    "
-  >
+  <div>
     <button
       type="button"
       :class="{ 'bg-gray-300': open == true }"
@@ -40,7 +31,7 @@
 
       <span class="hidden my-auto font-thin ms-1 md:flex">Share</span>
     </button>
-    <div v-if="open && data" class="">
+    <div v-if="open && product" class="">
       <div
         class="
           absolute
@@ -77,11 +68,11 @@
           <div class="flex flex-col w-full sm:flex-row">
             <!-- fb -->
             <ShareNetwork
-              :url="`${host}/${data.slug}`"
-              :title="data.name"
-              :description="data.vendor.firstName"
-              :quote="data.description"
-              :hashtags="settings.keywords"
+              :url="`${host}/${product.slug}?id=${product.id}`"
+              :title="product.name"
+              :description="product.description || ''"
+              :quote="(product.category && product.category.name) || ''"
+              :hashtags="product.keywords || ''"
               network="facebook"
               style="color: #3b5998"
               class="
@@ -125,13 +116,12 @@
             </ShareNetwork>
             <!-- twitter -->
             <ShareNetwork
-              v-if="data.vendor"
-              :url="`${host}/${data.slug}`"
-              :title="data.name"
-              :description="data.vendor.firstName"
-              :quote="data.description"
-              :hashtags="settings.keywords"
-              twitter-user="litekart"
+              :url="`${host}/${product.slug}?id=${product.id}`"
+              :title="product.name"
+              :description="product.description || ''"
+              :quote="(product.category && product.category.name) || ''"
+              :hashtags="product.keywords || ''"
+              :twitter-user="settings.websiteName"
               network="twitter"
               style="color: #53a8e7"
               class="
@@ -175,13 +165,12 @@
             </ShareNetwork>
             <!-- email -->
             <ShareNetwork
-              v-if="data.vendor"
-              :url="`${host}/${data.slug}`"
-              :title="data.name"
-              :description="data.vendor.firstName"
-              :quote="data.description"
-              :hashtags="settings.keywords"
-              network="whatsapp"
+              :url="`${host}/${product.slug}?id=${product.id}`"
+              :title="product.name"
+              :description="product.description || ''"
+              :quote="(product.category && product.category.name) || ''"
+              :hashtags="product.keywords || ''"
+              network="Email"
               style="color: #54cc61"
               class="
                 flex flex-row
@@ -223,12 +212,11 @@
               >
             </ShareNetwork>
             <ShareNetwork
-              v-if="data.vendor"
-              :url="`${host}/${data.slug}`"
-              :title="data.name"
-              :description="data.vendor.firstName"
-              :quote="data.description"
-              :hashtags="settings.keywords"
+              :url="`${host}/${product.slug}?id=${product.id}`"
+              :title="product.name"
+              :description="product.description || ''"
+              :quote="(product.category && product.category.name) || ''"
+              :hashtags="product.keywords || ''"
               network="whatsapp"
               style="color: #54cc61"
               class="
@@ -237,7 +225,6 @@
                 w-full
                 mx-auto
                 border-b
-                sm:hidden
                 sm:flex-col
                 focus:outline-none
                 sm:border-b-0
@@ -296,12 +283,11 @@
             </ShareNetwork>
 
             <ShareNetwork
-              v-if="data.vendor"
-              :url="`${host}/${data.slug}`"
-              :title="data.name"
-              :description="data.vendor.firstName"
-              :quote="data.description"
-              :hashtags="settings.keywords"
+              :url="`${host}/${product.slug}?id=${product.id}`"
+              :title="product.name"
+              :description="product.description || ''"
+              :quote="(product.category && product.category.name) || ''"
+              :hashtags="product.keywords || ''"
               network="sms"
               style="color: #54cc61"
               class="
@@ -310,7 +296,6 @@
                 w-full
                 mx-auto
                 border-b
-                sm:hidden
                 sm:flex-col
                 focus:outline-none
                 sm:border-b-0
@@ -378,14 +363,13 @@
                 w-full
                 mx-auto
                 border-b
-                sm:hidden
                 sm:flex-col
                 focus:outline-none
                 sm:border-b-0
                 sm:ps-0
                 ps-4
               "
-              @click="close(null)"
+              @click="copy()"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -413,13 +397,16 @@
         @click="close(null)"
       ></div>
     </div>
+    <div ref="productLink" class="hidden">
+      {{ `${host}/${product.slug}?id=${product.id}` }}
+    </div>
   </div>
 </template>
 <script>
 export default {
   props: {
-    data: Object,
-    host: String,
+    product: { type: Object, default: () => {} },
+    host: { type: String, default: null },
   },
   data() {
     return {
@@ -432,6 +419,11 @@ export default {
     },
   },
   methods: {
+    copy() {
+      // const productUrl = `${this.host}/${this.product.slug}?id=${this.product.id}`
+      navigator.clipboard.writeText(this.$refs.productLink.innerHTML)
+      this.close(null)
+    },
     close(e) {
       this.open = false
       if (e) this.$router.push(`/c/${e}`)

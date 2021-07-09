@@ -36,5 +36,6 @@ module.exports = {
     'prefer-const': 'warn',
     'no-case-declarations': 'warn',
     'no-console': 'off',
+    'vue/script-setup-uses-vars': 'off',
   },
 }

@@ -45,7 +45,7 @@ export default {
     // '@nuxtjs/google-analytics',
     '@nuxtjs/pwa',
     'vue-social-sharing/nuxt',
-    'nuxt-vite',
+    // 'nuxt-vite',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint

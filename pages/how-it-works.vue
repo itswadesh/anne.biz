@@ -70,8 +70,7 @@
                   max-w-lg
                   md:max-w-md
                   pl-28
-                  md:pl-0
-                  md:pr-20
+                  md:pl-0 md:pr-20
                   lg:pr-28
                 "
               >
@@ -149,8 +148,7 @@
                   max-w-lg
                   md:max-w-md
                   pl-28
-                  md:pl-0
-                  md:pr-20
+                  md:pl-0 md:pr-20
                   lg:pr-28
                 "
               >
@@ -237,15 +235,18 @@ export default {}
 .timeline-img {
   @apply h-24 w-24 lg:h-40 lg:w-40 object-cover rounded-full shadow-md border-4 border-gray-200 md:absolute md:mx-auto md:right-0 md:left-0;
 }
+
 /* .timeline-container {
   @apply relative pt-2 sm:pl-24 ml-2 sm:pt-0 md:w-1/2  md:ml-auto md:pl-14;
 } */
 .timeline-pointer {
   @apply absolute inset-0 left-7 h-4 w-4 transform rotate-45 bg-white sm:top-10 sm:left-20 sm:ml-2 md:left-10;
 }
+
 /* .timeline-container-left {
   @apply md:ml-0 md:pl-0 md:pr-14 md:mr-auto;
 } */
+
 /* .timeline-pointer-left {
   @apply md:left-auto md:right-12;
 } */

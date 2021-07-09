@@ -116,7 +116,6 @@
     </div> -->
       </div>
     </div>
-    <!--  -->
     <div class="container max-w-6xl px-4 mx-auto md:px-10 xl:px-0">
       <div class="px-2 my-8 text-center md:my-16">
         <h4 class="text-2xl font-bold md:text-4xl">About Us</h4>
@@ -128,6 +127,7 @@
           of Videos, Notes, MCQs as well as Online and Offline Tuitions in all
           Indian Languages.
         </h4>
+
         <!-- <h4 class="mt-5">
         Our mission is to share knowledge through customized designed content in the form of Videos,
         Notes, MCQs as well as Online and Offline Tuitions in all Indian Languages and to provide
@@ -275,10 +275,6 @@
           </div>
         </div>
       </div>
-
-      <!--  -->
-
-      <!--  -->
       <div class="px-2 my-8 text-center md:my-16">
         <h4 class="text-2xl font-bold md:text-4xl">Platforms</h4>
         <h4 class="mt-5 md:mt-10">
@@ -295,7 +291,6 @@
       </div>
 
       <div class="px-2 my-8 md:my-16">
-        <!--  -->
         <VueSlickCarousel v-bind="settings">
           <div v-for="i in socialmedia" :key="i.id" class="flex flex-row mt-10">
             <a :href="i.link">
@@ -329,7 +324,6 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-// optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
   name: 'MyComponent',
@@ -366,6 +360,7 @@ export default {
               centerPadding: '10px',
             },
           },
+
           // {
           //   breakpoint: 576,
           //   settings: {
@@ -420,8 +415,8 @@ export default {
   opacity: 0px;
 }
 
-.slick-prev:before,
-.slick-next:before {
+.slick-prev::before,
+.slick-next::before {
   font-family: 'slick';
   font-size: 50px;
   z-index: 1;
@@ -434,6 +429,7 @@ export default {
 a.hover {
   color: blue;
 }
+
 /* @media screen and (max-width: 400px) {
   .slick-prev {
     left: -10px;

@@ -224,7 +224,7 @@ export default {
   // validate({ query }) {
   //   if (!query.id) return false
   // },
-  async asyncData({ params, query, app, req, error }) {
+  async asyncData({ params, query, app, req, error, store }) {
     const client = app.apolloProvider.defaultClient
     let product = {}
     let selectedVariant = null
@@ -258,13 +258,44 @@ export default {
       }
     }
     const HOST = process.server ? req.headers.host : window.location.host
+    const nextWeek = new Date(new Date().setDate(new Date().getDate() + 7))
     const structuredData = {
       '@context': 'http://schema.org/',
       '@type': 'Product',
       name: product && product.name,
       description: product && product.description,
       sku: product && product.sku,
-      image: HOST + (product && product.img),
+      image: product && product.img,
+      gtin8: product.id,
+      brand: product.brand && product.brand.name,
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        worstRating: 1,
+        bestRating: 5,
+        ratingCount: product.reviews || 0 + 5,
+        ratingValue: product.rating || 1,
+      },
+      releaseDate: product.createdAt,
+      dateModified: product.updatedAt,
+      url: `${HOST}/${product.slug}?id=${product.id}`,
+      interactionStatistic: {
+        '@type': 'InteractionCounter',
+        interactionType: 'http://schema.org/DownloadAction',
+        userInteractionCount: product.popularity + 1000,
+      },
+      offers: {
+        '@type': 'Offer',
+        availability: 'http://schema.org/InStock',
+        priceValidUntil: nextWeek.toISOString(),
+        url: `${HOST}/${product.slug}?id=${product.id}`,
+        price: product.price < 1 ? '0.00' : product.price,
+        priceCurrency: store.state.settings.currencyCode,
+        seller: {
+          '@type': 'Organization',
+          name: store.state.settings.websiteName,
+          url: HOST,
+        },
+      },
     }
     return { host: HOST, product, selectedVariant, err, structuredData }
   },
@@ -393,6 +424,7 @@ export default {
           content: this.product && this.product.price,
         },
       ],
+      script: [{ type: 'application/ld+json', json: this.structuredData }],
     }
   },
   created() {

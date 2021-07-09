@@ -582,8 +582,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import OrderListSkeleton from '~/components/AllSkeletons/OrderListSkeleton'
-import DemoRequestModal from '~/components/ProductDetails/DemoRequestModal'
+import OrderListSkeleton from '~/components/AllSkeletons/OrderListSkeleton.vue'
+import DemoRequestModal from '~/components/ProductDetails/DemoRequestModal.vue'
 import MY_ORDERS from '~/gql/order/myOrders.gql'
 import { NETEASE_WWW } from '~/shared/config'
 export default {

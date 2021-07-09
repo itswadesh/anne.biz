@@ -82,8 +82,8 @@
 <script>
 import { Checkbox } from '~/shared/components/ui'
 
-import FilterCategory from '~/components/Listing/FilterCategory'
-import FilterComponent from '~/components/Listing/FilterComponent'
+import FilterCategory from '~/components/Listing/FilterCategory.vue'
+import FilterComponent from '~/components/Listing/FilterComponent.vue'
 import GET_BRANDS from '~/gql/brand/brands.gql'
 import GET_SIZES from '~/gql/size/sizes.gql'
 import GET_COLORS from '~/gql/color/colors.gql'

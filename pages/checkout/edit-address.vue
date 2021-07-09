@@ -65,9 +65,9 @@
 </template>
 
 <script>
-import EditAddress from '~/components/User/EditAddress'
-import PriceDetails from '~/components/Cart/PriceDetails'
-const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader')
+import EditAddress from '~/components/User/EditAddress.vue'
+import PriceDetails from '~/components/Cart/PriceDetails.vue'
+const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader.vue')
 
 export default {
   components: { PriceDetails, CheckoutHeader, EditAddress },

@@ -37,12 +37,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Footer from '~/components/Footer'
-import LeftUserProfile from '~/components/User/LeftUserProfile'
+import Footer from '~/components/Footer.vue'
+import LeftUserProfile from '~/components/User/LeftUserProfile.vue'
 
-import Nav from '~/components/Home/Nav'
+import Nav from '~/components/Home/Nav.vue'
 export default {
   components: { Nav, Footer, LeftUserProfile },
+  head() {
+    return this.$nuxtI18nHead()
+  },
   computed: {
     ...mapGetters({ user: 'auth/user' }),
   },
@@ -50,9 +53,6 @@ export default {
     // if (!this.user.firstName || this.user.firstName == '') {
     //   this.$router.push('/my/profile')
     // }
-  },
-  head() {
-    return this.$nuxtI18nHead()
   },
 }
 </script>

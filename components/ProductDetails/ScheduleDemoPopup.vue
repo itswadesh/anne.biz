@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ minDate }}
     <VueCtkDateTimePicker
       v-model="demo.scheduleDate"
       :min-date="minDate"

@@ -97,8 +97,8 @@
 </template>
 
 <script>
-import HomeHeroCards from '~/components/Anne/HomeHeroCards'
-import HowItWorks from '~/components/Anne/HowItWorks'
+import HomeHeroCards from '~/components/Anne/HomeHeroCards.vue'
+import HowItWorks from '~/components/Anne/HowItWorks.vue'
 export default {
   components: {
     HomeHeroCards,

@@ -56,8 +56,8 @@
 </template>
 <script>
 import { mapMutations } from 'vuex'
-import ListPageSakeleton from '../AllSkeletons/ListPageSakeleton'
-import ListCard from '~/components/Listing/ListCard'
+import ListPageSakeleton from '../AllSkeletons/ListPageSakeleton.vue'
+import ListCard from '~/components/Listing/ListCard.vue'
 // import TOGGLE from '~/gql/wishlist/toggleWishlist.gql'
 import PRODUCTS from '~/gql/product/products.gql'
 export default {

@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import WorkoutSkeleton from '~/components/AllSkeletons/WorkoutSkeleton'
+import WorkoutSkeleton from '~/components/AllSkeletons/WorkoutSkeleton.vue'
 import BANNERS from '~/gql/banner/banners.gql'
 export default {
   components: { WorkoutSkeleton },

@@ -97,10 +97,10 @@
 <script>
 import { mapGetters } from 'vuex'
 // import CartPageSkeleton from '~/components/AllSkeletons/CartPageSkeleton'
-import CartItem from '~/components/Cart/CartItem'
-import PriceDetails from '~/components/Cart/PriceDetails'
-import EmptyCart from '~/components/Cart/EmptyCart'
-const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader')
+import CartItem from '~/components/Cart/CartItem.vue'
+import PriceDetails from '~/components/Cart/PriceDetails.vue'
+import EmptyCart from '~/components/Cart/EmptyCart.vue'
+const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader.vue')
 
 export default {
   components: {

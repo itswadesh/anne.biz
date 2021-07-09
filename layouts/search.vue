@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import OtpLogin from '~/components/Login/Mobile/OtpLogin'
-import Nav from '~/components/Home/Nav'
+import OtpLogin from '~/components/Login/Mobile/OtpLogin.vue'
+import Nav from '~/components/Home/Nav.vue'
 import { BackToTopDark } from '~/shared/components/ui'
-import BrownFooter from '~/components/Home/BrownFooter'
+import BrownFooter from '~/components/Home/BrownFooter.vue'
 
 export default {
   components: { OtpLogin, BackToTopDark, Nav, BrownFooter },

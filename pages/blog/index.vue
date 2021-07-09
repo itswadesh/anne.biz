@@ -40,8 +40,8 @@
 import BLOGS from '~/gql/blog/blogs.gql'
 import c from '~/mixins/c.js'
 import { DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
-import Pagination from '~/shared/components/ui/Pagination'
-import BlogPostGrid from '~/components/Blog/BlogPostGrid'
+import Pagination from '~/shared/components/ui/Pagination.vue'
+import BlogPostGrid from '~/components/Blog/BlogPostGrid.vue'
 
 export default {
   components: {

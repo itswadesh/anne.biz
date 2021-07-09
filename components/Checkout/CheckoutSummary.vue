@@ -194,14 +194,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import TestCoupons from '~/components/Cart/TestCoupons'
+import TestCoupons from '~/components/Cart/TestCoupons.vue'
 import { Button } from '~/shared/components/ui'
 
 export default {
   components: { TestCoupons, Button },
   props: {
     loading: { type: Boolean },
-    selectedAddress: { type: String },
+    selectedAddress: { type: String, default: null },
   },
   data() {
     return {

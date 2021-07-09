@@ -20,9 +20,9 @@
   </div>
 </template>
 <script>
-import OtpLogin from '~/components/Login/Mobile/OtpLogin'
-import Nav from '~/components/Home/Nav'
-import BrownFooter from '~/components/Home/BrownFooter'
+import OtpLogin from '~/components/Login/Mobile/OtpLogin.vue'
+import Nav from '~/components/Home/Nav.vue'
+import BrownFooter from '~/components/Home/BrownFooter.vue'
 export default {
   components: { Nav, OtpLogin, BrownFooter },
   data() {

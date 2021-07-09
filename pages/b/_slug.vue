@@ -113,11 +113,11 @@
 import BRAND from '~/gql/brand/brand.gql'
 import c from '~/mixins/c.js'
 import { DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
-import ProductCardEs from '~/components/Listing/ProductCardEs'
-import ProductSkeleton from '~/components/ProductSkeleton'
-import Megamenu from '~/components/Home/Megamenu'
-import Pagination from '~/shared/components/ui/Pagination'
-import HeroSlider from '~/components/Home/HeroSlider'
+import ProductCardEs from '~/components/Listing/ProductCardEs.vue'
+import ProductSkeleton from '~/components/ProductSkeleton.vue'
+import Megamenu from '~/components/Home/Megamenu.vue'
+import Pagination from '~/shared/components/ui/Pagination.vue'
+import HeroSlider from '~/components/Home/HeroSlider.vue'
 
 export default {
   components: {

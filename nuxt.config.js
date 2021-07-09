@@ -37,6 +37,7 @@ export default {
   ],
   components: true,
   buildModules: [
+    '@nuxtjs/dotenv',
     '@nuxtjs/apollo',
     '@nuxtjs/tailwindcss',
     'nuxt-purgecss',
@@ -44,11 +45,12 @@ export default {
     // '@nuxtjs/google-analytics',
     '@nuxtjs/pwa',
     'vue-social-sharing/nuxt',
-    // 'nuxt-vite',
+    'nuxt-vite',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
-    // '@nuxtjs/stylelint-module',
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/composition-api/module',
   ],
   modules: [
     '@nuxtjs/robots',

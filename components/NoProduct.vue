@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import MegamenuMobile from '~/components/MegamenuMobile'
+import MegamenuMobile from '~/components/MegamenuMobile.vue'
 export default {
   components: { MegamenuMobile },
 }

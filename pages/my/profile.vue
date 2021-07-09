@@ -2,7 +2,7 @@
   <EditProfile />
 </template>
 <script>
-import EditProfile from '~/components/User/Dashboard/EditProfile'
+import EditProfile from '~/components/User/Dashboard/EditProfile.vue'
 export default {
   components: {
     EditProfile,

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Tracking from '~/components/Order/Tracking'
+import Tracking from '~/components/Order/Tracking.vue'
 export default {
   components: { Tracking },
   middleware: ['isAuth'],

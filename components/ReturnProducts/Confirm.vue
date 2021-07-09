@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import ConfirmPopup from '~/components/ReturnProducts/ConfirmPopup'
+import ConfirmPopup from '~/components/ReturnProducts/ConfirmPopup.vue'
 export default {
   components: {
     ConfirmPopup,

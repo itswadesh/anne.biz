@@ -89,7 +89,7 @@
 import Pagination from '~/shared/components/ui/Pagination'
 import c from '~/mixins/c.js'
 import ProductCardEs from '~/components/Listing/ProductCardEs.vue'
-import Megamenu from '~/components/Home/Megamenu'
+import Megamenu from '~/components/Home/Megamenu.vue'
 export default {
   components: { Pagination, ProductCardEs, Megamenu },
   mixins: [c],

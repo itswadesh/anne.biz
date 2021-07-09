@@ -112,10 +112,10 @@
 import CATEGORY from '~/gql/category/category.gql'
 import c from '~/mixins/c.js'
 import { DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
-import ProductCardEs from '~/components/Listing/ProductCardEs'
-import ProductSkeleton from '~/components/ProductSkeleton'
-import Megamenu from '~/components/Home/Megamenu'
-import Pagination from '~/shared/components/ui/Pagination'
+import ProductCardEs from '~/components/Listing/ProductCardEs.vue'
+import ProductSkeleton from '~/components/ProductSkeleton.vue'
+import Megamenu from '~/components/Home/Megamenu.vue'
+import Pagination from '~/shared/components/ui/Pagination.vue'
 
 export default {
   components: {

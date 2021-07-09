@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import ProductSliderCards from '~/components/Home/ProductSliderCards'
+import ProductSliderCards from '~/components/Home/ProductSliderCards.vue'
 // import ProductSliderSkeleton from '~/components/AllSkeletons/ProductSliderSkeleton'
 export default {
   components: {

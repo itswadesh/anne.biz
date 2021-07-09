@@ -2,7 +2,7 @@
   <ReviewAndRating />
 </template>
 <script>
-import ReviewAndRating from '~/components/User/Dashboard/ReviewAndRating'
+import ReviewAndRating from '~/components/User/Dashboard/ReviewAndRating.vue'
 export default {
   components: {
     ReviewAndRating,

@@ -79,7 +79,8 @@
                     class="
                       text-xs
                       font-light
-                      hover:underline hover:text-gray-800
+                      hover:underline
+                      hover:text-gray-800
                       focus:outline-none
                       text-right
                     "
@@ -266,7 +267,7 @@ export default {
         const r = this.$route.query.ref || '/'
         this.$router.push(r)
       } catch (e) {
-        this.setErr(e.toString())
+        this.setErr(e)
       } finally {
         this.loading = false
       }

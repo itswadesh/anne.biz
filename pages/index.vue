@@ -44,21 +44,21 @@
 </template>
 
 <script>
-import Megamenu from '~/components/Home/Megamenu'
-import HeroSlider from '~/components/Home/HeroSlider'
-import HeroBanners from '~/components/Home/HeroBanners'
-import Categories from '~/components/Home/Categories'
-import Deals from '~/components/Home/Deals'
-import ProductSlider from '~/components/Home/ProductSlider'
-import ProductSlider2 from '~/components/Home/ProductSlider2'
-import BrandBanners from '~/components/Home/BrandBanners'
-import HeroBannersSlider from '~/components/Home/HeroBannersSlider'
+import Megamenu from '~/components/Home/Megamenu.vue'
+import HeroSlider from '~/components/Home/HeroSlider.vue'
+import HeroBanners from '~/components/Home/HeroBanners.vue'
+import Categories from '~/components/Home/Categories.vue'
+import Deals from '~/components/Home/Deals.vue'
+import ProductSlider from '~/components/Home/ProductSlider.vue'
+import ProductSlider2 from '~/components/Home/ProductSlider2.vue'
+import BrandBanners from '~/components/Home/BrandBanners.vue'
+import HeroBannersSlider from '~/components/Home/HeroBannersSlider.vue'
+import VideoBanner from '~/components/Home/VideoBanner.vue'
 import TRENDING from '~/gql/product/trending.gql'
-import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 import BANNERS from '~/gql/banner/banners.gql'
 import GROUP_BY_BANNER from '~/gql/banner/groupByBanner.gql'
 import BRANDS from '~/gql/brand/brands.gql'
-import VideoBanner from '~/components/Home/VideoBanner.vue'
+import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 export default {
   components: {
     Megamenu,

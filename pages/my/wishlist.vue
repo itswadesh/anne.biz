@@ -2,7 +2,7 @@
   <Wishlist />
 </template>
 <script>
-import Wishlist from '~/components/User/Dashboard/Wishlist'
+import Wishlist from '~/components/User/Dashboard/Wishlist.vue'
 export default {
   components: {
     Wishlist,

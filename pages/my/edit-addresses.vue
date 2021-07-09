@@ -72,7 +72,7 @@
 
 <script>
 import { Button } from '~/shared/components/ui'
-import EditAddress from '~/components/User/EditAddress'
+import EditAddress from '~/components/User/EditAddress.vue'
 export default {
   components: {
     EditAddress,

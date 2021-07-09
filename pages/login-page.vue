@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import UserLogin from '~/components/Login/Email/UserLogin'
+import UserLogin from '~/components/Login/Email/UserLogin.vue'
 export default {
   components: { UserLogin },
   head() {

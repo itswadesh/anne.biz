@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import ProductSliderCards2 from '~/components/Home/ProductSliderCards2'
+import ProductSliderCards2 from '~/components/Home/ProductSliderCards2.vue'
 export default {
   components: {
     ProductSliderCards2,

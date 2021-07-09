@@ -229,7 +229,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import WishlistSkeleton from '~/components/AllSkeletons/WishlistSkeleton'
+import WishlistSkeleton from '~/components/AllSkeletons/WishlistSkeleton.vue'
 import MY_SCHEDULE_DEMOS from '~/gql/scheduleDemo/myScheduleDemos.gql'
 import { NETEASE_WWW } from '~/shared/config'
 

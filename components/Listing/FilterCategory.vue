@@ -46,7 +46,7 @@ export default {
     FilterCategory,
   },
   props: {
-    details: { type: Array },
+    details: { type: Array, default: () => [] },
   },
   data() {
     return {

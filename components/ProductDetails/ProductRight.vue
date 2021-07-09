@@ -661,7 +661,7 @@
         </div>
       </div>
     </div>
-    <div v-if="selectedProduct">
+    <div v-if="selectedProduct && showDemoScheduler">
       <DemoRequestModal
         :show="showDemoScheduler"
         :product="selectedProduct"
@@ -675,7 +675,7 @@
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import REVIEWS from '~/gql/review/reviewSummary.gql'
 import { NETEASE_WWW } from '~/shared/config'
-import DemoRequestModal from '~/components/ProductDetails/DemoRequestModal'
+import DemoRequestModal from '~/components/ProductDetails/DemoRequestModal.vue'
 
 // import Share from '~/components/ProductDetails/Share'
 // import { Checkbox } from '~/shared/components/ui'

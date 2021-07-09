@@ -2,7 +2,7 @@
   <DemoRequests />
 </template>
 <script>
-import DemoRequests from '~/components/User/Dashboard/DemoRequests'
+import DemoRequests from '~/components/User/Dashboard/DemoRequests.vue'
 export default {
   components: {
     DemoRequests,

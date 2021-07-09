@@ -172,7 +172,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Button } from '~/shared/components/ui'
-import TestCoupons from '~/components/Cart/TestCoupons'
+import TestCoupons from '~/components/Cart/TestCoupons.vue'
 
 // import CART from "~/gql/cart/cart.gql"
 export default {

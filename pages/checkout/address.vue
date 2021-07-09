@@ -71,11 +71,11 @@
 <script>
 import { mapMutations } from 'vuex'
 import { Button } from '~/shared/components/ui'
-import SelectAddress from '~/components/User/Dashboard/SelectAddress'
+import SelectAddress from '~/components/User/Dashboard/SelectAddress.vue'
 import MY_ADDRESSES from '~/gql/address/myAddresses.gql'
 import DELETE_ADDRESS from '~/gql/address/deleteAddress.gql'
 import CartSummaryCheckout from '~/components/Checkout/CartSummaryCheckout.vue'
-const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader')
+const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader.vue')
 export default {
   components: {
     SelectAddress,

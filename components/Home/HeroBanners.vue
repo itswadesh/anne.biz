@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import HeroBannerSkeleton from '~/components/AllSkeletons/HeroBannerSkeleton'
+import HeroBannerSkeleton from '~/components/AllSkeletons/HeroBannerSkeleton.vue'
 // import BANNERS from '~/gql/banner/banners.gql'
 export default {
   components: { HeroBannerSkeleton },

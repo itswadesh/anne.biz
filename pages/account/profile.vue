@@ -124,7 +124,8 @@
             shadow-md
             hover:border-brand-700
             focus:outline-none
-            hover:text-white hover:bg-brand-700
+            hover:text-white
+            hover:bg-brand-700
           "
         >
           Close my acount
@@ -137,7 +138,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Textbox from '~/components/ui/Textbox'
+import Textbox from '~/components/ui/Textbox.vue'
 
 export default {
   components: { Textbox },

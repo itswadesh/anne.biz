@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import Megamenu from '~/components/Home/Megamenu'
-import HeroSlider from '~/components/Home/HeroSlider'
-import AllBrands from '~/components/Home/AllBrands'
-import HeroBanners from '~/components/Home/HeroBanners'
+import Megamenu from '~/components/Home/Megamenu.vue'
+import HeroSlider from '~/components/Home/HeroSlider.vue'
+import AllBrands from '~/components/Home/AllBrands.vue'
+import HeroBanners from '~/components/Home/HeroBanners.vue'
 import PRODUCTS from '~/gql/product/products.gql'
 import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 import BANNERS from '~/gql/banner/banners.gql'

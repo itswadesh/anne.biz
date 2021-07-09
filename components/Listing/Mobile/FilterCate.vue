@@ -178,7 +178,7 @@
 </template>
 
 <script>
-import FilterComponent from '~/components/Listing/FilterComponent'
+import FilterComponent from '~/components/Listing/FilterComponent.vue'
 import GET_BRANDS from '~/gql/brand/brands.gql'
 import GET_SIZES from '~/gql/size/sizes.gql'
 import GET_COLORS from '~/gql/color/colors.gql'

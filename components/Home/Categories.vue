@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import BagSkelton from '~/components/AllSkeletons/BagSkelton'
+import BagSkelton from '~/components/AllSkeletons/BagSkelton.vue'
 import CATEGORIES from '~/gql/category/categories.gql'
 
 export default {

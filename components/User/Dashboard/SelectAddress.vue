@@ -171,7 +171,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import AddressSkeleton from '~/components/AllSkeletons/AddressSkeleton'
+import AddressSkeleton from '~/components/AllSkeletons/AddressSkeleton.vue'
 import { Radio } from '~/shared/components/ui'
 import MY_ADDRESSES from '~/gql/address/myAddresses.gql'
 import DELETE_ADDRESS from '~/gql/address/deleteAddress.gql'
@@ -179,9 +179,9 @@ export default {
   components: { Radio, AddressSkeleton },
   middleware: ['isAuth'],
   props: {
-    id: { type: String },
-    returnUrl: { type: String },
-    addReturnUrl: { type: String },
+    id: { type: String, default: null },
+    returnUrl: { type: String, default: null },
+    addReturnUrl: { type: String, default: null },
   },
   data() {
     return {

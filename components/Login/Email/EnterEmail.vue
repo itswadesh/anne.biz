@@ -164,8 +164,8 @@
 <script>
 import { mapMutations, mapActions } from 'vuex'
 import { Textbox } from '~/shared/components/ui'
-import SignUp from '~/components/Login/Email/SignUp'
-import EnterMobileNumber from '~/components/Login/Mobile/EnterMobileNumber'
+import SignUp from '~/components/Login/Email/SignUp.vue'
+import EnterMobileNumber from '~/components/Login/Mobile/EnterMobileNumber.vue'
 export default {
   components: {
     EnterMobileNumber,

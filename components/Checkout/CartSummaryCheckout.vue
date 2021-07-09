@@ -173,14 +173,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import TestCoupons from '~/components/Cart/TestCoupons'
+import TestCoupons from '~/components/Cart/TestCoupons.vue'
 import { Button } from '~/shared/components/ui'
 
 // import CART from "~/gql/cart/cart.gql"
 export default {
   components: { TestCoupons, Button },
   props: {
-    selectedAddress: { type: String },
+    selectedAddress: { type: String, default: null },
     loading: { type: Boolean },
   },
   data() {

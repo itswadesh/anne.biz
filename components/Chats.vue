@@ -22,7 +22,7 @@
 import CHATS from '~/gql/im/chats.gql'
 import CHANNEL_MESSAGES from '~/gql/im/channelMessages.gql'
 import SAVE_IM from '~/gql/im/sendInstantMessage.gql'
-import AnimatedHeart from '~/components/AnimatedHeart'
+import AnimatedHeart from '~/components/AnimatedHeart.vue'
 export default {
   components: {
     AnimatedHeart,

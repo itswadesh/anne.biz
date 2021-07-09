@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import VideoPlayer from '~/components/Video/VideoPlayer'
-import FlvPlayer from '~/components/Video/FlvPlayer'
+import VideoPlayer from '~/components/Video/VideoPlayer.vue'
+import FlvPlayer from '~/components/Video/FlvPlayer.vue'
 export default {
   components: {
     VideoPlayer,

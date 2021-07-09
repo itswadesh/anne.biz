@@ -195,23 +195,23 @@
 </template>
 <script>
 import { mapMutations } from 'vuex'
-import Share from '~/components/ProductDetails/Share'
-import Megamenu from '~/components/Home/Megamenu'
-import ProductImages from '~/components/ProductDetails/ProductImages'
-import ProductRight from '~/components/ProductDetails/ProductRight'
-import ProductDetailSpecs from '~/components/ProductDetails/ProductDetailSpecs'
-import RatingAndReviews from '~/components/ProductDetails/RatingAndReviews'
-import Breadcrumb from '~/components/ProductDetails/Breadcrumb'
+import Share from '~/components/ProductDetails/Share.vue'
+import Megamenu from '~/components/Home/Megamenu.vue'
+import ProductImages from '~/components/ProductDetails/ProductImages.vue'
+import ProductRight from '~/components/ProductDetails/ProductRight.vue'
+import ProductDetailSpecs from '~/components/ProductDetails/ProductDetailSpecs.vue'
+import RatingAndReviews from '~/components/ProductDetails/RatingAndReviews.vue'
+import Breadcrumb from '~/components/ProductDetails/Breadcrumb.vue'
 import AddToCart from '~/components/ProductDetails/AddToCart.vue'
 import BuyNow from '~/components/ProductDetails/BuyNow.vue'
-import ProductSlider from '~/components/Home/ProductSlider'
+import ProductSlider from '~/components/Home/ProductSlider.vue'
 import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
 import PRODUCTS from '~/gql/product/products.gql'
 import PRODUCT from '~/gql/product/product.gql'
 import PRODUCT_GROUP from '~/gql/product/product_group.gql'
 // import TOGGLE from '~/gql/wishlist/toggleWishlist.gql'
 // import CHECK_WISHLIST from '~/gql/wishlist/checkWishlist.gql'
-import DetailsPageLeftSkeleton from '~/components/AllSkeletons/DetailsPageLeftSkeleton'
+import DetailsPageLeftSkeleton from '~/components/AllSkeletons/DetailsPageLeftSkeleton.vue'
 export default {
   components: {
     Share,

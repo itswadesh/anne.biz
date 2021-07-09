@@ -68,9 +68,9 @@
 import { mapMutations } from 'vuex'
 import RTCClient from './agora-rtc-client'
 import { log } from './config'
-import Nav from '~/components/Home/Nav'
+import Nav from '~/components/Home/Nav.vue'
 
-import StreamPlayer from '~/components/Video/stream-player'
+import StreamPlayer from '~/components/Video/stream-player.vue'
 import MY_CHANNELS from '~/gql/channel/myChannels.gql'
 import RTC_TOKEN from '~/gql/channel/rtcToken.gql'
 
@@ -80,7 +80,7 @@ export default {
     Nav,
   },
   props: {
-    msg: String,
+    msg: { type: String, default: null },
   },
   asyncData({ env }) {
     const { AGORA_APP_ID, AGORA_LOG, AGORA_CHANNEL_NAME } = env

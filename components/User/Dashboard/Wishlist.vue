@@ -197,7 +197,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import WishlistSkeleton from '~/components/AllSkeletons/WishlistSkeleton'
+import WishlistSkeleton from '~/components/AllSkeletons/WishlistSkeleton.vue'
 import MY_WISHLIST from '~/gql/wishlist/myWishlist.gql'
 import TOGGLE from '~/gql/wishlist/toggleWishlist.gql'
 export default {

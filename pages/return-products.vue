@@ -161,10 +161,10 @@
 </template>
 
 <script>
-import ItemsForReturn from '~/components/ReturnProducts/ItemsForReturn'
-import ReasonFor from '~/components/ReturnProducts/ReasonFor'
-import PaymentMode from '~/components/ReturnProducts/PaymentMode'
-import Confirm from '~/components/ReturnProducts/Confirm'
+import ItemsForReturn from '~/components/ReturnProducts/ItemsForReturn.vue'
+import ReasonFor from '~/components/ReturnProducts/ReasonFor.vue'
+import PaymentMode from '~/components/ReturnProducts/PaymentMode.vue'
+import Confirm from '~/components/ReturnProducts/Confirm.vue'
 
 export default {
   components: {

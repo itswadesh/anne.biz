@@ -106,8 +106,8 @@
 <script>
 import { mapMutations } from 'vuex'
 import Countdown from 'vuejs-countdown'
-import SaleProductCard from '~/components/Home/SaleProductCard'
-import DealsSkeleton from '~/components/AllSkeletons/DealsSkeleton'
+import SaleProductCard from '~/components/Home/SaleProductCard.vue'
+import DealsSkeleton from '~/components/AllSkeletons/DealsSkeleton.vue'
 import PRODUCTS from '~/gql/product/products.gql'
 import DEALS from '~/gql/deal/listDeals.gql'
 export default {

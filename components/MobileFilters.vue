@@ -342,7 +342,7 @@
 </template>
 <script>
 import { Checkbox, Button } from '~/shared/components/ui'
-import SortSlideUp from '~/components/Listing/Mobile/SortSlideUp'
+import SortSlideUp from '~/components/Listing/Mobile/SortSlideUp.vue'
 import { constructURL } from '~/lib/'
 
 export default {

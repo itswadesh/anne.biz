@@ -196,8 +196,8 @@
 // import { ImageMagnifier } from 'vue-image-magnifier'
 import { mapMutations } from 'vuex'
 import { getIdFromUrl } from 'vue-youtube'
-import ProductImgThumbnails from './ProductImgThumbnails'
-import Share from '~/components/ProductDetails/Share'
+import ProductImgThumbnails from './ProductImgThumbnails.vue'
+import Share from '~/components/ProductDetails/Share.vue'
 
 export default {
   components: {

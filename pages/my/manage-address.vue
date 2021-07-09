@@ -80,7 +80,7 @@
 <script>
 import { Button } from '~/shared/components/ui'
 
-import SelectAddress from '~/components/User/Dashboard/SelectAddress'
+import SelectAddress from '~/components/User/Dashboard/SelectAddress.vue'
 export default {
   components: {
     SelectAddress,

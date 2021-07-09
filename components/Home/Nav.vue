@@ -252,7 +252,7 @@
 <script>
 // import CART from '~/gql/cart/cart.gql'
 import SearchAutocomplete from '~/components/SearchAutocomplete.vue'
-import LeftUserProfile from '~/components/User/LeftUserProfile'
+import LeftUserProfile from '~/components/User/LeftUserProfile.vue'
 
 export default {
   components: {
@@ -260,7 +260,7 @@ export default {
     LeftUserProfile,
   },
   props: {
-    msg: String,
+    msg: { type: String, default: null },
   },
   data() {
     return {

@@ -130,7 +130,7 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { Textbox } from '~/shared/components/ui'
-import EnterEmail from '~/components/Login/Email/EnterEmail'
+import EnterEmail from '~/components/Login/Email/EnterEmail.vue'
 export default {
   components: { EnterEmail, Textbox },
   middleware: ['isGuest'],

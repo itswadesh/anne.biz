@@ -169,7 +169,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import EnterEmail from '~/components/Login/Email/EnterEmail'
+import EnterEmail from '~/components/Login/Email/EnterEmail.vue'
 import { Button } from '~/shared/components/ui'
 import GET_OTP from '~/gql/user/getOtp.gql'
 export default {

@@ -59,8 +59,8 @@
 
 <script>
 import RTCClient from './agora-rtc-client'
-import Nav from '~/components/Home/Nav'
-import StreamPlayer from '~/components/Video/stream-player'
+import Nav from '~/components/Home/Nav.vue'
+import StreamPlayer from '~/components/Video/stream-player.vue'
 import MY_CHANNELS from '~/gql/channel/myChannels.gql'
 import {
   AGORA_APP_ID,

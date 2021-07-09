@@ -362,8 +362,9 @@ import ADDRESS from '~/gql/address/address.gql'
 // import DebitCreditCard from '~/components/Checkout/PaymentOptions/DebitCreditCard'
 import STRIPE_MUTATION from '~/gql/pay/stripe.gql'
 import PAYMENT_METHODS from '~/gql/payment/paymentMethods.gql'
-const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader')
-const CheckoutSummary = () => import('~/components/Checkout/CheckoutSummary')
+const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader.vue')
+const CheckoutSummary = () =>
+  import('~/components/Checkout/CheckoutSummary.vue')
 export default {
   data() {
     return {

@@ -157,8 +157,8 @@
 import { mapGetters, mapMutations } from 'vuex'
 import Checkbox from '~/shared/components/ui/Checkbox.vue'
 import SignupStep from '~/components/Login/Email/SignupStep.vue'
-import EnterOtp from '~/components/Login/Mobile/EnterOtp'
-import EnterMobileNumber from '~/components/Login/Mobile/EnterMobileNumber'
+import EnterOtp from '~/components/Login/Mobile/EnterOtp.vue'
+import EnterMobileNumber from '~/components/Login/Mobile/EnterMobileNumber.vue'
 import GET_OTP from '~/gql/user/getOtp.gql'
 
 export default {

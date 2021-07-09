@@ -2,21 +2,22 @@
   <div
     v-if="images && images.length > 1"
     class="
-      relative
       z-0
       flex flex-col
       justify-center
       items-center
-      pb-2
-      my-5
       overflow-hidden
-      md:-mt-0
-      h-full
       md:mx-0
       md:w-24
+      pb-8
     "
   >
-    <VueSlickCarousel v-bind="settings" :arrows="true" class="w-auto">
+    <VueSlickCarousel
+      v-bind="settings"
+      :arrows="true"
+      class="w-auto h26"
+      :class="images.length > 4 ? 'py-10' : ''"
+    >
       <template #prevArrow="arrowOption" class="absolute top-0">
         <div class="invisible custom-arrow custom-arrow1 sm:visible">
           {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
@@ -32,33 +33,30 @@
           overflow-hidden
           md:w-full
           focus:outline-none
-          h-full
         "
       >
-        <div class="">
-          <img
-            :key="img"
-            v-lazy="img"
-            alt=""
-            class="
-              object-contain
-              mx-auto
-              overflow-hidden
-              bg-white
-              border
-              p-0.5
-              rounded-sm
-              smallimg
-              hover:border-primary-500
-              md:w-full
-              md:h-full
-              md:object-cover
-              md:w-auto
-            "
-            :class="{ 'border-primary-500': img === selectedImage }"
-            @mouseenter="$emit('selectedImage', img)"
-          />
-        </div>
+        <!-- :class="images.length > 4 ? 'mt-8' : ''" -->
+        <img
+          :key="img"
+          v-lazy="img"
+          alt=""
+          class="
+            object-contain
+            mx-auto
+            overflow-hidden
+            bg-white
+            border
+            p-0.5
+            rounded-sm
+            smallimg
+            hover:border-primary-500
+            md:w-full
+            md:object-cover
+            md:w-auto
+          "
+          :class="{ 'border-primary-500': img === selectedImage }"
+          @mouseenter="$emit('selectedImage', img)"
+        />
       </div>
       <template #nextArrow="arrowOption" class="absolute bottom-0">
         <div class="invisible custom-arrow custom-arrow2 sm:visible">
@@ -135,11 +133,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.h26 {
+  height: 27.1rem;
+}
 .smallimg {
   width: 70px;
   height: 70px;
 }
+
 @media only screen and (min-width: 768px) {
   .hfull {
     height: 29.2rem;
@@ -161,15 +163,20 @@ export default {
     margin-left: 1px;
     margin-right: 25px;
   }
+
+  /* .slick-list { 
+   margin-top: 36px !important; 
+  } */
+
   .slick-prev {
-    margin-top: -246px;
+    margin-top: -248px;
     z-index: 999;
     transform: rotate(90deg);
   }
   .slick-next {
     right: -1px;
     z-index: 999;
-    margin-top: 150px;
+    margin-top: 175px;
     transform: rotate(90deg);
   }
   .slick-prev::before,

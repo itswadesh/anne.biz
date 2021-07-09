@@ -17,8 +17,7 @@
           mx-2
           xl:py-5
           md:py-4
-          lg:pt-5
-          lg:mx-auto
+          lg:pt-5 lg:mx-auto
           md:flex
         "
       >
@@ -34,8 +33,7 @@
       <div class="container flex flex-col mx-auto">
         <div class="flex flex-col w-full xl:flex-row">
           <div class="xl:w-2/5">
-            <!--  -->
-            <DetailsPageLeftSkeleton v-if="loading" class="hidden sm:block" />
+            <!-- <DetailsPageLeftSkeleton v-if="loading" class="hidden sm:block" /> -->
             <div v-if="product && product.id" class="sticky top-20">
               <ProductImages
                 v-if="product"
@@ -105,8 +103,7 @@
                   flex flex-row
                   w-full
                   bg-white
-                  sm:relative
-                  sm:z-0
+                  sm:relative sm:z-0
                   xl:hidden
                 "
               >
@@ -142,8 +139,7 @@
                 py-4
                 bg-white
                 border-t border-b
-                xl:mt-0
-                xl:ms-4
+                xl:mt-0 xl:ms-4
                 sm:border-b-0 sm:border-t-0
               "
             >
@@ -164,8 +160,7 @@
         pt-16
         mx-auto
         text-center
-        sm:pt-10
-        sm:w-1/2
+        sm:pt-10 sm:w-1/2
       "
     >
       <img

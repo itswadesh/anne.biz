@@ -259,43 +259,46 @@ export default {
     }
     const HOST = process.server ? req.headers.host : window.location.host
     const nextWeek = new Date(new Date().setDate(new Date().getDate() + 7))
-    const structuredData = {
-      '@context': 'http://schema.org/',
-      '@type': 'Product',
-      name: product && product.name,
-      description: product && product.description,
-      sku: product && product.sku,
-      image: product && product.img,
-      gtin8: product.id,
-      brand: product.brand && product.brand.name,
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        worstRating: 1,
-        bestRating: 5,
-        ratingCount: product.reviews || 0 + 5,
-        ratingValue: product.rating || 1,
-      },
-      releaseDate: product.createdAt,
-      dateModified: product.updatedAt,
-      url: `${HOST}/${product.slug}?id=${product.id}`,
-      interactionStatistic: {
-        '@type': 'InteractionCounter',
-        interactionType: 'http://schema.org/DownloadAction',
-        userInteractionCount: product.popularity + 1000,
-      },
-      offers: {
-        '@type': 'Offer',
-        availability: 'http://schema.org/InStock',
-        priceValidUntil: nextWeek.toISOString(),
-        url: `${HOST}/${product.slug}?id=${product.id}`,
-        price: product.price < 1 ? '0.00' : product.price,
-        priceCurrency: store.state.settings.currencyCode,
-        seller: {
-          '@type': 'Organization',
-          name: store.state.settings.websiteName,
-          url: HOST,
+    let structuredData = {}
+    if (product) {
+      structuredData = {
+        '@context': 'http://schema.org/',
+        '@type': 'Product',
+        name: product.name,
+        description: product.description,
+        sku: product.sku,
+        image: product.img,
+        gtin8: product.id,
+        brand: product.brand && product.brand.name,
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          worstRating: 1,
+          bestRating: 5,
+          ratingCount: product.reviews || 0 + 5,
+          ratingValue: product.rating || 1,
         },
-      },
+        releaseDate: product.createdAt,
+        dateModified: product.updatedAt,
+        url: `${HOST}/${product.slug}?id=${product.id}`,
+        interactionStatistic: {
+          '@type': 'InteractionCounter',
+          interactionType: 'http://schema.org/DownloadAction',
+          userInteractionCount: product.popularity + 1000,
+        },
+        offers: {
+          '@type': 'Offer',
+          availability: 'http://schema.org/InStock',
+          priceValidUntil: nextWeek.toISOString(),
+          url: `${HOST}/${product.slug}?id=${product.id}`,
+          price: product.price < 1 ? '0.00' : product.price,
+          priceCurrency: store.state.settings.currencyCode,
+          seller: {
+            '@type': 'Organization',
+            name: store.state.settings.websiteName,
+            url: HOST,
+          },
+        },
+      }
     }
     return { host: HOST, product, selectedVariant, err, structuredData }
   },
@@ -314,118 +317,108 @@ export default {
     // const host = process.server
     //   ? this.$ssrContext.req.headers.host
     //   : window.location.host
+    let prod = {}
+    if (this.product) {
+      prod = {
+        title: this.product.metaTitle || this.product.name || TITLE,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content:
+              this.product.metaDescription ||
+              this.product.description ||
+              DESCRIPTION,
+          },
+          {
+            hid: 'keywords',
+            name: 'Keywords',
+            property: 'keywords',
+            content:
+              this.product.metaKeywords || this.product.keywords || KEYWORDS,
+          },
 
-    return {
-      title:
-        (this.product && this.product.metaTitle) ||
-        (this.product && this.product.name) ||
-        TITLE,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content:
-            (this.product && this.product.metaDescription) ||
-            (this.product && this.product.description) ||
-            DESCRIPTION,
-        },
-        {
-          hid: 'keywords',
-          name: 'Keywords',
-          property: 'keywords',
-          content:
-            (this.product && this.product.metaKeywords) ||
-            (this.product && this.product.keywords) ||
-            KEYWORDS,
-        },
-
-        // OpenGraph data
-        {
-          hid: 'og:title',
-          name: 'og_title',
-          property: 'og:title',
-          content:
-            (this.product && this.product.metaTitle) ||
-            (this.product && this.product.name) ||
-            TITLE,
-        },
-        {
-          hid: 'og:description',
-          name: 'Description',
-          property: 'og:description',
-          content:
-            (this.product && this.product.metaDescription) ||
-            (this.product && this.product.description) ||
-            DESCRIPTION,
-        },
-        {
-          name: 'og_url',
-          property: 'og:url',
-          content:
-            this.host + '/' + this.product &&
-            this.product.slug + '?id=' + this.product &&
-            this.product.id,
-        },
-        {
-          name: 'og_image',
-          property: 'og:image',
-          content: (this.product && this.product.img) || sharingLogo,
-        },
-        {
-          property: 'og:image:width',
-          content: '600',
-        },
-        {
-          property: 'og:image:height',
-          content: '600',
-        },
-        // Twitter
-        {
-          name: 'twitter:title',
-          content:
-            (this.product && this.product.metaTitle) ||
-            (this.product && this.product.name) ||
-            TITLE,
-        },
-        {
-          name: 'twitter:description',
-          content:
-            (this.product && this.product.metaDescription) ||
-            (this.product && this.product.description) ||
-            DESCRIPTION,
-        },
-        {
-          name: 'twitter:image:src',
-          content: (this.product && this.product.img) || sharingLogo,
-        },
-        // Google / Schema.org markup:
-        {
-          hid: 'product_name',
-          itemprop: 'name',
-          content: (this.product && this.product.name) || TITLE,
-        },
-        {
-          hid: 'product_description',
-          itemprop: 'description',
-          content:
-            (this.product && this.product.metaDescription) ||
-            (this.product && this.product.description) ||
-            DESCRIPTION,
-        },
-        {
-          hid: 'product_image',
-          itemprop: 'image',
-          content: (this.product && this.product.img) || sharingLogo,
-        },
-        {
-          hid: 'product_price',
-          name: 'product_price',
-          property: 'product:price',
-          content: this.product && this.product.price,
-        },
-      ],
-      script: [{ type: 'application/ld+json', json: this.structuredData }],
+          // OpenGraph data
+          {
+            hid: 'og:title',
+            name: 'og_title',
+            property: 'og:title',
+            content: this.product.metaTitle || this.product.name || TITLE,
+          },
+          {
+            hid: 'og:description',
+            name: 'Description',
+            property: 'og:description',
+            content:
+              this.product.metaDescription ||
+              this.product.description ||
+              DESCRIPTION,
+          },
+          {
+            name: 'og_url',
+            property: 'og:url',
+            content:
+              this.host + '/' + this.product.slug + '?id=' + this.product.id,
+          },
+          {
+            name: 'og_image',
+            property: 'og:image',
+            content: this.product.img || sharingLogo,
+          },
+          {
+            property: 'og:image:width',
+            content: '600',
+          },
+          {
+            property: 'og:image:height',
+            content: '600',
+          },
+          // Twitter
+          {
+            name: 'twitter:title',
+            content: this.product.metaTitle || this.product.name || TITLE,
+          },
+          {
+            name: 'twitter:description',
+            content:
+              this.product.metaDescription ||
+              this.product.description ||
+              DESCRIPTION,
+          },
+          {
+            name: 'twitter:image:src',
+            content: this.product.img || sharingLogo,
+          },
+          // Google / Schema.org markup:
+          {
+            hid: 'product_name',
+            itemprop: 'name',
+            content: this.product.name || TITLE,
+          },
+          {
+            hid: 'product_description',
+            itemprop: 'description',
+            content:
+              this.product.metaDescription ||
+              this.product.description ||
+              DESCRIPTION,
+          },
+          {
+            hid: 'product_image',
+            itemprop: 'image',
+            content: this.product.img || sharingLogo,
+          },
+          {
+            hid: 'product_price',
+            name: 'product_price',
+            property: 'product:price',
+            content: this.product.price,
+          },
+        ],
+        script: [{ type: 'application/ld+json', json: this.structuredData }],
+      }
     }
+    return prod
   },
   created() {
     this.getProducts()

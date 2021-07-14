@@ -33,7 +33,10 @@
         class="
           w-full
           text-center
-          lg:bg-white lg:absolute lg:bg-opacity-60 lg:bottom-0
+          lg:bg-white
+          lg:absolute
+          lg:bg-opacity-60
+          lg:bottom-0
         "
       >
         <div class="mx-4 lg:mx-auto lg:w-2/3">
@@ -51,7 +54,8 @@
                 focus:outline-none
                 px-9
                 bg-primary-500
-                hover:bg-gray-200 hover:text-primary-500
+                hover:bg-gray-200
+                hover:text-primary-500
               "
               @click="saveLanding()"
             >
@@ -110,13 +114,16 @@ export default {
           title: 'Live Now',
           img: '/img/home/live-now.jpg',
           name: 'Enjoy tech-enabled Live Shopping e-Commerce brands.',
-          description: `<ul><li class="flex items-start py-1 "><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Seamless Checkout</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>In-video purchase</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Brand-owned experience control</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Menu of Live Vendors to choose from.</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Take control of your live sales events.</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Grow your customer base every time you go live.</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>With Anne.biz, live stream shopping platform, you own your audience and brand.</li>`,
+          description: [
+            { info: 'In-video purchase' },
+            { info: 'Brand-owned experience control' },
+            { info: 'Menu of Live Vendors to choose from.' },
+            { info: 'Take control of your live sales events.' },
+            { info: 'Grow your customer base every time you go live.' },
+            {
+              info: 'With Anne.biz, live stream shopping platform, you own your audience and brand.',
+            },
+          ],
           footer: 'Stand Out, Sell & Buy Live.',
         },
         {
@@ -138,14 +145,16 @@ your life. “`,
           img: '/img/home/prime-streaming.jpg',
           name: `ENJOY UNPARALEL LIVE SHOPPING EXPERIENCE!
 Unlock engagement, awareness with tech-enabled Live Shopping eCommerce brands.`,
-          description: `<ul><li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Schedule Streaming</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Seamless Checkout</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>In-video purchase</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Brand-owned experience control</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>One to one pre-scheduled Streaming.</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Manu of Live Vendors to choose from.</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Stored Videos</li>
-<li class="flex items-start py-1"><div class="w-2 h-2 lg:w-3 lg:h-3 mt-1.5 mr-2 rounded-full bg-primary-500"></div>Brand-owned experience control</li></ul>`,
+          description: [
+            { info: 'Schedule Streaming' },
+            { info: 'Seamless Checkout' },
+            { info: 'In-video purchase' },
+            { info: 'Brand-owned experience control' },
+            { info: 'One to one pre-scheduled Streaming.' },
+            { info: 'Manu of Live Vendors to choose from.' },
+            { info: 'Stored Videos' },
+            { info: 'Brand-owned experience control' },
+          ],
           footer: `Live | Publish | Lucky Draw | Schedule`,
         },
       ],

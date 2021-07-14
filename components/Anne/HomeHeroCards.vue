@@ -32,10 +32,30 @@
 
           <div class="my-8">
             <div class="text-lg font-bold">{{ product.name }}</div>
-            <div
-              class="flex my-5 text-sm text-gray-600 lg:text-base"
-              v-html="product.description"
-            ></div>
+
+            <div class="my-5 text-sm text-gray-600 lg:text-base">
+              <ul>
+                <li
+                  v-for="(i, ixx) in product.description"
+                  :key="ixx"
+                  class="flex items-start py-1"
+                >
+                  <div
+                    class="
+                      w-2
+                      h-2
+                      lg:w-3
+                      lg:h-3
+                      mt-1.5
+                      mr-2
+                      rounded-full
+                      bg-primary-500
+                    "
+                  ></div>
+                  <span class="flex-1">{{ i.info }}</span>
+                </li>
+              </ul>
+            </div>
             <div class="text-lg font-bold lg:text-2xl text-primary-500">
               {{ product.footer }}
             </div>

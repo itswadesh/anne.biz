@@ -1,10 +1,11 @@
 <template>
-  <section class="relative bg-black">
+  <section class="relative bg-black overflow-hidden">
     <div class="h-24 md:h-32 relative z-10 flex items-center justify-center">
       <h1
         class="
           text-white text-xl
-          md:text-2xl
+          sm:text-2xl
+          md:text-3xl
           xl:text-4xl
           font-medium
           text-center
@@ -15,43 +16,14 @@
       </h1>
     </div>
 
-    <div>
-      <div class="flex justify-center -mx-10">
-        <img
-          v-for="img in 22"
-          :key="img"
-          src="/img/visa.png"
-          alt=""
-          class="h-10 w-10 lg:h-16 lg:w-16 m-1 rounded bg-white object-contain"
-        />
-      </div>
-      <div class="flex justify-center -mx-10">
-        <img
-          v-for="img in 22"
-          :key="img"
-          src="/img/visa.png"
-          alt=""
-          class="h-10 w-10 lg:h-16 lg:w-16 m-1 rounded bg-white object-contain"
-        />
-      </div>
-      <div class="flex justify-center -mx-10">
-        <img
-          v-for="img in 22"
-          :key="img"
-          src="/img/visa.png"
-          alt=""
-          class="h-10 w-10 lg:h-16 lg:w-16 m-1 rounded bg-white object-contain"
-        />
-      </div>
-      <div class="flex justify-center -mx-10">
-        <img
-          v-for="img in 22"
-          :key="img"
-          src="/img/visa.png"
-          alt=""
-          class="h-10 w-10 lg:h-16 lg:w-16 m-1 rounded bg-white object-contain"
-        />
-      </div>
+    <div class="flex flex-wrap justify-center -mx-10">
+      <img
+        v-for="img in 64"
+        :key="img"
+        src="/img/visa.png"
+        alt=""
+        class="h-16 w-16 md:h-20 md:w-20 m-1 rounded bg-white object-contain"
+      />
     </div>
 
     <div

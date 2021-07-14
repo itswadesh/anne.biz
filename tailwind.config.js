@@ -35,6 +35,9 @@ module.exports = {
       fontFamily: {
         sans: ['Inter'],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       animation: {
         float: 'float 6s linear infinite',
         wiggle: 'wiggle 6s linear infinite',

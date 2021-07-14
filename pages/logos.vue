@@ -2,8 +2,17 @@
   <section>
     <div class="relative">
       <img src="/img/logos.jpg" alt="" />
-      <div class="absolute inset-0 bg-black bg-opacity-50">
-        <h1 class="text-white text-4xl font-medium mt-24 text-center">
+      <div
+        class="
+          absolute
+          inset-0
+          bg-gradient-radial
+          from-transparent
+          to-black
+          bg-opacity-50
+        "
+      >
+        <h1 class="text-white text-4xl font-medium mt-36 text-center">
           1 million+ developers trust the first choice for quality apps
         </h1>
       </div>

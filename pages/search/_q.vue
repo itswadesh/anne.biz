@@ -2,10 +2,11 @@
   <div>
     <Megamenu class="hidden w-full xl:flex" />
     <MobileFilters
-      v-if="showMobileFilter"
       class="sticky top-0 z-20 flex-none mt-16 sm:hidden"
+      :count="productCount"
       :facets="facets"
       :fl="fl"
+      @showFilter="showMobileFilter = true"
       @hide="showMobileFilter = false"
     />
     <div class="container flex mx-auto sm:mt-6 xl:mt-0">

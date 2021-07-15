@@ -407,6 +407,7 @@
                           :to="`/${i.slug}?id=${i.id}`"
                           :class="getClassesForSizeGroup(i, product)"
                           class="
+                            relative
                             text-xs
                             flex
                             items-center
@@ -421,6 +422,15 @@
                             focus:outline-none
                           "
                         >
+                          <div v-if="i.stock < 1" class="absolute inset-x-0">
+                            <div
+                              class="
+                                border-t border-gray-400
+                                transform
+                                rotate-45
+                              "
+                            ></div>
+                          </div>
                           <div class="uppercase">
                             {{ i.size.name }}
                           </div>
@@ -467,14 +477,15 @@
                             flex
                             items-center
                             justify-center
+                            w-12
+                            h-12
                             m-1
-                            mr-2.5
+                            border border-gray-500
+                            hover:border-primary-500
                             rounded-full
                             cursor-pointer
-                            w-11
-                            h-11
-                            tooltip
                             focus:outline-none
+                            tooltip
                           "
                         >
                           <div
@@ -740,7 +751,7 @@ export default {
   methods: {
     getClassesForSizeGroup(i, product) {
       let classes = ''
-      if (i.stock < 1) classes = 'border-gray-100 text-gray-400 bg-gray-300'
+      if (i.stock < 1) classes = 'border-gray-400 text-gray-400 bg-gray-300'
       else if (i.id === product.id)
         classes = 'border-primary-500 text-white bg-primary-500'
       else
@@ -752,8 +763,8 @@ export default {
       let classes = ''
       if (i.stock < 1) classes = 'border-gray-100 text-gray-400 bg-gray-300'
       else if (i.id === product.id)
-        classes = 'ring-1 ring-offset-2 ring-primary-500'
-      else classes = 'ring-1 ring-offset-2 ring-gray-400 hover:ring-primary-500'
+        classes = 'border-primary-500  bg-primary-500'
+      else classes = 'border-gray-500  hover:border-primary-500'
       return classes
     },
     populateDemoScheduler(p) {

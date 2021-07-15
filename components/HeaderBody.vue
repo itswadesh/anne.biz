@@ -12,7 +12,7 @@
       "
     >
       <div class="flex flex-row my-auto text-sm font-thin">
-        <svg
+        <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           class="
             w-5
@@ -28,24 +28,43 @@
           <path
             d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
           />
-        </svg>
+        </svg> -->
+        <!-- <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-        <span
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg> -->
+        <Breadcrumb
+          v-if="category && category.name"
+          :path="category && category.pathA"
+          :name="category.name"
+        />
+        <!-- <span
           v-if="category && category.name"
           class="capitalize cursor-pointer ms-1 hover:text-primary-500"
         >
           {{ category.name }}
-        </span>
-        <span
+        </span> -->
+        <!-- <span
           v-else
           class="capitalize cursor-pointer ms-1 hover:text-primary-500"
-          >{{ $route.params.q }}</span
         >
+          {{ $route.params.q }}
+        </span> -->
       </div>
 
       <div class="flex p-1 my-auto font-semibold">
         <div class="text-base font-hairline font-light text-gray-500 text-1">
-          <b> {{ count }} </b>items found
+          <b> {{ count || 'no' }} </b>items found
           <span v-if="category && category.name"
             >under <b> {{ category.name }} </b></span
           >
@@ -107,8 +126,7 @@
         hidden
         w-full
         mb-2
-        sm:flex
-        sm:px-4
+        sm:flex sm:px-4
         xs:block
         lg:hidden
       "
@@ -142,7 +160,7 @@
           md:block
         "
       >
-        <b> {{ count }} </b>Items
+        <b> {{ count }} </b>items
       </div>
       <div class="items-center text-center text-gray-700 text-primary">
         <select
@@ -176,7 +194,10 @@
 <script>
 import { constructURL } from '~/lib/'
 import { sorts } from '~/shared/config'
+import Breadcrumb from '~/components/ProductDetails/Breadcrumb.vue'
+
 export default {
+  components: { Breadcrumb },
   props: {
     category: {
       type: Object,
@@ -188,7 +209,7 @@ export default {
     },
     fl: {
       type: [Object, Array],
-      default: () => {},
+      default: () => null,
     },
   },
   data() {

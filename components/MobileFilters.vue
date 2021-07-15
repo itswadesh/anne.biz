@@ -5,7 +5,7 @@
         style="height: 43px"
         class="flex flex-row justify-between p-2 px-3 text-sm shadow"
       >
-        <div class="my-auto text-base font-light text-gray-500 capitalize">
+        <div class="my-auto text-base font-light text-gray-500">
           <b> {{ count }} </b> products found
         </div>
         <div class="flex flex-row my-auto">
@@ -149,19 +149,19 @@
             </li>
             <li
               v-if="
-                facets.sizes &&
-                facets.sizes &&
-                facets.sizes.all.buckets &&
-                facets.sizes.all.buckets.length > 0
+                facets.genders &&
+                facets.genders &&
+                facets.genders.all.buckets &&
+                facets.genders.all.buckets.length > 0
               "
               class="p-2 text-base font-normal text-gray-500"
               :class="{
                 'bg-white text-primary-500 border-l-4 border-primary-500':
-                  selected == 'sizes',
+                  selected == 'genders',
               }"
-              @click="selected = 'sizes'"
+              @click="selected = 'genders'"
             >
-              Sizes
+              Gender
             </li>
             <li
               v-if="
@@ -180,28 +180,72 @@
               Color
             </li>
             <li
+              v-if="
+                facets.sizes &&
+                facets.sizes &&
+                facets.sizes.all.buckets &&
+                facets.sizes.all.buckets.length > 0
+              "
               class="p-2 text-base font-normal text-gray-500"
               :class="{
                 'bg-white text-primary-500 border-l-4 border-primary-500':
-                  selected == 'Price',
+                  selected == 'sizes',
               }"
-              @click="selected = 'Price'"
+              @click="selected = 'sizes'"
+            >
+              Sizes
+            </li>
+            <li
+              v-if="
+                facets.price &&
+                facets.price &&
+                facets.price.all.buckets &&
+                facets.price.all.buckets.length > 0
+              "
+              class="p-2 text-base font-normal text-gray-500"
+              :class="{
+                'bg-white text-primary-500 border-l-4 border-primary-500':
+                  selected == 'price',
+              }"
+              @click="selected = 'price'"
             >
               Price
             </li>
             <li
+              v-if="
+                facets.age &&
+                facets.age &&
+                facets.age.all.buckets &&
+                facets.age.all.buckets.length > 0
+              "
               class="p-2 text-base font-normal text-gray-500"
               :class="{
                 'bg-white text-primary-500 border-l-4 border-primary-500':
-                  selected == 'Gender',
+                  selected == 'age',
               }"
-              @click="selected = 'Gender'"
+              @click="selected = 'age'"
             >
-              Gender
+              Age
+            </li>
+            <li
+              v-if="
+                facets.discount &&
+                facets.discount &&
+                facets.discount.all.buckets &&
+                facets.discount.all.buckets.length > 0
+              "
+              class="p-2 text-base font-normal text-gray-500"
+              :class="{
+                'bg-white text-primary-500 border-l-4 border-primary-500':
+                  selected == 'discount',
+              }"
+              @click="selected = 'discount'"
+            >
+              Discount
             </li>
           </ul>
         </div>
-        <div class="w-full overflow-y-auto">
+        <div class="w-full overflow-y-auto pb-56">
           <!-- <ul
             class="w-full px-5 py-2 ms-2"
             v-if="selected == 'categories' && facets.categories && facets.categories.all && facets.categories.all.buckets"
@@ -225,7 +269,7 @@
               facets.brands.all &&
               facets.brands.all.buckets
             "
-            class="w-full px-5 py-2 ms-2"
+            class="w-full px-5 py-2 ms-2 overflow-x-auto"
           >
             <li
               v-for="b in facets.brands &&
@@ -239,6 +283,58 @@
                 :count="b.doc_count"
                 :value="b.key"
                 @change="changed({ model: 'brands', checked: fl.brands })"
+              >
+                {{ b.key }}
+              </Checkbox>
+            </li>
+          </ul>
+          <ul
+            v-if="
+              selected == 'genders' &&
+              facets.genders &&
+              facets.genders.all &&
+              facets.genders.all.buckets
+            "
+            class="w-full px-5 py-2 ms-2"
+          >
+            <li
+              v-for="b in facets.genders &&
+              facets.genders.all &&
+              facets.genders.all.buckets"
+              :key="b.key"
+              class="py-1"
+            >
+              <Checkbox
+                v-model="fl.genders"
+                :count="b.doc_count"
+                :value="b.key"
+                @change="changed({ model: 'genders', checked: fl.genders })"
+              >
+                {{ b.key }}
+              </Checkbox>
+            </li>
+          </ul>
+          <ul
+            v-if="
+              selected == 'colors' &&
+              facets.colors &&
+              facets.colors.all &&
+              facets.colors.all.buckets
+            "
+            class="w-full px-5 py-2 ms-2"
+          >
+            <li
+              v-for="b in facets.colors &&
+              facets.colors.all &&
+              facets.colors.all.buckets"
+              :key="b.key"
+              class="py-1"
+            >
+              <Checkbox
+                v-model="fl.colors"
+                :count="b.doc_count"
+                :value="b.key"
+                @change="changed({ model: 'colors', checked: fl.colors })"
               >
                 {{ b.key }}
               </Checkbox>
@@ -264,33 +360,85 @@
                 :count="b.doc_count"
                 :value="b.key"
                 @change="changed({ model: 'sizes', checked: fl.sizes })"
-                >{{ b.key }}</Checkbox
               >
+                {{ b.key }}
+              </Checkbox>
             </li>
           </ul>
           <ul
             v-if="
-              selected == 'colors' &&
-              facets.colors &&
-              facets.colors.all &&
-              facets.colors.all.buckets &&
-              facets.colors.all.buckets.length > 0
+              selected == 'price' &&
+              facets.price &&
+              facets.price.all.buckets &&
+              facets.price.all.buckets.length > 0
             "
             class="w-full px-5 py-2 ms-2"
           >
             <li
-              v-for="b in facets.colors &&
-              facets.colors.all &&
-              facets.colors.all.buckets"
+              v-for="b in facets.price &&
+              facets.price.all &&
+              facets.price.all.buckets"
               :key="b.key"
             >
-              <Checkbox
-                v-model="fl.colors"
+              <Radio
+                v-model="fl.price"
                 :count="b.doc_count"
-                :value="b.key"
-                @change="changed({ model: 'colors', checked: fl.colors })"
-                >{{ b.key }}</Checkbox
+                :value="b.from + ',' + b.to"
+                @change="changed({ model: 'price', checked: fl.price })"
               >
+                {{ b.key }}
+              </Radio>
+            </li>
+          </ul>
+          <ul
+            v-if="
+              selected == 'age' &&
+              facets.age &&
+              facets.age.all.buckets &&
+              facets.age.all.buckets.length > 0
+            "
+            class="w-full px-5 py-2 ms-2"
+          >
+            <li
+              v-for="b in facets.age &&
+              facets.age.all &&
+              facets.age.all.buckets"
+              :key="b.key"
+            >
+              <Radio
+                v-model="fl.age"
+                :count="b.doc_count"
+                :value="b.from + ',' + b.to"
+                @change="changed({ model: 'age', checked: fl.age })"
+              >
+                {{ b.key }}
+              </Radio>
+            </li>
+          </ul>
+          <ul
+            v-if="
+              selected == 'discount' &&
+              facets.discount &&
+              facets.discount.all &&
+              facets.discount.all.buckets &&
+              facets.discount.all.buckets.length > 0
+            "
+            class="w-full px-5 py-2 ms-2"
+          >
+            <li
+              v-for="b in facets.discount &&
+              facets.discount.all &&
+              facets.discount.all.buckets"
+              :key="b.key"
+            >
+              <Radio
+                v-model="fl.discount"
+                :count="b.doc_count"
+                :value="b.from + ',' + b.to"
+                @change="changed({ model: 'discount', checked: fl.discount })"
+              >
+                {{ b.key }}
+              </Radio>
             </li>
           </ul>
         </div>
@@ -341,19 +489,21 @@
   </div>
 </template>
 <script>
-import { Checkbox, Button } from '~/shared/components/ui'
-import SortSlideUp from '~/components/Listing/Mobile/SortSlideUp.vue'
+import { Checkbox, Button, Radio } from '~/shared/components/ui'
+import SortSlideUp from '~/components/Listing/Mobile/SortSlideUp'
 import { constructURL } from '~/lib/'
 
 export default {
-  components: { Checkbox, SortSlideUp, Button },
+  components: { Checkbox, Radio, SortSlideUp, Button },
   props: {
     count: {
       type: Number,
+      default: null,
     },
     clear: Boolean,
     fl: {
       type: [Object, Array],
+      default: () => {},
     },
     facets: {
       type: [Object, Array],
@@ -393,7 +543,7 @@ export default {
       this.$router.push('/' + slug)
     },
     clearAll() {
-      this.$router.push(`/search`)
+      this.$router.push({ query: null })
       this.$emit('hide')
     },
   },

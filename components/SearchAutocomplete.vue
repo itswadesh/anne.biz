@@ -34,14 +34,13 @@
               sm:flex
               text-normal
               placeholder
-              focus:outline-none
-              focus:ring-1
+              focus:outline-none focus:ring-1
               sm:focus:ring-2
               focus:ring-yellow-600
             "
             @keyup.enter="
               $event.target.blur()
-              $router.push(`/search/${selectedVal}`)
+              $router.push(`/search/${selectedVal || ''}`)
             "
             @focus="onFocused()"
             @input="getData()"
@@ -65,8 +64,7 @@
               sm:hidden
               text-normal
               placeholder
-              focus:outline-none
-              focus:ring-1
+              focus:outline-none focus:ring-1
               sm:focus:ring-2
               focus:ring-yellow-600
             "
@@ -173,7 +171,6 @@ export default {
       // console.log(val)
       this.fillValue(val)
       this.onUnfocused()
-
       this.$router.push(`/search/${val.key}`)
       // this.$router.push(`/${this.product._source.slug}?id=${this.product._id}`)
       // console.log(this.selectedVal)

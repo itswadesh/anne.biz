@@ -11,12 +11,10 @@
         rounded-md
         hover:bg-opacity-50
         group
-        hover:bg-gray-900
-        hover:shadow-md
+        hover:bg-gray-900 hover:shadow-md
         top-3
         right-3
-        focus:outline-none
-        focus:scale-75
+        focus:outline-none focus:scale-75
       "
       @click="$emit('close')"
     >
@@ -36,7 +34,7 @@
       </svg>
     </button>
     <form
-      v-if="schedule.scheduleDateTime"
+      v-if="schedule.scheduleDateTime && minDate"
       novalidate
       autocomplete="off"
       class="
@@ -51,12 +49,26 @@
       "
       @submit.stop.prevent="submit"
     >
-      <VueCtkDateTimePicker
+      <date-picker
+        v-model="schedule.scheduleDateTime"
+        type="datetime"
+        :disabled-date="beforeTomorrow"
+      ></date-picker>
+
+      <!-- <VueDatePicker
+        ref="menu"
+        v-model="schedule.scheduleDateTime"
+        :min-date="minDate"
+        placeholder="Select Schedule Date Time"
+        class="shadow-md"
+        @onOpen="menu = true"
+        @onClose="menu = false"
+      /> -->
+      <!-- <VueCtkDateTimePicker
         v-model="schedule.scheduleDateTime"
         :min-date="minDate"
         :no-button-now="true"
-        class="shadow-md"
-      />
+      /> -->
       <div class="my-6">
         Schedule product demo request for {{ product && product.name }}
       </div>
@@ -123,15 +135,18 @@
 <script>
 import dayjs from 'dayjs'
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker'
+import DatePicker from 'vue2-datepicker'
 import { mapMutations } from 'vuex'
 import { Button, Modal } from '~/shared/components/ui'
 import SAVE_SCHEDULE_DEMO from '~/gql/scheduleDemo/saveScheduleDemo.gql'
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css'
+import 'vue2-datepicker/index.css'
 export default {
   components: {
     Button,
     Modal,
     VueCtkDateTimePicker,
+    DatePicker,
   },
   props: {
     product: { type: Object, default: null },
@@ -161,9 +176,9 @@ export default {
   },
   created() {
     const tomorrow = dayjs().add(1, 'day').format('YYYY-MM-DD hh:mm:ss a')
-    this.schedule.scheduleDateTime = tomorrow
-    this.minDate = tomorrow
-    // 2021-08-08 08:08 am
+    this.schedule.scheduleDateTime = tomorrow.toString()
+    const tomo = dayjs().add(1, 'day').format('YYYY-MM-DD hh:mm:ss a')
+    this.minDate = tomo // 2021-08-08 08:08 am
     if (!this.user) {
       this.$router.push(`/login?ref=${this.$route.fullPath}`)
     }
@@ -176,6 +191,10 @@ export default {
   },
   methods: {
     ...mapMutations({ setErr: 'setErr', success: 'success' }),
+    beforeTomorrow(date) {
+      const today = dayjs()
+      return date < today
+    },
     async submit() {
       const msg = 'Schedule Done !'
       this.loading = true

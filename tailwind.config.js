@@ -1,3 +1,4 @@
+import { colors, fontFamily } from './config'
 module.exports = {
   mode: 'jit',
   purge: {
@@ -13,31 +14,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      colors: {
-        primary: {
-          500: '#FB7801', // brown
-        },
-        secondary: {
-          100: '#dff7d5', // very light green
-          200: '#32CD32', // green
-          400: '#78f547', // light green
-          500: '#000000', // black
-        },
-        accent: {
-          100: '#faebeb', // very light red
-          500: '#ff8c00', // light-orange
-          600: '#C53193;', // pink
-          700: '#ff4500', // orange
-          800: '#c30b4e', // dark-pink
-          900: '#FF461B;', // red
-        },
-      },
-      fontFamily: {
-        sans: ['Inter'],
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-      },
+      colors,
+      fontFamily,
       animation: {
         float: 'float 6s linear infinite',
         wiggle: 'wiggle 6s linear infinite',

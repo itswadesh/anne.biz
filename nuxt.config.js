@@ -7,6 +7,7 @@ import {
   tailwindcss,
   PORT,
 } from './shared/config/index'
+import { pwa } from './config/index'
 console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz', HTTP_ENDPOINT, WWW_URL)
 // const whitelist = ['preview-img-item']
 const whitelistPatterns = [/(slick-+|swal2-)/]
@@ -71,13 +72,7 @@ export default {
   },
   pageTransition: 'slide-bottom',
   layoutTransition: 'slide-bottom',
-  pwa: {
-    manifest: {
-      short_name: 'Anne',
-      name: 'Anne',
-      description: 'Anne ecommerce',
-    },
-  },
+  pwa,
   toast: {
     singleton: true,
   },

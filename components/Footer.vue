@@ -13,11 +13,16 @@
       -z-2
     "
   >
-    <span>Policy© 2007-2020 {{ settings.websiteName }}</span>
+    <span>Policy© 2007-{{ year }} {{ settings.websiteName }}</span>
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      year: new Date().getFullYear(),
+    }
+  },
   computed: {
     settings() {
       return this.$store.state.settings || {}

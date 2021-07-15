@@ -22,8 +22,7 @@
         mx-auto
         my-3
         mt-24
-        sm:p-2
-        sm:mt-28
+        sm:p-2 sm:mt-28
         lg:mt-20
       "
     >

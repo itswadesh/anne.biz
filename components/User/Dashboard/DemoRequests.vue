@@ -8,12 +8,11 @@
           w-auto
           grid-cols-2
           gap-2
-          sm:gap-4
-          sm:grid-cols-3
+          sm:gap-4 sm:grid-cols-3
           md:grid-cols-3
           lg:grid-cols-3
           xl:grid-cols-4
-          2xl:grid-cols-6
+          2xl:grid-cols-4
         "
       >
         <WishlistSkeleton v-for="(p, ix) in 10" :key="ix + '-1'" />
@@ -37,7 +36,7 @@
                 md:grid-cols-3
                 lg:grid-cols-3
                 xl:grid-cols-4
-                2xl:grid-cols-6
+                2xl:grid-cols-4
               "
             >
               <div
@@ -93,8 +92,7 @@
                             ease-in-out
                             transform
                             md:h-56
-                            hover:-translate-y-1
-                            hover:scale-110
+                            hover:-translate-y-1 hover:scale-110
                           "
                         />
                       </div>

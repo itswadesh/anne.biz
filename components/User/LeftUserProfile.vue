@@ -60,7 +60,8 @@
             $router.currentRoute.path == '/my/profile' ||
             $router.currentRoute.path == '/my/wishlist' ||
             $router.currentRoute.path == '/my/reviews' ||
-            $router.currentRoute.path == '/my/manage-address'
+            $router.currentRoute.path == '/my/manage-address' ||
+            $router.currentRoute.path == '/my/demo-requests'
           "
           class=""
         >
@@ -374,6 +375,14 @@ export default {
           icon: `<svg xmlns="http://www.w3.org/2000/svg"" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                 </svg>`,
+        },
+        {
+          link: '/my/demo-requests',
+          text: 'Demo Requests',
+          description: 'All your prime demo requests',
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+</svg>`,
         },
         // {
         //   link: '/',

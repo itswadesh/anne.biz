@@ -761,7 +761,7 @@ export default {
     },
     getClassesForColorGroup(i, product) {
       let classes = ''
-      if (i.stock < 1) classes = 'border-gray-100 text-gray-400 bg-gray-300'
+      if (i.stock < 1) classes = 'border-gray-100 text-gray-400'
       else if (i.id === product.id)
         classes = 'border-primary-500  bg-primary-500'
       else classes = 'border-gray-500  hover:border-primary-500'

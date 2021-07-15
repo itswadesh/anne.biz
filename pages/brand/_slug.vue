@@ -22,6 +22,7 @@
         </div>
       </div>
       <HeroBanners :banners="heroBanners" class="my-5" />
+      <BrandInformation :brand="brand" class="my-5" />
     </div>
     <!-- <BrandBanners :brands="childBrands && childBrands.data" /> -->
     <VideoBanner :banners="videoBanners" />
@@ -44,6 +45,7 @@ import GROUP_BY_BANNER from '~/gql/banner/groupByBanner.gql'
 import VideoBanner from '~/components/Home/VideoBanner.vue'
 import HeroBannersSlider from '~/components/Home/HeroBannersSlider.vue'
 import WeProvides from '~/components/Home/WeProvides.vue'
+import BrandInformation from '~/components/Home/BrandInformation.vue'
 export default {
   components: {
     Megamenu,
@@ -52,6 +54,7 @@ export default {
     HeroBanners,
     // BrandBanners,
     HeroBannersSlider,
+    BrandInformation,
     // Discounts,
     VideoBanner,
     WeProvides,

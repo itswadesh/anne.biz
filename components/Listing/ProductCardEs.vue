@@ -100,8 +100,7 @@
             mt-1
             overflow-hidden
             bg-white
-            sm:pt-3
-            sm:mt-3
+            sm:pt-3 sm:mt-3
             md:pb-0
           "
         >
@@ -109,7 +108,7 @@
             <!-- name_price_container -->
             <nuxt-link :to="localePath(`/${product.slug}?id=${pid}`)">
               <div class="p-2 mx-auto text-sm">
-                <div class="flex flex-row justify-between">
+                <div class="flex flex-row">
                   <div
                     class="
                       text-base
@@ -117,27 +116,30 @@
                       leading-3
                       capitalize
                       text-start text-primary-500
+                      plp-item-title
+                    "
+                  >
+                    {{ product.name }}
+                  </div>
+                </div>
+                <div class="flex flex-row justify-between">
+                  <div
+                    class="
+                      mt-2
+                      overflow-hidden
+                      text-base
+                      font-light
+                      text-gray-400
+                      truncate
+                      text-start
                     "
                   >
                     {{ (product.brand && product.brand.name) || '-' }}
+                    <!-- <span v-if="product.color"> - {{ product.color.name }}</span> -->
                   </div>
-                  <div v-if="product.color" class="leading-3">
+                  <div v-if="product.color" class="leading-3 plp-product-color">
                     {{ product.color.name }}
                   </div>
-                </div>
-                <div
-                  class="
-                    mt-2
-                    overflow-hidden
-                    text-base
-                    font-light
-                    text-gray-400
-                    truncate
-                    text-start
-                  "
-                >
-                  {{ product.name }}
-                  <!-- <span v-if="product.color"> - {{ product.color.name }}</span> -->
                 </div>
                 <div class="flex items-center h-8 text-xs">
                   <div class="text-sm text-gray-900">
@@ -160,9 +162,7 @@
                       v-if="product.price < product.mrp"
                       class="my-auto text-xs text-secondary-200"
                     >
-                      {{
-                        Math.floor(100 - (product.price * 100) / product.mrp)
-                      }}% off
+                      {{ product.discount }}% off
                     </div>
                   </div>
                 </div>
@@ -180,8 +180,8 @@ import { mapGetters } from 'vuex'
 
 export default {
   props: {
-    product: { type: Object },
-    pid: { type: String }, // Required in case of elastic search id not available inside product
+    product: { type: Object, default: () => {} },
+    pid: { type: String, default: null }, // Required in case of elastic search id not available inside product
   },
   computed: {
     ...mapGetters({
@@ -206,6 +206,13 @@ export default {
 }
 .trans:hover {
   width: 102px;
+}
+.plp-item-title {
+  line-height: normal !important;
+  height: 2.2em;
+}
+.plp-product-color {
+  margin-top: 1.08em;
 }
 @media only screen and (min-width: 1024px) {
   .cart {

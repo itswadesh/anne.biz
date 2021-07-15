@@ -82,11 +82,6 @@
 import { mapGetters } from 'vuex'
 import ORDER_DETAILS from '~/gql/order/order.gql'
 export default {
-  computed: {
-    ...mapGetters({
-      settings: 'settings',
-    }),
-  },
   data() {
     return {
       order: null,
@@ -100,6 +95,11 @@ export default {
         phone2: 'Phone 2',
       },
     }
+  },
+  computed: {
+    ...mapGetters({
+      settings: 'settings',
+    }),
   },
   created() {
     this.getOrderDetails()

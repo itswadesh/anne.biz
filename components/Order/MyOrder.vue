@@ -75,8 +75,7 @@
                 justify-between
                 w-full
                 font-semibold
-                lg:justify-start
-                lg:w-1/2
+                lg:justify-start lg:w-1/2
               "
             >
               <!-- <div
@@ -334,9 +333,12 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                   <!-- :class="{ 'bg-gray-100': ix % 2 == 0 }" -->
                   <tr
-                    v-for="(i, iix) in order.items"
+                    v-for="(i, iix) in order.orderItems"
                     :key="iix"
-                    class="bg-white"
+                    class="bg-white cursor-pointer"
+                    @click="
+                      go(`/my/order-details?orderId=${order.id}&itemId=${i.id}`)
+                    "
                   >
                     <td
                       class="
@@ -360,9 +362,7 @@
                       />
                     </td>
                     <td class="text-sm text-gray-900 text-start" scope="col">
-                      <nuxt-link :to="localePath(`/${i.slug}?id=${i.pid}`)">
-                        {{ i.name }}
-                      </nuxt-link>
+                      {{ i.name }}
                     </td>
                     <td class="text-sm text-center text-gray-900" scope="col">
                       {{ i.qty }}
@@ -491,15 +491,19 @@
                 lg:hidden
               "
             >
-              <div v-for="i in order.items" :key="i.pid" class="">
+              <div
+                v-for="i in order.orderItems"
+                :key="i.pid"
+                class=""
+                @click="
+                  go(`/my/order-details?orderId=${order.id}&itemId=${i.id}`)
+                "
+              >
                 <div class="my-2">
                   <div class="text-sm">
-                    <nuxt-link
-                      :to="localePath(`/${i.slug}?id=${i.pid}`)"
-                      class="text-sm"
-                    >
+                    <div class="text-sm">
                       {{ i.name }}
-                    </nuxt-link>
+                    </div>
                     <div class="flex flex-row text-xs w-full justify-between">
                       <div class="text-gray-400">
                         {{ order.createdAt | date }}
@@ -534,7 +538,9 @@
                   </div>
                   <div>
                     Total:
-                    <b class="text-gray-500">{{ i.total }}</b>
+                    <b class="text-gray-500">
+                      {{ i.total | currency(settings.currencySymbol, 2) }}
+                    </b>
                   </div>
                 </div>
                 <div
@@ -542,7 +548,7 @@
                 >
                   <div class="flex flex-row">
                     Status:
-                    <div
+                    <span
                       class="
                         px-3
                         my-auto
@@ -552,7 +558,7 @@
                       "
                     >
                       {{ i.status }}
-                    </div>
+                    </span>
                   </div>
                   <button
                     v-if="settings.liveCommerce"
@@ -611,6 +617,9 @@ export default {
     populateDemoScheduler(p) {
       this.selectedProduct = { id: p.pid, name: p.name }
       this.showDemoScheduler = true
+    },
+    go(url) {
+      this.$router.push(url)
     },
     onSelect(val) {
       this.select = val

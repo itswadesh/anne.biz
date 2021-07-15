@@ -7,8 +7,7 @@
       justify-center
       items-center
       overflow-hidden
-      md:mx-0
-      md:w-24
+      md:mx-0 md:w-24
       pb-8
     "
   >
@@ -19,7 +18,14 @@
       :class="images.length > 4 ? 'py-10' : ''"
     >
       <template #prevArrow="arrowOption" class="absolute top-0">
-        <div class="invisible custom-arrow custom-arrow1 sm:visible">
+        <div
+          class="
+            invisible
+            custom-arrow-product-image-thumbnails
+            prev-arrow-product-image-thumbnails
+            sm:visible
+          "
+        >
           {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
         </div>
       </template>
@@ -50,16 +56,21 @@
             rounded-sm
             smallimg
             hover:border-primary-500
-            md:w-full
-            md:object-cover
-            md:w-auto
+            md:w-full md:object-cover md:w-auto
           "
           :class="{ 'border-primary-500': img === selectedImage }"
           @mouseenter="$emit('selectedImage', img)"
         />
       </div>
       <template #nextArrow="arrowOption" class="absolute bottom-0">
-        <div class="invisible custom-arrow custom-arrow2 sm:visible">
+        <div
+          class="
+            invisible
+            custom-arrow-product-image-thumbnails
+            next-arrow-product-image-thumbnails
+            sm:visible
+          "
+        >
           {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
         </div>
       </template>
@@ -150,18 +161,27 @@ export default {
     height: 5rem;
     width: 5rem;
   }
-  .custom-arrow {
+
+  /* For both left and right arrow */
+  .custom-arrow-product-image-thumbnails {
     height: 109px;
     width: 49px;
     z-index: 20;
   }
-  .custom-arrow2 {
-    margin-right: 55px;
-    margin-left: 25px;
-  }
-  .custom-arrow1 {
+  .prev-arrow-product-image-thumbnails {
     margin-left: 1px;
     margin-right: 25px;
+    margin-top: -248px;
+    z-index: 999;
+    transform: rotate(90deg);
+  }
+  .next-arrow-product-image-thumbnails {
+    margin-right: 55px;
+    margin-left: 25px;
+    right: -1px;
+    z-index: 999;
+    margin-top: 175px;
+    transform: rotate(90deg);
   }
 
   /* .slick-list { 
@@ -169,15 +189,8 @@ export default {
   } */
 
   .slick-prev {
-    margin-top: -248px;
-    z-index: 999;
-    transform: rotate(90deg);
   }
   .slick-next {
-    right: -1px;
-    z-index: 999;
-    margin-top: 175px;
-    transform: rotate(90deg);
   }
   .slick-prev::before,
   .slick-next::before {

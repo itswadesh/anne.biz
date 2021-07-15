@@ -39,8 +39,7 @@
                 duration-500
                 ease-in-out
                 transform
-                hover:-translate-y-1
-                hover:scale-110
+                hover:-translate-y-1 hover:scale-110
               "
             />
           </span>
@@ -86,8 +85,7 @@
                     perc
                   "
                 >
-                  {{ Math.floor(100 - (product.price * 100) / product.mrp) }}%
-                  off
+                  {{ product.discount }}% off
                 </div>
               </div>
             </span>
@@ -112,7 +110,7 @@ export default {
   components: {},
   // ['id', 'slug', 'name', 'price', 'img'],
   props: {
-    product: { type: Object },
+    product: { type: Object, default: () => {} },
   },
   data() {
     return {

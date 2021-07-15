@@ -21,8 +21,7 @@
                 font-medium
                 text-gray-600
                 sm:text-xl
-                md:mt-4
-                md:py-0
+                md:mt-4 md:py-0
                 xl:mt-0
                 lh75
               "
@@ -161,9 +160,11 @@
                   <b class="mx-2 my-auto mr-2">
                     {{ product.price | currency(settings.currencySymbol, 2) }}
                   </b>
-                  <!--  -->
-                  <div v-if="discount > 0" class="my-auto mr-1 text-red-600">
-                    ({{ discount }}% off)
+                  <div
+                    v-if="product.discount > 0"
+                    class="my-auto mr-1 text-red-600"
+                  >
+                    ({{ product.discount }}% off)
                   </div>
                   <div class="my-auto font-light">(Incl. of all taxes)</div>
                 </div>
@@ -404,12 +405,9 @@
                           v-for="(i, ix) in pg.sizeGroup"
                           :key="ix + 's'"
                           :to="`/${i.slug}?id=${i.id}`"
-                          :class="
-                            i.id == product.id
-                              ? `border-primary-500 text-white bg-primary-500`
-                              : `border-gray-500 text-gray-700 hover:text-primary-500 hover:border-primary-500`
-                          "
+                          :class="getClassesForSizeGroup(i, product)"
                           class="
+                            text-xs
                             flex
                             items-center
                             justify-center
@@ -464,11 +462,7 @@
                           :key="ix + 'c'"
                           :to="`/${i.slug}?id=${i.id}`"
                           :style="`background: ${i.color.color_code};`"
-                          :class="
-                            i.id == product.id
-                              ? `ring-1 ring-offset-2 ring-primary-500`
-                              : `ring-1 ring-offset-2 ring-gray-400 hover:ring-primary-500`
-                          "
+                          :class="getClassesForColorGroup(i, product)"
                           class="
                             flex
                             items-center
@@ -712,9 +706,9 @@ export default {
       getItemQty: 'cart/getItemQty',
       settings: 'settings',
     }),
-    discount() {
-      return Math.floor(100 - (this.product.price * 100) / this.product.mrp)
-    },
+    // discount() {
+    //   return Math.floor(100 - (this.product.price * 100) / this.product.mrp)
+    // },
   },
   async created() {
     await this.getReviews()
@@ -744,6 +738,24 @@ export default {
   // ProductSizeChart,
   // },
   methods: {
+    getClassesForSizeGroup(i, product) {
+      let classes = ''
+      if (i.stock < 1) classes = 'border-gray-100 text-gray-400 bg-gray-300'
+      else if (i.id === product.id)
+        classes = 'border-primary-500 text-white bg-primary-500'
+      else
+        classes =
+          'border-gray-500 text-gray-700 hover:text-primary-500 hover:border-primary-500'
+      return classes
+    },
+    getClassesForColorGroup(i, product) {
+      let classes = ''
+      if (i.stock < 1) classes = 'border-gray-100 text-gray-400 bg-gray-300'
+      else if (i.id === product.id)
+        classes = 'ring-1 ring-offset-2 ring-primary-500'
+      else classes = 'ring-1 ring-offset-2 ring-gray-400 hover:ring-primary-500'
+      return classes
+    },
     populateDemoScheduler(p) {
       this.selectedProduct = { id: p.id, name: p.name }
       this.showDemoScheduler = true

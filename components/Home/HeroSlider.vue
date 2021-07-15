@@ -123,7 +123,15 @@ export default {
   // },
   methods: {
     go(url) {
-      this.$router.push(this.localePath(url))
+      if (this.ifUrl(url)) window.open(url, '_blank')
+      else this.$router.push(this.localePath(url))
+    },
+
+    ifUrl(url) {
+      if (!url || url === '') return false
+      const pattern = /^((http|https|ftp):\/\/)/
+      const isUrl = pattern.test(url)
+      return isUrl
     },
   },
 }

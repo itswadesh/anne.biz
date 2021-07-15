@@ -11,11 +11,7 @@
           py-3
           mt-5
           border-t-2
-          sm:border-t-0
-          sm:py-0
-          sm:mt-0
-          sm:border-r-2
-          sm:w-1/2
+          sm:border-t-0 sm:py-0 sm:mt-0 sm:border-r-2 sm:w-1/2
         "
       >
         <form
@@ -102,27 +98,35 @@
         </form>
       </div>
       <div class="flex flex-col w-full sm:w-1/2">
-        <div v-if="settings" class="flex flex-col justify-start text-center">
+        <div v-if="settings" class="flex flex-col justify-center text-center">
           <span class="mt-4">Email:</span>
           <span
             class="
-              text-base
               font-light
               cursor-pointer
               text-primary-500
               hover:text-primary-200
+              max-w-max
+              mx-auto
+              transition
+              duration-100
             "
           >
-            {{ settings.websiteEmail }}
+            <a :href="`mailto:${settings.websiteEmail}`">{{
+              settings.websiteEmail
+            }}</a>
           </span>
           <span class="mt-8">Telephone:</span>
           <span
             class="
-              text-base
               font-light
               cursor-pointer
               text-primary-500
               hover:text-primary-200
+              max-w-max
+              mx-auto
+              transition
+              duration-100
             "
           >
             {{ settings.shopPhone }}
@@ -133,25 +137,72 @@
           </span>
         </div>
         <div class="mt-4 text-center">
-          <h1>Follow Us On:</h1>
+          <h1
+            v-if="
+              !(
+                settings.facebook == (null || '') &&
+                settings.twitter == (null || '') &&
+                settings.instagram == (null || '') &&
+                settings.linkedin == (null || '')
+              )
+            "
+          >
+            Follow Us On:
+          </h1>
           <div class="flex flex-row justify-center mt-3">
-            <a :href="settings.facebook" target="blank">
+            <a
+              v-if="settings.facebook != null && settings.facebook != ''"
+              :href="settings.facebook"
+              target="blank"
+            >
               <img
-                v-lazy="'/img/social-facebook.png'"
+                v-lazy="'/img/socialmedia/facebook.png'"
+                alt=""
+                class="w-10 h-10 mr-5"
+              />
+            </a>
+            <a
+              v-if="settings.twitter != null && settings.twitter != ''"
+              :href="settings.twitter"
+              target="blank"
+            >
+              <img
+                v-lazy="'/img/socialmedia/twitter.png'"
+                alt=""
+                class="w-10 h-10 mr-5"
+              />
+            </a>
+            <a
+              v-if="settings.instagram != null && settings.instagram != ''"
+              :href="settings.instagram"
+              target="blank"
+            >
+              <img
+                v-lazy="'/img/socialmedia/instagram.png'"
+                alt=""
+                class="w-10 h-10 mr-5"
+              />
+            </a>
+            <a
+              v-if="settings.linkedin != null && settings.linkedin != ''"
+              :href="settings.linkedin"
+              target="blank"
+            >
+              <img
+                v-lazy="'/img/socialmedia/linkedin.png'"
                 alt=""
                 class="w-10 h-10"
               />
-            </a>
-            <a :href="settings.twitter" target="blank">
-              <img v-lazy="'/img/twitter.png'" alt="" class="w-10 h-10 mx-5" />
-            </a>
-            <a :href="settings.instagram" target="blank">
-              <img v-lazy="'/img/insta.jpg'" alt="" class="w-10 h-10" />
             </a>
           </div>
         </div>
       </div>
     </div>
+    <!-- <h1 class="mt-4 mb-4 text-3xl font-bold text-center">Contact Us</h1>
+    <div class="container flex items-center justify-center">
+      Email:
+      <div class="text-primary-500 ms-1">care@tablez.com</div>
+    </div> -->
   </div>
 </template>
 

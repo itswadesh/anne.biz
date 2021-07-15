@@ -1,42 +1,41 @@
 <template>
   <section v-if="brand" class="w-full">
-    <div class="lg:p-5 lg:flex items-center justify-center lg:justify-between">
+    <div class="items-center justify-center lg:p-5 lg:flex">
       <div
         v-for="(i, ix) in items"
         :key="ix"
-        class="hidden lg:flex items-center my-auto mr-5"
+        class="items-center hidden my-auto mr-5 lg:flex"
       >
         <img
           :src="i.img"
-          class="h-4 w-4 lg:h-6 lg:w-6 xl:h-8 xl:w-8 rounded-full"
+          class="w-4 h-4 rounded-full lg:h-6 lg:w-6 xl:h-8 xl:w-8"
         />
         <h6
-          class="text-sm lg:text-base flex-1 ml-2 whitespace-nowrap"
+          class="flex-1 ml-2 text-sm lg:text-base whitespace-nowrap"
           v-html="i.detail"
         ></h6>
       </div>
 
       <!-- Logo section start  -->
       <div
-        class="p-3 lg:p-0 justify-center flex flex-row items-center space-x-3"
+        class="flex flex-row items-center justify-center p-3 space-x-3 lg:p-0"
       >
         <a
           v-for="(s, sx) in socialmedias"
           :key="sx"
+          v-if="s.link"
           target="_blank"
           :href="s.link"
         >
           <img
             :src="s.img"
             class="
-              h-4
               w-4
-              lg:h-6
-              lg:w-6
-              xl:h-8
-              xl:w-8
+              h-4
               rounded-full
               cursor-pointer
+              lg:h-6 lg:w-6
+              xl:h-8 xl:w-8
             "
           />
         </a>
@@ -63,7 +62,7 @@ export default {
         },
         {
           img: '/img/other/support.png',
-          detail: '<b>Support</b> teams across the world',
+          detail: '<b>Customer</b> Support Team',
         },
         {
           img: '/img/other/lock.png',
@@ -85,6 +84,11 @@ export default {
           // link: `https://www.instagram.com/${this.brand.instaUrl}`,
           link: `${this.brand.instaUrl}`,
           img: '/img/socialmedia/instagram.png',
+        },
+        {
+          // link: `https://www.youtube.com/user/${this.brand.youtubeUrl}`,
+          link: `${this.brand.linkedinUrl}`,
+          img: '/img/socialmedia/linkedin.png',
         },
         {
           // link: `https://www.youtube.com/user/${this.brand.youtubeUrl}`,

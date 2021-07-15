@@ -67,6 +67,7 @@ export default {
         const qry = { ...this.$route.query } // Prevent query sync
         // Remove extra q & page param => Add page param only on page change & refresh
         delete query.page
+        delete query.brand // This is to delete the parent brand which comes from category megamenu
         delete query.q
         Object.keys(query).map(function (k, i) {
           if (
@@ -75,7 +76,8 @@ export default {
             query[k] !== null &&
             query[k] !== '' &&
             k !== 'price' &&
-            k !== 'age'
+            k !== 'age' &&
+            k !== 'discount'
           )
             query[k] = query[k].split(',')
         })

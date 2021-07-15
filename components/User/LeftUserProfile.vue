@@ -11,8 +11,7 @@
       transition
       bg-white
       shadow-lg
-      lg:z-0
-      lg:w-72
+      lg:z-0 lg:w-72
       md:w-96
       lg:relative
     "
@@ -56,11 +55,12 @@
           v-if="
             $router.currentRoute.path == '/my' ||
             $router.currentRoute.path == '/my/orders' ||
+            $router.currentRoute.path == '/my/order-details' ||
+            $router.currentRoute.path == '/my/return' ||
             $router.currentRoute.path == '/my/profile' ||
             $router.currentRoute.path == '/my/wishlist' ||
             $router.currentRoute.path == '/my/reviews' ||
-            $router.currentRoute.path == '/my/manage-address' ||
-            $router.currentRoute.path == '/my/demo-requests'
+            $router.currentRoute.path == '/my/manage-address'
           "
           class=""
         >
@@ -225,7 +225,7 @@
                   'text-blue-500': i % 6 == 5,
                 }"
               >
-                <nuxt-link :to="`/c/${c.slug}`">
+                <nuxt-link :to="slug(c.slug)">
                   {{ c.name }}
                 </nuxt-link>
               </label>
@@ -297,6 +297,7 @@
 import { mapActions, mapMutations, mapGetters } from 'vuex'
 import SIGNOUT from '~/gql/user/signOut.gql'
 import GET_MEGAMENU from '~/gql/category/megamenu.gql'
+import BRAND from '~/gql/brand/brand.gql'
 
 export default {
   props: {
@@ -304,6 +305,8 @@ export default {
   },
   data() {
     return {
+      brandPresent: false,
+      brand: null,
       dashboardMenuItems: [
         {
           link: '/my',
@@ -478,12 +481,38 @@ export default {
   methods: {
     ...mapMutations({ success: 'success', setErr: 'setErr' }),
     ...mapActions({ logout: 'auth/logout' }),
+    slug(cSlug) {
+      let url = `/c/${cSlug}`
+      if (this.brand) url = `/c/${cSlug}?brand=${this.brand.id}`
+      return this.localePath(url)
+    },
     async refreshSideMegaMenu() {
       try {
+        let brand = null
+        const bv = {}
+        const slug = this.$route.params.slug
+        const brandId = this.$route.query.brand
+        if (brandId) bv.id = brandId
+        else if (slug) bv.slug = slug
+        try {
+          if (bv.id || bv.slug) {
+            this.brand = brand = (
+              await this.$apollo.query({
+                query: BRAND,
+                variables: bv,
+              })
+            ).data.brand
+          }
+        } catch (e) {}
+        const variables = {}
+        // if (this.$route.path.includes('/brand/') || (brand && brand.id)) {
+        if (brand && brand.id) variables.brand = brand.id
+        if (slug && !this.$route.path.includes('/brand/')) variables.slug = slug
+        // console.log('aaaaaaaaaaaaaaaa', variables)
         this.sideMegamenu = (
           await this.$apollo.query({
             query: GET_MEGAMENU,
-            variables: { slug: this.$route.params.slug },
+            variables,
             fetchPolicy: 'no-cache',
           })
         ).data.megamenu

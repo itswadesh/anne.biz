@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Megamenu class="hidden w-full xl:flex" />
+    <Megamenu class="hidden w-full xl:flex" :brand="$route.query.brand" />
     <MobileFilters
       class="sticky top-0 z-20 flex-none mt-16 sm:hidden"
       :count="productCount"
@@ -147,6 +147,7 @@ export default {
       }
       const q = params.slug || null
       const qry = { ...query }
+      delete qry.brand
       if (q) qry.categories = q
       // if (cslug) qry.categories = cslug
       const result = await $axios.$get('/api/products/es', {
@@ -162,7 +163,8 @@ export default {
           qry[k] !== null &&
           qry[k] !== '' &&
           k !== 'price' &&
-          k !== 'age'
+          k !== 'age' &&
+          k !== 'discount'
         )
           qry[k] = qry[k].split(',')
       })

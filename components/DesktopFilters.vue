@@ -20,15 +20,15 @@ h4
             :for="'tab-multi-' + i"
             :class="{
               has: c.children.length,
-              'text-yellow-500': i % 6 == 0,
-              'text-purple-500': i % 6 == 1,
-              'text-red-500': i % 6 == 2,
-              'text-green-500': i % 6 == 3,
-              'text-pink-500': i % 6 == 4,
-              'text-blue-500': i % 6 == 5,
+              'text-yellow-500': i % 6 === 0,
+              'text-purple-500': i % 6 === 1,
+              'text-red-500': i % 6 === 2,
+              'text-green-500': i % 6 === 3,
+              'text-pink-500': i % 6 === 4,
+              'text-blue-500': i % 6 === 5,
             }"
           >
-            <nuxt-link :to="`/c/${c.slug}`">
+            <nuxt-link :to="slug(c.slug)">
               {{ c.name }}
             </nuxt-link>
           </label>
@@ -44,7 +44,7 @@ h4
             <nuxt-link
               v-for="ch in c.children"
               :key="ch.id"
-              :to="`/c/${ch.slug}`"
+              :to="slug(ch.slug)"
               class="block px-5 py-2 ml-2 hover:font-semibold"
             >
               {{ ch.name }}
@@ -300,9 +300,6 @@ h4
     >
       <h4 class="px-2 text-base font-medium uppercase ms-2">PRICE RANGE</h4>
       <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
-        {{
-          fl.price
-        }}
         <li
           v-for="b in facets.price &&
           facets.price.all &&
@@ -348,6 +345,38 @@ h4
             :count="b.doc_count"
             :value="b.from + ',' + b.to"
             @change="changed({ model: 'age', checked: fl.age })"
+            ><span class="my-auto"> {{ b.key }}</span>
+          </Radio>
+        </li>
+      </ul>
+    </div>
+    <div
+      v-if="
+        facets.discount &&
+        facets.discount.all &&
+        facets.discount.all.buckets &&
+        facets.discount.all.buckets.length > 0 &&
+        getTotalDocCount(facets.discount.all.buckets) > 0
+      "
+      class="pt-3 pb-3 my-3 border-b"
+      color="primary"
+    >
+      <h4 class="px-2 text-base font-medium uppercase ms-2">Discount</h4>
+      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+        <li
+          v-for="b in facets.discount &&
+          facets.discount.all &&
+          facets.discount.all.buckets"
+          v-if="b.doc_count > 0"
+          :key="b.key"
+        >
+          <Radio
+            v-model="fl.discount"
+            class="flex flex-row my-2 tracking-wider"
+            color="primary"
+            :count="b.doc_count"
+            :value="b.from + ',' + b.to"
+            @change="changed({ model: 'discount', checked: fl.discount })"
             ><span class="my-auto"> {{ b.key }}</span>
           </Radio>
         </li>
@@ -424,7 +453,10 @@ h4
 <script>
 import { Checkbox, Radio } from '~/shared/components/ui'
 import { constructURL } from '~/lib/'
+import PARENT_BRANDS from '~/gql/brand/parentBrands.gql'
 import GET_MEGAMENU from '~/gql/category/megamenu.gql'
+import BRAND from '~/gql/brand/brand.gql'
+
 export default {
   components: { Checkbox, Radio },
   props: {
@@ -448,18 +480,56 @@ export default {
       sideMegamenu: null,
     }
   },
-  async created() {
-    try {
-      this.sideMegamenu = (
-        await this.$apollo.query({
-          query: GET_MEGAMENU,
-          variables: { slug: this.$route.params.slug },
-          fetchPolicy: 'no-cache',
-        })
-      ).data.megamenu
-    } catch (e) {}
+  created() {
+    this.refreshSideMegaMenu()
+    // try {
+    //   this.sideMegamenu = (
+    //     await this.$apollo.query({
+    //       query: GET_MEGAMENU,
+    //       variables: { slug: this.$route.params.slug },
+    //       fetchPolicy: 'no-cache',
+    //     })
+    //   ).data.megamenu
+    // } catch (e) {}
   },
   methods: {
+    async refreshSideMegaMenu() {
+      try {
+        let brand = null
+        const bv = {}
+        const slug = this.$route.params.slug
+        const brandId = this.$route.query.brand
+        if (brandId) bv.id = brandId
+        else if (slug) bv.slug = slug
+        try {
+          if (bv.id || bv.slug) {
+            this.brand = brand = (
+              await this.$apollo.query({
+                query: BRAND,
+                variables: bv,
+              })
+            ).data.brand
+          }
+        } catch (e) {}
+        const variables = {}
+        // if (this.$route.path.includes('/brand/') || (brand && brand.id)) {
+        if (brand && brand.id) variables.brand = brand.id
+        if (slug && !this.$route.path.includes('/brand/')) variables.slug = slug
+        // console.log('aaaaaaaaaaaaaaaa', variables)
+        this.sideMegamenu = (
+          await this.$apollo.query({
+            query: GET_MEGAMENU,
+            variables,
+            fetchPolicy: 'no-cache',
+          })
+        ).data.megamenu
+      } catch (e) {}
+    },
+    slug(slug) {
+      let s = `/c/${slug}`
+      if (this.brand) s = `/c/${slug}?brand=${this.brand.id}`
+      return this.localePath(s)
+    },
     getTotalDocCount(arr) {
       let total = 0
       for (const a of arr) {
@@ -492,6 +562,23 @@ export default {
     checkCategory() {},
     go(slug) {
       this.$router.push('/' + slug)
+    },
+    async getParentBrands() {
+      // this.loading = true
+      try {
+        this.parentBrands = (
+          await this.$apollo.query({
+            query: PARENT_BRANDS,
+            variables: { featured: true, limit: 5, page: 0 },
+            fetchPolicy: 'no-cache',
+          })
+        ).data.parentBrands
+        // console.log("brands to show", this.brands)
+      } catch (e) {
+        // console.log(e)
+      } finally {
+        // this.loading = false
+      }
     },
   },
 }

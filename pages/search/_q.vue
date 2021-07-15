@@ -116,7 +116,8 @@ export default {
           qry[k] !== null &&
           qry[k] !== '' &&
           k !== 'price' &&
-          k !== 'age'
+          k !== 'age' &&
+          k !== 'discount'
         )
           qry[k] = qry[k].split(',')
       })

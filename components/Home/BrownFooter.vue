@@ -27,8 +27,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Merchant Dashboard
@@ -43,8 +42,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Contact Us
@@ -59,8 +57,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             About Us
@@ -75,8 +72,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             FAQ
@@ -91,8 +87,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Terms Of Use
@@ -107,8 +102,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Shipping Policy
@@ -123,8 +117,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Track Order
@@ -139,8 +132,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             How it works
@@ -155,8 +147,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Become a merchant
@@ -200,8 +191,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Return Policy
@@ -227,8 +217,7 @@
               tracking-wider
               text-center
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Privacy policy
@@ -242,8 +231,7 @@
               tracking-wider
               text-center
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Career
@@ -257,8 +245,7 @@
               tracking-wider
               text-center
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Disputes
@@ -272,8 +259,7 @@
               tracking-wider
               text-center
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Contaact Seller
@@ -287,8 +273,7 @@
               tracking-wider
               text-center
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Features
@@ -303,8 +288,7 @@
               text-center
               border border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             Blog
@@ -335,8 +319,7 @@
               text-center
               border-r border-white
               cursor-pointer
-              hover:bg-white
-              hover:text-primary-500
+              hover:bg-white hover:text-primary-500
             "
           >
             {{ s.text }}
@@ -351,9 +334,7 @@
           my-auto
           font-thin
           text-white
-          lg:pl-6
-          lg:flex-col
-          lg:w-2/5
+          lg:pl-6 lg:flex-col lg:w-2/5
           md:flex
         "
       >

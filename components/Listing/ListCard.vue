@@ -121,8 +121,7 @@
                 h-40
                 mx-auto
                 overflow-hidden
-                md:w-full
-                md:h-56
+                md:w-full md:h-56
               "
             >
               <img
@@ -132,9 +131,7 @@
                   object-cover
                   mx-auto
                   overflow-hidden
-                  md:pt-0
-                  md:p-0
-                  md:object-contain
+                  md:pt-0 md:p-0 md:object-contain
                 "
               />
             </span>
@@ -147,8 +144,7 @@
             w-full
             pb-4
             overflow-hidden
-            md:absolute
-            md:pb-0
+            md:absolute md:pb-0
             nameall
           "
         >
@@ -156,8 +152,7 @@
             <div class="p-2 mx-auto text-sm text-center rounded-b-lg">
               <div>
                 <span class="text-xs font-semibold text-start text-primary-500">
-                  bruin
-                  <!-- {{ product.brand.name }} -->
+                  {{ product.brand.name }}
                 </span>
                 <div
                   class="
@@ -227,8 +222,7 @@
                     uppercase
                     bg-gray-400
                     rounded
-                    md:px-6
-                    md:text-normal
+                    md:px-6 md:text-normal
                     focus:outline-none
                   "
                 >
@@ -245,8 +239,7 @@
                     rounded
                     bg-accent-600
                     hover:bg-accent-800
-                    md:px-6
-                    md:text-normal
+                    md:px-6 md:text-normal
                     focus:outline-none
                   "
                 >
@@ -309,9 +302,7 @@
                     bg-secondary-500
                     rounded-2xl
                     focus:outline-none
-                    hover:opacity-75
-                    hover:-translate-y-1
-                    hover:scale-100
+                    hover:opacity-75 hover:-translate-y-1 hover:scale-100
                   "
                 >
                   <svg
@@ -347,7 +338,7 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   // ['p'],
   props: {
-    product: { type: Object },
+    product: { type: Object, default: () => {} },
   },
   data() {
     return {
@@ -359,15 +350,15 @@ export default {
     }
   },
 
-  mounted() {
-    $nuxt.$on('getSelectedCategory', (val) => {})
-  },
   computed: {
     ...mapGetters({
       cart: 'cart/cart',
       getItemQty: 'cart/getItemQty',
       settings: 'settings',
     }),
+  },
+  mounted() {
+    $nuxt.$on('getSelectedCategory', (val) => {})
   },
   methods: {
     ...mapMutations({ success: 'success', setErr: 'setErr' }),

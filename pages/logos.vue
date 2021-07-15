@@ -16,13 +16,15 @@
       </h1>
     </div>
 
-    <div class="flex flex-wrap justify-center -mx-10">
+    <div
+      class="h-72 md:h-80 flex flex-wrap justify-center -mx-16 overflow-hidden"
+    >
       <img
-        v-for="img in 64"
+        v-for="img in 100"
         :key="img"
         src="/img/visa.png"
         alt=""
-        class="h-16 w-16 md:h-20 md:w-20 m-1 rounded bg-white object-contain"
+        class="h-14 w-14 md:h-16 md:w-16 m-2 rounded bg-white object-contain"
       />
     </div>
 
@@ -31,6 +33,8 @@
     ></div>
 
     <div
+      v-for="i in 3"
+      :key="i"
       class="
         absolute
         inset-0

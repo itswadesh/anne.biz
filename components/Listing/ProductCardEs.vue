@@ -14,21 +14,19 @@
     <div class="flex flex-row-reverse w-full focus:outline-none">
       <div
         v-if="product"
-        class="w-full mx-auto overflow-hidden focus:outline-none"
+        class="relative w-full mx-auto overflow-hidden focus:outline-none"
       >
         <div
           class="
+            absolute
+            top-0
+            right-0
             flex flex-row-reverse
             justify-between
-            px-2
-            pt-2
-            mx-auto
-            my-auto
-            md:p-2
+            m-3
             flex-start
           "
         >
-          <span class="text-white">.</span>
           <nuxt-link
             :to="`/search/${product.brand && product.brand.name}`"
             class="absolute"
@@ -82,28 +80,18 @@
               v-lazy="product.img"
               alt=""
               class="
-                object-contain
+                object-cover object-top
                 w-full
                 h-48
+                lg:h-64
                 overflow-hidden
-                sm:pb-2
-                rounded-te-3xl
+                rounded-tr-3xl
               "
             />
           </nuxt-link>
         </div>
         <!-- name_brand_addtocart -->
-        <div
-          class="
-            relative
-            pt-1
-            mt-1
-            overflow-hidden
-            bg-white
-            sm:pt-3 sm:mt-3
-            md:pb-0
-          "
-        >
+        <div class="relative pt-1 overflow-hidden bg-white sm:pt-3 md:pb-0">
           <div class="">
             <!-- name_price_container -->
             <nuxt-link :to="localePath(`/${product.slug}?id=${pid}`)">
@@ -116,6 +104,7 @@
                       leading-3
                       capitalize
                       text-start text-primary-500
+                      line-clamp-2
                       plp-item-title
                     "
                   >

@@ -23,6 +23,9 @@ const colors = {
     800: '#c30b4e', // dark-pink
     900: '#FF461B;', // red
   },
+  brand: {
+    700: '#ff4500',
+  },
 }
 const fontFamily = {
   sans: ['Inter'],

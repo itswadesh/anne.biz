@@ -1,11 +1,11 @@
-export const pwa = {
+const pwa = {
   manifest: {
     short_name: 'Anne',
     name: 'Anne',
     description: 'Anne ecommerce',
   },
 }
-export const colors = {
+const colors = {
   primary: {
     500: '#FB7801', // brown
   },
@@ -24,6 +24,7 @@ export const colors = {
     900: '#FF461B;', // red
   },
 }
-export const fontFamily = {
+const fontFamily = {
   sans: ['Inter'],
 }
+module.exports = { pwa, colors, fontFamily }

@@ -1,4 +1,4 @@
-import { colors, fontFamily } from './config'
+const { colors, fontFamily } = require('./config')
 module.exports = {
   mode: 'jit',
   purge: {

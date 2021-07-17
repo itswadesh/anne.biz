@@ -11,5 +11,5 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=4400
-      - HTTP_ENDPOINT=https://tapi.litekart.in
+      - HTTP_ENDPOINT=https://aapi.litekart.in
       - WWW_URL=https://dev.tablez.com

@@ -5,7 +5,8 @@
 
 ## Add Submodule
 
-git submodule add git@ssh.dev.azure.com:v3/tablezind/tablez-gql/tablez-gql gql
+git submodule add git@github.com:itswadesh/litekart-gql.git gql
+git submodule add git@github.com:itswadesh/litekart-shared.git shared
 
 ## Remove Submodule
 

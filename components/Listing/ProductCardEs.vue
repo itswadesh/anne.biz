@@ -85,80 +85,83 @@
                 h-48
                 lg:h-64
                 overflow-hidden
-                rounded-tr-3xl
+                rounded-tl-md rounded-tr-3xl
               "
             />
           </nuxt-link>
         </div>
         <!-- name_brand_addtocart -->
-        <div class="relative pt-1 overflow-hidden bg-white sm:pt-3 md:pb-0">
-          <div class="">
-            <!-- name_price_container -->
-            <nuxt-link :to="localePath(`/${product.slug}?id=${pid}`)">
-              <div class="p-2 mx-auto text-sm">
-                <div class="flex flex-row">
-                  <div
-                    class="
-                      text-base
-                      font-medium
-                      leading-3
-                      capitalize
-                      text-start text-primary-500
-                      line-clamp-2
-                      plp-item-title
-                    "
-                  >
-                    {{ product.name }}
-                  </div>
-                </div>
-                <div class="flex flex-row justify-between">
-                  <div
-                    class="
-                      mt-2
-                      overflow-hidden
-                      text-base
-                      font-light
-                      text-gray-400
-                      truncate
-                      text-start
-                    "
-                  >
-                    {{ (product.brand && product.brand.name) || '-' }}
-                    <!-- <span v-if="product.color"> - {{ product.color.name }}</span> -->
-                  </div>
-                  <div v-if="product.color" class="leading-3 plp-product-color">
-                    {{ product.color.name }}
-                  </div>
-                </div>
-                <div class="flex items-center h-8 text-xs">
-                  <div class="text-sm text-gray-900">
-                    {{ product.price | currency(settings.currencySymbol, 2) }}
-                  </div>
-                  <div v-if="product.price < product.mrp" class="flex flex-row">
-                    <strike
-                      class="
-                        mx-3
-                        my-auto
-                        text-xs
-                        font-light
-                        leading-7
-                        text-gray-400
-                      "
-                    >
-                      {{ product.mrp | currency(settings.currencySymbol, 2) }}
-                    </strike>
-                    <div
-                      v-if="product.price < product.mrp"
-                      class="my-auto text-xs text-secondary-200"
-                    >
-                      {{ product.discount }}% off
-                    </div>
-                  </div>
+
+        <!-- name_price_container -->
+        <nuxt-link :to="localePath(`/${product.slug}?id=${pid}`)">
+          <div
+            class="
+              p-2
+              mx-auto
+              text-sm
+              relative
+              overflow-hidden
+              bg-white
+              h-32
+              rounded-b-md
+              flex flex-col
+              justify-between
+            "
+          >
+            <div class="flex flex-row">
+              <div
+                class="
+                  text-base
+                  font-medium
+                  capitalize
+                  text-start text-primary-500
+                  leading-tighter
+                  line-clamp-2
+                "
+              >
+                {{ product.name }}
+              </div>
+            </div>
+
+            <div class="flex flex-row items-center justify-between">
+              <div
+                class="
+                  overflow-hidden
+                  text-base
+                  font-light
+                  text-gray-400
+                  truncate
+                  text-start
+                "
+              >
+                {{ (product.brand && product.brand.name) || '-' }}
+                <!-- <span v-if="product.color"> - {{ product.color.name }}</span> -->
+              </div>
+              <div v-if="product.color" class="text-gray-800">
+                {{ product.color.name }}
+              </div>
+            </div>
+
+            <div class="flex items-center h-8">
+              <div class="font-semibold text-gray-800">
+                {{ product.price | currency(settings.currencySymbol, 2) }}
+              </div>
+
+              <div v-if="product.price < product.mrp" class="flex flex-row">
+                <strike class="mx-3 my-auto text-xs font-light text-gray-400">
+                  {{ product.mrp | currency(settings.currencySymbol, 2) }}
+                </strike>
+
+                <div
+                  v-if="product.price < product.mrp"
+                  class="my-auto text-xs text-secondary-200"
+                >
+                  {{ product.discount }}% off
                 </div>
               </div>
-            </nuxt-link>
+            </div>
           </div>
-        </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -188,7 +191,7 @@ export default {
 .trans {
   width: 26px;
   height: 26px;
-  transition: width 0.2s;
+  transition: width 0.3s;
   overflow: hidden;
   font-size: 10px;
   border-radius: 20px;
@@ -196,13 +199,7 @@ export default {
 .trans:hover {
   width: 102px;
 }
-.plp-item-title {
-  line-height: normal !important;
-  height: 2.2em;
-}
-.plp-product-color {
-  margin-top: 1.08em;
-}
+
 @media only screen and (min-width: 1024px) {
   .cart {
     overflow: hidden;

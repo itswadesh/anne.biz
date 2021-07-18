@@ -10,8 +10,7 @@
         bg-white
         rounded-lg
         shadow
-        lg:mx-auto
-        lg:container
+        lg:mx-auto lg:container
       "
       @submit.stop.prevent="submit"
     >
@@ -100,11 +99,8 @@
             w-full
             p-3
             my-6
-            md:px-6
-            md:p-2
-            md:w-1/3
-            sm:w-1/2
-            sm:mt-10
+            md:px-6 md:p-2 md:w-1/3
+            sm:w-1/2 sm:mt-10
             bg-secondary-500
             focus:ring-secondary-500
           "
@@ -186,7 +182,7 @@ export default {
         const r = this.$route.query.ref || '/'
         this.$router.push(r)
       } catch (e) {
-        // console.log(e)
+        this.setErr(e)
       }
     },
   },

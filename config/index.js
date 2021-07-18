@@ -24,7 +24,8 @@ const colors = {
     900: '#FF461B;', // red
   },
   brand: {
-    700: '#ff4500',
+    500: '#f59e0b' /* yellow-500 */,
+    700: '#ff0000' /* red */,
   },
 }
 const fontFamily = {

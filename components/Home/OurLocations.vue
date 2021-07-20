@@ -8,8 +8,8 @@
           text-2xl
           font-semibold
           text-center
-          border-b-2 border-accent-600
-          text-accent-600
+          border-b-2 border-primary-500
+          text-primary-500
           md:mt-4
         "
       >
@@ -28,7 +28,7 @@
         <h1 class="flex flex-col me-16">
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -44,7 +44,7 @@
           </h1>
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -60,7 +60,7 @@
           </h1>
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -76,7 +76,7 @@
           </h1>
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -92,7 +92,7 @@
           </h1>
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -111,7 +111,7 @@
         <h1 class="flex flex-col me-3">
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -127,7 +127,7 @@
           </h1>
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -143,7 +143,7 @@
           </h1>
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -159,7 +159,7 @@
           </h1>
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -175,7 +175,7 @@
           </h1>
           <h1 class="flex flex-row py-3">
             <svg
-              class="w-6 h-full me-1 text-accent-600"
+              class="w-6 h-full me-1 text-primary-500"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"

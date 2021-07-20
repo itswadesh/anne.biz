@@ -30,8 +30,7 @@
               class="
                 flex flex-row
                 justify-center
-                pt-4
-                pt:mt-0
+                pt-4 pt:mt-0
                 lg:justify-between
               "
             >
@@ -119,8 +118,7 @@
                   flex flex-col
                   justify-center
                   w-full
-                  lg:justify-between
-                  lg:flex-row
+                  lg:justify-between lg:flex-row
                   py-7
                 "
               >
@@ -130,13 +128,12 @@
                       class="
                         p-2
                         text-white
-                        bg-accent-700
-                        border-accent-700 border
+                        bg-primary-500
+                        border-primary-500 border
                         rounded
                         shadow
                         px-4
-                        lg:px-3
-                        lg:p-2
+                        lg:px-3 lg:p-2
                         focus:outline-none
                         duration-200
                         hover:-translate-y-0.5
@@ -146,7 +143,7 @@
                         focus:ring-opacity-50
                         focus:ring
                         focus:ring-offset-2
-                        focus:ring-accent-700
+                        focus:ring-primary-500
                       "
                     >
                       View Order Details
@@ -165,8 +162,7 @@
                         focus:outline-none
                         md:py-2
                         px-4
-                        lg:px-3
-                        lg:p-2
+                        lg:px-3 lg:p-2
                         duration-200
                         hover:-translate-y-0.5
                         transition

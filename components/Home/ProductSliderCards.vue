@@ -65,7 +65,7 @@
               </div>
               <div class="flex flex-row justify-between m-2 mx-auto text-xs">
                 <span class="flex flex-row">
-                  <div class="my-auto text-center me-2 text-secondary-200">
+                  <div class="my-auto text-center me-2 text-primary-500">
                     {{ product.price | currency(settings.currencySymbol, 2) }}
                   </div>
                   <strike

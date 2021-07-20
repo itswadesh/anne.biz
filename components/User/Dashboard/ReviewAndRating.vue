@@ -58,7 +58,7 @@
                     <p v-if="r.rating == 4" class="text-secondary-200">
                       Very Good
                     </p>
-                    <p v-if="r.rating == 5" class="text-accent-800">Awesome</p>
+                    <p v-if="r.rating == 5" class="text-[#c30b4e]">Awesome</p>
                   </span>
                 </div>
                 <span class="mb-2 text-sm">{{ r.message }}</span>

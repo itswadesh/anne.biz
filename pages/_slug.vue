@@ -260,7 +260,7 @@ export default {
     const HOST = process.server ? req.headers.host : window.location.host
     const nextWeek = new Date(new Date().setDate(new Date().getDate() + 7))
     let structuredData = {}
-    if (product) {
+    if (product && store.state.settings) {
       structuredData = {
         '@context': 'http://schema.org/',
         '@type': 'Product',

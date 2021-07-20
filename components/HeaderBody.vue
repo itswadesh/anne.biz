@@ -84,8 +84,8 @@
                 font-light
                 border-none
                 rounded
-                text-accent-600
-                focus:ring-accent-600
+                text-primary-500
+                focus:ring-primary-500
                 hover:shadow
                 focus:outline-none
               "
@@ -110,7 +110,7 @@
                 items-center
                 px-2
                 pointer-events-none
-                text-accent-800
+                text-primary-500
               "
             >
               <i class="px-1 fa fa-caret-down" />
@@ -170,8 +170,8 @@
             font-light
             border-none
             rounded
-            text-accent-600
-            focus:ring-accent-600
+            text-primary-500
+            focus:ring-primary-500
             hover:shadow
             focus:outline-none
           "

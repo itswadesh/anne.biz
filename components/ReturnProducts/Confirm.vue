@@ -12,8 +12,7 @@
         font-medium
         tracking-wider
         text-center text-gray-500
-        bg-accent-100
-        bg:opacity-50
+        bg-accent-100 bg:opacity-50
       "
     >
       Confirm your return
@@ -47,8 +46,7 @@
             shadow
             ring-1 ring-gray-200
             focus:outline-none
-            hover:bg-gray-300
-            hover:-translate-y-0.5
+            hover:bg-gray-300 hover:-translate-y-0.5
             transition
             transform
             ease-in-out

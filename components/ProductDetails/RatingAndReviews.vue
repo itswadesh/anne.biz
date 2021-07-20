@@ -58,7 +58,7 @@
             </p>
             <p v-if="r.rating == 3" class="text-accent-500">Good</p>
             <p v-if="r.rating == 4" class="text-secondary-200">Very Good</p>
-            <p v-if="r.rating == 5" class="text-accent-800">Awesome</p>
+            <p v-if="r.rating == 5" class="text-[#c30b4e]">Awesome</p>
           </div>
         </div>
         <!-- <div class="flex flex-row my-auto text-gray-600">

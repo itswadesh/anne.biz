@@ -11,10 +11,9 @@
               sm:text-2xl
               lg:text-3xl
               border-b2
-              text-accent-600
-              border-accent-600
-              md:ms-6
-              md:mt-4
+              text-primary-500
+              border-primary-500
+              md:ms-6 md:mt-4
             "
           >
             {{ heading }}

@@ -237,8 +237,8 @@
                     text-sm text-white
                     uppercase
                     rounded
-                    bg-accent-600
-                    hover:bg-accent-800
+                    bg-primary-500
+                    hover:bg-secondary-500
                     md:px-6 md:text-normal
                     focus:outline-none
                   "

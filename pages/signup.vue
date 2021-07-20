@@ -12,9 +12,7 @@
       bg-opacity-50
       backgroundcolor
       md:px-40
-      lg:px-0
-      lg:h-full
-      lg:p-0
+      lg:px-0 lg:h-full lg:p-0
     "
   >
     <div
@@ -41,7 +39,9 @@
           bg-primary-500
           opacity-70
           lg:w-1/2
-          lg:flex-shrink-0 lg:flex lg:flex-col
+          lg:flex-shrink-0
+          lg:flex
+          lg:flex-col
           lg:items-center
           lg:justify-evenly
         "
@@ -104,7 +104,7 @@
         <h3 class="flex justify-center lg:py-3">
           <img v-lazy="settings.logoMobile" alt="" class="w-32 h-20" />
         </h3>
-        <span class="my-6 font-medium text-center text-accent-600 lg:my-3">
+        <span class="my-6 font-medium text-center text-primary-500 lg:my-3">
           SignUp using social account
         </span>
         <div class="flex flex-row items-center justify-center pb-2">
@@ -182,8 +182,7 @@
                 rounded-3xl
                 focus:ring-1 focus:ring-yellow-600
                 ring-1 ring-gray-400
-                focus:border-transparent
-                focus:outline-none
+                focus:border-transparent focus:outline-none
               "
             />
             <!-- last name -->
@@ -202,8 +201,7 @@
                 rounded-3xl
                 focus:ring-1 focus:ring-yellow-600
                 ring-1 ring-gray-400
-                focus:border-transparent
-                focus:outline-none
+                focus:border-transparent focus:outline-none
               "
             />
             <!-- email  -->
@@ -222,8 +220,7 @@
                 rounded-3xl
                 focus:ring-1 focus:ring-yellow-600
                 ring-1 ring-gray-400
-                focus:border-transparent
-                focus:outline-none
+                focus:border-transparent focus:outline-none
               "
             />
             <input

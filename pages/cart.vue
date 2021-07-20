@@ -19,8 +19,7 @@
                 bg-gray-200
                 border
                 shadow
-                lg:mx-0
-                lg:w-2/3
+                lg:mx-0 lg:w-2/3
               "
             >
               <div class="h-auto mt-5">
@@ -35,9 +34,7 @@
                   flex flex-col
                   p-1
                   mx-auto
-                  md:pl-6
-                  md:pr-6
-                  md:pb-6
+                  md:pl-6 md:pr-6 md:pb-6
                 "
               >
                 <!-- <div class="flex flex-row justify-between w-full px-5">
@@ -64,12 +61,9 @@
                 relative
                 w-full
                 mx-auto
-                sm:p-1
-                sm:mb-5
+                sm:p-1 sm:mb-5
                 md:p-0
-                lg:ms-4
-                lg:w-1/3
-                lg:mt-5
+                lg:ms-4 lg:w-1/3 lg:mt-5
               "
             >
               <PriceDetails

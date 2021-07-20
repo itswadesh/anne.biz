@@ -10,13 +10,12 @@
         border border-gray-400
         rounded-md
         bg-gray-50
-        hover:bg-white
-        hover:border-primary-600
+        hover:bg-white hover:border-primary-600
         focus:outline-none
       "
       :class="[
         right ? 'text-right' : 'text-left',
-        err ? 'border-2 border-brand-700 bg-brand-100' : '',
+        err ? 'border-2 border-red-700 bg-red-100' : '',
       ]"
       :placeholder="placeholder"
       v-bind="$attrs"
@@ -30,11 +29,11 @@
     <span class="highlight"></span>
     <!-- <label
       class="absolute text-base font-light"
-      :class="err ? 'text-brand-700' : 'text-gray-500'"
+      :class="err ? 'text-red-700' : 'text-gray-500'"
     >
       {{ label }}
     </label> -->
-    <div v-if="err" class="items-center block text-xs text-brand-700">
+    <div v-if="err" class="items-center block text-xs text-red-700">
       <span>{{ err }}</span>
     </div>
   </div>

@@ -9,9 +9,7 @@
       bg-white
       rounded
       shadow
-      md:shadow-sm
-      md:border
-      md:p-2
+      md:shadow-sm md:border md:p-2
     "
   >
     <div class="w-full">
@@ -73,8 +71,7 @@
                 flex flex-col
                 my-3
                 text-xs text-gray-400
-                md:text-sm
-                md:font-sm
+                md:text-sm md:font-sm
               "
             >
               <div v-for="(o, ix, iix) in JSON.parse(item.options)" :key="iix">
@@ -206,8 +203,8 @@
                       font-semibold
                       text-center
                       rounded
-                      hover:bg-pink-200
-                      bg-accent-100
+                      hover:bg-primary-200
+                      bg-primary-100
                       md:flex
                       px-auto
                       focus:outline-none

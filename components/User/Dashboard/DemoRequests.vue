@@ -42,7 +42,7 @@
               <div
                 v-for="w in myDemoRequests.data"
                 :key="w.id"
-                class="shadow cursor-pointer hover:text-accent-800"
+                class="shadow cursor-pointer hover:text-primary-500"
               >
                 <div v-if="w.product">
                   <!-- <div class="flex justify-end p-1 bg-white">

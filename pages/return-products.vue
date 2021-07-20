@@ -10,10 +10,7 @@
             justify-between
             hidden
             p-4
-            md:flex
-            md:justify-start
-            md:p-5
-            md:px-8
+            md:flex md:justify-start md:p-5 md:px-8
           "
         >
           <nuxt-link :to="localePath('/my/orders')">
@@ -56,9 +53,7 @@
                   rounded
                   cursor-pointer
                   text-secondary-500
-                  md:px-6
-                  md:hover:shadow
-                  md:hover:bg-blue-50
+                  md:px-6 md:hover:shadow md:hover:bg-blue-50
                 "
               >
                 <span class="my-auto me-2">Print return Invoice</span>
@@ -115,7 +110,7 @@
                       class="w-full h-3 bg-gray-200 md:mt-6"
                       :class="{
                         'rounded-r-3xl': index == tracking.length - 1,
-                        'bg-accent-600': select > index - 1,
+                        'bg-primary-500': select > index - 1,
                       }"
                     >
                       <div
@@ -128,8 +123,8 @@
                             h-8
                             border-2
                             rounded-full
-                            text-accent-600
-                            border-accent-600
+                            text-primary-500
+                            border-primary-500
                             focus:outline-none
                           "
                           :class="{

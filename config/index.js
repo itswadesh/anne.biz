@@ -18,14 +18,7 @@ const colors = {
   accent: {
     100: '#faebeb', // very light red
     500: '#ff8c00', // light-orange
-    600: '#C53193;', // pink
-    700: '#ff4500', // orange
-    800: '#c30b4e', // dark-pink
     900: '#FF461B;', // red
-  },
-  brand: {
-    500: '#f59e0b' /* yellow-500 */,
-    700: '#ff0000' /* red */,
   },
 }
 const fontFamily = {

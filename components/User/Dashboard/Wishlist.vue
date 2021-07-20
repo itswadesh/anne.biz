@@ -8,8 +8,7 @@
           w-auto
           grid-cols-2
           gap-2
-          sm:gap-4
-          sm:grid-cols-3
+          sm:gap-4 sm:grid-cols-3
           md:grid-cols-3
           lg:grid-cols-3
           xl:grid-cols-4
@@ -44,7 +43,7 @@
               <div
                 v-for="w in myWishlist.data"
                 :key="w.id"
-                class="shadow cursor-pointer hover:text-accent-800"
+                class="shadow cursor-pointer hover:text-primary-500"
               >
                 <div v-if="w.product">
                   <div class="flex justify-end p-1 bg-white">
@@ -94,8 +93,7 @@
                             ease-in-out
                             transform
                             md:h-56
-                            hover:-translate-y-1
-                            hover:scale-110
+                            hover:-translate-y-1 hover:scale-110
                           "
                         />
                       </div>

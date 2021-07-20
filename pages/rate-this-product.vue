@@ -85,7 +85,7 @@
                     rounded-sm
                     shadow
                     ring-2 ring-gray-400
-                    focus:ring-2 focus:ring-accent-700
+                    focus:ring-2 focus:ring-primary-500
                   "
                 ></textarea>
               </span>

@@ -65,7 +65,7 @@
         />
       </svg>
     </nuxt-link>
-    <span class="my-auto capitalize truncate text-accent-800 ms-1">
+    <span class="my-auto capitalize truncate text-primary-500 ms-1">
       {{ name }}
     </span>
   </div>

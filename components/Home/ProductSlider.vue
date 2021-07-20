@@ -12,8 +12,8 @@
               lg:text-3xl
               md:-mt-4
               border-b2
-              text-accent-600
-              border-accent-600
+              text-primary-500
+              border-secondary-500
               md:ms-6
             "
           >

@@ -11,9 +11,7 @@
       bg-opacity-50
       backgroundcolor
       md:px-40
-      lg:px-0
-      lg:h-full
-      lg:p-0
+      lg:px-0 lg:h-full lg:p-0
     "
   >
     <div
@@ -40,7 +38,9 @@
           bg-primary-500
           opacity-70
           lg:w-1/2
-          lg:flex-shrink-0 lg:flex lg:flex-col
+          lg:flex-shrink-0
+          lg:flex
+          lg:flex-col
           lg:items-center
           lg:justify-evenly
         "
@@ -119,8 +119,7 @@
           p-6
           my-auto
           bg-white
-          lg:p-3
-          lg:px-20
+          lg:p-3 lg:px-20
           md:flex-1
         "
       >
@@ -132,7 +131,7 @@
           />
           <!-- <img v-lazy="settings.logoMobile" alt="" class="w-32 h-20" /> -->
         </div>
-        <span class="mb-4 font-medium text-center text-accent-600">
+        <span class="mb-4 font-medium text-center text-primary-500">
           SignIn using email and password
         </span>
         <!-- <span class="flex flex-row items-center justify-center pb-3">
@@ -184,8 +183,7 @@
                 rounded-3xl
                 focus:ring-1 focus:ring-yellow-600
                 ring-1 ring-gray-400
-                focus:border-transparent
-                focus:outline-none
+                focus:border-transparent focus:outline-none
               "
             />
           </div>

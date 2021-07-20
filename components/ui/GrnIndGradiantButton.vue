@@ -15,8 +15,7 @@
       rounded-md
       shadow-md
       hover:shadow
-      focus:outline-none
-      focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
+      focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
       active:scale-95
     "
     :class="loading ? ' bg-gray-400 cursor-not-allowed' : 'gradient'"

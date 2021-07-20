@@ -4,14 +4,14 @@
       <div
         v-for="(i, ix) in items"
         :key="ix"
-        class="items-center hidden my-auto mr-5 lg:flex"
+        class="items-center hidden my-auto me-5 lg:flex"
       >
         <img
           :src="i.img"
           class="w-4 h-4 rounded-full lg:h-6 lg:w-6 xl:h-8 xl:w-8"
         />
         <h6
-          class="flex-1 ml-2 text-sm lg:text-base whitespace-nowrap"
+          class="flex-1 ms-2 text-sm lg:text-base whitespace-nowrap"
           v-html="i.detail"
         ></h6>
       </div>
@@ -34,8 +34,10 @@
               h-4
               rounded-full
               cursor-pointer
-              lg:h-6 lg:w-6
-              xl:h-8 xl:w-8
+              lg:h-6
+              lg:w-6
+              xl:h-8
+              xl:w-8
             "
           />
         </a>

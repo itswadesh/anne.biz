@@ -57,7 +57,7 @@
             "
           >
             <span>Open Positions</span>
-            <div class="ml-3 transform -rotate-90">
+            <div class="ms-3 transform -rotate-90">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-6 h-6 animate-bounce"

@@ -30,7 +30,8 @@
               class="
                 flex flex-row
                 justify-center
-                pt-4 pt:mt-0
+                pt-4
+                pt:mt-0
                 lg:justify-between
               "
             >
@@ -117,7 +118,8 @@
                   flex flex-col
                   justify-center
                   w-full
-                  lg:justify-between lg:flex-row
+                  lg:justify-between
+                  lg:flex-row
                   py-7
                 "
               >
@@ -132,7 +134,8 @@
                         rounded
                         shadow
                         px-4
-                        lg:px-3 lg:p-2
+                        lg:px-3
+                        lg:p-2
                         focus:outline-none
                         duration-200
                         hover:-translate-y-0.5
@@ -161,7 +164,8 @@
                         focus:outline-none
                         md:py-2
                         px-4
-                        lg:px-3 lg:p-2
+                        lg:px-3
+                        lg:p-2
                         duration-200
                         hover:-translate-y-0.5
                         transition
@@ -224,7 +228,7 @@
                           text-gray-500
                         "
                       >
-                        <div class="mr-4">Qty: {{ item.qty }}</div>
+                        <div class="me-4">Qty: {{ item.qty }}</div>
                         <div
                           class="
                             flex flex-row
@@ -322,7 +326,7 @@
           </div> -->
               <div
                 v-if="order && order.address"
-                class="w-full p-6 mt-6 mr-2 shadow lg:mt-0 lg:w-1/2"
+                class="w-full p-6 mt-6 me-2 shadow lg:mt-0 lg:w-1/2"
               >
                 <div class="pb-2 text-lg font-medium border-b">
                   Shipping Information

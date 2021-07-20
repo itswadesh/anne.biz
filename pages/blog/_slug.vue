@@ -7,7 +7,7 @@
       <div class="flex items-center text-xs author lg:text-sm">
         <img
           v-lazy="post.user.avatar"
-          class="hidden object-cover w-16 h-16 mr-4 rounded-full md:block"
+          class="hidden object-cover w-16 h-16 me-4 rounded-full md:block"
           alt=""
         />
         <div class="mx-2 font-bold tracking-wide">
@@ -20,7 +20,7 @@
         <div v-html="post.content" />
       </div>
       <div class="w-full px-4">
-        <div class="ml-0 lg:ml-4">
+        <div class="ms-0 lg:ms-4">
           <div class="px-4 py-4 text-center pattern">
             <h3 class="my-0 text-3xl font-bold">Latest Posts</h3>
           </div>
@@ -38,7 +38,7 @@
               >
                 <img
                   v-lazy="i.img"
-                  class="w-16 h-16 mr-2 rounded"
+                  class="w-16 h-16 me-2 rounded"
                   alt="{i.name}"
                 />
                 <span class="font-semibold">{{ i.title }}</span>

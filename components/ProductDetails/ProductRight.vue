@@ -21,7 +21,8 @@
                 font-medium
                 text-gray-600
                 sm:text-xl
-                md:mt-4 md:py-0
+                md:mt-4
+                md:py-0
                 xl:mt-0
                 lh75
               "
@@ -157,12 +158,12 @@
                       {{ product.mrp | currency(settings.currencySymbol, 2) }}
                     </strike>
                   </div>
-                  <b class="mx-2 my-auto mr-2">
+                  <b class="mx-2 my-auto me-2">
                     {{ product.price | currency(settings.currencySymbol, 2) }}
                   </b>
                   <div
                     v-if="product.discount > 0"
-                    class="my-auto mr-1 text-red-600"
+                    class="my-auto me-1 text-red-600"
                   >
                     ({{ product.discount }}% off)
                   </div>
@@ -615,7 +616,7 @@
                 </div> -->
                 <div v-if="product.returnInfo" class="flex">
                   <div class="flex flex-wrap items-center">
-                    <div class="mr-3">
+                    <div class="me-3">
                       <svg
                         width="16"
                         height="16"

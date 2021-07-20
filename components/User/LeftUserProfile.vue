@@ -11,7 +11,8 @@
       transition
       bg-white
       shadow-lg
-      lg:z-0 lg:w-72
+      lg:z-0
+      lg:w-72
       md:w-96
       lg:relative
     "
@@ -243,7 +244,7 @@
                   v-for="ch in c.children"
                   :key="ch.id"
                   :to="`/c/${ch.slug}`"
-                  class="block px-5 py-2 ml-2 hover:font-semibold"
+                  class="block px-5 py-2 ms-2 hover:font-semibold"
                 >
                   {{ ch.name }}
                 </nuxt-link>
@@ -252,7 +253,7 @@
           </ul>
           <!-- <ul class="flex flex-col items-start justify-center w-full mx-auto">
           <li
-            class="w-full mb-2 ml-2"
+            class="w-full mb-2 ms-2"
             v-for="(c, index) in sideMegamenu"
             :key="c.id"
           >
@@ -281,7 +282,7 @@
                 :to="`/c/${ch.slug}`"
                 v-for="ch in c.children"
                 :key="ch.id"
-                class="block ml-4"
+                class="block ms-4"
               >
                 {{ ch.name }}
               </nuxt-link>

@@ -28,7 +28,7 @@
               to-secondary-500
               focus-outline-none
               transform
-              active:scale-105
+              active:scale-95
             "
           >
             Event
@@ -45,7 +45,7 @@
         <!-- Button section start -->
 
         <div class="ms-5">
-          <div
+          <button
             class="
               h-10
               w-10
@@ -54,6 +54,7 @@
               justify-center
               bg-black bg-opacity-50
               rounded-full
+              focus:outline-none
             "
           >
             <!-- @click="exit" -->
@@ -71,9 +72,9 @@
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </div>
+          </button>
 
-          <div
+          <button
             class="
               mt-2
               h-10
@@ -83,6 +84,7 @@
               justify-center
               bg-black bg-opacity-50
               rounded-full
+              focus:outline-none
             "
           >
             <!-- @click="share" -->
@@ -100,9 +102,9 @@
                 d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
               />
             </svg>
-          </div>
+          </button>
 
-          <div
+          <button
             class="
               mt-2
               h-10
@@ -112,6 +114,7 @@
               justify-center
               bg-black bg-opacity-50
               rounded-full
+              focus:outline-none
             "
             @click="mute = !mute"
           >
@@ -142,15 +145,24 @@
                 clip-rule="evenodd"
               />
             </svg>
-          </div>
+          </button>
         </div>
         <!-- Button section end -->
       </div>
 
       <!-- Chatting section start  -->
-      <div>
+      <div class="md:w-1/3">
         <!-- Chat start  -->
-        <div class="max-h-60 w-2/3 overflow-y-auto overflow-hidden flex-1 fade">
+        <div
+          class="
+            max-h-60
+            w-2/3
+            md:w-full
+            overflow-y-auto overflow-hidden
+            flex-1
+            fade
+          "
+        >
           <div
             v-for="(c, cx) in chats"
             :key="cx"
@@ -195,35 +207,37 @@
             placeholder="Say something..."
           />
 
-          <div class="absolute right-0 inset-y-0">
-            <div
-              class="
-                m-2
-                bg-primary-500 bg-opacity-50
-                h-6
-                w-6
-                rounded-full
-                flex
-                items-center
-                justify-center
-              "
+          <button
+            class="
+              absolute
+              right-0
+              inset-y-0
+              m-2
+              bg-primary-500 bg-opacity-50
+              h-6
+              w-6
+              rounded-full
+              flex
+              items-center
+              justify-center
+              focus:outline-none
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 text-gray-200"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 text-black opacity-50"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 11l5-5m0 0l5 5m-5-5v12"
-                />
-              </svg>
-            </div>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 11l5-5m0 0l5 5m-5-5v12"
+              />
+            </svg>
+          </button>
         </div>
         <!-- Say something end -->
       </div>

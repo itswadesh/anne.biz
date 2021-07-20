@@ -63,7 +63,7 @@
           Prime Streaming
         </button>
       </div>
-      <div class="order-3 py-3 mr-3 md:order-4 headings">
+      <div class="order-3 py-3 me-3 md:order-4 headings">
         <div v-if="geo" class="flex text-sm md:hidden">
           <div v-if="errorStr">
             Sorry, but the following error occurred: {{ errorStr }}

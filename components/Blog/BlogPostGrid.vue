@@ -19,7 +19,7 @@
           >
             <img
               v-lazy="post.user.avatar"
-              class="object-cover w-16 h-16 mr-4 rounded-full"
+              class="object-cover w-16 h-16 me-4 rounded-full"
               alt=""
             />
             <div class="mx-2 font-bold tracking-wide">
@@ -37,7 +37,7 @@
                   px-3
                   py-1
                   mb-1
-                  mr-2
+                  me-2
                   text-sm
                   font-semibold
                   text-gray-700

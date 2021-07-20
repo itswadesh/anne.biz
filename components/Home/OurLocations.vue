@@ -39,7 +39,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Jordan</p>
           </h1>
           <h1 class="flex flex-row py-3">
@@ -55,7 +55,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Libya</p>
           </h1>
           <h1 class="flex flex-row py-3">
@@ -71,7 +71,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Morocco</p>
           </h1>
           <h1 class="flex flex-row py-3">
@@ -87,7 +87,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Oman</p>
           </h1>
           <h1 class="flex flex-row py-3">
@@ -103,7 +103,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Palestine</p>
           </h1>
         </h1>
@@ -122,7 +122,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Qatar</p>
           </h1>
           <h1 class="flex flex-row py-3">
@@ -138,7 +138,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Kuwait</p>
           </h1>
           <h1 class="flex flex-row py-3">
@@ -154,7 +154,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Lebanon</p>
           </h1>
           <h1 class="flex flex-row py-3">
@@ -170,7 +170,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Tunisia</p>
           </h1>
           <h1 class="flex flex-row py-3">
@@ -186,7 +186,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 mr-1" /> -->
+            <!-- <img src="/img/pinkloc.png" alt="loc" class="object-contain w-5 h-5 mt-1 me-1" /> -->
             <p class="my-auto text-lg font-semibold text-gray-700">Brazil</p>
           </h1>
         </h1>

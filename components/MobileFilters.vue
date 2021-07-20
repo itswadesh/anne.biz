@@ -76,7 +76,7 @@
               justify-center
               text-white
               -mt-2
-              -ml-2
+              -ms-2
               rounded-full
             "
           >

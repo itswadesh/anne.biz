@@ -25,7 +25,7 @@
           mt-2
           w-8
           h-8
-          mr-2
+          me-2
           items-center
           justify-center
           text-gray-800
@@ -94,7 +94,7 @@
                 justify-center
                 w-8
                 h-8
-                mr-2
+                me-2
                 text-gray-800
                 transition
                 duration-300
@@ -136,7 +136,7 @@
           mt-2
           w-8
           h-8
-          ml-2
+          ms-2
           items-center
           justify-center
           text-gray-800

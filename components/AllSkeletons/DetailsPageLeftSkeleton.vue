@@ -1,5 +1,5 @@
 <template>
-  <div class="container pt-12 mx-auto xl:-mt-2 xl:-ml-3 xl:pt-0">
+  <div class="container pt-12 mx-auto xl:-mt-2 xl:-ms-3 xl:pt-0">
     <div class="flex flex-col md:flex-row-reverse hfull ps-4 animate-pulse">
       <div
         class="

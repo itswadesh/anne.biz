@@ -32,7 +32,7 @@
               <img
                 src="https://img.icons8.com/color/30/000000/youtube-live.png"
               />
-              <span class="ml-2">Publish</span>
+              <span class="ms-2">Publish</span>
             </button>
             <button
               class="
@@ -54,7 +54,7 @@
               <img
                 src="https://img.icons8.com/fluent/30/000000/stop-circled.png"
               />
-              <span class="ml-2">Stop</span>
+              <span class="ms-2">Stop</span>
             </button>
             <button
               class="
@@ -76,7 +76,7 @@
               <img
                 src="https://img.icons8.com/emoji/30/000000/cross-mark-emoji.png"
               />
-              <span class="ml-2">Destroy</span>
+              <span class="ms-2">Destroy</span>
             </button>
           </div>
 

@@ -22,7 +22,7 @@
               {{ order.name }}
             </nuxt-link>
             <div class="flex flex-wrap items-center text-sm whitespace-nowrap">
-              <h5 v-if="order.size != null && ''" class="mt-2 mr-5">
+              <h5 v-if="order.size != null && ''" class="mt-2 me-5">
                 Size: {{ order.size }}
               </h5>
               <h5 v-if="order.color != null && ''" class="mt-2">
@@ -89,7 +89,7 @@
               justify-center
               rounded
               flex-shrink-0
-              mr-4
+              me-4
             "
             style="background: #e1e1e1"
           >

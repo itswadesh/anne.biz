@@ -32,7 +32,7 @@
                 class="object-cover object-top w-8 h-8 rounded-full"
               />
             </div>
-            <div class="ml-2">
+            <div class="ms-2">
               <h5 class="font-semibold">{{ i.name }}</h5>
               <h5 class="w-32 text-sm font-light truncate">
                 {{ i.whatsplaying }}
@@ -41,7 +41,7 @@
           </div>
           <div class="">
             <div class="flex items-center">
-              <div class="w-2 h-2 mr-1 bg-red-500 rounded-full"></div>
+              <div class="w-2 h-2 me-1 bg-red-500 rounded-full"></div>
               <span class="text-sm font-light">{{ i.live }}</span>
             </div>
           </div>

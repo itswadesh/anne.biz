@@ -25,7 +25,7 @@
     <form class="flex flex-col" @submit.prevent="requestOtp">
       <div class="flex flex-col space-y-1">
         <p class="my-3 text-gray-600">
-          <!-- <img src="/img/flag.png" alt="flag" class="w-8 h-5 mr-3" /> -->
+          <!-- <img src="/img/flag.png" alt="flag" class="w-8 h-5 me-3" /> -->
           <select
             v-model="countryCode"
             class="
@@ -108,7 +108,7 @@
           <p v-if="!loading" class="py-1 text-sm uppercase">Continue</p>
           <p v-else>
             <svg
-              class="w-6 h-6 -ml-1 text-white animate-spin"
+              class="w-6 h-6 -ms-1 text-white animate-spin"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

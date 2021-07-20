@@ -4,7 +4,7 @@
     :disabled="isDisabled"
     class="
       my-auto
-      ml-1
+      ms-1
       font-semibold
       text-center
       icons

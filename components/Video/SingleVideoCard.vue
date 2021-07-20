@@ -24,7 +24,7 @@
         <img
           v-lazy="video.user.avatar"
           alt=""
-          class="w-8 h-8 mr-1 rounded-full"
+          class="w-8 h-8 me-1 rounded-full"
         />
         {{ video.user.firstName }} {{ video.user.lastName }}
       </p>

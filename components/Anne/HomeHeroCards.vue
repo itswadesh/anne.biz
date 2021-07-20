@@ -12,7 +12,7 @@
       <!-- Data section start  -->
       <div
         class="flex-1 max-w-md lg:mx-auto mt-5 lg:w-1/2 lg:mt-0"
-        :class="ix % 2 == !0 ? 'lg:order-2 ml-auto' : 'mx-6'"
+        :class="ix % 2 == !0 ? 'lg:order-2 ms-auto' : 'mx-6'"
       >
         <div class="mx-4">
           <button
@@ -47,7 +47,7 @@
                       lg:w-3
                       lg:h-3
                       mt-1.5
-                      mr-2
+                      me-2
                       rounded-full
                       bg-primary-500
                     "
@@ -66,7 +66,7 @@
       <!-- Image section start  -->
       <div
         class="lg:w-1/2"
-        :class="ix % 2 == !0 ? '' : 'lg:order-1 ml-auto  max-w-max'"
+        :class="ix % 2 == !0 ? '' : 'lg:order-1 ms-auto  max-w-max'"
       >
         <img
           v-lazy="product.img"

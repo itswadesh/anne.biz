@@ -11,7 +11,11 @@
           py-3
           mt-5
           border-t-2
-          sm:border-t-0 sm:py-0 sm:mt-0 sm:border-r-2 sm:w-1/2
+          sm:border-t-0
+          sm:py-0
+          sm:mt-0
+          sm:border-r-2
+          sm:w-1/2
         "
       >
         <form
@@ -158,7 +162,7 @@
               <img
                 v-lazy="'/img/socialmedia/facebook.png'"
                 alt=""
-                class="w-10 h-10 mr-5"
+                class="w-10 h-10 me-5"
               />
             </a>
             <a
@@ -169,7 +173,7 @@
               <img
                 v-lazy="'/img/socialmedia/twitter.png'"
                 alt=""
-                class="w-10 h-10 mr-5"
+                class="w-10 h-10 me-5"
               />
             </a>
             <a
@@ -180,7 +184,7 @@
               <img
                 v-lazy="'/img/socialmedia/instagram.png'"
                 alt=""
-                class="w-10 h-10 mr-5"
+                class="w-10 h-10 me-5"
               />
             </a>
             <a

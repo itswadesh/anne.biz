@@ -55,7 +55,7 @@ h4
               v-for="ch in c.children"
               :key="ch.id"
               :to="slug(ch.slug)"
-              class="block px-5 py-2 ml-2"
+              class="block px-5 py-2 ms-2"
             >
               {{ ch.name }}
             </nuxt-link>
@@ -83,7 +83,7 @@ h4
             :to="`/c/${ch.slug}`"
             v-for="ch in c.children"
             :key="ch.id"
-            class="block ml-2"
+            class="block ms-2"
           >
             {{ ch.name }}
           </nuxt-link>

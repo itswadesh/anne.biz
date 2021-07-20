@@ -18,7 +18,7 @@
       </nuxt-link>
       <div class="absolute right-0 top-0 border rounded-full border-gray-200">
         <div class="mx-2 my-0.5 flex items-center">
-          <div class="h-2 w-2 rounded-full bg-red-500 mr-1 animate-pulse"></div>
+          <div class="h-2 w-2 rounded-full bg-red-500 me-1 animate-pulse"></div>
           <span class="text-xs">LIVE</span>
         </div>
       </div>
@@ -31,7 +31,7 @@
         alt=""
         class="object-cover w-10 h-10 rounded-full border border-gray-300"
       />
-      <div class="flex flex-col ml-4">
+      <div class="flex flex-col ms-4">
         <!-- <a
           :href="`https://litekartlive.netlify.app/netease/watch?channelName=${channel.id}`" -->
         <nuxt-link
@@ -49,7 +49,7 @@
               px-2
               py-0.5
               text-gray-600
-              ml-3
+              ms-3
             "
             >ENGLISH</span
           > -->

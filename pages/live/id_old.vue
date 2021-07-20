@@ -44,7 +44,7 @@
               w-6
               h-6
               m-1
-              ml-auto
+              ms-auto
               text-gray-100
               transform
               cursor-pointer

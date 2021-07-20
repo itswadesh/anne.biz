@@ -21,7 +21,7 @@
               </h4>
             </nuxt-link>
             <div class="flex flex-wrap items-center text-sm whitespace-nowrap">
-              <h5 class="mt-2 mr-5">Size: {{ order.size }}</h5>
+              <h5 class="mt-2 me-5">Size: {{ order.size }}</h5>
               <h5 class="mt-2">Color: {{ order.color }}</h5>
             </div>
             <h6

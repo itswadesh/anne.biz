@@ -107,7 +107,7 @@
           "
         >
           <h6>Delivery Charges</h6>
-          <h6 class="ml-1 my-auto">
+          <h6 class="ms-1 my-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-4 w-4"

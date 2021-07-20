@@ -204,7 +204,7 @@
     </div>
 
     <!-- What We Technology Use -->
-    <div class="hidden mt-8 ml-4 xl:block">
+    <div class="hidden mt-8 ms-4 xl:block">
       <p class="text-3xl font-bold">Technologies we use</p>
     </div>
     <div class="p-1 xl:m-4">
@@ -338,7 +338,7 @@
           "
         >
           <div class="flex flex-col items-start justify-start text-gray-600">
-            <div class="flex items-center font-medium text-3xl -ml-2 mb-2">
+            <div class="flex items-center font-medium text-3xl -ms-2 mb-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-10 w-10"
@@ -428,7 +428,7 @@
           >Recent Job Posts</span
         >
       </div>
-      <div class="pb-4 ml-4 mr-4 xl:ml-6 xl:mr-4">
+      <div class="pb-4 ms-4 me-4 xl:ms-6 xl:me-4">
         <div class="w-full lg:w-full xl:grid xl:grid-cols-3 xl:gap-4">
           <div v-for="i in datalist" :key="i.id" class="mt-6">
             <div
@@ -536,7 +536,7 @@
                     line-clamp-5
                   "
                 >
-                  <b class="-ml-6">Annual Salary:-</b>
+                  <b class="-ms-6">Annual Salary:-</b>
                   <li>1.2 Lakhs to 2.5 Lakhs + Incentive</li>
                 </ol>
 
@@ -552,7 +552,7 @@
                     line-clamp-5
                   "
                 >
-                  <b class="-ml-6">Job Location:-</b>
+                  <b class="-ms-6">Job Location:-</b>
                   <li>Semiliguda, Koraput Dist., Odisha</li>
                 </ol>
 
@@ -568,7 +568,7 @@
                     line-clamp-5
                   "
                 >
-                  <b class="-ml-6"> Our Expectations:-</b>
+                  <b class="-ms-6"> Our Expectations:-</b>
                   <li>Ready to Teach Offline + Online,</li>
                   <li>Graduation in the applied Subject,</li>
                   <li>Innovative Teaching Technique.</li>
@@ -1209,7 +1209,7 @@ export default {
 
 .ourTeam .i .c:hover img {
   -moz-opacity: 0;
-  -khtml-opacity: 0;
+  -khtms-opacity: 0;
   -webkit-opacity: 0;
   opacity: 0;
 }

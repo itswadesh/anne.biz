@@ -75,7 +75,8 @@
                 justify-between
                 w-full
                 font-semibold
-                lg:justify-start lg:w-1/2
+                lg:justify-start
+                lg:w-1/2
               "
             >
               <!-- <div
@@ -186,7 +187,7 @@
             >
               <div class="flex items-center p-3 text-sm text-gray-500">
                 <div>Order No: {{ order.orderNo }}</div>
-                <div class="ml-2 text-xs text-gray-400">
+                <div class="ms-2 text-xs text-gray-400">
                   Order Date: {{ order.createdAt | date }}
                 </div>
               </div>
@@ -508,7 +509,7 @@
                       <div class="text-gray-400">
                         {{ order.createdAt | date }}
                       </div>
-                      <div class="text-gray-400 ml-3">
+                      <div class="text-gray-400 ms-3">
                         OrderNo: {{ order.orderNo }}
                       </div>
                     </div>

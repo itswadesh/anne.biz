@@ -16,7 +16,7 @@
       />; -->
     </div>
     <div v-if="channel && channel.products && channel.products.length > 0">
-      <h2 class="font-bold text-xl my-4 ml-2">Products</h2>
+      <h2 class="font-bold text-xl my-4 ms-2">Products</h2>
       <div class="flex flex-wrap">
         <nuxt-link
           v-for="p in channel.products"

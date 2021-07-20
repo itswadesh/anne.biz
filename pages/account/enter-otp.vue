@@ -70,7 +70,7 @@
 
                 <div class="flex justify-center pt-5">
                   <OtpInput
-                    input-classes="mr-2 w-12 text-center rounded border-0 shadow-md hover:shadow transition duration-300"
+                    input-classes="me-2 w-12 text-center rounded border-0 shadow-md hover:shadow transition duration-300"
                     :num-inputs="4"
                     separator=" "
                     :should-auto-focus="true"

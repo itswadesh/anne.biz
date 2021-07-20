@@ -1,13 +1,28 @@
 <template>
   <section
-    class="relative max-h-screen max-w-screen text-white overflow-hidden"
+    class="
+      relative
+      max-h-screen max-w-screen
+      text-white
+      overflow-hidden
+      bg-black
+    "
   >
     <!-- Live video section start  -->
-    <img
-      src="/live/hi.png"
-      alt=""
-      class="h-screen w-screen object-cover object-top bg-gray-300"
-    />
+    <div class="h-screen max-w-sm mx-auto">
+      <!-- v-lazy="video.snapshotUrl" -->
+      <img
+        src="/live/hi.png"
+        alt=""
+        class="
+          border-4 border-white
+          h-full
+          w-full
+          object-cover object-top
+          bg-gray-300
+        "
+      />
+    </div>
     <!-- Live video section start  -->
 
     <!-- Absolute position div start  -->
@@ -15,26 +30,22 @@
       <div class="flex items-start justify-between">
         <!-- Details section start  -->
         <div class="flex-1">
-          <button
+          <div
             class="
+              max-w-max
               text-xs
               font-medium
               uppercase
               px-4
               py-1
               rounded-full
-              bg-gradient-to-br
-              from-primary-500
-              to-secondary-500
-              focus-outline-none
-              transform
-              active:scale-95
+              border border-white
             "
           >
             Event
-          </button>
+          </div>
 
-          <div class="mt-2 font-semibold leading-tight">
+          <div class="mt-2 font-medium leading-tight">
             <h5>Pratap Chandra Maharana</h5>
             <h5>Anne live Debut-</h5>
             <h5>Sunday July 18th 2PM PST</h5>
@@ -112,10 +123,10 @@
               flex
               items-center
               justify-center
-              bg-black bg-opacity-50
               rounded-full
               focus:outline-none
             "
+            :class="mute ? 'bg-white' : 'bg-black bg-opacity-50'"
             @click="mute = !mute"
           >
             <svg
@@ -135,7 +146,7 @@
             <svg
               v-else
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              class="h-5 w-5 text-gray-800"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -201,8 +212,7 @@
               py-2
               px-4
               placeholder-white
-              focus:ring-0 focus:ring-offset-0
-              focus:border-white
+              focus:ring-0 focus:ring-offset-0 focus:border-white
             "
             placeholder="Say something..."
           />
@@ -249,8 +259,16 @@
 
 <script>
 export default {
+  layout: 'none',
   data() {
     return {
+      props: {
+        video: {
+          type: Object,
+          default: null,
+        },
+      },
+
       mute: false,
 
       chats: [

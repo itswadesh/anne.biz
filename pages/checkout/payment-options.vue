@@ -21,8 +21,7 @@
               pb-6
               mt-5
               text-2xl text-center text-gray-500
-              md:text-start
-              md:flex
+              md:text-start md:flex
               lg:mt-0
             "
           >
@@ -313,7 +312,7 @@
           <h3
             class="
               pt-5
-              pl-5
+              ps-5
               my-auto
               text-xl
               font-medium

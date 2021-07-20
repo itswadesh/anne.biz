@@ -14,7 +14,7 @@
               class="w-40 object-contain object-top mb-5 md:mb-0"
             />
           </nuxt-link>
-          <div class="flex-1 md:pr-5">
+          <div class="flex-1 md:pe-5">
             <nuxt-link :to="`/${order.slug}?id=${order.pid}`">
               <h4 class="text-xl font-medium">
                 {{ order.name }}
@@ -44,10 +44,7 @@
           md:border-t-0
           mt-5
           pt-5
-          md:pt-0
-          md:mt-0
-          md:w-1/2
-          md:px-5
+          md:pt-0 md:mt-0 md:w-1/2 md:px-5
           lg:px-10
         "
       >

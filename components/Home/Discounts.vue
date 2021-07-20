@@ -1,5 +1,5 @@
 <template>
-  <div class="pl-2 pr-2 mx-auto">
+  <div class="ps-2 pe-2 mx-auto">
     <div class="mt-10 md:mt-20 absolute-center">
       <span
         class="text-xl font-semibold text-center md:text-3xl text-secondary-500"
@@ -43,7 +43,9 @@
             ps-12
             ring-1 ring-white
             focus:outline-none
-            focus:ring-1 focus:ring-blue-300 focus:ring-offset-0
+            focus:ring-1
+            focus:ring-blue-300
+            focus:ring-offset-0
             rounded-s-3xl
             md:w-1/4
           "
@@ -76,8 +78,7 @@
           md:mt-20
           w-max-full
           text-accent-500
-          md:flex-row
-          md:pl-0
+          md:flex-row md:ps-0
           text-size
         "
       >

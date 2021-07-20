@@ -63,16 +63,15 @@
                 class="timeline-img relative z-10"
               />
             </div>
-            <div class="md:pt-5 md:text-right -mt-20 md:-mt-0 md:w-1/2">
+            <div class="md:pt-5 md:text-end -mt-20 md:-mt-0 md:w-1/2">
               <div
                 class="
                   md:ms-auto
                   max-w-lg
                   md:max-w-md
-                  pl-28
-                  md:pl-0
-                  md:pr-20
-                  lg:pr-28
+                  ps-28
+                  md:ps-0 md:pe-20
+                  lg:pe-28
                 "
               >
                 <h5 class="text-lg font-semibold">Register as Merchant</h5>
@@ -109,7 +108,7 @@
               />
             </div>
             <div class="md:pt-5 md:w-1/2 md:ms-auto -mt-20 md:-mt-0">
-              <div class="me-auto max-w-lg md:max-w-md pl-28 md:pl-20 lg:pl-28">
+              <div class="me-auto max-w-lg md:max-w-md ps-28 md:ps-20 lg:ps-28">
                 <h5 class="text-lg font-semibold">List Your Items</h5>
                 <p class="mt-2 text-sm text-gray-500">
                   Listing your products is really simple through our easy to use
@@ -142,16 +141,15 @@
                 class="timeline-img relative z-10"
               />
             </div>
-            <div class="md:pt-5 md:text-right -mt-20 md:-mt-0 md:w-1/2">
+            <div class="md:pt-5 md:text-end -mt-20 md:-mt-0 md:w-1/2">
               <div
                 class="
                   md:ms-auto
                   max-w-lg
                   md:max-w-md
-                  pl-28
-                  md:pl-0
-                  md:pr-20
-                  lg:pr-28
+                  ps-28
+                  md:ps-0 md:pe-20
+                  lg:pe-28
                 "
               >
                 <h5 class="text-lg font-semibold">Sell & Fulfill Orders</h5>
@@ -187,7 +185,7 @@
               />
             </div>
             <div class="md:pt-5 md:w-1/2 md:ms-auto -mt-20 md:-mt-0">
-              <div class="me-auto max-w-lg md:max-w-md pl-28 md:pl-20 lg:pl-28">
+              <div class="me-auto max-w-lg md:max-w-md ps-28 md:ps-20 lg:ps-28">
                 <h5 class="text-lg font-semibold">Get Paid Instantly</h5>
                 <p class="mt-2 text-sm text-gray-500">
                   We don't hold your money, the payment will be sent to your
@@ -239,14 +237,14 @@ export default {}
 }
 
 /* .timeline-container {
-  @apply relative pt-2 sm:pl-24 ms-2 sm:pt-0 md:w-1/2  md:ms-auto md:pl-14;
+  @apply relative pt-2 sm:ps-24 ms-2 sm:pt-0 md:w-1/2  md:ms-auto md:ps-14;
 } */
 .timeline-pointer {
   @apply absolute inset-0 left-7 h-4 w-4 transform rotate-45 bg-white sm:top-10 sm:left-20 sm:ms-2 md:left-10;
 }
 
 /* .timeline-container-left {
-  @apply md:ms-0 md:pl-0 md:pr-14 md:me-auto;
+  @apply md:ms-0 md:ps-0 md:pe-14 md:me-auto;
 } */
 
 /* .timeline-pointer-left {

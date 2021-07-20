@@ -8,7 +8,7 @@
 
     <h4 class="text-xl md:text-2xl font-bold">For Content Provider/Educator</h4>
 
-    <ul class="mt-3 md:mt-5 list-disc pl-6 md:pl-8 space-y-2 md:space-y-3">
+    <ul class="mt-3 md:mt-5 list-disc ps-6 md:ps-8 space-y-2 md:space-y-3">
       <li>
         <h6>
           <b>Our mission</b>
@@ -63,7 +63,7 @@
       For Content Provider/Educator
     </h4>
 
-    <ul class="mt-3 md:mt-5 list-disc pl-6 md:pl-8 space-y-2 md:space-y-3">
+    <ul class="mt-3 md:mt-5 list-disc ps-6 md:ps-8 space-y-2 md:space-y-3">
       <li>
         <h6>
           <b>Our mission<em /></b> is to share knowledge. We provide a platform

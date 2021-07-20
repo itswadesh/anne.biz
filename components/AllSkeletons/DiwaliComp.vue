@@ -5,11 +5,10 @@
         grid grid-cols-2
         gap-3
         p-2
-        pl-10
+        ps-10
         mx-auto
         bg-blue-200
-        md:pl-0
-        md:flex md:flex-row
+        md:ps-0 md:flex md:flex-row
         lg:justify-around
       "
     >

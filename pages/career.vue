@@ -10,8 +10,7 @@
             bg-gray-100
             sm:pb-16
             md:pb-20
-            lg:max-w-3xl
-            lg:w-full
+            lg:max-w-3xl lg:w-full
           "
         >
           <svg
@@ -76,14 +75,13 @@
               container
               mx-auto
               mt-2
-              sm:mt-8
-              sm:px-6
+              sm:mt-8 sm:px-6
               md:mt-12
               lg:px-8
               xl:px-16
             "
           >
-            <div class="text-center lg:text-left">
+            <div class="text-center lg:text-start">
               <h1
                 class="
                   text-3xl
@@ -104,12 +102,8 @@
                 class="
                   mt-3
                   text-base text-gray-500
-                  sm:mt-5
-                  sm:text-lg
-                  sm:max-w-xl
-                  sm:mx-auto
-                  md:mt-5
-                  md:text-xl
+                  sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto
+                  md:mt-5 md:text-xl
                   lg:mx-0
                 "
               >
@@ -169,8 +163,7 @@
             xl:object-cover
             sm:h-full
             md:h-96
-            lg:w-full
-            lg:h-full
+            lg:w-full lg:h-full
           "
           src="/img/home/fashion-designer.jpg"
           alt=""
@@ -182,7 +175,7 @@
     <div
       class="flex flex-row items-center justify-between w-full mt-12 border-b"
     >
-      <div class="flex flex-col pl-4">
+      <div class="flex flex-col ps-4">
         <h3 class="text-3xl font-bold">Gallery</h3>
         <span class="mt-5 mb-2 font-medium text-grey-dark"
           >A Place That's Meant For You</span
@@ -217,8 +210,7 @@
           w-full
           h-full
           py-4
-          xl:pl-6
-          xl:pr-6
+          xl:ps-6 xl:pe-6
         "
         :arrows="true"
         :dots="true"
@@ -322,8 +314,7 @@
           bg-gray-100
           rounded-lg
           shadow-2xl
-          xl:flex-row
-          xl:p-0
+          xl:flex-row xl:p-0
         "
       >
         <div
@@ -333,8 +324,7 @@
             justify-center
             w-full
             text-2xl
-            xl:w-1/2
-            xl:flex-col
+            xl:w-1/2 xl:flex-col
           "
         >
           <div class="flex flex-col items-start justify-start text-gray-600">
@@ -353,7 +343,7 @@
               </svg>
               <span>Benefits at Anne</span>
             </div>
-            <ul class="pl-2 space-y-2 text-sm list-disc list-inside">
+            <ul class="ps-2 space-y-2 text-sm list-disc list-inside">
               <li class="text-sm font-medium xl:text-lg">Fair Compensation</li>
               <li class="text-sm font-medium xl:text-lg">
                 Recognition & Appreciation
@@ -424,7 +414,7 @@
     <div class="">
       <div class="flex flex-col items-start justify-start">
         <span
-          class="pt-4 pl-4 text-xl font-bold text-gray-700 xl:pl-6 opacity-90"
+          class="pt-4 ps-4 text-xl font-bold text-gray-700 xl:ps-6 opacity-90"
           >Recent Job Posts</span
         >
       </div>
@@ -477,7 +467,7 @@
                 </div>
               </div>
 
-              <div class="py-2 text-left">
+              <div class="py-2 text-start">
                 <span
                   v-if="i.juniorsection"
                   class="
@@ -673,7 +663,7 @@
                   "
                 >
                   <img
-                    class="w-6 h-6 pr-2"
+                    class="w-6 h-6 pe-2"
                     src="https://upload.wikimedia.org/wikipedia/commons/7/78/Dropbox_Icon.svg"
                     alt=""
                   />

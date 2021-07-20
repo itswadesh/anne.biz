@@ -14,7 +14,7 @@
               class="w-40 object-contain object-top mb-5 md:mb-0"
             />
           </nuxt-link>
-          <div class="flex-1 md:pr-5">
+          <div class="flex-1 md:pe-5">
             <nuxt-link
               class="text-xl font-medium"
               :to="`/${order.slug}?id=${order.pid}`"
@@ -49,10 +49,7 @@
           md:border-t-0
           mt-5
           pt-5
-          md:pt-0
-          md:mt-0
-          md:w-1/2
-          md:px-5
+          md:pt-0 md:mt-0 md:w-1/2 md:px-5
           lg:px-10
         "
       >
@@ -127,8 +124,7 @@
                 flex flex-col
                 md:flex-row
                 space-y-16
-                md:space-y-0
-                md:items-center
+                md:space-y-0 md:items-center
                 justify-start
                 md:justify-between
                 flex-wrap
@@ -201,9 +197,7 @@
               top-5
               left-5
               bottom-10
-              md:bottom-0
-              md:left-10
-              md:right-10
+              md:bottom-0 md:left-10 md:right-10
               isolate
             "
           >
@@ -211,8 +205,7 @@
               class="
                 w-1
                 h-full
-                md:h-1
-                md:w-full
+                md:h-1 md:w-full
                 border-l-2
                 md:border-l-0
                 border-t-0

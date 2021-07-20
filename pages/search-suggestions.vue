@@ -38,14 +38,13 @@
                   relative
                   w-full
                   p-2
-                  pl-10
+                  ps-10
                   font-light
                   truncate
                   shadow
                   h-14
                   text-normal
-                  focus:outline-none
-                  focus:ring-2 focus:ring-primary-500
+                  focus:outline-none focus:ring-2 focus:ring-primary-500
                 "
                 @input="getData"
               />

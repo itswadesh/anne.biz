@@ -22,7 +22,7 @@
         <div v-if="myWishlist.count != 0" class="relative">
           <div>
             <div class="flex flex-shrink-0 bg-white rounded-sm shadow">
-              <div class="p-5 pl-8 text-lg font-normal text-gray-700">
+              <div class="p-5 ps-8 text-lg font-normal text-gray-700">
                 My Wishlist({{ myWishlist.count }})
               </div>
             </div>

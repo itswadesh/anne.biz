@@ -22,8 +22,8 @@
                 <button
                   class="
                     p-2
-                    pl-16
-                    pr-16
+                    ps-16
+                    pe-16
                     m-3
                     text-sm
                     font-semibold
@@ -61,7 +61,7 @@
               justify-between
               w-full
               p-5
-              pl-8
+              ps-8
               mx-auto
               bg-white
               border
@@ -75,8 +75,7 @@
                 justify-between
                 w-full
                 font-semibold
-                lg:justify-start
-                lg:w-1/2
+                lg:justify-start lg:w-1/2
               "
             >
               <!-- <div
@@ -228,7 +227,7 @@
                       scope="col"
                       class="
                         py-3
-                        pr-6
+                        pe-6
                         text-xs
                         font-medium
                         tracking-wider
@@ -379,7 +378,7 @@
                     <td class="text-sm text-center text-gray-900" scope="col">
                       {{ i.total | currency(settings.currencySymbol, 2) }}
                     </td>
-                    <td class="pl-4 text-sm text-gray-900" scope="col">
+                    <td class="ps-4 text-sm text-gray-900" scope="col">
                       <span class="text-primary-500">{{ i.status }}</span>
                       <!-- <a
                         v-if="settings.liveCommerce"
@@ -407,7 +406,7 @@
               <!-- <div
               class="flex flex-row p-3 mx-auto font-semibold text-gray-600 capitalize bg-gray-200 border"
             >
-              <span class="w-1/4 pl-5">items</span>
+              <span class="w-1/4 ps-5">items</span>
               <span class="flex flex-row justify-around w-3/4">
                 </span>Order Id</span>
                 </span>Status</span>
@@ -420,7 +419,7 @@
             <div v-if="myOrders">
               <div>
                 <div class="flex flex-row p-3 mx-auto bg-white border-b">
-                  <span class="w-1/4 pl-5">
+                  <span class="w-1/4 ps-5">
                     <div class="flex flex-row">
                       <span class="w-1/3 me-2">
                         <img

@@ -14,8 +14,8 @@
           <button
             class="
               p-2
-              pl-16
-              pr-16
+              ps-16
+              pe-16
               m-3
               text-base
               font-light

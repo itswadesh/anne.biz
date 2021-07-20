@@ -97,7 +97,7 @@ h4
 
       <button
         class="
-          text-right text-xs
+          text-end text-xs
           cursor-pointer
           text-primary-500
           focus:outline-none

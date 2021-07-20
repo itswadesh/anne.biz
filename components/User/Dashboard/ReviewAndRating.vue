@@ -22,7 +22,7 @@
           >
             <!-- {{r.id}} -->
             <div class="flex flex-col w-full mt-3 sm:flex-row">
-              <div class="mx-auto h-36 sm:pr-5 sm:w-1/4">
+              <div class="mx-auto h-36 sm:pe-5 sm:w-1/4">
                 <img
                   v-lazy="r.product.img"
                   alt="mobile"

@@ -66,7 +66,7 @@
           class="w-full px-3"
           required
         />
-        <div class="flex flex-row pl-4 mb-5">
+        <div class="flex flex-row ps-4 mb-5">
           <div class="me-5">Gender:</div>
           <div class="flex">
             <label class="flex flex-row me-4">

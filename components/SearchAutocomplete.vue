@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full lg:pr-0 lg:w-2/3 lg:ms-44">
+  <div class="w-full lg:pe-0 lg:w-2/3 lg:ms-44">
     <div
       v-if="isFocused"
       class="fixed inset-0 w-screen h-screen lg:z-50"
@@ -25,8 +25,8 @@
               hidden
               w-full
               p-2
-              pl-4
-              pr-10
+              ps-4
+              pe-10
               font-light
               truncate
               rounded
@@ -56,7 +56,7 @@
               relative
               w-full
               p-2
-              pl-4
+              ps-4
               font-light
               truncate
               rounded

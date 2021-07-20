@@ -20,8 +20,7 @@
         <button
           class="
             text-center text-sm
-            lg:text-lg
-            lg:font-semibold
+            lg:text-lg lg:font-semibold
             mx-4
             text-primary-500
             border-b-2 border-transparent
@@ -35,8 +34,7 @@
         <button
           class="
             text-center text-sm
-            lg:text-lg
-            lg:font-semibold
+            lg:text-lg lg:font-semibold
             mx-4
             text-primary-500
             border-b-2 border-transparent
@@ -50,8 +48,7 @@
         <button
           class="
             text-center text-sm
-            lg:text-lg
-            lg:font-semibold
+            lg:text-lg lg:font-semibold
             mx-4
             text-primary-500
             border-b-2 border-transparent
@@ -73,7 +70,7 @@
           </div>
           <nuxt-link
             to="/change-location"
-            class="flex items-center pl-2 rounded"
+            class="flex items-center ps-2 rounded"
           >
             {{ geo.city }}
             <svg

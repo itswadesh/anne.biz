@@ -17,10 +17,10 @@
             bg-white
           "
         >
-          <div class="w-1/2 text-left">
+          <div class="w-1/2 text-start">
             My Shopping Bag ({{ cart.qty }} Items)
           </div>
-          <div class="w-1/2 text-right">
+          <div class="w-1/2 text-end">
             Total {{ cart.total | currency(settings.currencySymbol, 2) }}
           </div>
         </div>

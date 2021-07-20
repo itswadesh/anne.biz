@@ -9,7 +9,7 @@
       class="container flex flex-wrap min-h-screen px-2 py-12 lg:mx-auto"
       @submit.stop.prevent="submit"
     >
-      <div class="w-full mt-4 mb-auto lg:mt-0 lg:w-1/2 lg:pl-2 lg:pr-4">
+      <div class="w-full mt-4 mb-auto lg:mt-0 lg:w-1/2 lg:ps-2 lg:pe-4">
         <div class="h-full pt-10 pb-20 bg-gray-300 rounded-lg shadow-lg">
           <div class="flex items-center justify-center space-x-5">
             <button

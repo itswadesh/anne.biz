@@ -34,7 +34,7 @@
                   flex flex-col
                   p-1
                   mx-auto
-                  md:pl-6 md:pr-6 md:pb-6
+                  md:ps-6 md:pe-6 md:pb-6
                 "
               >
                 <!-- <div class="flex flex-row justify-between w-full px-5">

@@ -4,7 +4,7 @@
       <button
         class="
           my-2
-          text-left
+          text-start
           focus:outline-none
           lg:whitespace-nowrap
           font-medium

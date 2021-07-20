@@ -265,7 +265,7 @@
             </svg>
           </div>
           <h4 class="mt-2 text-xl font-bold text-gray-600">Core Values</h4>
-          <div class="m-4 mx-auto text-sm text-left max-w-max">
+          <div class="m-4 mx-auto text-sm text-start max-w-max">
             <ul class="space-y-1 list-disc">
               <li>Learning Every Moment</li>
               <li>Respect Students Trust</li>

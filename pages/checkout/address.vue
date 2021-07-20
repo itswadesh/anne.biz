@@ -5,7 +5,7 @@
       <div class="lg:mx-auto lg:container">
         <div class="flex flex-col w-full mx-auto sm:pb-20 lg:flex-row">
           <div class="container flex flex-col mx-auto lg:w-2/3">
-            <span class="my-4 text-2xl text-center text-gray-500 lg:text-left">
+            <span class="my-4 text-2xl text-center text-gray-500 lg:text-start">
               Select Delivery Address
             </span>
             <SelectAddress
@@ -20,8 +20,7 @@
                   p-3
                   bg-secondary-500
                   focus:ring-secondary-500
-                  md:w-1/3
-                  md:mt-0
+                  md:w-1/3 md:mt-0
                 "
               >
                 ADD NEW ADDRESS
@@ -36,9 +35,7 @@
               w-full
               mx-auto
               mt-6
-              lg:ms-4
-              lg:w-1/3
-              lg:-mt-0
+              lg:ms-4 lg:w-1/3 lg:-mt-0
             "
           >
             <span

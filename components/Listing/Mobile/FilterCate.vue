@@ -55,7 +55,7 @@
         <!-- color -->
         <div class="cursor-pointer" @click="onSelectCategory('color')">
           <div
-            class="p-3 pl-5"
+            class="p-3 ps-5"
             :class="{
               'bg-white border-s-4 border-primary-500':
                 selectedCategory == 'color',
@@ -67,7 +67,7 @@
         <!-- price  -->
         <div class="cursor-pointer" @click="onSelectCategory('price')">
           <div
-            class="p-3 pl-5"
+            class="p-3 ps-5"
             :class="{
               'bg-white border-s-4 border-primary-500':
                 selectedCategory == 'price',
@@ -79,7 +79,7 @@
         <!-- brands  -->
         <div class="cursor-pointer" @click="onSelectCategory('brand')">
           <div
-            class="p-3 pl-5"
+            class="p-3 ps-5"
             :class="{
               'bg-white border-s-4 border-primary-500':
                 selectedCategory == 'brand',

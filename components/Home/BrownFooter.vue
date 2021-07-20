@@ -2,7 +2,7 @@
   <div class="w-full p-8 text-white bg-primary-500">
     <div class="flex flex-col justify-between lg:flex-row">
       <div class="w-full lg:w-4/5">
-        <span class="pl-1 text-lg font-medium uppercase lg:mx-auto">
+        <span class="ps-1 text-lg font-medium uppercase lg:mx-auto">
           Useful links
         </span>
         <div
@@ -294,7 +294,7 @@
             Blog
           </nuxt-link>
         </div>
-        <span class="pl-1 my-4 mt-6 text-lg font-medium uppercase lg:mx-auto"
+        <span class="ps-1 my-4 mt-6 text-lg font-medium uppercase lg:mx-auto"
           >Popular searches</span
         >
         <div
@@ -334,7 +334,7 @@
           my-auto
           font-thin
           text-white
-          lg:pl-6 lg:flex-col lg:w-2/5
+          lg:ps-6 lg:flex-col lg:w-2/5
           md:flex
         "
       >
@@ -344,7 +344,7 @@
             alt=""
             class="object-contain w-12 h-12 p-1 my-auto bg-white rounded"
           />
-          <span class="object-cover pl-4 my-auto lg:w-2/3">
+          <span class="object-cover ps-4 my-auto lg:w-2/3">
             <strong class="font-light"> 100% ORIGINAL </strong> guarantee for
             all products at {{ settings.websiteName }}
           </span>
@@ -355,7 +355,7 @@
             alt=""
             class="object-contain w-12 h-12 p-1 my-auto bg-white rounded"
           />
-          <span class="object-cover pl-4 my-auto lg:w-2/3">
+          <span class="object-cover ps-4 my-auto lg:w-2/3">
             <strong class="font-light">Return within 30days </strong> of
             receiving your order</span
           >
@@ -366,7 +366,7 @@
             alt=""
             class="object-contain w-12 h-12 p-1 my-auto bg-white rounded"
           />
-          <span class="object-cover pl-4 my-auto lg:w-2/3">
+          <span class="object-cover ps-4 my-auto lg:w-2/3">
             <strong class="font-light"> Get assured delivery </strong> for every
             order
           </span>

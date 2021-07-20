@@ -5,7 +5,7 @@
       Steps
     </h2>
     <div class="flex items-start mt-10">
-      <div class="py-2 pl-2 pr-3 font-semibold bg-gray-200 rounded-md">
+      <div class="py-2 ps-2 pe-3 font-semibold bg-gray-200 rounded-md">
         <i class="text-blue-300"> 01</i>
       </div>
       <div class="flex-1 ms-5">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="flex items-start mt-10">
-      <div class="py-2 pl-2 pr-3 font-semibold bg-gray-200 rounded-md">
+      <div class="py-2 ps-2 pe-3 font-semibold bg-gray-200 rounded-md">
         <i class="text-blue-400"> 02</i>
       </div>
       <div class="flex-1 ms-5">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="flex items-start mt-10">
-      <div class="py-2 pl-2 pr-3 font-semibold bg-gray-200 rounded-md">
+      <div class="py-2 ps-2 pe-3 font-semibold bg-gray-200 rounded-md">
         <i class="text-primary-500"> 03</i>
       </div>
       <div class="flex flex-col flex-1 ms-5">
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="flex items-center mt-10">
-      <div class="py-2 pl-2 pr-3 font-semibold bg-gray-200 rounded-md">
+      <div class="py-2 ps-2 pe-3 font-semibold bg-gray-200 rounded-md">
         <i class="text-primary-500"> GO</i>
       </div>
       <div class="flex-1 ms-5">

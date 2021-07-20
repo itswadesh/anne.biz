@@ -9,8 +9,8 @@
         class="
           h-12
           col-end-2
-          pl-2
-          pr-2
+          ps-2
+          pe-2
           mx-auto
           mt-4
           text-white
@@ -21,13 +21,10 @@
           rounded
           shadow
           me-2
-          hover:-translate-y-1
-          hover:scale-95
-          md:mt-4
-          md:h-12
+          hover:-translate-y-1 hover:scale-95
+          md:mt-4 md:h-12
           lg:h-12
-          md:font-semibold
-          md:m-5
+          md:font-semibold md:m-5
           focus:outline-none
         "
       >
@@ -89,13 +86,13 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-1 pl-6 pr-8 mt-4 border-b">
+    <div class="grid grid-cols-1 ps-6 pe-8 mt-4 border-b">
       <span class="flex flex-row">
         <span
           class="
             w-10
             h-6
-            pl-2
+            ps-2
             text-sm
             font-semibold
             text-white

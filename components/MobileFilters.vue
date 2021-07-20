@@ -117,14 +117,14 @@
           shadow-md
         "
       >
-        <div class="flex-1 text-left" @click="hideFilter">
+        <div class="flex-1 text-start" @click="hideFilter">
           CLOSE
           <i class="ms-2 fa fa-times" aria-hidden="true"></i>
         </div>
         <div class="flex-1 font-medium text-center text-primary-500">
           FILTER
         </div>
-        <button class="flex-1 text-right focus:outline-none" @click="clearAll">
+        <button class="flex-1 text-end focus:outline-none" @click="clearAll">
           Clear all
         </button>
       </div>

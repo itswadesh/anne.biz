@@ -66,7 +66,7 @@
             v-if="images && images.length > 1"
             :images="images"
             :selected-image="selectedImage || img"
-            class="pr-4 overflow-hidden cursor-pointer"
+            class="pe-4 overflow-hidden cursor-pointer"
             @selectedImage="popup"
           />
         </div>

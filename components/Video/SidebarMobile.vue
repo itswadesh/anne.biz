@@ -5,7 +5,7 @@
         <div v-for="(i, ix) in items" :key="ix" class="my-2 sm:my-4">
           <button
             class="
-              text-left
+              text-start
               focus:outline-none
               font-medium
               hover:text-primary-500
@@ -22,7 +22,7 @@
         <div v-for="(ii, ixx) in items2" :key="ixx" class="my-2 sm:my-4">
           <button
             class="
-              text-left
+              text-start
               focus:outline-none
               font-medium
               hover:text-primary-500

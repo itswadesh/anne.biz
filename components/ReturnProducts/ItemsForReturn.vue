@@ -71,8 +71,8 @@
             <span>Order ID: <b class="text-primary-500">#12ERaa12PX</b></span>
             <span class="my-2">Payment: Credit Card</span>
           </div>
-          <div class="w-1/4 px-6 text-right">22/02/2025</div>
-          <div class="w-1/4 text-right">
+          <div class="w-1/4 px-6 text-end">22/02/2025</div>
+          <div class="w-1/4 text-end">
             {{ 125 | currency(settings.currencySymbol, 2) }}
           </div>
         </div>
@@ -99,8 +99,8 @@
                     </span>Order ID: <b class="font-normal text-primary-500">#12ERaa12PX</b></span>
                     <span class="my-2">Payment: Credit Card</span>
                 </div>
-                <div class="w-1/4 px-6 text-right">22/02/2025</div>
-                <div class="w-1/4 text-right">{{125 | currency(settings.currencySymbol,2)}}</div>
+                <div class="w-1/4 px-6 text-end">22/02/2025</div>
+                <div class="w-1/4 text-end">{{125 | currency(settings.currencySymbol,2)}}</div>
                 </div>
             </label> -->
     </div>

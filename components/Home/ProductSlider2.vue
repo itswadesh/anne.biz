@@ -19,7 +19,7 @@
             {{ heading }}
           </span>
         </div>
-        <div class="pl-0 mx-auto sm:pl-0 2xl:px-6 conatiner focus:outline-none">
+        <div class="ps-0 mx-auto sm:ps-0 2xl:px-6 conatiner focus:outline-none">
           <VueSlickCarousel v-if="details && details.length" v-bind="settings">
             <template #prevArrow="arrowOption">
               <div

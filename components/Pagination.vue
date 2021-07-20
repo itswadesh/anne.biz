@@ -30,8 +30,8 @@
             flex
             items-center
             py-2
-            pl-4
-            pr-6
+            ps-4
+            pe-6
             font-semibold
             bg-white
             border border-transparent
@@ -77,8 +77,7 @@
               mx-2
               border border-transparent
               rounded-full
-              hover:text-black
-              hover:border-gray-400
+              hover:text-black hover:border-gray-400
               w-9
               h-9
               hover:bg-gray-300
@@ -100,8 +99,8 @@
             flex
             items-center
             py-2
-            pr-4
-            pl-6
+            pe-4
+            ps-6
             p-2
             font-semibold
             bg-white

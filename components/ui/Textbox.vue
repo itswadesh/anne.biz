@@ -14,7 +14,7 @@
         focus:outline-none
       "
       :class="[
-        right ? 'text-right' : 'text-left',
+        right ? 'text-end' : 'text-start',
         err ? 'border-2 border-red-700 bg-red-100' : '',
       ]"
       :placeholder="placeholder"

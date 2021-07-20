@@ -79,10 +79,9 @@
                     class="
                       text-xs
                       font-light
-                      hover:underline
-                      hover:text-gray-800
+                      hover:underline hover:text-gray-800
                       focus:outline-none
-                      text-right
+                      text-end
                     "
                   >
                     Forgot Password?
@@ -103,7 +102,7 @@
                     Login with phone
                   </nuxt-link>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                   <nuxt-link to="/account/signup" class="link">
                     Not a Member yet?
                   </nuxt-link>

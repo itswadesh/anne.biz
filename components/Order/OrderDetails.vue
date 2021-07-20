@@ -2,7 +2,7 @@
   <div v-if="order" class="mx-auto md:w-10/12">
     <div class="mb-2 bg-white md:mt-10">
       <!-- first bolck -->
-      <div class="flex flex-row p-5 bg-white shadow md:pl-8">
+      <div class="flex flex-row p-5 bg-white shadow md:ps-8">
         <div class="flex flex-col w-4/5 border-r md:w-1/3">
           <span class="text-lg font-semibold">Delivery Address</span>
           <span class="mb-2 font-semibold"
@@ -19,7 +19,7 @@
             <span>{{ order.user.phone }}</span>
           </div>
         </div>
-        <div class="flex flex-col pl-8 cursor-pointer">
+        <div class="flex flex-col ps-8 cursor-pointer">
           <span class="mb-2 font-semibold">Your Rewards</span>
           <div class="flex flex-row">
             <img

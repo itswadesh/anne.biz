@@ -119,9 +119,10 @@
         "
       >
         <span>Delivery Charge</span>
-        <span>{{
-          cart.shipping.charge | currency(settings.currencySymbol, 2)
-        }}</span>
+        <span v-if="cart.shipping.charge > 0">
+          {{ cart.shipping.charge | currency(settings.currencySymbol, 2) }}
+        </span>
+        <span v-else> FREE </span>
       </div>
 
       <div

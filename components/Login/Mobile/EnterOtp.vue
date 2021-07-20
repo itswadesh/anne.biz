@@ -20,6 +20,7 @@
           Enter The OTP sent to
           <span class="text-xs font-bold"> {{ countryCode }}-{{ phone }} </span>
           <button
+            type="button"
             class="text-xs text-primary-500 ms-1"
             @click="$emit('reRequest')"
           >
@@ -52,7 +53,7 @@
           </div>
           <button
             v-else
-            button
+            type="button"
             class="
               text-sm
               font-semibold

@@ -1,13 +1,22 @@
 h4
 <template>
-  <div v-if="facets" class="w-64 h-full">
-    <div class="pt-2 pb-5 my-3 mb-2 border-b">
-      <h4 class="px-2 text-base font-medium uppercase ms-2">CATEGORIES</h4>
-      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+  <div v-if="facets" class="w-64 p-4 min-h-screen">
+    <div class="border-b">
+      <h5 class="text-sm font-bold uppercase">CATEGORIES</h5>
+
+      <ul class="mt-2 overflow-y-auto max-h-72">
         <li
           v-for="(c, i) in sideMegamenu"
           :key="i"
-          class="w-full overflow-hidden border-t tab"
+          class="
+            font-light
+            w-full
+            overflow-hidden
+            border-t
+            tab
+            py-2
+            cursor-pointer
+          "
         >
           <input
             :id="'tab-multi-' + i"
@@ -15,8 +24,8 @@ h4
             type="checkbox"
             name="tabs"
           />
+
           <label
-            class="block px-5 py-2 leading-normal cursor-pointer"
             :for="'tab-multi-' + i"
             :class="{
               has: c.children.length,
@@ -32,6 +41,7 @@ h4
               {{ c.name }}
             </nuxt-link>
           </label>
+
           <div
             class="
               overflow-hidden
@@ -45,7 +55,7 @@ h4
               v-for="ch in c.children"
               :key="ch.id"
               :to="slug(ch.slug)"
-              class="block px-5 py-2 ml-2 hover:font-semibold"
+              class="block px-5 py-2 ml-2"
             >
               {{ ch.name }}
             </nuxt-link>
@@ -81,25 +91,13 @@ h4
         </li> -->
       </ul>
     </div>
-    <div
-      class="
-        flex
-        items-center
-        justify-between
-        py-3
-        text-sm
-        font-bold
-        border-b border-dashed
-        md:px-3
-        lg:px-4
-        md:text-xs
-        headings
-      "
-    >
-      <div class="text-lg font-normal text-gray-600">FILTERS</div>
+
+    <div class="flex items-center justify-between py-4 border-b">
+      <h5 class="text-sm font-bold uppercase">FILTERS</h5>
+
       <button
         class="
-          text-right
+          text-right text-xs
           cursor-pointer
           text-primary-500
           focus:outline-none
@@ -150,7 +148,7 @@ h4
     <!-- {{facets.categories.all.buckets[0].key}} == {{facets.categories.all.buckets[0].val.buckets[0].key}}
     <div v-if="facets.categories && facets.categories.all.buckets && facets.categories.all.buckets.length>0">
       <span class="px-2 py-2 text-sm font-semibold ms-2 headings">CATEGORY</span>
-      <ul class="px-2 py-2 overflow-auto ms-2 max-h-96">
+      <ul class="px-2 py-2 overflow-auto ms-2 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.categories && facets.categories.all.buckets"
           :key="b.key"
@@ -172,10 +170,11 @@ h4
         facets.brands.all.buckets &&
         facets.brands.all.buckets.length > 0
       "
-      class="pt-2 pb-5 my-3 border-b"
+      class="mt-4 border-b"
     >
-      <h4 class="px-2 text-base font-medium uppercase ms-2">BRAND</h4>
-      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+      <h5 class="text-sm font-bold uppercase">BRAND</h5>
+
+      <ul class="mt-2 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.brands &&
           facets.brands.all &&
@@ -184,13 +183,21 @@ h4
         >
           <Checkbox
             v-model="fl.brands"
-            class="flex items-center my-2 tracking-wider"
+            class="
+              flex
+              items-center
+              my-2
+              tracking-wider
+              text-sm
+              font-light
+              leading-3
+            "
             color="primary"
             :count="b.doc_count"
             :value="b.key"
             @change="changed({ model: 'brands', checked: fl.brands })"
           >
-            <div class="mt-0.5">{{ b.key }}</div>
+            <span>{{ b.key }}</span>
           </Checkbox>
         </li>
       </ul>
@@ -202,10 +209,11 @@ h4
         facets.genders.all.buckets &&
         facets.genders.all.buckets.length > 0
       "
-      class="pt-2 pb-5 my-3 border-b"
+      class="mt-4 border-b"
     >
-      <h4 class="px-2 text-base font-medium uppercase ms-2">GENDER</h4>
-      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+      <h5 class="text-sm font-bold uppercase">GENDER</h5>
+
+      <ul class="mt-2 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.genders &&
           facets.genders.all &&
@@ -214,13 +222,21 @@ h4
         >
           <Checkbox
             v-model="fl.genders"
-            class="flex items-center my-2 tracking-wider"
+            class="
+              flex
+              items-center
+              my-2
+              tracking-wider
+              text-sm
+              font-light
+              leading-3
+            "
             color="primary"
             :count="b.doc_count"
             :value="b.key"
             @change="changed({ model: 'genders', checked: fl.genders })"
           >
-            <div class="mt-0.5">{{ b.key }}</div>
+            <span>{{ b.key }}</span>
           </Checkbox>
         </li>
       </ul>
@@ -232,10 +248,11 @@ h4
         facets.colors.all.buckets &&
         facets.colors.all.buckets.length > 0
       "
-      class="pt-2 pb-5 my-3 border-b"
+      class="mt-4 border-b"
     >
-      <h4 class="px-2 text-base font-medium uppercase ms-2">COLOR</h4>
-      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+      <h5 class="text-sm font-bold uppercase">COLOR</h5>
+
+      <ul class="mt-2 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.colors &&
           facets.colors.all &&
@@ -244,14 +261,22 @@ h4
         >
           <Checkbox
             v-model="fl.colors"
-            class="flex flex-row my-2 tracking-wider"
+            class="
+              flex
+              items-center
+              my-2
+              tracking-wider
+              text-sm
+              font-light
+              leading-3
+            "
             color="primary"
             :doc-color="b.key"
             :count="b.doc_count"
             :value="b.key"
             @change="changed({ model: 'colors', checked: fl.colors })"
           >
-            <span class="mt-0.5">{{ b.key }}</span>
+            <span>{{ b.key }}</span>
           </Checkbox>
         </li>
       </ul>
@@ -263,11 +288,12 @@ h4
         facets.sizes.all.buckets &&
         facets.sizes.all.buckets.length > 0
       "
-      class="pt-3 pb-3 my-3 border-b"
       color="primary"
+      class="mt-4 border-b"
     >
-      <h4 class="px-2 text-base font-medium uppercase ms-2">SIZES</h4>
-      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+      <h5 class="text-sm font-bold uppercase">SIZES</h5>
+
+      <ul class="mt-2 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.sizes &&
           facets.sizes.all &&
@@ -276,12 +302,21 @@ h4
         >
           <Checkbox
             v-model="fl.sizes"
-            class="flex flex-row my-2 tracking-wider"
+            class="
+              flex
+              items-center
+              my-2
+              tracking-wider
+              text-sm
+              font-light
+              leading-3
+            "
             color="primary"
             :count="b.doc_count"
             :value="b.key"
             @change="changed({ model: 'sizes', checked: fl.sizes })"
-            ><span class="my-auto"> {{ b.key }}</span>
+          >
+            <span>{{ b.key }}</span>
           </Checkbox>
         </li>
       </ul>
@@ -295,11 +330,12 @@ h4
         facets.price.all.buckets.length > 0 &&
         getTotalDocCount(facets.price.all.buckets) > 0
       "
-      class="pt-3 pb-3 my-3 border-b"
       color="primary"
+      class="mt-4 border-b"
     >
-      <h4 class="px-2 text-base font-medium uppercase ms-2">PRICE RANGE</h4>
-      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+      <h5 class="text-sm font-bold uppercase">PRICE RANGE</h5>
+
+      <ul class="mt-2 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.price &&
           facets.price.all &&
@@ -309,12 +345,21 @@ h4
         >
           <Radio
             v-model="fl.price"
-            class="flex flex-row my-2 tracking-wider"
+            class="
+              flex
+              items-center
+              my-2
+              tracking-wider
+              text-sm
+              font-light
+              leading-3
+            "
             color="primary"
             :count="b.doc_count"
             :value="b.from + ',' + b.to"
             @change="changed({ model: 'price', checked: fl.price })"
-            ><span class="my-auto"> {{ b.key }}</span>
+          >
+            <span>{{ b.key }}</span>
           </Radio>
         </li>
       </ul>
@@ -328,11 +373,12 @@ h4
         facets.age.all.buckets.length > 0 &&
         getTotalDocCount(facets.age.all.buckets) > 0
       "
-      class="pt-3 pb-3 my-3 border-b"
       color="primary"
+      class="mt-4 border-b"
     >
-      <h4 class="px-2 text-base font-medium uppercase ms-2">AGE GROUP</h4>
-      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+      <h5 class="text-sm font-bold uppercase">AGE GROUP</h5>
+
+      <ul class="mt-2 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.age && facets.age.all && facets.age.all.buckets"
           v-if="b.doc_count > 0"
@@ -340,16 +386,26 @@ h4
         >
           <Radio
             v-model="fl.age"
-            class="flex flex-row my-2 tracking-wider"
+            class="
+              flex
+              items-center
+              my-2
+              tracking-wider
+              text-sm
+              font-light
+              leading-3
+            "
             color="primary"
             :count="b.doc_count"
             :value="b.from + ',' + b.to"
             @change="changed({ model: 'age', checked: fl.age })"
-            ><span class="my-auto"> {{ b.key }}</span>
+          >
+            <span>{{ b.key }}</span>
           </Radio>
         </li>
       </ul>
     </div>
+
     <div
       v-if="
         facets.discount &&
@@ -358,11 +414,12 @@ h4
         facets.discount.all.buckets.length > 0 &&
         getTotalDocCount(facets.discount.all.buckets) > 0
       "
-      class="pt-3 pb-3 my-3 border-b"
       color="primary"
+      class="mt-4 border-b"
     >
-      <h4 class="px-2 text-base font-medium uppercase ms-2">Discount</h4>
-      <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+      <h5 class="text-sm font-bold uppercase">Discount</h5>
+
+      <ul class="mt-2 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.discount &&
           facets.discount.all &&
@@ -372,12 +429,21 @@ h4
         >
           <Radio
             v-model="fl.discount"
-            class="flex flex-row my-2 tracking-wider"
+            class="
+              flex
+              items-center
+              my-2
+              tracking-wider
+              text-sm
+              font-light
+              leading-3
+            "
             color="primary"
             :count="b.doc_count"
             :value="b.from + ',' + b.to"
             @change="changed({ model: 'discount', checked: fl.discount })"
-            ><span class="my-auto"> {{ b.key }}</span>
+          >
+            <span>{{ b.key }}</span>
           </Radio>
         </li>
       </ul>
@@ -392,7 +458,7 @@ h4
     >
       <template v-if="v.key != 'Color' && v.val && v.val.buckets.length > 0">
         <h4 class="px-2 text-base font-medium uppercase ms-2">{{ v.key }}</h4>
-        <ul class="px-2 overflow-auto font-light ms-2 max-h-96">
+        <ul class="px-2 overflow-auto font-light ms-2 overflow-y-auto max-h-72">
           <li v-for="f in v.val.buckets" :key="f.key">
             <Checkbox
               v-model="fl[v.key]"
@@ -426,7 +492,7 @@ h4
       class="pt-3 pb-3 my-3 border-b"
     >
       <h4 class="px-2 text-base font-medium uppercase ms-2">COLOR</h4>
-      <ul class="px-2 overflow-auto font-light ms-4 max-h-96">
+      <ul class="px-2 overflow-auto font-light ms-4 overflow-y-auto max-h-72">
         <li
           v-for="b in facets.colors &&
           facets.colors.colors &&
@@ -606,4 +672,26 @@ export default {
          background-color: #6574cd;
          color: #f8fafc;
          } */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
+}
 </style>

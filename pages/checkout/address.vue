@@ -12,6 +12,7 @@
               class="w-full mx-auto mb-4 bg-white rounded shadow"
               :return-url="'/checkout/edit-address'"
               :add-return-url="'/checkout/add'"
+              @addressChanged="addressChanged"
             />
             <nuxt-link :to="localePath('/checkout/add')">
               <Button

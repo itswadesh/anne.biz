@@ -66,9 +66,7 @@
               px-3
               my-auto
               mt-5
-              sm:mt-0
-              sm:justify-between
-              sm:px-7
+              sm:mt-0 sm:justify-between sm:px-7
             "
           >
             <div class="w-full my-auto">
@@ -96,8 +94,7 @@
                   bg-white
                   border
                   rounded
-                  sm:p-1
-                  sm:px-3
+                  sm:p-1 sm:px-3
                   text-primary-500
                   border-primary-500
                   focus:outline-none
@@ -125,7 +122,9 @@
                   rounded
                   ms-3
                   focus:outline-none
-                  focus:ring-opacity-50 focus:ring focus:ring-offset-2
+                  focus:ring-opacity-50
+                  focus:ring
+                  focus:ring-offset-2
                   lg:rounded
                 "
                 @click="del(a.id)"
@@ -207,6 +206,7 @@ export default {
     },
     addressChanged(e) {
       this.selectedAddress = e
+      this.$emit('addressChanged', e)
     },
     async getAddress() {
       try {

@@ -9,12 +9,12 @@
       text-gray-600
       bg-gradient-to-br
       from-secondary-100
-      to-primary-100
+      to-yellow-100
     "
   >
     <!-- Login side start  -->
 
-    <div class="px-4 rounded-lg frosted w-full max-w-sm">
+    <div class="px-4 border rounded-lg frosted w-full max-w-sm">
       <div class="flex flex-col pt-10">
         <nuxt-link to="/" class="text-center">
           <span
@@ -78,17 +78,17 @@
               LOGIN
             </GrnIndGradiantButton>
           </form>
-          <div class="grid grid-cols-2 mt-5 text-sm">
+          <div class="flex items-center justify-between mt-5 text-sm">
             <nuxt-link
               to="/account/otp-login"
-              class="text-start text-primary-500 hover:underline"
+              class="text-start text-primary-500 hover:underline max-w-max"
             >
               Login with phone
             </nuxt-link>
 
             <nuxt-link
               to="/account/signup"
-              class="text-end text-primary-500 hover:underline"
+              class="text-end text-primary-500 hover:underline max-w-max"
             >
               Not a Member yet?
             </nuxt-link>

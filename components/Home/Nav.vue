@@ -9,10 +9,10 @@
         tracking-wide
         text-center
         bg-gray-800
-        text-accent-900
+        text-accent-900 text-sm
       "
     >
-      We experiencing an incident and we are on it.
+      We are upgrading. Will not take much time.
     </div>
     <header class="z-40 w-full h-24 p-2 shadow-xs sm:shadow-md lg:p-3 lg:h-16">
       <div class="relative flex justify-between mx-auto xl:container">
@@ -186,9 +186,7 @@
                   transform
                   text-primary-500
                   hw
-                  hover:-translate-y-1
-                  hover:scale-110
-                  hover:text-accent-900
+                  hover:-translate-y-1 hover:scale-110 hover:text-accent-900
                 "
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"

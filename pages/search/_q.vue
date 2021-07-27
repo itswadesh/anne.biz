@@ -94,7 +94,7 @@ import Megamenu from '~/components/Home/Megamenu.vue'
 export default {
   components: { Pagination, ProductCardEs, Megamenu },
   mixins: [c],
-  async asyncData({ params, query, $axios }) {
+  async asyncData({ params, query, $axios, store }) {
     let products = []
     let facets = []
     let fl = {}
@@ -103,6 +103,7 @@ export default {
     try {
       const q = params.q || null
       const qry = { ...query }
+      qry.store = store.state.store && store.state.store.id
       if (q) qry.q = q
       const result = await $axios.$get('/api/products/es', {
         params: { ...qry },

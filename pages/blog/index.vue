@@ -50,7 +50,7 @@ export default {
   },
   mixins: [c],
   layout: 'search',
-  async asyncData({ route, query, params, $axios, app }) {
+  async asyncData({ route, query, params, $axios, app, store }) {
     let posts = null
     let facets = []
     let fl = {}
@@ -63,6 +63,7 @@ export default {
           query: BLOGS,
           variables: query,
           fetchPolicy: 'no-cache',
+          store: store.state.store && store.state.store.id,
         })
       ).data.blogs
       blogCount = posts.count

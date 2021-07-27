@@ -69,6 +69,7 @@ export default {
           query: BRAND,
           variables: { slug: params.slug },
           fetchPolicy: 'no-cache',
+          store: store.state.store && store.state.store.id,
         })
       ).data.brand
       if (!brand || !brand.id) error('Brand not found')

@@ -56,7 +56,7 @@ import BLOGS from '~/gql/blog/blogs.gql'
 import BLOG from '~/gql/blog/blog.gql'
 
 export default {
-  async asyncData({ route, query, params, $axios, app }) {
+  async asyncData({ route, query, params, $axios, app, store }) {
     let post = null
     let err = null
     const client = app.apolloProvider.defaultClient
@@ -66,6 +66,7 @@ export default {
           query: BLOG,
           variables: { id: query.id },
           fetchPolicy: 'no-cache',
+          store: store.state.store && store.state.store.id,
         })
       ).data.blog
 

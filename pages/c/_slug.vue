@@ -126,7 +126,7 @@ export default {
   },
   mixins: [c],
   layout: 'search',
-  async asyncData({ route, query, params, $axios, app }) {
+  async asyncData({ route, query, params, $axios, app, store }) {
     let products = []
     let category = {}
     let facets = []
@@ -140,7 +140,10 @@ export default {
         category = (
           await client.query({
             query: CATEGORY,
-            variables: { slug: cslug },
+            variables: {
+              slug: cslug,
+              store: store.state.store && store.state.store.id,
+            },
             fetchPolicy: 'no-cache',
           })
         ).data.category

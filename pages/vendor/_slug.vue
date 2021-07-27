@@ -67,7 +67,10 @@ export default {
       brand = (
         await client.query({
           query: BRAND,
-          variables: { slug: params.slug },
+          variables: {
+            slug: params.slug,
+            store: store.state.store && store.state.store.id,
+          },
           fetchPolicy: 'no-cache',
         })
       ).data.brand

@@ -11,11 +11,7 @@
           py-3
           mt-5
           border-t-2
-          sm:border-t-0
-          sm:py-0
-          sm:mt-0
-          sm:border-r-2
-          sm:w-1/2
+          sm:border-t-0 sm:py-0 sm:mt-0 sm:border-r-2 sm:w-1/2
         "
       >
         <form
@@ -258,12 +254,16 @@ export default {
       this.loading = true
       // console.log('fesfsdfsdfs')
       try {
-        this.saveCustomerMessage = (
-          await this.$apollo.mutate({
-            mutation: SAVE_CUSTOMER_MESSAGE,
-            variables: this.contact,
-          })
-        ).data.saveCustomerMessage
+        this.saveCustomerMessage = await this.$post(
+          'customerMessage/saveCustomerMessage',
+          this.contact
+        )
+        // this.saveCustomerMessage = (
+        //   await this.$apollo.mutate({
+        //     mutation: SAVE_CUSTOMER_MESSAGE,
+        //     variables: this.contact,
+        //   })
+        // ).data.saveCustomerMessage
         // console.log('dsfsdfsdf', this.saveCustomerMessage)
         this.success(msg)
       } catch (e) {

@@ -25,15 +25,16 @@ export default {
     async getBanners() {
       this.loading = true
       try {
-        this.banners = (
-          await this.$apollo.query({
-            query: BANNERS,
-            variables: {
-              type: 'video',
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.banners
+        this.banners = await this.$get('banner/banners', { type: 'video' })
+        // this.banners = (
+        //   await this.$apollo.query({
+        //     query: BANNERS,
+        //     variables: {
+        //       type: 'video',
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.banners
       } catch (e) {
       } finally {
         this.loading = false

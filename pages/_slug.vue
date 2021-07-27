@@ -435,13 +435,14 @@ export default {
       const id = this.$route.query.id
       if (!id) return
       try {
-        this.pg = (
-          await this.$apollo.query({
-            query: PRODUCT_GROUP,
-            variables: { id },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.product_group
+        this.pg = await this.$get('product/product_group', { id })
+        // this.pg = (
+        //   await this.$apollo.query({
+        //     query: PRODUCT_GROUP,
+        //     variables: { id },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.product_group
         // this.checkWishlist()
       } catch (e) {}
     },
@@ -504,15 +505,18 @@ export default {
       // Recommended Products
       this.loading = true
       try {
-        this.recommendedProducts = (
-          await this.$apollo.query({
-            query: PRODUCTS,
-            variables: {
-              new: true,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.products
+        this.recommendedProducts = await this.$get('product/products', {
+          new: true,
+        })
+        // this.recommendedProducts = (
+        //   await this.$apollo.query({
+        //     query: PRODUCTS,
+        //     variables: {
+        //       new: true,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.products
       } catch (e) {
       } finally {
         this.loading = false

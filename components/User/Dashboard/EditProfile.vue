@@ -155,12 +155,13 @@ export default {
     ...mapMutations({ success: 'success', setErr: 'setErr' }),
     async getMe() {
       try {
-        this.profile = (
-          await this.$apollo.query({
-            query: ME,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.me
+        this.profile = await this.$get('user/me', {})
+        // this.profile = (
+        //   await this.$apollo.query({
+        //     query: ME,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.me
       } catch (e) {
         // console.log(e)
       }
@@ -172,12 +173,13 @@ export default {
       delete this.profile.info
       delete this.profile.address
       try {
-        const data = (
-          await this.$apollo.mutate({
-            mutation: UPDATE_PROFILE,
-            variables: this.profile,
-          })
-        ).data.updateProfile
+        const data = await this.$post('user/updateProfile', this.profile)
+        // const data = (
+        //   await this.$apollo.mutate({
+        //     mutation: UPDATE_PROFILE,
+        //     variables: this.profile,
+        //   })
+        // ).data.updateProfile
         this.success(msg)
         const r = this.$route.query.ref || '/'
         this.$router.push(r)

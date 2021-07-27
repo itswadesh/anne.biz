@@ -109,22 +109,25 @@ export default {
     }
   },
   async mounted() {
-    this.zego =
-      (
-        await this.$apollo.query({
-          query: ZEGO,
-          fetchPolicy: 'no-cache',
-        })
-      ).data.zego || {}
-
+    this.zego = (await this.$get('channel/zego', {})) || {}
     this.live =
-      (
-        await this.$apollo.query({
-          query: CHANNEL,
-          variables: { id: this.$route.params.id },
-          fetchPolicy: 'no-cache',
-        })
-      ).data.channel || {}
+      (await this.$get('channel/channel', { id: this.$route.params.id })) || {}
+    // this.zego =
+    //   (
+    //     await this.$apollo.query({
+    //       query: ZEGO,
+    //       fetchPolicy: 'no-cache',
+    //     })
+    //   ).data.zego || {}
+
+    // this.live =
+    //   (
+    //     await this.$apollo.query({
+    //       query: CHANNEL,
+    //       variables: { id: this.$route.params.id },
+    //       fetchPolicy: 'no-cache',
+    //     })
+    //   ).data.channel || {}
     const ZegoExpressEngine =
       require('zego-express-engine-webrtc').ZegoExpressEngine
     const zg = (this.zg = new ZegoExpressEngine(

@@ -181,9 +181,10 @@ export default {
       const user = (this.$store.state.auth || {}).user || null
       if (user) {
         try {
-          this.wishlist = (
-            await this.$apollo.query({ query: WISHLISTS })
-          ).data.wishlist
+          this.wishlist = await this.$get('wishlist/wishlists', {})
+          // this.wishlist = (
+          //   await this.$apollo.query({ query: WISHLISTS })
+          // ).data.wishlist
         } catch (e) {}
       }
     },

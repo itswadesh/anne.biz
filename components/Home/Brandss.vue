@@ -27,8 +27,7 @@
           grid-cols-2
           mx-auto
           sm:grid-cols-3
-          lg:grid-cols-5
-          lg:w-5/6
+          lg:grid-cols-5 lg:w-5/6
           md:w-3/4
         "
       >
@@ -135,13 +134,18 @@ export default {
     async getBrands() {
       // this.loading = true
       try {
-        this.brands = (
-          await this.$apollo.query({
-            query: BRANDS,
-            variables: { featured: true, limit: 5, page: 0 },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.brands
+        this.brands = await this.$get('brand/brands', {
+          featured: true,
+          limit: 5,
+          page: 0,
+        })
+        // this.brands = (
+        //   await this.$apollo.query({
+        //     query: BRANDS,
+        //     variables: { featured: true, limit: 5, page: 0 },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.brands
         // console.log("brands to show", this.brands)
       } catch (e) {
         // console.log(e)

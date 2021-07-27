@@ -217,12 +217,13 @@ export default {
     },
 
     async getData() {
-      const myChannels = (
-        await this.$apollo.query({
-          query: MY_CHANNELS,
-          fetchPolicy: 'no-cache',
-        })
-      ).data.myChannels
+      const myChannels = await this.$get('channel/myChannels', {})
+      // const myChannels = (
+      //   await this.$apollo.query({
+      //     query: MY_CHANNELS,
+      //     fetchPolicy: 'no-cache',
+      //   })
+      // ).data.myChannels
       this.myChannels = myChannels
     },
   },

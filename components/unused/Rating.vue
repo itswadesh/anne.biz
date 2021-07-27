@@ -141,13 +141,16 @@ export default {
   methods: {
     async getProduct() {
       try {
-        this.product = (
-          await this.$apollo.query({
-            query: PRODUCT,
-            variables: { id: this.$route.query.id },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.product
+        this.product = await this.$get('product/product', {
+          id: this.$route.query.id,
+        })
+        // this.product = (
+        //   await this.$apollo.query({
+        //     query: PRODUCT,
+        //     variables: { id: this.$route.query.id },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.product
         // console.log('product details', this.product)
       } catch (e) {
         // console.log(e)

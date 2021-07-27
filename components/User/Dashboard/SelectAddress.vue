@@ -211,12 +211,13 @@ export default {
     async getAddress() {
       try {
         this.skeleton = true
-        this.addresses = (
-          await this.$apollo.query({
-            query: MY_ADDRESSES,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.myAddresses
+        this.addresses = await this.$get('address/myAddresses', {})
+        // this.addresses = (
+        //   await this.$apollo.query({
+        //     query: MY_ADDRESSES,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.myAddresses
         // Can not push automatically, because it creates bad user experience when user clicks on back to address list page
         // if (this.addresses.count < 1) this.$router.push(this.addReturnUrl)
         this.selectedAddress =
@@ -246,11 +247,12 @@ export default {
             this.iconloading = true
             // this.$store.commit('clearErr')
             this.clearErr()
-            await this.$apollo.mutate({
-              mutation: DELETE_ADDRESS,
-              variables: { id },
-              // refetchQueries: () => [{ query: ADDRESSES }],
-            })
+            await this.$post('address/deleteAddress', { id })
+            // await this.$apollo.mutate({
+            //   mutation: DELETE_ADDRESS,
+            //   variables: { id },
+            //   // refetchQueries: () => [{ query: ADDRESSES }],
+            // })
             // query.refetch()
             await this.getAddress()
             // this.$refs.adQ.getApolloQuery().refresh();

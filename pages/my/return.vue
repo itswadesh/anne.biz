@@ -185,18 +185,25 @@ export default {
   methods: {
     async submit() {
       try {
-        const res = (
-          await this.$apollo.mutate({
-            mutation: RETURN_OR_REPLACE_ITEM,
-            variables: {
-              orderId: this.$route.query.orderId,
-              pId: this.order.pid,
-              reason: this.returnInfo.reason,
-              requestType: 'Return',
-              qty: 1,
-            },
-          })
-        ).data.returnOrReplace
+        const res = await this.$post('order/returnOrReplace', {
+          orderId: this.$route.query.orderId,
+          pId: this.order.pid,
+          reason: this.returnInfo.reason,
+          requestType: 'Return',
+          qty: 1,
+        })
+        // const res = (
+        //   await this.$apollo.mutate({
+        //     mutation: RETURN_OR_REPLACE_ITEM,
+        //     variables: {
+        //       orderId: this.$route.query.orderId,
+        //       pId: this.order.pid,
+        //       reason: this.returnInfo.reason,
+        //       requestType: 'Return',
+        //       qty: 1,
+        //     },
+        //   })
+        // ).data.returnOrReplace
         this.$router.push(
           `/my/order-details?orderId=${this.$route.query.orderId}&itemId=${this.$route.query.itemId}`
         )
@@ -206,13 +213,16 @@ export default {
     },
     async getData() {
       try {
-        const order = (
-          await this.$apollo.query({
-            query: ORDER_ITEM,
-            variables: { id: this.$route.query.itemId },
-            fetchPolicy: 'no-catch',
-          })
-        ).data.orderItem
+        const order = await this.$get('order/orderItem', {
+          id: this.$route.query.itemId,
+        })
+        // const order = (
+        //   await this.$apollo.query({
+        //     query: ORDER_ITEM,
+        //     variables: { id: this.$route.query.itemId },
+        //     fetchPolicy: 'no-catch',
+        //   })
+        // ).data.orderItem
         this.order = order
       } catch (e) {}
     },

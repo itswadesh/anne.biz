@@ -65,10 +65,12 @@ export default {
     },
   },
   async created() {
-    const videos = await this.$apollo.query({
-      query: VIDEOS,
-    })
-    this.videos = videos.data.videos
+    const videos = await this.$get('channel/videos', {})
+    this.videos = videos
+    // const videos = await this.$apollo.query({
+    //   query: VIDEOS,
+    // })
+    // this.videos = videos.data.videos
   },
   methods: {
     changePage(p) {

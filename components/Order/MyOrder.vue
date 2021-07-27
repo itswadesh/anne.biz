@@ -628,12 +628,13 @@ export default {
       // console.log('shivam order', this.myOrders)
       this.loading = true
       try {
-        this.myOrders = (
-          await this.$apollo.query({
-            query: MY_ORDERS,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.myOrders
+        this.myOrders = await this.$get('order/myOrders', {})
+        // this.myOrders = (
+        //   await this.$apollo.query({
+        //     query: MY_ORDERS,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.myOrders
       } catch (e) {
         // console.log(e)
       } finally {

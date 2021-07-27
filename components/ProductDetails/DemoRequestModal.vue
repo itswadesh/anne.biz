@@ -200,12 +200,16 @@ export default {
       this.loading = true
       // console.log('fesfsdfsdfs')
       try {
-        this.saveScheduleDemo = (
-          await this.$apollo.mutate({
-            mutation: SAVE_SCHEDULE_DEMO,
-            variables: this.schedule,
-          })
-        ).data.saveScheduleDemo
+        this.saveScheduleDemo = await this.$post(
+          'scheduleDemo/saveScheduleDemo',
+          this.schedule
+        )
+        // this.saveScheduleDemo = (
+        //   await this.$apollo.mutate({
+        //     mutation: SAVE_SCHEDULE_DEMO,
+        //     variables: this.schedule,
+        //   })
+        // ).data.saveScheduleDemo
         // console.log('dsfsdfsdf', this.saveCustomerMessage)
         this.success(msg)
         this.$router.push(`/my/demo-requests`)

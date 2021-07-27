@@ -40,13 +40,14 @@ export default {
     }
   },
   async created() {
-    this.items =
-      (
-        await this.$apollo.query({
-          query: CHANNELS,
-          fetchPolicy: 'no-cache',
-        })
-      ).data.channels.data || []
+    this.items = (await this.$get('channel/channels', {})) || []
+    // this.items =
+    //   (
+    //     await this.$apollo.query({
+    //       query: CHANNELS,
+    //       fetchPolicy: 'no-cache',
+    //     })
+    //   ).data.channels.data || []
   },
 }
 </script>

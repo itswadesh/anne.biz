@@ -98,13 +98,17 @@ export default {
     ...mapMutations({ setErr: 'setErr', success: 'success' }),
     async requestOtp() {
       try {
-        const result = (
-          await this.$apollo.mutate({
-            mutation: getOtp,
-            variables: { phone: this.country_code + this.phone },
-          })
-        ).data
-        this.timerCount = result.getOtp.timer
+        const result = await this.$post('user/getOtp', {
+          phone: this.country_code + this.phone,
+        })
+        // const result = (
+        //   await this.$apollo.mutate({
+        //     mutation: getOtp,
+        //     variables: { phone: this.country_code + this.phone },
+        //   })
+        // ).data
+        this.timerCount = result.timer
+        // this.timerCount = result.getOtp.timer
         this.success('OTP Send Successfully')
       } catch (e) {
         this.setErr(e)

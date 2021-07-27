@@ -94,16 +94,20 @@ export default {
     async getProducts() {
       this.loading = true
       try {
-        this.products = (
-          await this.$apollo.query({
-            query: PRODUCTS,
-            variables: {
-              category: this.$route.query.id,
-              page: this.currentPage,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.products
+        this.products = await this.$get('product/products', {
+          category: this.$route.query.id,
+          page: this.currentPage,
+        })
+        // this.products = (
+        //   await this.$apollo.query({
+        //     query: PRODUCTS,
+        //     variables: {
+        //       category: this.$route.query.id,
+        //       page: this.currentPage,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.products
         // console.log(this.products)
         // console.log('categoty', this.products)
       } catch (e) {

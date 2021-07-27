@@ -71,14 +71,15 @@ export default {
   },
   async created() {
     try {
-      this.channel =
-        (
-          await this.$apollo.query({
-            query: CHANNEL,
-            variables: { id: this.$route.params.id },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.channel || {}
+      this.channel = (await this.$get('', { id: this.$route.params.id })) || {}
+      // this.channel =
+      //   (
+      //     await this.$apollo.query({
+      //       query: CHANNEL,
+      //       variables: { id: this.$route.params.id },
+      //       fetchPolicy: 'no-cache',
+      //     })
+      //   ).data.channel || {}
     } catch (e) {}
   },
 }

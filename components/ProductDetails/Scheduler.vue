@@ -7,8 +7,7 @@
         justify-center
         min-h-screen
         text-center
-        sm:block
-        sm:p-0
+        sm:block sm:p-0
       "
     >
       <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -30,10 +29,7 @@
           rounded-lg
           shadow-xl
           text-start
-          sm:my-8
-          sm:align-middle
-          sm:max-w-lg
-          sm:w-full
+          sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
           h-96
         "
         role="dialog"
@@ -218,12 +214,13 @@ export default {
       this.loading = true
       // console.log('fesfsdfsdfs')
       try {
-        this.saveScheduleDemo = (
-          await this.$apollo.mutate({
-            mutation: SAVE_SCHEDULE_DEMO,
-            variables: this.schedule,
-          })
-        ).data.saveScheduleDemo
+        await this.$post('scheduleDemo/saveScheduleDemo', this.schedule)
+        // this.saveScheduleDemo = (
+        //   await this.$apollo.mutate({
+        //     mutation: SAVE_SCHEDULE_DEMO,
+        //     variables: this.schedule,
+        //   })
+        // ).data.saveScheduleDemo
         // console.log('dsfsdfsdf', this.saveCustomerMessage)
         this.success(msg)
         this.$router.push(`/my/demo-requests`)

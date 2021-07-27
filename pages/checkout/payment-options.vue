@@ -365,6 +365,15 @@ const CheckoutHeader = () => import('~/components/Checkout/CheckoutHeader.vue')
 const CheckoutSummary = () =>
   import('~/components/Checkout/CheckoutSummary.vue')
 export default {
+  components: {
+    CheckoutHeader,
+    CheckoutSummary,
+    // DebitCreditCard,
+    Radio,
+  },
+  middleware({ store, redirect }) {
+    if (store.state.cart.qty < 1) return redirect('/cart')
+  },
   data() {
     return {
       paymentMethods: null,
@@ -431,12 +440,15 @@ export default {
     async getPaymentMethods() {
       try {
         this.loading = true
-        const paymentMethods = (
-          await this.$apollo.query({
-            query: PAYMENT_METHODS,
-            variables: { active: true },
-          })
-        ).data.paymentMethods
+        const paymentMethods = await this.$get('payment/paymentMethods', {
+          active: true,
+        })
+        // const paymentMethods = (
+        //   await this.$apollo.query({
+        //     query: PAYMENT_METHODS,
+        //     variables: { active: true },
+        //   })
+        // ).data.paymentMethods
         if (paymentMethods && paymentMethods.data) {
           this.paymentMethods = paymentMethods.data
           this.paymentMethod =
@@ -506,15 +518,19 @@ export default {
           this.loading = true
           const { token } = await createToken()
           if (!token) return this.setErr('Invalid card number')
-          const capture = (
-            await this.$apollo.mutate({
-              mutation: STRIPE_MUTATION,
-              variables: {
-                address: this.$route.query.address,
-                token: token.id,
-              },
-            })
-          ).data.stripe
+          const capture = await this.$post('pay/stripe', {
+            address: this.$route.query.address,
+            token: token.id,
+          })
+          // const capture = (
+          //   await this.$apollo.mutate({
+          //     mutation: STRIPE_MUTATION,
+          //     variables: {
+          //       address: this.$route.query.address,
+          //       token: token.id,
+          //     },
+          //   })
+          // ).data.stripe
           this.$router.push(`/payment/success?id=${capture.id}?provider=Stripe`)
         } catch (e) {
           this.setErr(e)
@@ -556,27 +572,21 @@ export default {
     async getAddress() {
       try {
         this.loading = true
-        return (
-          await this.$apollo.query({
-            query: ADDRESS,
-            variables: { id: this.$route.query.address },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.address
+        return await this.$get('address/address', {
+          id: this.$route.query.address,
+        })
+        // return (
+        //   await this.$apollo.query({
+        //     query: ADDRESS,
+        //     variables: { id: this.$route.query.address },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.address
       } catch (e) {
       } finally {
         this.loading = false
       }
     },
-  },
-  components: {
-    CheckoutHeader,
-    CheckoutSummary,
-    // DebitCreditCard,
-    Radio,
-  },
-  middleware({ store, redirect }) {
-    if (store.state.cart.qty < 1) return redirect('/cart')
   },
 }
 </script>

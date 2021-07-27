@@ -38,14 +38,17 @@ export default {
     async getSelectedcategoriesProduct() {
       try {
         this.products = (
-          await this.$apollo.query({
-            query: PRODUCTS,
-            variables: {
-              category: this.category.id,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.products.data
+          await this.$get('product/products', { category: this.category.id })
+        ).data
+        // this.products = (
+        //   await this.$apollo.query({
+        //     query: PRODUCTS,
+        //     variables: {
+        //       category: this.category.id,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.products.data
 
         // console.log(this.products)
       } catch (e) {

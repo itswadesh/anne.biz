@@ -221,12 +221,13 @@ export default {
       this.listLoading = true
       // console.log('getting wishlist', this.getWishlist)
       try {
-        this.myWishlist = (
-          await this.$apollo.query({
-            query: MY_WISHLIST,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.myWishlist
+        this.myWishlist = await this.$get('wishlist/myWishlist', {})
+        // this.myWishlist = (
+        //   await this.$apollo.query({
+        //     query: MY_WISHLIST,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.myWishlist
       } catch (e) {
         // console.log(e)
       } finally {
@@ -237,14 +238,18 @@ export default {
       this.loading = true
       // console.log()
       try {
-        await this.$apollo.mutate({
-          mutation: TOGGLE,
-          variables: {
-            product: id,
-            variant: id,
-          },
-          fetchPolicy: 'no-cache',
+        await this.$post('wishlist/toggleWishlist', {
+          product: id,
+          variant: id,
         })
+        // await this.$apollo.mutate({
+        //   mutation: TOGGLE,
+        //   variables: {
+        //     product: id,
+        //     variant: id,
+        //   },
+        //   fetchPolicy: 'no-cache',
+        // })
 
         await this.getWishlist()
         // console.log('add to wishlist', this.toggleWishlist)

@@ -194,10 +194,13 @@ export default {
     async requestOtp() {
       this.loading = true
       try {
-        await this.$apollo.mutate({
-          mutation: GET_OTP,
-          variables: { phone: this.countryCode + this.phone },
+        await this.$post('user/getOtp', {
+          phone: this.countryCode + this.phone,
         })
+        // await this.$apollo.mutate({
+        //   mutation: GET_OTP,
+        //   variables: { phone: this.countryCode + this.phone },
+        // })
         // this.$emit('sendOtp', {
         //   phone: this.phone,
         //   countryCode: this.countryCode,

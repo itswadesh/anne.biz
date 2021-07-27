@@ -101,6 +101,49 @@ export default {
     }
   },
 
+  async created() {
+    await this.getData()
+    this.rtc = new RTCClient()
+    const rtc = this.rtc
+    if (process.client) {
+      this.joinEvent()
+    }
+    rtc.on('stream-added', (evt) => {
+      const { stream } = evt
+      // log('[agora] [stream-added] stream-added', stream.getId())
+      rtc.client.subscribe(stream)
+      // console.log('stream-added')
+    })
+
+    rtc.on('stream-subscribed', (evt) => {
+      const { stream } = evt
+      // log('[agora] [stream-subscribed] stream-added', stream.getId())
+      if (!this.remoteStreams.find((it) => it.getId() === stream.getId())) {
+        this.remoteStreams.push(stream)
+      }
+      // console.log('stream-subscribed')
+    })
+
+    rtc.on('stream-removed', (evt) => {
+      const { stream } = evt
+      // log('[agora] [stream-removed] stream-removed', stream.getId())
+      this.remoteStreams = this.remoteStreams.filter(
+        (it) => it.getId() !== stream.getId()
+      )
+      // console.log('stream-removed')
+    })
+
+    rtc.on('peer-online', (evt) => {
+      // this.$message(`Peer ${evt.uid} is online`)
+    })
+
+    rtc.on('peer-leave', (evt) => {
+      // this.$message(`Peer ${evt.uid} already leave`)
+      this.remoteStreams = this.remoteStreams.filter(
+        (it) => it.getId() !== evt.uid
+      )
+    })
+  },
   methods: {
     ...mapMutations({ setErr: 'setErr' }),
     joinEvent() {
@@ -174,58 +217,15 @@ export default {
     },
 
     async getData() {
-      const myChannels = (
-        await this.$apollo.query({
-          query: MY_CHANNELS,
-          fetchPolicy: 'no-cache',
-        })
-      ).data.myChannels
+      const myChannels = await this.$get('channel/myChannels', {})
+      // const myChannels = (
+      //   await this.$apollo.query({
+      //     query: MY_CHANNELS,
+      //     fetchPolicy: 'no-cache',
+      //   })
+      // ).data.myChannels
       this.myChannels = myChannels
     },
-  },
-
-  async created() {
-    await this.getData()
-    this.rtc = new RTCClient()
-    const rtc = this.rtc
-    if (process.client) {
-      this.joinEvent()
-    }
-    rtc.on('stream-added', (evt) => {
-      const { stream } = evt
-      // log('[agora] [stream-added] stream-added', stream.getId())
-      rtc.client.subscribe(stream)
-      // console.log('stream-added')
-    })
-
-    rtc.on('stream-subscribed', (evt) => {
-      const { stream } = evt
-      // log('[agora] [stream-subscribed] stream-added', stream.getId())
-      if (!this.remoteStreams.find((it) => it.getId() === stream.getId())) {
-        this.remoteStreams.push(stream)
-      }
-      // console.log('stream-subscribed')
-    })
-
-    rtc.on('stream-removed', (evt) => {
-      const { stream } = evt
-      // log('[agora] [stream-removed] stream-removed', stream.getId())
-      this.remoteStreams = this.remoteStreams.filter(
-        (it) => it.getId() !== stream.getId()
-      )
-      // console.log('stream-removed')
-    })
-
-    rtc.on('peer-online', (evt) => {
-      // this.$message(`Peer ${evt.uid} is online`)
-    })
-
-    rtc.on('peer-leave', (evt) => {
-      // this.$message(`Peer ${evt.uid} already leave`)
-      this.remoteStreams = this.remoteStreams.filter(
-        (it) => it.getId() !== evt.uid
-      )
-    })
   },
 }
 </script>

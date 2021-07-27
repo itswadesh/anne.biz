@@ -139,20 +139,21 @@ export default {
       busy: 'busy',
     }),
     removeProductFromList(id) {
-      console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz', id)
+      // console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz', id)
       // this.live.products.pull(p.id)
     },
     async search(q) {
       try {
         this.clearErr()
-        this.allProducts =
-          (
-            await this.$apollo.query({
-              query: PRODUCTS,
-              variables: { q },
-              fetchPolicy: 'no-cache',
-            })
-          ).data.products.data || []
+        this.allProducts = await this.$get('product/products', { q })
+        // this.allProducts =
+        //   (
+        //     await this.$apollo.query({
+        //       query: PRODUCTS,
+        //       variables: { q },
+        //       fetchPolicy: 'no-cache',
+        //     })
+        //   ).data.products.data || []
       } catch (e) {
         this.setErr(e)
       } finally {
@@ -167,18 +168,25 @@ export default {
           products = this.live.products.map((a) => a.id)
         }
         this.clearErr()
-        const live = (
-          await this.$apollo.mutate({
-            mutation: SAVE_CHANNEL,
-            variables: {
-              id,
-              title: this.live.title,
-              img: this.live.img,
-              scheduleDateTime: this.live.scheduleDateTime,
-              products,
-            },
-          })
-        ).data.saveChannel
+        const live = await this.$post('channel/saveChannel', {
+          id,
+          title: this.live.title,
+          img: this.live.img,
+          scheduleDateTime: this.live.scheduleDateTime,
+          products,
+        })
+        // const live = (
+        //   await this.$apollo.mutate({
+        //     mutation: SAVE_CHANNEL,
+        //     variables: {
+        //       id,
+        //       title: this.live.title,
+        //       img: this.live.img,
+        //       scheduleDateTime: this.live.scheduleDateTime,
+        //       products,
+        //     },
+        //   })
+        // ).data.saveChannel
         if (id === 'new' || !id || id === undefined || id === 'undefined')
           this.$router.push(`/live/${live.id}`)
       } catch (e) {
@@ -195,14 +203,15 @@ export default {
       } else {
         try {
           this.clearErr()
-          this.live =
-            (
-              await this.$apollo.query({
-                query: CHANNEL,
-                variables: { id },
-                fetchPolicy: 'no-cache',
-              })
-            ).data.channel || {}
+          this.live = (await this.$get('channel/channel', { id })) || {}
+          // this.live =
+          //   (
+          //     await this.$apollo.query({
+          //       query: CHANNEL,
+          //       variables: { id },
+          //       fetchPolicy: 'no-cache',
+          //     })
+          //   ).data.channel || {}
           this.live.scheduleDateTime = moment(
             this.live.scheduleDateTime
           ).format('YYYY-MM-DD hh:mm:ss a')

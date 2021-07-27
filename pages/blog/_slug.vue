@@ -92,12 +92,13 @@ export default {
   methods: {
     async getLatestPosts() {
       try {
-        this.latestPosts = (
-          await this.$apollo.query({
-            query: BLOGS,
-            variables: { limit: 10 },
-          })
-        ).data.blogs
+        this.latestPosts = await this.$get('blog/blogs', { limit: 10 })
+        // this.latestPosts = (
+        //   await this.$apollo.query({
+        //     query: BLOGS,
+        //     variables: { limit: 10 },
+        //   })
+        // ).data.blogs
       } catch (e) {}
     },
   },

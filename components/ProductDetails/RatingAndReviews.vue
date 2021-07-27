@@ -142,13 +142,14 @@ export default {
       const pid = this.$route.query.id
       if (!pid) return
       try {
-        this.productReviews = (
-          await this.$apollo.query({
-            query: PRODUCT_REVIEWS,
-            variables: { pid },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.productReviews
+        this.productReviews = await this.$get('review/productReviews', { pid })
+        // this.productReviews = (
+        //   await this.$apollo.query({
+        //     query: PRODUCT_REVIEWS,
+        //     variables: { pid },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.productReviews
       } catch (e) {}
     },
   },

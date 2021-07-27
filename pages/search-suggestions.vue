@@ -214,14 +214,17 @@ export default {
       try {
         this.loading = true
         this.popularSearches = (
-          await this.$apollo.query({
-            query: POPULAR_SEARCHES,
-            variables: {
-              sort: '-popularity',
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.popularSearches.data
+          await this.$get('search/popularSearches', { sort: '-popularity' })
+        ).data
+        // this.popularSearches = (
+        //   await this.$apollo.query({
+        //     query: POPULAR_SEARCHES,
+        //     variables: {
+        //       sort: '-popularity',
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.popularSearches.data
       } catch (e) {
         // console.log(e)
       } finally {

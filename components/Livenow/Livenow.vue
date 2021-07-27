@@ -143,10 +143,11 @@ export default {
     }
   },
   async created() {
-    const vdo = await this.$apollo.query({
-      query: CHANNELS,
-    })
-    this.channels = vdo.data.channels.data
+    const vdo = (await this.$get('channel/channels', {})).data
+    // const vdo = (await this.$apollo.query({
+    //   query: CHANNELS,
+    // })).data.channels.data
+    this.channels = vdo
     // console.log(vdo)
   },
 }

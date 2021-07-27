@@ -11,8 +11,7 @@
       transition
       bg-white
       shadow-lg
-      lg:z-0
-      lg:w-72
+      lg:z-0 lg:w-72
       md:w-96
       lg:relative
     "
@@ -506,12 +505,13 @@ export default {
         else if (slug) bv.slug = slug
         try {
           if (bv.id || bv.slug) {
-            this.brand = brand = (
-              await this.$apollo.query({
-                query: BRAND,
-                variables: bv,
-              })
-            ).data.brand
+            this.brand = brand = await this.$get('brand/brand', bv)
+            // this.brand = brand = (
+            //   await this.$apollo.query({
+            //     query: BRAND,
+            //     variables: bv,
+            //   })
+            // ).data.brand
           }
         } catch (e) {}
         const variables = {}
@@ -519,13 +519,14 @@ export default {
         if (brand && brand.id) variables.brand = brand.id
         if (slug && !this.$route.path.includes('/brand/')) variables.slug = slug
         // console.log('aaaaaaaaaaaaaaaa', variables)
-        this.sideMegamenu = (
-          await this.$apollo.query({
-            query: GET_MEGAMENU,
-            variables,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.megamenu
+        this.sideMegamenu = await this.$get('category/megamenu', variables)
+        // this.sideMegamenu = (
+        //   await this.$apollo.query({
+        //     query: GET_MEGAMENU,
+        //     variables,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.megamenu
       } catch (e) {}
     },
     // async getCategories() {

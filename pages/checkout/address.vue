@@ -121,12 +121,13 @@ export default {
     async getAddress() {
       try {
         this.loading = true
-        this.addresses = (
-          await this.$apollo.query({
-            query: MY_ADDRESSES,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.myAddresses
+        this.addresses = await this.$get('address/myAddresses', {})
+        // this.addresses = (
+        //   await this.$apollo.query({
+        //     query: MY_ADDRESSES,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.myAddresses
         this.selectedAddress =
           this.addresses &&
           this.addresses.data &&
@@ -149,11 +150,12 @@ export default {
           try {
             this.iconloading = true
             this.clearErr()
-            await this.$apollo.mutate({
-              mutation: DELETE_ADDRESS,
-              variables: { id },
-              // refetchQueries: () => [{ query: ADDRESSES }],
-            })
+            await this.$post('address/deleteAddress', { id })
+            // await this.$apollo.mutate({
+            //   mutation: DELETE_ADDRESS,
+            //   variables: { id },
+            //   // refetchQueries: () => [{ query: ADDRESSES }],
+            // })
             // query.refetch()
             await this.getAddress()
             // this.$refs.adQ.getApolloQuery().refresh();

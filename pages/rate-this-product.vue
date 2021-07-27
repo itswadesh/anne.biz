@@ -164,13 +164,16 @@ export default {
     async getProduct() {
       this.loading = true
       try {
-        this.product = (
-          await this.$apollo.query({
-            query: PRODUCT,
-            variables: { id: this.$route.query.id },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.product
+        this.product = await this.$get('product/product', {
+          id: this.$route.query.id,
+        })
+        // this.product = (
+        //   await this.$apollo.query({
+        //     query: PRODUCT,
+        //     variables: { id: this.$route.query.id },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.product
         this.updatedDeliveryDates()
       } catch (e) {
       } finally {
@@ -180,12 +183,13 @@ export default {
     async submit() {
       const msg = 'Your Comment Added'
       try {
-        this.saveReview = (
-          await this.$apollo.mutate({
-            mutation: REVIEW,
-            variables: this.saveReview,
-          })
-        ).data.saveReview
+        this.saveReview = await this.$post('review/saveReview', this.saveReview)
+        // this.saveReview = (
+        //   await this.$apollo.mutate({
+        //     mutation: REVIEW,
+        //     variables: this.saveReview,
+        //   })
+        // ).data.saveReview
         this.success(msg)
         if (this.product)
           this.$router.push(`/${this.product.slug}?id=${this.product.id}`)

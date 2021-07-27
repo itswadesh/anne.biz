@@ -8,8 +8,7 @@
             grid grid-cols-1
             gap-2
             text-sm text-primary-500
-            md:gap-4
-            md:grid-cols-2
+            md:gap-4 md:grid-cols-2
           "
         >
           <label class="flex flex-col-reverse col-span-2 md:col-span-1">
@@ -128,8 +127,7 @@
                 tracking-widest
                 text-white
                 bg-secondary-500
-                md:w-1/3
-                md:mt-0
+                md:w-1/3 md:mt-0
                 focus:outline-none
                 duration-200
                 hover:-translate-y-0.5
@@ -231,13 +229,16 @@ export default {
     }),
     async getAddress() {
       try {
-        this.address = (
-          await this.$apollo.query({
-            query: ADDRESS,
-            variables: { id: this.$route.query.id },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.address
+        this.address = await this.$get('address/address', {
+          id: this.$route.query.id,
+        })
+        // this.address = (
+        //   await this.$apollo.query({
+        //     query: ADDRESS,
+        //     variables: { id: this.$route.query.id },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.address
         if (!this.address) {
           this.address.firstName = this.user.firstName
           this.address.lastName = this.user.lastName
@@ -256,12 +257,15 @@ export default {
     },
     async getLocationFromZip(zip) {
       try {
-        const locationData = (
-          await this.$apollo.mutate({
-            mutation: GET_LOCATION_FROM_ZIP,
-            variables: { zip },
-          })
-        ).data.getLocationFromZip
+        const locationData = await this.$post('location/getLocationFromZip', {
+          zip,
+        })
+        // const locationData = (
+        //   await this.$apollo.mutate({
+        //     mutation: GET_LOCATION_FROM_ZIP,
+        //     variables: { zip },
+        //   })
+        // ).data.getLocationFromZip
         if (!this.address.city) this.address.city = locationData.city
         if (!this.address.state) this.address.state = locationData.state
         if (!this.address.country) this.address.country = locationData.country
@@ -276,12 +280,13 @@ export default {
         if (this.id !== 'new')
           if (this.address.coords) delete this.address.coords.__typename
         if (!this.address.id) this.address.id = 'new'
-        this.address = (
-          await this.$apollo.mutate({
-            mutation: SAVE_ADDRESS,
-            variables: this.address,
-          })
-        ).data.saveAddress
+        this.address = await this.$post('address/saveAddress', this.address)
+        // this.address = (
+        //   await this.$apollo.mutate({
+        //     mutation: SAVE_ADDRESS,
+        //     variables: this.address,
+        //   })
+        // ).data.saveAddress
         this.success(msg)
         if (this.$route.query.prev)
           this.$router.push(`/${this.$route.query.prev}`)

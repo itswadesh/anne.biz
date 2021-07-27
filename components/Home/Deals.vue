@@ -55,10 +55,7 @@
                 text-xs
                 ms-4
                 me-2
-                lg:ms-0
-                lg:me-0
-                lg:mx-0
-                lg:flex-row
+                lg:ms-0 lg:me-0 lg:mx-0 lg:flex-row
               "
             >
               <span class="me-1">Sales</span>
@@ -73,10 +70,7 @@
                 text-xs
                 ms-4
                 me-2
-                lg:ms-0
-                lg:me-0
-                lg:mx-0
-                lg:flex-row
+                lg:ms-0 lg:me-0 lg:mx-0 lg:flex-row
               "
             >
               <span class="me-1">Sales</span>
@@ -277,12 +271,13 @@ export default {
     async getDeals() {
       this.loading = true
       try {
-        this.deals = (
-          await this.$apollo.query({
-            query: DEALS,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.listDeals.data
+        this.deals = (await this.$get('deal/listDeals', {})).data
+        // this.deals = (
+        //   await this.$apollo.query({
+        //     query: DEALS,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.listDeals.data
 
         // console.log(this.deals, 'DeaALSSSS')
         // console.log(this.deals[0].endTimeISO.getDate())
@@ -296,15 +291,16 @@ export default {
     async getProducts() {
       this.loading = true
       try {
-        this.products = (
-          await this.$apollo.query({
-            query: PRODUCTS,
-            variables: {
-              hot: true,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.products
+        this.products = await this.$get('product/products', { hot: true })
+        // this.products = (
+        //   await this.$apollo.query({
+        //     query: PRODUCTS,
+        //     variables: {
+        //       hot: true,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.products
       } catch (e) {
         // console.log(e)
       } finally {

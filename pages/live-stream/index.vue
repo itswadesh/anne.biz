@@ -110,7 +110,45 @@ export default {
       title: 'Live Stream',
     }
   },
+  async created() {
+    await this.getData()
+    this.rtc = new RTCClient()
+    const rtc = this.rtc
 
+    rtc.on('stream-added', (evt) => {
+      const { stream } = evt
+      log('[agora] [stream-added] stream-added', stream.getId())
+      rtc.client.subscribe(stream)
+    })
+
+    rtc.on('stream-subscribed', (evt) => {
+      const { stream } = evt
+      log('[agora] [stream-subscribed] stream-added', stream.getId())
+      if (!this.remoteStreams.find((it) => it.getId() === stream.getId())) {
+        this.remoteStreams.push(stream)
+      }
+    })
+
+    rtc.on('stream-removed', (evt) => {
+      const { stream } = evt
+      log('[agora] [stream-removed] stream-removed', stream.getId())
+      this.remoteStreams = this.remoteStreams.filter(
+        (it) => it.getId() !== stream.getId()
+      )
+    })
+
+    rtc.on('peer-online', (evt) => {
+      this.success(`Peer ${evt.uid} is online`)
+    })
+
+    rtc.on('peer-leave', (evt) => {
+      this.success(`Peer ${evt.uid} already leave`)
+      this.remoteStreams = this.remoteStreams.filter(
+        (it) => it.getId() !== evt.uid
+      )
+    })
+    // console.log('basic call first page loaded', rtc)
+  },
   methods: {
     ...mapMutations({ setErr: 'setErr', success: 'success', busy: 'busy' }),
     async joinEvent() {
@@ -118,13 +156,17 @@ export default {
       const channel = (this.option.channel = this.AGORA_CHANNEL_NAME)
       try {
         this.busy(true)
-        const rtcTokenObject = (
-          await this.$apollo.query({
-            query: RTC_TOKEN,
-            variables: { isPublisher: true, channel },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.rtcToken
+        const rtcTokenObject = await this.$get('channel/rtcToken', {
+          isPublisher: true,
+          channel,
+        })
+        // const rtcTokenObject = (
+        //   await this.$apollo.query({
+        //     query: RTC_TOKEN,
+        //     variables: { isPublisher: true, channel },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.rtcToken
         this.option.token = rtcTokenObject.token
         this.option.uid = rtcTokenObject.uid
       } catch (e) {
@@ -189,55 +231,16 @@ export default {
     },
 
     async getData() {
-      const myChannels = (
-        await this.$apollo.query({
-          query: MY_CHANNELS,
-          fetchPolicy: 'no-cache',
-        })
-      ).data.myChannels
+      const myChannels = await this.$get('channel/myChannels', {})
+      // const myChannels = (
+      //   await this.$apollo.query({
+      //     query: MY_CHANNELS,
+      //     fetchPolicy: 'no-cache',
+      //   })
+      // ).data.myChannels
       // console.log('my schduled live stream is', myChannels)
       this.myChannels = myChannels
     },
-  },
-
-  async created() {
-    await this.getData()
-    this.rtc = new RTCClient()
-    const rtc = this.rtc
-
-    rtc.on('stream-added', (evt) => {
-      const { stream } = evt
-      log('[agora] [stream-added] stream-added', stream.getId())
-      rtc.client.subscribe(stream)
-    })
-
-    rtc.on('stream-subscribed', (evt) => {
-      const { stream } = evt
-      log('[agora] [stream-subscribed] stream-added', stream.getId())
-      if (!this.remoteStreams.find((it) => it.getId() === stream.getId())) {
-        this.remoteStreams.push(stream)
-      }
-    })
-
-    rtc.on('stream-removed', (evt) => {
-      const { stream } = evt
-      log('[agora] [stream-removed] stream-removed', stream.getId())
-      this.remoteStreams = this.remoteStreams.filter(
-        (it) => it.getId() !== stream.getId()
-      )
-    })
-
-    rtc.on('peer-online', (evt) => {
-      this.success(`Peer ${evt.uid} is online`)
-    })
-
-    rtc.on('peer-leave', (evt) => {
-      this.success(`Peer ${evt.uid} already leave`)
-      this.remoteStreams = this.remoteStreams.filter(
-        (it) => it.getId() !== evt.uid
-      )
-    })
-    // console.log('basic call first page loaded', rtc)
   },
 }
 </script>

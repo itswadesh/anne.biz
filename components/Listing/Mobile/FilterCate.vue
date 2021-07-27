@@ -322,38 +322,41 @@ export default {
     },
     async getBrands() {
       try {
-        this.brands = (
-          await this.$apollo.query({
-            query: GET_BRANDS,
-            variables: { level: 0 },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.brands.data
+        this.brands = (await this.$get('brand/brands', { level: 0 })).data
+        // this.brands = (
+        //   await this.$apollo.query({
+        //     query: GET_BRANDS,
+        //     variables: { level: 0 },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.brands.data
       } catch (e) {}
     },
 
     async getSizes() {
       try {
-        this.sizes = (
-          await this.$apollo.query({
-            query: GET_SIZES,
-            variables: { level: 0 },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.sizes.data
+        this.sizes = (await this.$get('size/sizes', { level: 0 })).data
+        // this.sizes = (
+        //   await this.$apollo.query({
+        //     query: GET_SIZES,
+        //     variables: { level: 0 },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.sizes.data
       } catch (e) {}
     },
 
     async getColors() {
       // console.log('get categories')
       try {
-        this.colors = (
-          await this.$apollo.query({
-            query: GET_COLORS,
-            variables: { level: 0 },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.colors.data
+        this.colors = (await this.$get('color/colors', { level: 0 })).data
+        // this.colors = (
+        //   await this.$apollo.query({
+        //     query: GET_COLORS,
+        //     variables: { level: 0 },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.colors.data
         // console.log(this.colors, 'colors')
       } catch (e) {
         // console.log(e)

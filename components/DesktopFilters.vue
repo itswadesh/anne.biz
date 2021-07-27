@@ -569,12 +569,16 @@ export default {
         else if (slug) bv.slug = slug
         try {
           if (bv.id || bv.slug) {
-            this.brand = brand = (
-              await this.$apollo.query({
-                query: BRAND,
-                variables: bv,
-              })
-            ).data.brand
+            this.brand = await this.$get('brand/brand', {
+              query: BRAND,
+              variables: bv,
+            })
+            // this.brand = brand = (
+            //   await this.$apollo.query({
+            //     query: BRAND,
+            //     variables: bv,
+            //   })
+            // ).data.brand
           }
         } catch (e) {}
         const variables = {}
@@ -582,13 +586,14 @@ export default {
         if (brand && brand.id) variables.brand = brand.id
         if (slug && !this.$route.path.includes('/brand/')) variables.slug = slug
         // console.log('aaaaaaaaaaaaaaaa', variables)
-        this.sideMegamenu = (
-          await this.$apollo.query({
-            query: GET_MEGAMENU,
-            variables,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.megamenu
+        this.sideMegamenu = await this.$get('category/megamenu', variables)
+        // this.sideMegamenu = (
+        //   await this.$apollo.query({
+        //     query: GET_MEGAMENU,
+        //     variables,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.megamenu
       } catch (e) {}
     },
     slug(slug) {
@@ -632,13 +637,18 @@ export default {
     async getParentBrands() {
       // this.loading = true
       try {
-        this.parentBrands = (
-          await this.$apollo.query({
-            query: PARENT_BRANDS,
-            variables: { featured: true, limit: 5, page: 0 },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.parentBrands
+        this.parentBrands = await this.$get('brand/parentBrands', {
+          featured: true,
+          limit: 5,
+          page: 0,
+        })
+        // this.parentBrands = (
+        //   await this.$apollo.query({
+        //     query: PARENT_BRANDS,
+        //     variables: { featured: true, limit: 5, page: 0 },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.parentBrands
         // console.log("brands to show", this.brands)
       } catch (e) {
         // console.log(e)

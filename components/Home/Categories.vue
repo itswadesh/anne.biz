@@ -28,10 +28,8 @@
         p-1
         px-3
         md:grid-cols-4
-        lg:grid-cols-6
-        lg:px-28
-        md:p-8
-        md:px-24
+        lg:grid-cols-6 lg:px-28
+        md:p-8 md:px-24
       "
     >
       <div
@@ -54,8 +52,7 @@
               rounded-full
               border-secondary-500
               hover:shadow-xl
-              md:w-32
-              md:h-32
+              md:w-32 md:h-32
             "
           />
           <span
@@ -98,13 +95,17 @@ export default {
     async getCategories() {
       this.loading = true
       try {
-        this.categories = (
-          await this.$apollo.query({
-            query: CATEGORIES,
-            variables: { img: true, shopbycategory: true },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.categories
+        this.categories = await this.$get('category/categories', {
+          img: true,
+          shopbycategory: true,
+        })
+        // this.categories = (
+        //   await this.$apollo.query({
+        //     query: CATEGORIES,
+        //     variables: { img: true, shopbycategory: true },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.categories
       } catch (e) {
         // console.log(e)
       } finally {

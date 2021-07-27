@@ -21,8 +21,7 @@
                 font-medium
                 text-gray-600
                 sm:text-xl
-                md:mt-4
-                md:py-0
+                md:mt-4 md:py-0
                 xl:mt-0
                 lh75
               "
@@ -776,13 +775,14 @@ export default {
       const pid = this.$route.query.id
       if (!pid) return
       try {
-        this.reviewSummary = (
-          await this.$apollo.query({
-            query: REVIEWS,
-            variables: { pid },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.reviewSummary
+        this.reviewSummary = await this.$get('review/reviewSummary', { pid })
+        // this.reviewSummary = (
+        //   await this.$apollo.query({
+        //     query: REVIEWS,
+        //     variables: { pid },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.reviewSummary
       } catch (e) {}
     },
     ...mapMutations({

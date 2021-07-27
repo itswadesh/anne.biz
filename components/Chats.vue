@@ -69,26 +69,34 @@ export default {
     },
     async getData() {
       try {
-        this.chats = (
-          await this.$apollo.query({
-            query: CHANNEL_MESSAGES,
-            variables: { channel: this.channel },
-          })
-        ).data.channelMessages
+        this.chats = await this.$get('im/channelMessages', {
+          channel: this.channel,
+        })
+        // this.chats = (
+        //   await this.$apollo.query({
+        //     query: CHANNEL_MESSAGES,
+        //     variables: { channel: this.channel },
+        //   })
+        // ).data.channelMessages
       } catch (e) {}
     },
     async submit() {
       try {
-        const chat = (
-          await this.$apollo.mutate({
-            mutation: SAVE_IM,
-            variables: {
-              id: 'new',
-              channel: this.channel,
-              message: this.message,
-            },
-          })
-        ).data
+        const chat = await this.$post('im/sendInstantMessage', {
+          id: 'new',
+          channel: this.channel,
+          message: this.message,
+        })
+        // const chat = (
+        //   await this.$apollo.mutate({
+        //     mutation: SAVE_IM,
+        //     variables: {
+        //       id: 'new',
+        //       channel: this.channel,
+        //       message: this.message,
+        //     },
+        //   })
+        // ).data
         this.message = ''
       } catch (e) {}
     },

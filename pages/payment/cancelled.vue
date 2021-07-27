@@ -30,8 +30,7 @@
               class="
                 flex flex-row
                 justify-center
-                pt-4
-                pt:mt-0
+                pt-4 pt:mt-0
                 lg:justify-between
               "
             >
@@ -118,8 +117,7 @@
                   flex flex-col
                   justify-center
                   w-full
-                  lg:justify-between
-                  lg:flex-row
+                  lg:justify-between lg:flex-row
                   py-7
                 "
               >
@@ -134,8 +132,7 @@
                         rounded
                         shadow
                         px-4
-                        lg:px-3
-                        lg:p-2
+                        lg:px-3 lg:p-2
                         focus:outline-none
                         duration-200
                         hover:-translate-y-0.5
@@ -164,8 +161,7 @@
                         focus:outline-none
                         md:py-2
                         px-4
-                        lg:px-3
-                        lg:p-2
+                        lg:px-3 lg:p-2
                         duration-200
                         hover:-translate-y-0.5
                         transition
@@ -475,13 +471,16 @@ export default {
       try {
         this.loading = true
         this.clearErr()
-        this.order = (
-          await this.$apollo.query({
-            query: ORDER,
-            variables: { id: this.$route.query.id },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.order
+        this.order = await this.$get('order/order', {
+          id: this.$route.query.id,
+        })
+        // this.order = (
+        //   await this.$apollo.query({
+        //     query: ORDER,
+        //     variables: { id: this.$route.query.id },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.order
       } catch (e) {
         this.setErr(e)
       } finally {

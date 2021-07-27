@@ -64,16 +64,20 @@ export default {
     }),
     async checkWishlist() {
       try {
-        this.existInWishlist = (
-          await this.$apollo.query({
-            query: CHECK_WISHLIST,
-            variables: {
-              product: this.pid,
-              variant: this.pid,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.checkWishlist
+        this.existInWishlist = await this.$get('wishlist/checkWishlist', {
+          product: this.pid,
+          variant: this.pid,
+        })
+        // this.existInWishlist = (
+        //   await this.$apollo.query({
+        //     query: CHECK_WISHLIST,
+        //     variables: {
+        //       product: this.pid,
+        //       variant: this.pid,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.checkWishlist
       } catch (e) {
         this.setErr(e)
       }
@@ -87,16 +91,20 @@ export default {
       const err = 'Product removed from wishlist'
       try {
         this.savingWishlist = true
-        this.existInWishlist = (
-          await this.$apollo.mutate({
-            mutation: TOGGLE,
-            variables: {
-              product: this.pid,
-              variant: this.pid,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.toggleWishlist
+        this.existInWishlist = await this.$post('wishlist/toggleWishlist', {
+          product: this.pid,
+          variant: this.pid,
+        })
+        // this.existInWishlist = (
+        //   await this.$apollo.mutate({
+        //     mutation: TOGGLE,
+        //     variables: {
+        //       product: this.pid,
+        //       variant: this.pid,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.toggleWishlist
         this.existInWishlist ? this.success(msg) : this.info(err)
       } catch (e) {
         // console.log('zzzzzzzzzzzzzzzzzz', e)

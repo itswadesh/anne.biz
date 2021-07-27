@@ -161,19 +161,26 @@ export default {
     async getBrands() {
       // this.loading = true
       try {
-        this.childBrands = (
-          await this.$apollo.query({
-            query: BRANDS,
-            variables: {
-              limit: 10,
-              page: 0,
-              sort: 'sort',
-              parent: this.brand.id,
-              featured: true,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.brands
+        this.childBrands = await this.$get('brand/brands', {
+          limit: 10,
+          page: 0,
+          sort: 'sort',
+          parent: this.brand.id,
+          featured: true,
+        })
+        // this.childBrands = (
+        //   await this.$apollo.query({
+        //     query: BRANDS,
+        //     variables: {
+        //       limit: 10,
+        //       page: 0,
+        //       sort: 'sort',
+        //       parent: this.brand.id,
+        //       featured: true,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.brands
         // console.log('brands to show', this.childBrands)
       } catch (e) {
         // console.log(e)
@@ -185,42 +192,57 @@ export default {
       this.loading = true
       // this.skeleton = true
       try {
-        const banners = (
-          await this.$apollo.query({
-            query: BANNERS,
-            variables: {
-              sort: 'sort',
-              pageId: this.brand.id,
-              active: true,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.banners
+        const banners = await this.$get('banner/banners', {
+          sort: 'sort',
+          pageId: this.brand.id,
+          active: true,
+        })
+        // const banners = (
+        //   await this.$apollo.query({
+        //     query: BANNERS,
+        //     variables: {
+        //       sort: 'sort',
+        //       pageId: this.brand.id,
+        //       active: true,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.banners
         this.sliderBanners = banners.data.filter((b) => b.type === 'slider')
         // this.heroBanners = banners.data.filter((b) => b.type === 'hero')
         this.videoBanners = banners.data.filter((b) => b.type === 'video')
-        this.heroBanners = (
-          await this.$apollo.query({
-            query: GROUP_BY_BANNER,
-            variables: {
-              pageId: this.brand.id,
-              type: 'hero',
-              sort: 'sort',
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.groupByBanner
-        this.pickedBanners = (
-          await this.$apollo.query({
-            query: GROUP_BY_BANNER,
-            variables: {
-              pageId: this.brand.id,
-              type: 'picked',
-              sort: 'sort',
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.groupByBanner
+        this.heroBanners = await this.$get('banner/groupByBanner', {
+          pageId: this.brand.id,
+          type: 'hero',
+          sort: 'sort',
+        })
+        this.pickedBanners = await this.$get('banner/groupByBanner', {
+          pageId: this.brand.id,
+          type: 'hero',
+          sort: 'sort',
+        })
+        // this.heroBanners = (
+        //   await this.$apollo.query({
+        //     query: GROUP_BY_BANNER,
+        //     variables: {
+        //       pageId: this.brand.id,
+        //       type: 'hero',
+        //       sort: 'sort',
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.groupByBanner
+        // this.pickedBanners = (
+        //   await this.$apollo.query({
+        //     query: GROUP_BY_BANNER,
+        //     variables: {
+        //       pageId: this.brand.id,
+        //       type: 'picked',
+        //       sort: 'sort',
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.groupByBanner
       } catch (e) {
         // console.log(e)
       } finally {
@@ -239,15 +261,18 @@ export default {
     async getYouMayLikeProducts() {
       this.loading = true
       try {
-        this.youMayLikeProducts = (
-          await this.$apollo.query({
-            query: PRODUCTS,
-            variables: {
-              sale: true,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.products
+        this.youMayLikeProducts = await this.$get('product/products', {
+          sale: true,
+        })
+        // this.youMayLikeProducts = (
+        //   await this.$apollo.query({
+        //     query: PRODUCTS,
+        //     variables: {
+        //       sale: true,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.products
       } catch (e) {
         // console.log(e)
       } finally {
@@ -257,15 +282,16 @@ export default {
     async getHotProducts() {
       this.loading = true
       try {
-        this.hotProducts = (
-          await this.$apollo.query({
-            query: PRODUCTS,
-            variables: {
-              hot: true,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.products
+        this.hotProducts = await this.$get('product/products', { hot: true })
+        // this.hotProducts = (
+        //   await this.$apollo.query({
+        //     query: PRODUCTS,
+        //     variables: {
+        //       hot: true,
+        //     },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.products
       } catch (e) {
         // console.log(e)
       } finally {

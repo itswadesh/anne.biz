@@ -311,13 +311,16 @@ export default {
   methods: {
     async getData() {
       try {
-        const order = (
-          await this.$apollo.query({
-            query: ORDER_ITEM,
-            variables: { id: this.$route.query.itemId },
-            fetchPolicy: 'no-catch',
-          })
-        ).data.orderItem
+        const order = await this.$get('order/orderItem', {
+          id: this.$route.query.itemId,
+        })
+        // const order = (
+        //   await this.$apollo.query({
+        //     query: ORDER_ITEM,
+        //     variables: { id: this.$route.query.itemId },
+        //     fetchPolicy: 'no-catch',
+        //   })
+        // ).data.orderItem
         this.order = order
         console.log(order)
       } catch (e) {}

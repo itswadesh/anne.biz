@@ -38,7 +38,8 @@
               rounded
               focus:outline-none
               focus:border-transparent
-              focus:ring-1 focus:ring-blue-200
+              focus:ring-1
+              focus:ring-blue-200
             "
           >
             <option
@@ -67,9 +68,7 @@
             border
             rounded
             hover:border-primary-500
-            focus:outline-none
-            focus:ring-primary-500
-            focus:border-transparent
+            focus:outline-none focus:ring-primary-500 focus:border-transparent
           "
         />
       </div>
@@ -96,8 +95,7 @@
             duration-300
             rounded-md
             shadow
-            focus:outline-none
-            focus:ring-secondary-500 focus:ring-4
+            focus:outline-none focus:ring-secondary-500 focus:ring-4
           "
           :class="
             loading ? 'text-gray-600 bg-gray-200' : 'bg-primary-500 text-white'
@@ -162,20 +160,24 @@ export default {
     ...mapMutations({ setErr: 'setErr' }),
     async getCountries() {
       try {
-        this.countries = (
-          await this.$apollo.query({ query: COUNTRIES })
-        ).data.countries
+        this.countries = await this.$get('country/countries', {})
+        // this.countries = (
+        //   await this.$apollo.query({ query: COUNTRIES })
+        // ).data.countries
       } catch (e) {}
     },
     async requestOtp() {
       this.loading = true
       try {
-        const result = (
-          await this.$apollo.mutate({
-            mutation: getOtp,
-            variables: { phone: this.countryCode + this.phone },
-          })
-        ).data
+        const result = await this.$post('user/getOtp', {
+          phone: this.countryCode + this.phone,
+        })
+        // const result = (
+        //   await this.$apollo.mutate({
+        //     mutation: getOtp,
+        //     variables: { phone: this.countryCode + this.phone },
+        //   })
+        // ).data
         this.$emit('sendOtp', {
           phone: this.phone,
           countryCode: this.countryCode,

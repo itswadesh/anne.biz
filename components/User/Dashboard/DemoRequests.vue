@@ -254,12 +254,16 @@ export default {
     async getDemoRequests() {
       this.listLoading = true
       try {
-        this.myDemoRequests = (
-          await this.$apollo.query({
-            query: MY_SCHEDULE_DEMOS,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.myScheduleDemos
+        this.myDemoRequests = await this.$get(
+          'scheduleDemo/myScheduleDemos',
+          {}
+        )
+        // this.myDemoRequests = (
+        //   await this.$apollo.query({
+        //     query: MY_SCHEDULE_DEMOS,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.myScheduleDemos
       } catch (e) {
       } finally {
         this.listLoading = false

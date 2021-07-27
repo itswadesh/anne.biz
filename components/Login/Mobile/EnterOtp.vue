@@ -188,13 +188,17 @@ export default {
     async requestOtp() {
       try {
         this.loading = true
-        const result = (
-          await this.$apollo.mutate({
-            mutation: GET_OTP,
-            variables: { phone: this.countryCode + this.phone },
-          })
-        ).data
+        const result = await this.$post('user/getOtp', {
+          phone: this.countryCode + this.phone,
+        })
+        // const result = (
+        //   await this.$apollo.mutate({
+        //     mutation: GET_OTP,
+        //     variables: { phone: this.countryCode + this.phone },
+        //   })
+        // ).data
         this.timerCount = result.getOtp.timer
+        this.timerCount = result.timer
         this.success('OTP Send Successfully')
       } catch (e) {
         this.setErr(e)

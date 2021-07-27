@@ -33,12 +33,13 @@ export default {
   methods: {
     async getFaqs() {
       try {
-        this.faqs = (
-          await this.$apollo.query({
-            query: FAQS,
-            fetchpolicy: 'no-cache',
-          })
-        ).data.faqs
+        this.faqs = await this.$get('faq/faqs', {})
+        // this.faqs = (
+        //   await this.$apollo.query({
+        //     query: FAQS,
+        //     fetchpolicy: 'no-cache',
+        //   })
+        // ).data.faqs
       } catch (e) {}
     },
   },

@@ -168,12 +168,13 @@ export default {
     async getReviews() {
       // console.log("helllo theendkd")
       try {
-        this.reviews = (
-          await this.$apollo.query({
-            query: REVIEWS,
-            fetchPolicy: 'no-cache',
-          })
-        ).data.reviews
+        this.reviews = await this.$get('review/reviews', {})
+        // this.reviews = (
+        //   await this.$apollo.query({
+        //     query: REVIEWS,
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.reviews
         // console.log("reviesssss",this.reviews)
       } catch (e) {
         // console.log(e)

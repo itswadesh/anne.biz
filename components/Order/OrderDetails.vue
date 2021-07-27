@@ -107,13 +107,16 @@ export default {
   methods: {
     async getOrderDetails() {
       try {
-        this.order = (
-          await this.$apollo.query({
-            query: ORDER_DETAILS,
-            variables: { id: this.$route.query.id },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.order
+        this.order = await this.$get('order/order', {
+          id: this.$route.query.id,
+        })
+        // this.order = (
+        //   await this.$apollo.query({
+        //     query: ORDER_DETAILS,
+        //     variables: { id: this.$route.query.id },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.order
       } catch (e) {
         // console.log(e)
       }

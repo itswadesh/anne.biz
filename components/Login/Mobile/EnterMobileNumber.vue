@@ -34,8 +34,7 @@
               rounded
               focus:ring-1 focus:ring-primary-500
               ring-1 ring-gray-400
-              focus:border-transparent
-              focus:outline-none
+              focus:border-transparent focus:outline-none
             "
           />
         </div>
@@ -55,8 +54,7 @@
               rounded-md
               shadow
               hover:opacity-80
-              focus:outline-none
-              focus:ring-primary-500 focus:ring-2
+              focus:outline-none focus:ring-primary-500 focus:ring-2
             "
             :class="loading ? 'bg-gray-400' : 'bg-primary-500 text-white'"
             type="submit"
@@ -200,10 +198,13 @@ export default {
     async requestOtp() {
       this.loading = true
       try {
-        await this.$apollo.mutate({
-          mutation: GET_OTP,
-          variables: { phone: this.countryCode + this.phone },
+        await this.$post('user/getOtp', {
+          phone: this.countryCode + this.phone,
         })
+        // await this.$apollo.mutate({
+        //   mutation: GET_OTP,
+        //   variables: { phone: this.countryCode + this.phone },
+        // })
         this.$emit('sendOtp', {
           phone: this.phone,
           countryCode: this.countryCode,

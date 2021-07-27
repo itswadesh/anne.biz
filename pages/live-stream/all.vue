@@ -54,12 +54,13 @@ export default {
   },
   methods: {
     async liveVendors() {
-      const liveChannels = (
-        await this.$apollo.query({
-          query: CHANNEL_LIST,
-          fetchPolicy: 'no-cache',
-        })
-      ).data.channelList
+      const liveChannels = await this.$get('channel/channelList', {})
+      // const liveChannels = (
+      //   await this.$apollo.query({
+      //     query: CHANNEL_LIST,
+      //     fetchPolicy: 'no-cache',
+      //   })
+      // ).data.channelList
       this.liveChannels = liveChannels
     },
   },

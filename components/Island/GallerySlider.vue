@@ -211,6 +211,14 @@ export default {
               centerMode: false,
             },
           },
+          {
+            breakpoint: 360,
+            settings: {
+              slidesToShow: 1,
+              arrows: false,
+              centerMode: false,
+            },
+          },
         ],
       },
     }

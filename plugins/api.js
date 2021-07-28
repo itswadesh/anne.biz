@@ -24,7 +24,6 @@ export default ({ app }, inject) => {
         variables,
       })
     ).data[endPoint]
-    console.log(res.data)
-    return res.data
+    return res
   })
 }

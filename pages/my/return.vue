@@ -14,14 +14,14 @@
               class="w-40 object-contain object-top mb-5 md:mb-0"
             />
           </nuxt-link>
-          <div class="flex-1 md:pe-5">
+          <div class="flex-1 md:pr-5">
             <nuxt-link :to="`/${order.slug}?id=${order.pid}`">
               <h4 class="text-xl font-medium">
                 {{ order.name }}
               </h4>
             </nuxt-link>
             <div class="flex flex-wrap items-center text-sm whitespace-nowrap">
-              <h5 class="mt-2 me-5">Size: {{ order.size }}</h5>
+              <h5 class="mt-2 mr-5">Size: {{ order.size }}</h5>
               <h5 class="mt-2">Color: {{ order.color }}</h5>
             </div>
             <h6
@@ -44,7 +44,10 @@
           md:border-t-0
           mt-5
           pt-5
-          md:pt-0 md:mt-0 md:w-1/2 md:px-5
+          md:pt-0
+          md:mt-0
+          md:w-1/2
+          md:px-5
           lg:px-10
         "
       >
@@ -185,25 +188,18 @@ export default {
   methods: {
     async submit() {
       try {
-        const res = await this.$post('order/returnOrReplace', {
-          orderId: this.$route.query.orderId,
-          pId: this.order.pid,
-          reason: this.returnInfo.reason,
-          requestType: 'Return',
-          qty: 1,
-        })
-        // const res = (
-        //   await this.$apollo.mutate({
-        //     mutation: RETURN_OR_REPLACE_ITEM,
-        //     variables: {
-        //       orderId: this.$route.query.orderId,
-        //       pId: this.order.pid,
-        //       reason: this.returnInfo.reason,
-        //       requestType: 'Return',
-        //       qty: 1,
-        //     },
-        //   })
-        // ).data.returnOrReplace
+        const res = (
+          await this.$apollo.mutate({
+            mutation: RETURN_OR_REPLACE_ITEM,
+            variables: {
+              orderId: this.$route.query.orderId,
+              pId: this.order.pid,
+              reason: this.returnInfo.reason,
+              requestType: 'Return',
+              qty: 1,
+            },
+          })
+        ).data.returnOrReplace
         this.$router.push(
           `/my/order-details?orderId=${this.$route.query.orderId}&itemId=${this.$route.query.itemId}`
         )
@@ -213,16 +209,13 @@ export default {
     },
     async getData() {
       try {
-        const order = await this.$get('order/orderItem', {
-          id: this.$route.query.itemId,
-        })
-        // const order = (
-        //   await this.$apollo.query({
-        //     query: ORDER_ITEM,
-        //     variables: { id: this.$route.query.itemId },
-        //     fetchPolicy: 'no-catch',
-        //   })
-        // ).data.orderItem
+        const order = (
+          await this.$apollo.query({
+            query: ORDER_ITEM,
+            variables: { id: this.$route.query.itemId },
+            fetchPolicy: 'no-catch',
+          })
+        ).data.orderItem
         this.order = order
       } catch (e) {}
     },

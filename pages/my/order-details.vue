@@ -14,7 +14,7 @@
               class="w-40 object-contain object-top mb-5 md:mb-0"
             />
           </nuxt-link>
-          <div class="flex-1 md:pe-5">
+          <div class="flex-1 md:pr-5">
             <nuxt-link
               class="text-xl font-medium"
               :to="`/${order.slug}?id=${order.pid}`"
@@ -22,7 +22,7 @@
               {{ order.name }}
             </nuxt-link>
             <div class="flex flex-wrap items-center text-sm whitespace-nowrap">
-              <h5 v-if="order.size != null && ''" class="mt-2 me-5">
+              <h5 v-if="order.size != null && ''" class="mt-2 mr-5">
                 Size: {{ order.size }}
               </h5>
               <h5 v-if="order.color != null && ''" class="mt-2">
@@ -86,7 +86,7 @@
               justify-center
               rounded
               flex-shrink-0
-              me-4
+              mr-4
             "
             style="background: #e1e1e1"
           >
@@ -117,105 +117,8 @@
         </div>
       </div>
       <div class="mt-10 md:flex md:items-center md:justify-between">
-        <div class="relative md:w-2/3">
-          <div class="relative z-10">
-            <div
-              class="
-                flex flex-col
-                md:flex-row
-                space-y-16
-                md:space-y-0 md:items-center
-                justify-start
-                md:justify-between
-                flex-wrap
-              "
-            >
-              <div
-                v-for="(t, tx) in order.orderHistory"
-                v-if="t.index < 7 && t.public === true"
-                :key="tx"
-                class="flex flex-col md:items-center md:justify-center"
-              >
-                <div
-                  v-if="t.time"
-                  class="relative h-10 w-10 bg-primary-500 rounded-full"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="absolute inset-0 text-white h-7 w-7 m-1.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="3"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-
-                <div
-                  v-else
-                  class="
-                    relative
-                    h-10
-                    w-10
-                    bg-white
-                    rounded-full
-                    border border-gray-600
-                  "
-                >
-                  <div>
-                    <img
-                      :src="t.icon"
-                      alt=""
-                      class="absolute inset-0 h-6 w-6 m-1.5 opacity-70"
-                    />
-                  </div>
-                </div>
-
-                <div class="absolute md:static left-12 md:mt-2 md:text-center">
-                  <h4 class="text-xl font-medium">{{ t.status }}</h4>
-                  <h6 class="mt-1 font-light text-gray-500 text-sm">
-                    <span v-if="t.time">
-                      {{ t.time | date }}
-                    </span>
-                    <span v-else class="opacity-0"> &nbsp; </span>
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="
-              absolute
-              z-0
-              inset-0
-              top-5
-              left-5
-              bottom-10
-              md:bottom-0 md:left-10 md:right-10
-              isolate
-            "
-          >
-            <div
-              class="
-                w-1
-                h-full
-                md:h-1 md:w-full
-                border-l-2
-                md:border-l-0
-                border-t-0
-                md:border-t-2
-                border-dotted border-primary-500
-              "
-            ></div>
-          </div>
-        </div>
-
+        <OrderTracking v-if="!isReturn()" :order="order" />
+        <ReturnTracking v-else :order="order" />
         <div class="mt-16 mb-5 md:mb-0 md:mt-0 md:w-1/3">
           <div class="flex flex-col md:items-center md:justify-center">
             <a
@@ -243,10 +146,11 @@
             >
               Download Invoice
             </a>
-
             <nuxt-link
               v-if="
-                order.returnValidTill != null && now <= order.returnValidTill
+                order.returnValidTill != null &&
+                now <= order.returnValidTill &&
+                !isReturn()
               "
               :to="`/my/return?orderId=${$route.query.orderId}&itemId=${$route.query.itemId}`"
               class="
@@ -284,7 +188,13 @@ import advancedFormat from 'dayjs/plugin/advancedFormat'
 import { mapGetters } from 'vuex'
 import ORDER from '~/gql/order/order.gql'
 import ORDER_ITEM from '~/gql/order/orderItem.gql'
+import OrderTracking from '~/components/Order/OrderTracking.vue'
+import ReturnTracking from '~/components/Order/ReturnTracking.vue'
 export default {
+  components: {
+    OrderTracking,
+    ReturnTracking,
+  },
   layout: 'account',
   middleware: ['isAuth'],
   data() {
@@ -309,20 +219,19 @@ export default {
     this.getData()
   },
   methods: {
+    isReturn() {
+      return (
+        this.order.status === 'Return' ||
+        this.order.status === 'Pickup' ||
+        this.order.status === 'Refund'
+      )
+    },
     async getData() {
       try {
         const order = await this.$get('order/orderItem', {
           id: this.$route.query.itemId,
         })
-        // const order = (
-        //   await this.$apollo.query({
-        //     query: ORDER_ITEM,
-        //     variables: { id: this.$route.query.itemId },
-        //     fetchPolicy: 'no-catch',
-        //   })
-        // ).data.orderItem
         this.order = order
-        console.log(order)
       } catch (e) {}
     },
   },

@@ -25,17 +25,11 @@
         Promotion Terms & Conditions
       </h1>
 
-      <ul>
-        <li
-          v-for="(i, ix) in items"
-          :key="ix"
-          class="flex flex-col text-sm space-y-5"
-        >
-          <h4 class="mb-2 font-medium text-lg md:text-2xl">{{ i.heading }}</h4>
+      <ul class="space-y-5">
+        <li v-for="(i, ix) in items" :key="ix" class="flex flex-col text-sm">
+          <h4 class="mb-5 font-medium text-lg md:text-2xl">{{ i.heading }}</h4>
 
           <p class="text-sm mb-5">{{ i.data }}</p>
-
-          <p class="mb-5" v-html="i.html"></p>
         </li>
       </ul>
     </div>

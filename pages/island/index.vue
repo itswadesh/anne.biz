@@ -14,6 +14,7 @@ import MainCategoryBanners from '~/components/Island/MainCategoryBanners.vue'
 import GallerySlider from '~/components/Island/GallerySlider.vue'
 import WantMore from '~/components/Island/WantMore.vue'
 import WhiteFooter from '~/components/Island/WhiteFooter.vue'
+
 export default {
   components: {
     HeroSlider,

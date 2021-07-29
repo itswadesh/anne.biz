@@ -7,13 +7,12 @@ const pwa = {
 }
 const colors = {
   primary: {
-    500: '#FB7801', // brown
+    500: '#FB7801', // Brand Primary Color
   },
   secondary: {
-    100: '#dff7d5', // very light green
+    100: '#dff7d5', // Used for gradient button making
     200: '#32CD32', // green
-    400: '#78f547', // light green
-    500: '#000000', // black
+    500: '#000000', // Brand Secondary Color
   },
   accent: {
     100: '#faebeb', // very light red

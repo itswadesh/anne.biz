@@ -17,7 +17,6 @@
               cursor-pointer
               ms-3
               text-secondary-200
-              hover:text-secondary-400
             "
           >
             See Available Offer
@@ -141,7 +140,6 @@
         "
       >
         <span class="text-xl">Total Amount</span>
-        <!-- class="text-secondary-400" -->
         <span class="text-xl">
           {{ cart.total | currency(settings.currencySymbol, 2) }}
         </span>

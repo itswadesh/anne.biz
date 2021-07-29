@@ -18,7 +18,6 @@
               cursor-pointer
               ms-3
               text-secondary-200
-              hover:text-secondary-400
             "
           >
             See Available Offer

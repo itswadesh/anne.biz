@@ -7,8 +7,7 @@
         justify-center
         min-h-screen
         text-center
-        sm:block
-        sm:p-0
+        sm:block sm:p-0
       "
     >
       <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -30,10 +29,7 @@
           rounded-lg
           shadow-xl
           text-start
-          sm:my-8
-          sm:align-middle
-          sm:max-w-lg
-          sm:w-full
+          sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
         "
         role="dialog"
         aria-modal="true"
@@ -110,7 +106,6 @@
                 uppercase
                 pe-3
                 text-secondary-200
-                hover:text-secondary-400
                 focus:outline-none
               "
             >
@@ -170,7 +165,7 @@
                 p-2
                 px-4
                 text-black
-                bg-secondary-400
+                bg-secondary-200
                 border
                 rounded
                 shadow
@@ -180,7 +175,7 @@
                 transform
                 ease-in-out
                 hover:opacity-80
-                focus:ring-inset-0 focus:ring-secondary-400 focus:ring-2
+                focus:ring-inset-0 focus:ring-secondary-200 focus:ring-2
               "
             >
               <div v-if="saving" class="flex items-center justify-center">

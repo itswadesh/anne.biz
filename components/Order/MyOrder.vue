@@ -454,7 +454,7 @@
                    </span>
                     </span>Order Date</span>
                     </span>Delivered Date</span>
-                    <span class="text-secondary-400">Price</span>
+                    <span class="text-secondary-200">Price</span>
                     <span class="flex flex-col my-auto space-y-2">
                       <nuxt-link :to="localePath('/order-tracking')">
                         <button
@@ -464,7 +464,7 @@
                         </button>
                       </nuxt-link>
                       <button
-                        class="p-2 px-4 font-semibold bg-white border reorder hover:bg-gray-50 text-secondary-400 border-secondary-400 focus:outline-none"
+                        class="p-2 px-4 font-semibold bg-white border reorder hover:bg-gray-50 text-secondary-200 border-secondary-200 focus:outline-none"
                       >
                         Re Order
                       </button>

@@ -19,8 +19,7 @@
           mx-4
           rounded
           xl:mx-auto
-          lg:bg-white
-          lg:shadow
+          lg:bg-white lg:shadow
         "
       >
         <div class="p-2 px-4 bg-white shadow md:shadow-none md:mx-4 lg:px-8">
@@ -39,7 +38,7 @@
                   <span class="my-2 text-sm text-primary-500">Bruice</span>
                   <span class="flex flex-row my-2 text-sm font-normal">
                     <span class="me-1">Price:</span>
-                    <span class="text-secondary-400">1988</span>
+                    <span class="text-priamary-400">1988</span>
                   </span>
                 </div>
               </div>
@@ -108,7 +107,7 @@
                         >
                           <div
                             v-if="index < 3"
-                            class="w-full h-full bg-secondary-400"
+                            class="w-full h-full bg-secondary-200"
                             :class="{
                               'rounded-s-3xl': index == 0,
                               'rounded-e-3xl:': index == tracking.length - 1,
@@ -179,10 +178,7 @@
                 text-sm text-gray-400
                 bg-white
                 shadow
-                lg:shadow-none
-                lg:mt-0
-                lg:w-1/4
-                lg:p-0
+                lg:shadow-none lg:mt-0 lg:w-1/4 lg:p-0
               "
             >
               <div class="mb-4 text-lg font-medium text-gray-600">
@@ -206,8 +202,7 @@
                 justify-between
                 w-full
                 text-sm text-gray-400
-                lg:w-3/4
-                lg:flex-row
+                lg:w-3/4 lg:flex-row
               "
             >
               <div
@@ -217,11 +212,7 @@
                   mt-5
                   bg-white
                   shadow
-                  lg:p-0
-                  lg:shadow-none
-                  lg:mt-0
-                  lg:w-1/2
-                  lg:me-6
+                  lg:p-0 lg:shadow-none lg:mt-0 lg:w-1/2 lg:me-6
                 "
               >
                 <h3 class="mb-4 text-lg font-medium text-gray-600">
@@ -398,7 +389,7 @@
                         <div class="z-10 items-center w-full h-full my-auto">
                           <div
                             v-if="index < 3"
-                            class="w-full h-full bg-secondary-400"
+                            class="w-full h-full bg-secondary-200"
                           >
                             <div
                               class="

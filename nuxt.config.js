@@ -103,9 +103,10 @@ export default {
       // },
     },
     defaultOptions: {
-      $query: {
+      query: {
         loadingKey: 'loading',
-        fetchPolicy: 'cache-and-network',
+        fetchPolicy: 'no-cache',
+        // variables: { store: '60fd2383150af473d8e42ac9' },
       },
     },
   },

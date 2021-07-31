@@ -26,15 +26,12 @@
             inset-y-0
             uppercase
             text-sm
-            font-medium
-            md:font-semibold
+            font-semibold
             text-white
             bg-black
             rounded-r
-            py-2
-            md:py-3
-            px-6
-            md:px-9
+            py-3
+            px-9
           "
         >
           Subscribe
@@ -62,14 +59,13 @@
         <Checkbox>Kids </Checkbox>
       </div>
 
-      <div class="mt-10">
+      <div class="mt-10 md:hidden">
         <button
           class="
             w-full
             uppercase
             text-sm
-            font-medium
-            md:font-semibold
+            font-semibold
             text-white
             bg-black
             rounded

@@ -23,15 +23,19 @@ export default {
     WantMore,
     WhiteFooter,
   },
+
   layout: 'none',
+
   data() {
     return {
       sliderBanners: null,
     }
   },
+
   created() {
     this.getBanners()
   },
+
   methods: {
     async getBanners() {
       this.loading = true

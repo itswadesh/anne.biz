@@ -19,7 +19,7 @@
         </div>
       </section>
 
-      <section v-if="banners" class="mt-5">
+      <section v-if="banners" class="hidden lg:block mt-5">
         <div class="flex justify-center items-center">
           <progress
             v-if="loading"
@@ -166,6 +166,59 @@
           </div>
         </div>
       </section>
+
+      <section v-if="banners" class="mt-5 lg:hidden overflow-x-auto max-h-max">
+        <div class="flex items-start justify-start">
+          <button
+            v-for="b in banners"
+            :key="b.id"
+            class="p-2 focus:outline-none flex-shrink-0"
+            @click="go(b.link)"
+          >
+            <div class="relative zoom">
+              <img
+                v-lazy="b.img"
+                class="
+                  object-cover
+                  w-60
+                  h-60
+                  md:w-96 md:h-96
+                  overflow-hidden
+                  bg-white
+                  focus:outline-none
+                  md:object-cover
+                "
+              />
+
+              <div
+                class="
+                  absolute
+                  inset-x-0
+                  right-0
+                  bottom-0
+                  z-10
+                  flex
+                  justify-end
+                "
+              >
+                <div
+                  class="
+                    m-5
+                    bg-white
+                    text-xs text-gray-500
+                    font-medium
+                    py-1
+                    px-2
+                    rounded-full
+                  "
+                >
+                  <span>@Pratap.kritic_</span>
+                </div>
+              </div>
+            </div>
+          </button>
+        </div>
+      </section>
     </div>
   </main>
 </template>
@@ -197,28 +250,6 @@ export default {
               slidesToShow: 3,
             },
           },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 3,
-            },
-          },
-          {
-            breakpoint: 640,
-            settings: {
-              slidesToShow: 2,
-              arrows: false,
-              centerMode: false,
-            },
-          },
-          {
-            breakpoint: 360,
-            settings: {
-              slidesToShow: 1,
-              arrows: false,
-              centerMode: false,
-            },
-          },
         ],
       },
     }
@@ -248,5 +279,26 @@ export default {
 }
 .zoom:hover img {
   transform: scale(1.1);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
 }
 </style>

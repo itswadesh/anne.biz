@@ -1,19 +1,16 @@
 <template>
-  <section class="border-t-2 pt-5 md:pt-10 px-4 text-center">
+  <section class="border-t-2 pt-10 px-4 text-center">
     <div class="max-w-md mx-auto">
       <h1 class="font-semibold text-3xl">Want More?</h1>
-      <h6 class="mt-2 md:mt-4 text-sm">
-        Sign up for the latest fashion and offers
-      </h6>
+      <h6 class="mt-4 text-sm">Sign up for the latest fashion and offers</h6>
 
-      <div class="mt-5 md:mt-10 relative">
+      <div class="hidden md:block mt-10 relative">
         <input
           type="text"
           class="
             border-2 border-black
             rounded
-            p-2
-            md:p-3
+            p-3
             w-full
             focus:outline-none
             focus:ring-0
@@ -43,10 +40,44 @@
           Subscribe
         </button>
       </div>
-      <div class="mt-5 md:mt-10 flex items-center justify-center space-x-5">
+
+      <div class="mt-10 md:hidden">
+        <input
+          type="text"
+          class="
+            border-2
+            rounded
+            p-3
+            w-full
+            focus:outline-none focus:ring-0 focus:ring-offset-0
+            border-gray-200
+          "
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <div class="mt-10 flex items-center justify-center space-x-5">
         <Checkbox>Women </Checkbox>
         <Checkbox>Men </Checkbox>
         <Checkbox>Kids </Checkbox>
+      </div>
+
+      <div class="mt-10">
+        <button
+          class="
+            w-full
+            uppercase
+            text-sm
+            font-medium
+            md:font-semibold
+            text-white
+            bg-black
+            rounded
+            py-3
+          "
+        >
+          Subscribe
+        </button>
       </div>
 
       <h6 class="mt-5 md:mt-10 text-xs text-gray-400">

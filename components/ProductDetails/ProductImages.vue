@@ -5,7 +5,7 @@
         <Share :product="product" :host="host" />
         <WishButton
           v-if="product.id"
-          rounded
+          :rounded="true"
           :pid="product.id"
           class="p-1 w-7 h-7"
         />
@@ -92,7 +92,7 @@
           <div class="absolute right-0 flex justify-end m-3">
             <WishButton
               v-if="product.id"
-              rounded
+              :rounded="true"
               :pid="product.id"
               class="z-50 hidden w-8 h-8 p-1 md:flex"
             />
@@ -164,6 +164,7 @@
                 v-for="(ig, ix) in images"
                 :key="ix"
                 class="h-20 mx-auto focus:outline-none"
+                @click="selectedImage = ig"
               >
                 <img
                   v-lazy="ig"

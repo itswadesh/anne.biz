@@ -26,7 +26,7 @@
       :details="youMayLikeProducts"
       :heading="'You May Like'"
     />
-    <VideoBanner :banners="videoBanners" />
+    <!-- <VideoBanner :banners="videoBanners" /> -->
     <ProductSlider2
       class="sm:mt-12"
       :details="hotProducts"

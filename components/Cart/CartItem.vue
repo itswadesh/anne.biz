@@ -195,6 +195,7 @@
                 <div class="my-auto">
                   <WishButton
                     :pid="item.pid"
+                    rounded
                     class="
                       hidden
                       w-8
@@ -239,6 +240,7 @@
               <!-- remove icon -->
               <div class="flex flex-row">
                 <WishButton
+                  rounded
                   :pid="item.pid"
                   class="
                     w-8
@@ -248,8 +250,6 @@
                     text-center
                     rounded
                     md:hidden
-                    hover:bg-red-200
-                    bg-accent-100
                     px-auto
                     focus:outline-none
                   "

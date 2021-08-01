@@ -5,7 +5,7 @@
         <Share :product="product" :host="host" />
         <WishButton
           v-if="product.id"
-          :rounded="true"
+          rounded
           :pid="product.id"
           class="p-1 w-7 h-7"
         />
@@ -92,7 +92,7 @@
           <div class="absolute right-0 flex justify-end m-3">
             <WishButton
               v-if="product.id"
-              :rounded="true"
+              rounded
               :pid="product.id"
               class="z-50 hidden w-8 h-8 p-1 md:flex"
             />

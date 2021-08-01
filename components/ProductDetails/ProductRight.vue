@@ -2,7 +2,7 @@
   <div class="w-full xl:ms-3">
     <!-- <div class="flex flex-row justify-end">
           <Share :product="product" :host="host" />
-          <WishButton :rounded="true" :pid="product.id" v-if="product.id" class="p-1 w-7 h-7"/>
+          <WishButton rounded :pid="product.id" v-if="product.id" class="p-1 w-7 h-7"/>
       </div> -->
     <div class="flex flex-row w-full afterSizeSelector">
       <div v-if="product" class="flex flex-col w-full px-3">

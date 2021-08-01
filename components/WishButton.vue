@@ -5,10 +5,9 @@
     class="
       my-auto
       ms-1
+      p-1
       font-semibold
       text-center
-      icons
-      bg-accent-100
       px-auto
       hover:opacity-75
       focus:outline-none
@@ -20,7 +19,7 @@
     <!-- heart icon  -->
     <svg
       class="mx-auto text-accent-900"
-      :class="{ 'text-accent-900 fill-current ': existInWishlist }"
+      :class="{ 'fill-current ': existInWishlist }"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

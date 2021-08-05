@@ -157,7 +157,8 @@ export default {
         params: { ...qry },
       })
       products = result.data
-      productCount = result.count
+      
+      productCount = result.facets.style_count.value
       facets = result.facets && result.facets.all_aggs
       Object.keys(qry).map(function (k, i) {
         if (

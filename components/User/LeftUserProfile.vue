@@ -51,20 +51,7 @@
     <div class="max-w-full mt-4">
       <div class="h-full mx-auto">
         <!-- <LeftOptions /> -->
-        <div
-          v-if="
-            $router.currentRoute.path == '/my' ||
-            $router.currentRoute.path == '/my/orders' ||
-            $router.currentRoute.path == '/my/order-details' ||
-            $router.currentRoute.path == '/my/return' ||
-            $router.currentRoute.path == '/my/profile' ||
-            $router.currentRoute.path == '/my/wishlist' ||
-            $router.currentRoute.path == '/my/reviews' ||
-            $router.currentRoute.path == '/my/manage-address' ||
-            $router.currentRoute.path == '/my/demo-requests'
-          "
-          class=""
-        >
+        <div v-if="ifAccountPages" class="">
           <div class="flex justify-end lg:justify-center">
             <span
               class="
@@ -477,6 +464,10 @@ export default {
     ...mapGetters({ megamenu: 'megamenu' }),
     user() {
       return this.$store.state.auth.user
+    },
+    ifAccountPages() {
+      const currPath = this.$router.currentRoute.path
+      return currPath.includes('/my')
     },
   },
   watch: {

@@ -304,9 +304,12 @@
 
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import WishButton from '~/components/WishButton.vue'
+
 export default {
+  components: { WishButton },
   props: {
-    item: { type: Object },
+    item: { type: Object, default: null },
   },
   data() {
     return {

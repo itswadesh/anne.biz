@@ -44,10 +44,7 @@
           md:border-t-0
           mt-5
           pt-5
-          md:pt-0
-          md:mt-0
-          md:w-1/2
-          md:px-5
+          md:pt-0 md:mt-0 md:w-1/2 md:px-5
           lg:px-10
         "
       >
@@ -151,16 +148,16 @@ import { Radio } from '~/shared/components/ui'
 
 import ORDER_ITEM from '~/gql/order/orderItem.gql'
 import RETURN_OR_REPLACE_ITEM from '~/gql/order/returnOrReplace.gql'
-const returnReasons = [
-  'Product Not Required Anymore',
-  'Cash issue',
-  'Ordered by mistake',
-  'Want to change the product',
-  'Delay delivery cancellation',
-  'I have changed my mind',
-  'Want to change order delivery details',
-  'Others',
-]
+// const returnReasons = [
+//   'Product Not Required Anymore',
+//   'Cash issue',
+//   'Ordered by mistake',
+//   'Want to change the product',
+//   'Delay delivery cancellation',
+//   'I have changed my mind',
+//   'Want to change order delivery details',
+//   'Others',
+// ]
 export default {
   components: {
     Radio,
@@ -183,9 +180,13 @@ export default {
     ...mapGetters({ settings: 'settings' }),
   },
   created() {
+    this.getReturnReasons()
     this.getData()
   },
   methods: {
+    getReturnReasons() {
+      this.returnReasons = this.settings.returnReasons
+    },
     async submit() {
       try {
         const res = (

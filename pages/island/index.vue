@@ -1,7 +1,8 @@
 <template>
   <section class="min-h-screen overflow-hidden bg-white">
     <HeroSlider :banners="sliderBanners" />
-    <MainCategoryBanners class="mt-px" />
+    <!-- <MainCategoryBanners class="mt-px" /> -->
+    <SecondMainCategoryBanners />
     <GallerySlider class="mt-5 md:mt-10" :banners="sliderBanners" />
     <WantMore class="mt-5 md:mt-10" />
     <WhiteFooter class="mt-10 md:mt-20" />
@@ -10,7 +11,8 @@
 
 <script>
 import HeroSlider from '~/components/Island/HeroSlider.vue'
-import MainCategoryBanners from '~/components/Island/MainCategoryBanners.vue'
+// import MainCategoryBanners from '~/components/Island/MainCategoryBanners.vue'
+import SecondMainCategoryBanners from '~/components/Island/SecondMainCategoryBanners.vue'
 import GallerySlider from '~/components/Island/GallerySlider.vue'
 import WantMore from '~/components/Island/WantMore.vue'
 import WhiteFooter from '~/components/Island/WhiteFooter.vue'
@@ -18,7 +20,8 @@ import WhiteFooter from '~/components/Island/WhiteFooter.vue'
 export default {
   components: {
     HeroSlider,
-    MainCategoryBanners,
+    // MainCategoryBanners,
+    SecondMainCategoryBanners,
     GallerySlider,
     WantMore,
     WhiteFooter,
@@ -47,6 +50,7 @@ export default {
         })
 
         this.sliderBanners = banners.data.filter((b) => b.type === 'slider')
+        // console.log(sliderBanners)
       } catch (e) {
         // console.log(e)
       } finally {
@@ -59,6 +63,7 @@ export default {
 
 <style scoped>
 .mt-px {
-  margin-top: -5px;
+  /* margin-top: -5px; */
+  margin-top: 1.5px;
 }
 </style>

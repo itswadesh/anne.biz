@@ -33,7 +33,7 @@
             Merchant Dashboard
           </a>
           <nuxt-link
-            to="/contact-us"
+            to="/island/how-can-we-help/contact-us"
             class="
               w-auto
               px-1
@@ -78,7 +78,7 @@
             FAQ
           </nuxt-link>
           <nuxt-link
-            to="/legal/terms"
+            to="/island/terms-and-conditions"
             class="
               w-auto
               px-1
@@ -93,7 +93,7 @@
             Terms Of Use
           </nuxt-link>
           <nuxt-link
-            to="/legal/shipping-policy"
+            to="/island/how-can-we-help/delivery"
             class="
               w-auto
               px-1
@@ -182,7 +182,7 @@
             Cancellation
           </span> -->
           <nuxt-link
-            to="/legal/return-policy"
+            to="/island/how-can-we-help/returns"
             class="
               w-auto
               px-1
@@ -262,7 +262,7 @@
               hover:bg-gray-800 hover:text-white
             "
           >
-            Contaact Seller
+            Contact Seller
           </nuxt-link>
           <nuxt-link
             to="/features"

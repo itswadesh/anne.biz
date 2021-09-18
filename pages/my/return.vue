@@ -32,7 +32,7 @@
               {{ order.vendorInfo.lastName }}
             </h6>
             <h4 class="mt-2 text-xl font-medium">
-              {{ order.price | currency(settings.currencySymbol, 2) }}
+              {{ order.price | currency(store.currencySymbol, 2) }}
             </h4>
           </div>
         </div>
@@ -145,22 +145,24 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Radio } from '~/shared/components/ui'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 import ORDER_ITEM from '~/gql/order/orderItem.gql'
 import RETURN_OR_REPLACE_ITEM from '~/gql/order/returnOrReplace.gql'
-// const returnReasons = [
-//   'Product Not Required Anymore',
-//   'Cash issue',
-//   'Ordered by mistake',
-//   'Want to change the product',
-//   'Delay delivery cancellation',
-//   'I have changed my mind',
-//   'Want to change order delivery details',
-//   'Others',
-// ]
+const returnReasons = [
+  'Product Not Required Anymore',
+  'Cash issue',
+  'Ordered by mistake',
+  'Want to change the product',
+  'Delay delivery cancellation',
+  'I have changed my mind',
+  'Want to change order delivery details',
+  'Others',
+]
 export default {
   components: {
     Radio,
+    NuxtLink,
   },
   layout: 'account',
   middleware: ['isAuth'],
@@ -177,7 +179,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ settings: 'settings' }),
+    ...mapGetters({ store: 'store' }),
   },
   created() {
     this.getReturnReasons()
@@ -185,7 +187,7 @@ export default {
   },
   methods: {
     getReturnReasons() {
-      this.returnReasons = this.settings.returnReasons
+      this.returnReasons = this.store.returnReasons
     },
     async submit() {
       try {

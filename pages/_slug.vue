@@ -1,187 +1,174 @@
 <template>
   <div class="pb-10 bg-white sm:pb-32">
     <Megamenu class="hidden border-b xl:flex" />
+
     <!-- <div v-if="loading"  class="flex flex-col mt-32 xl:flex-row sm:mt-5">
         <DetailsPageLeftSkeleton class="xl:w-2/5" />
         <DetailsSkeleton class="-mt-1 xl:w-3/5" />
      </div> -->
-    <div class="w-full">
+
+    <div class="container mx-auto px-2 sm:px-10">
       <div
         v-if="product && product.id"
         class="
-          container
-          flex-row
+          flex flex-row
+          items-center
           justify-between
-          hidden
-          px-3
-          mx-2
-          xl:py-5
-          md:py-4
-          lg:pt-5 lg:mx-auto
-          md:flex
+          space-x-4
+          py-2
+          sm:py-5
         "
       >
-        <Breadcrumb
-          :path="product.category && product.category.pathA"
-          :name="product.name"
-          class="w-full"
-        />
-        <div>
-          <Share :product="product" :host="host" />
-        </div>
+        <Breadcrumb :path="bc()" :name="product.name" class="w-3/4" />
+
+        <Share :product="product" :host="host" />
       </div>
-      <div class="container flex flex-col mx-auto">
-        <div class="flex flex-col w-full xl:flex-row">
-          <div class="xl:w-2/5">
-            <!-- <DetailsPageLeftSkeleton v-if="loading" class="hidden sm:block" /> -->
-            <div v-if="product && product.id" class="sticky top-20">
-              <ProductImages
-                v-if="product"
-                :loading="loading"
-                class="h-auto mt-5 nowrap lg:mt-0"
-                :images="product && product.images"
-                :pid="product.id"
-                :img="product.img"
-                :host="host"
-                :product="product"
-              />
-              <div class="flex-row hidden w-full mx-3 mt-2 xl:flex">
-                <div class="w-1/2 my-auto">
-                  <AddToCart
-                    class="mt-3"
-                    :product="product"
-                    :user-selected-variant="userSelectedVariant"
-                    :options="product.options"
-                    :selected-options="selectedOptions"
-                    @alertToSelectMandatoryOptions="
-                      alertToSelectMandatoryOptions
-                    "
-                  />
-                </div>
-                <div class="z-10 w-1/2 ms-3">
-                  <BuyNow
-                    v-if="product.stock > 0"
-                    class="mt-3"
-                    :product="product"
-                    :user-selected-variant="userSelectedVariant"
-                    :options="product.options"
-                    :selected-options="selectedOptions"
-                    @alertToSelectMandatoryOptions="
-                      alertToSelectMandatoryOptions
-                    "
-                  />
-                </div>
+
+      <div class="flex flex-col w-full xl:flex-row">
+        <div class="xl:w-3/5">
+          <!-- <DetailsPageLeftSkeleton v-if="loading" class="hidden sm:block" /> -->
+
+          <div v-if="product && product.id" class="sticky top-20">
+            <ProductImages
+              v-if="product"
+              :loading="$fetchState.pending"
+              class="h-auto mt-5 nowrap lg:mt-0 mb-5 md:mb-10"
+              :images="product && product.images"
+              :pid="product.id"
+              :img="product.img"
+              :host="host"
+              :product="product"
+              :exist-in-wishlist="checkWishlist"
+            />
+
+            <div
+              class="
+                flex-row
+                hidden
+                w-full
+                xl:flex
+                items-center
+                justify-between
+                space-x-5
+              "
+            >
+              <div class="w-1/2 my-auto">
+                <AddToCart
+                  :product="product"
+                  :user-selected-variant="userSelectedVariant"
+                  :options="product.options"
+                  :selected-options="selectedOptions"
+                  @alertToSelectMandatoryOptions="alertToSelectMandatoryOptions"
+                />
+              </div>
+
+              <div class="w-1/2">
+                <BuyNow
+                  v-if="product.stock > 0"
+                  :product="product"
+                  :user-selected-variant="userSelectedVariant"
+                  :options="product.options"
+                  :selected-options="selectedOptions"
+                  @alertToSelectMandatoryOptions="alertToSelectMandatoryOptions"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 sm:mt-10 xl:w-2/5 xl:mt-0">
+          <!-- <DetailsSkeleton v-if="loading"  /> -->
+
+          <div v-if="product && product.id" class="bg-white">
+            <ProductRight
+              ref="ProductRight"
+              class="w-full h-auto nowrap mb-5"
+              :host="host"
+              :product="product"
+              :pg="pg"
+              :review-summary="reviewSummary"
+              @variantChanged="variantChanged"
+              @optionChanged="optionChanged"
+            />
+
+            <div
+              class="
+                mb-5
+                px-2
+                xl:ms-5
+                md:flex
+                items-center
+                space-y-4
+                md:space-y-0 md:space-x-5
+                xl:hidden
+              "
+            >
+              <div class="w-full md:w-1/2">
+                <AddToCart
+                  class=""
+                  :product="product"
+                  :user-selected-variant="userSelectedVariant"
+                  :options="product.options"
+                  :selected-options="selectedOptions"
+                  @alertToSelectMandatoryOptions="alertToSelectMandatoryOptions"
+                />
+              </div>
+
+              <div class="w-full md:w-1/2">
+                <BuyNow
+                  v-if="product.stock > 0"
+                  class=""
+                  :product="product"
+                  :user-selected-variant="userSelectedVariant"
+                  :options="product.options"
+                  :selected-options="selectedOptions"
+                  @alertToSelectMandatoryOptions="alertToSelectMandatoryOptions"
+                />
               </div>
             </div>
           </div>
 
-          <div
-            class="
-              mt-4
-              border-t border-b
-              xl:w-3/5
-              md:border-t-0 md:border-b-0
-              xl:mt-0
-            "
-          >
-            <!-- <DetailsSkeleton v-if="loading"  /> -->
-            <div v-if="product && product.id" class="bg-white">
-              <ProductRight
-                ref="ProductRight"
-                class="w-full h-auto nowrap"
-                :host="host"
-                :product="product"
-                :pg="pg"
-                @variantChanged="variantChanged"
-                @optionChanged="optionChanged"
-              />
-              <div
-                class="
-                  fixed
-                  bottom-0
-                  z-50
-                  flex flex-row
-                  w-full
-                  bg-white
-                  sm:relative sm:z-0
-                  xl:hidden
-                "
-              >
-                <div class="w-full sm:w-1/2 sm:me-3">
-                  <AddToCart
-                    class=""
-                    :product="product"
-                    :user-selected-variant="userSelectedVariant"
-                    :options="product.options"
-                    :selected-options="selectedOptions"
-                    @alertToSelectMandatoryOptions="
-                      alertToSelectMandatoryOptions
-                    "
-                  />
-                </div>
-                <div class="w-full sm:w-1/2">
-                  <BuyNow
-                    v-if="product.stock > 0"
-                    class=""
-                    :product="product"
-                    :user-selected-variant="userSelectedVariant"
-                    :options="product.options"
-                    :selected-options="selectedOptions"
-                    @alertToSelectMandatoryOptions="
-                      alertToSelectMandatoryOptions
-                    "
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="
-                py-4
-                bg-white
-                border-t border-b
-                xl:mt-0 xl:ms-4
-                sm:border-b-0 sm:border-t-0
-              "
-            >
-              <ProductDetailSpecs class="w-full" :product="product" />
-              <RatingAndReviews class="mt-6" />
-            </div>
-          </div>
+          <ProductDetailSpecs :product="product" class="mb-5" />
+
+          <RatingAndReviews />
         </div>
       </div>
     </div>
+
     <div
       v-if="!product && !product.id"
       class="
+        container
+        mx-auto
         flex flex-col
         items-center
         justify-center
         w-4/5
         pt-16
-        mx-auto
         text-center
         sm:pt-10 sm:w-1/2
       "
     >
       <img
-        v-lazy="`/placeholder/no-product.png`"
-        alt=""
+        v-lazy="'/no/empty-animate.svg'"
+        alt="Not found"
         class="object-contain w-full h-80"
       />
+
       <div class="mt-10 text-xl font-semibold text-red-500">
         Product not found!!
       </div>
     </div>
+
     <div
       v-if="
         recommendedProducts &&
         recommendedProducts.data &&
         recommendedProducts.data.length
       "
-      class="px-2 my-12 sm:mx-3 md:my-20"
+      class="container mx-auto my-10"
     >
       <ProductSlider
-        class="mt-2 sm:mt-6"
         :details="recommendedProducts.data"
         :heading="'Recommended For You'"
       />
@@ -200,13 +187,14 @@ import Breadcrumb from '~/components/ProductDetails/Breadcrumb.vue'
 import AddToCart from '~/components/ProductDetails/AddToCart.vue'
 import BuyNow from '~/components/ProductDetails/BuyNow.vue'
 import ProductSlider from '~/components/Home/ProductSlider.vue'
-import { TITLE, DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
+import { TITLE, DESCRIPTION, KEYWORDS } from '~/shared/config'
 import PRODUCTS from '~/gql/product/products.gql'
-import PRODUCT from '~/gql/product/product.gql'
+import DETAIL from '~/gql/groupQueries/DETAIL.gql'
 import PRODUCT_GROUP from '~/gql/product/product_group.gql'
 // import TOGGLE from '~/gql/wishlist/toggleWishlist.gql'
 // import CHECK_WISHLIST from '~/gql/wishlist/checkWishlist.gql'
 import DetailsPageLeftSkeleton from '~/components/AllSkeletons/DetailsPageLeftSkeleton.vue'
+import { ReviewSummary } from '~/shared/components'
 export default {
   components: {
     Share,
@@ -221,25 +209,34 @@ export default {
     ProductSlider,
     AddToCart,
   },
+
   // validate({ query }) {
   //   if (!query.id) return false
   // },
   async asyncData({ params, query, app, req, error, store }) {
     const client = app.apolloProvider.defaultClient
     let product = {}
+    let productGroup = {}
+    let checkWishlist = false
+    let reviewSummary = {}
     let selectedVariant = null
     let err = null
     const id = query.id
-    if (!id) error({ statusCode: 404, message: 'Product not found' })
+    if (!id) error({ statusCode: 404, message: 'Page not found' })
     try {
-      product = (
+      const pw = (
         await client.query({
-          query: PRODUCT,
+          query: DETAIL,
           variables: { id },
           fetchPolicy: 'no-cache',
+          errorPolicy: 'all',
         })
-      ).data.product
-      if (!product) error('Product not found')
+      ).data
+      product = pw.product
+      productGroup = pw.product_group
+      checkWishlist = pw.checkWishlist
+      reviewSummary = pw.reviewSummary
+      if (!product) error('Not found')
       // for (let v of product && product.variants) {
       //   if (v.stock > 0) {
       //     selectedVariant = v
@@ -260,7 +257,7 @@ export default {
     const HOST = process.server ? req.headers.host : window.location.host
     const nextWeek = new Date(new Date().setDate(new Date().getDate() + 7))
     let structuredData = {}
-    if (product && store.state.settings) {
+    if (product && store.state.store) {
       structuredData = {
         '@context': 'http://schema.org/',
         '@type': 'Product',
@@ -291,16 +288,32 @@ export default {
           priceValidUntil: nextWeek.toISOString(),
           url: `${HOST}/${product.slug}?id=${product.id}`,
           price: product.price < 1 ? '0.00' : product.price,
-          priceCurrency: store.state.settings.currencyCode,
+          priceCurrency: store.state.store.currencyCode,
           seller: {
             '@type': 'Organization',
-            name: store.state.settings.websiteName,
+            name: store.state.store.name,
             url: HOST,
           },
         },
       }
     }
-    return { host: HOST, product, selectedVariant, err, structuredData }
+    const { title, keywords, description, favicon, logoMobile } =
+      store.state.store || {} // err = null
+    return {
+      host: HOST,
+      product,
+      productGroup,
+      checkWishlist,
+      reviewSummary,
+      selectedVariant,
+      err,
+      structuredData,
+      title,
+      keywords,
+      description,
+      favicon,
+      logoMobile,
+    }
   },
   data() {
     return {
@@ -311,6 +324,13 @@ export default {
       // savingWishlist: false,
       // alertToSelectMandatoryOptions: false,
     }
+  },
+  async fetch() {
+    this.recommendedProducts = await this.$get('product/products', {
+      new: true,
+    })
+    // this.getProducts()
+    // // this.getProductGroups()
   },
 
   head() {
@@ -363,7 +383,7 @@ export default {
           {
             name: 'og_image',
             property: 'og:image',
-            content: this.product.img || sharingLogo,
+            content: this.product.img || this.logoMobile,
           },
           {
             property: 'og:image:width',
@@ -387,7 +407,7 @@ export default {
           },
           {
             name: 'twitter:image:src',
-            content: this.product.img || sharingLogo,
+            content: this.product.img || this.logoMobile,
           },
           // Google / Schema.org markup:
           {
@@ -406,7 +426,7 @@ export default {
           {
             hid: 'product_image',
             itemprop: 'image',
-            content: this.product.img || sharingLogo,
+            content: this.product.img || this.logoMobile,
           },
           {
             hid: 'product_price',
@@ -420,10 +440,6 @@ export default {
     }
     return prod
   },
-  created() {
-    this.getProducts()
-    this.getProductGroups()
-  },
   methods: {
     ...mapMutations({
       clearErr: 'clearErr',
@@ -431,21 +447,27 @@ export default {
       success: 'success',
       busy: 'busy',
     }),
-    async getProductGroups() {
-      const id = this.$route.query.id
-      if (!id) return
-      try {
-        this.pg = await this.$get('product/product_group', { id })
-        // this.pg = (
-        //   await this.$apollo.query({
-        //     query: PRODUCT_GROUP,
-        //     variables: { id },
-        //     fetchPolicy: 'no-cache',
-        //   })
-        // ).data.product_group
-        // this.checkWishlist()
-      } catch (e) {}
+    bc() {
+      let b = []
+      if (this.product.category) b = [...this.product.category.pathA]
+      b.push(this.product.category)
+      return b
     },
+    // async getProductGroups() {
+    //   const id = this.$route.query.id
+    //   if (!id) return
+    //   try {
+    //     this.pg = await this.$get('product/product_group', { id })
+    //     // this.pg = (
+    //     //   await this.$apollo.query({
+    //     //     query: PRODUCT_GROUP,
+    //     //     variables: { id },
+    //     //     fetchPolicy: 'no-cache',
+    //     //   })
+    //     // ).data.product_group
+    //     // this.checkWishlist()
+    //   } catch (e) {}
+    // },
     // async checkWishlist() {
     //   try {
     //     this.existInWishlist = (
@@ -501,27 +523,27 @@ export default {
       // console.log('oooooooooooooooooo', o)
       this.selectedOptions = o
     },
-    async getProducts() {
-      // Recommended Products
-      this.loading = true
-      try {
-        this.recommendedProducts = await this.$get('product/products', {
-          new: true,
-        })
-        // this.recommendedProducts = (
-        //   await this.$apollo.query({
-        //     query: PRODUCTS,
-        //     variables: {
-        //       new: true,
-        //     },
-        //     fetchPolicy: 'no-cache',
-        //   })
-        // ).data.products
-      } catch (e) {
-      } finally {
-        this.loading = false
-      }
-    },
+    // async getProducts() {
+    //   // Recommended Products
+    //   this.loading = true
+    //   try {
+    //     this.recommendedProducts = await this.$get('product/products', {
+    //       new: true,
+    //     })
+    //     // this.recommendedProducts = (
+    //     //   await this.$apollo.query({
+    //     //     query: PRODUCTS,
+    //     //     variables: {
+    //     //       new: true,
+    //     //     },
+    //     //     fetchPolicy: 'no-cache',
+    //     //   })
+    //     // ).data.products
+    //   } catch (e) {
+    //   } finally {
+    //     this.loading = false
+    //   }
+    // },
   },
 }
 </script>

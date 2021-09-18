@@ -86,20 +86,21 @@
     </div>
 
     <WantMore class="mt-5 md:mt-10" />
-    <WhiteFooter class="mt-10 md:mt-20" />
+    <!-- <WhiteFooter class="mt-10 md:mt-20" /> -->
   </section>
 </template>
 
 <script>
 import WantMore from '~/components/Island/WantMore.vue'
 import WhiteFooter from '~/components/Island/WhiteFooter.vue'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
   components: {
     WantMore,
     WhiteFooter,
+    NuxtLink,
   },
-  layout: 'none',
 
   data() {
     return {
@@ -257,6 +258,12 @@ export default {
           ],
         },
       ],
+    }
+  },
+
+  head() {
+    return {
+      title: 'Terms & Conditions',
     }
   },
 

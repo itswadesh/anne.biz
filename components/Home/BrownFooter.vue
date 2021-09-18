@@ -294,9 +294,9 @@
             Blog
           </nuxt-link>
         </div>
-        <span class="ps-1 my-4 mt-6 text-lg font-medium uppercase lg:mx-auto"
-          >Popular searches</span
-        >
+        <span class="ps-1 my-4 mt-6 text-lg font-medium uppercase lg:mx-auto">
+          Popular searches
+        </span>
         <div
           class="
             flex flex-row flex-wrap
@@ -346,7 +346,7 @@
           />
           <span class="object-cover ps-4 my-auto lg:w-2/3">
             <strong class="font-light"> 100% ORIGINAL </strong> guarantee for
-            all products at {{ settings.websiteName }}
+            all products at {{ store.name }}
           </span>
         </div>
         <!-- <div class="flex flex-col my-8 md:flex-row">
@@ -376,9 +376,9 @@
     <div class="w-full my-4 border-b-2 border-white"></div>
     <div class="flex flex-col-reverse justify-between md:flex-row">
       <span class="mt-4 text-sm font-normal tracking-wider md:mt-0">
-        © {{ year }} {{ settings.websiteName }}
-        <span v-if="settings.websiteEmail" class="ms-2">
-          {{ settings.websiteEmail }}</span
+        © {{ year }} {{ store.name }}
+        <span v-if="store.websiteEmail" class="ms-2">
+          {{ store.websiteEmail }}</span
         >
       </span>
       <!-- <LanguageSwitcher /> -->
@@ -533,46 +533,58 @@
 </template>
 <script>
 // import LanguageSwitcher from '~/components/LanguageSwitcher'
-import POPULAR_SEARCHES from '~/gql/search/popularSearches.gql'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
-  // components: { LanguageSwitcher },
+  components: {
+    NuxtLink,
+    // LanguageSwitcher,
+  },
   data() {
     return {
       year: new Date().getFullYear(),
-      popularSearches: null,
+      // popularSearches: null,
     }
   },
+  // async fetch() {
+  // this.getPopularSearches()
+  // this.popularSearches = (
+  //   await this.$get('search/popularSearches', { sort: '-popularity' })
+  // ).data
+  // },
   computed: {
+    store() {
+      return this.$store.state.store || {}
+    },
     settings() {
       return this.$store.state.settings || {}
     },
-  },
-  created() {
-    this.getPopularSearches()
+    popularSearches() {
+      return this.$store.state.popularSearches || []
+    },
   },
   methods: {
-    async getPopularSearches() {
-      try {
-        this.loading = true
-        this.popularSearches = (
-          await this.$get('search/popularSearches', { sort: '-popularity' })
-        ).data
-        // this.popularSearches = (
-        //   await this.$apollo.query({
-        //     query: POPULAR_SEARCHES,
-        //     variables: {
-        //       sort: '-popularity',
-        //     },
-        //     fetchPolicy: 'no-cache',
-        //   })
-        // ).data.popularSearches.data
-      } catch (e) {
-        // console.log(e)
-      } finally {
-        this.loading = false
-      }
-    },
+    // async getPopularSearches() {
+    //   try {
+    //     this.loading = true
+    //     this.popularSearches = (
+    //       await this.$get('search/popularSearches', { sort: '-popularity' })
+    //     ).data
+    //     // this.popularSearches = (
+    //     //   await this.$apollo.query({
+    //     //     query: POPULAR_SEARCHES,
+    //     //     variables: {
+    //     //       sort: '-popularity',
+    //     //     },
+    //     //     fetchPolicy: 'no-cache',
+    //     //   })
+    //     // ).data.popularSearches.data
+    //   } catch (e) {
+    //     // console.log(e)
+    //   } finally {
+    //     this.loading = false
+    //   }
+    // },
   },
 }
 </script>

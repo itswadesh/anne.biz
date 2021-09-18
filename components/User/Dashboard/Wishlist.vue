@@ -115,7 +115,7 @@
                             <div class="text-accent-900">
                               {{
                                 w.product.price
-                                  | currency(settings.currencySymbol, 2)
+                                  | currency(store.currencySymbol, 2)
                               }}
                             </div>
                             <strike
@@ -124,7 +124,7 @@
                             >
                               {{
                                 w.product.mrp
-                                  | currency(settings.currencySymbol, 2)
+                                  | currency(store.currencySymbol, 2)
                               }}
                             </strike>
                             <div
@@ -196,10 +196,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import WishlistSkeleton from '~/components/AllSkeletons/WishlistSkeleton.vue'
+import NuxtLink from '~/components/NuxtLink.vue'
 import MY_WISHLIST from '~/gql/wishlist/myWishlist.gql'
 import TOGGLE from '~/gql/wishlist/toggleWishlist.gql'
 export default {
-  components: { WishlistSkeleton },
+  components: { WishlistSkeleton, NuxtLink },
   data() {
     return {
       loading: false,
@@ -209,7 +210,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      settings: 'settings',
+      store: 'store',
     }),
   },
 

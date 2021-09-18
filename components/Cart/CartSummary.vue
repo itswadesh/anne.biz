@@ -40,26 +40,26 @@
           </div>
         </div>
         <div
-          v-if="$store.state.settings && $store.state.settings.shipping"
+          v-if="$store.state.store && $store.state.store.shipping"
           class="flex justify-between mt-1"
         >
           <div class="w-1/2 text-sm text-start">Shipping fee</div>
           <div
-            v-if="$store.state.settings.shipping.charge > 0"
+            v-if="$store.state.store.shipping.charge > 0"
             class="w-1/2 text-end ms-2 text-black-400"
           >
-            {{ $store.state.settings.shipping.charge | currency }}
+            {{ $store.state.store.shipping.charge | currency }}
           </div>
           <div v-else class="w-1/2 text-end ms-2 text-black-400">FREE</div>
         </div>
-        <div class="mt-1">
+        <!-- <div class="mt-1">
           <div class="pb-2 text-xs text-gray-400">
             Free shipping on orders of ₹999 or more. For first purchase,
             <a href class="underline">See Offer</a>
           </div>
-        </div>
+        </div> -->
       </div>
-      <div class="p-2 my-2 text-xs text-gray-500 rounded bg-accent-100">
+      <!-- <div class="p-2 my-2 text-xs text-gray-500 rounded bg-accent-100">
         <div class="flex items-center">
           <img v-lazy="'/shield.png'" class="w-12 pe-2" alt="" />
           <div class="ms-1 justify">
@@ -67,7 +67,7 @@
             <span class="text-black">Know More</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div
       class="
@@ -97,7 +97,7 @@
 <script>
 export default {
   props: {
-    cart: { type: Object },
+    cart: { type: Object, default: null },
   },
 }
 </script>

@@ -32,7 +32,7 @@
             py-3
             mx-auto
             my-auto
-            text-base
+            text-sm
             font-light
             text-gray-600
           "
@@ -132,7 +132,7 @@
           </div>
         </div>
       </li>
-      <li
+      <!-- <li
         class="
           h-auto
           py-3
@@ -202,82 +202,84 @@
             </div>
           </div>
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import PARENT_BRANDS from '~/gql/brand/parentBrands.gql'
-import MEGAMENU from '~/gql/category/megamenu.gql'
-import BRAND from '~/gql/brand/brand.gql'
+// import PARENT_BRANDS from '~/gql/brand/parentBrands.gql'
+// import MEGAMENU from '~/gql/category/megamenu.gql'
+// import BRAND from '~/gql/brand/brand.gql'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
+  components: { NuxtLink },
   props: {
     brand: { type: String, default: null },
   },
   data() {
     return {
-      megamenu: null,
+      // megamenu: null,
       parentBrands: false,
     }
   },
-  // computed: {
-  // ...mapGetters({ megamenu: 'megamenu' }),
-  // },
+  computed: {
+    ...mapGetters({ megamenu: 'megamenu' }),
+  },
   created() {
-    this.getMegamenu()
-    this.getParentBrands()
+    // this.getMegamenu()
+    // this.getParentBrands()
   },
   methods: {
-    async getMegamenu() {
-      // this.loading = true
-      try {
-        const brand = await this.$get('brand/brand', {
-          slug: this.$route.params.slug,
-        })
-        // const brand = (
-        //   await this.$apollo.query({
-        //     query: BRAND,
-        //     variables: { slug: this.$route.params.slug },
-        //   })
-        // ).data.brand
-        const variables = { active: true }
-        if (this.brand) {
-          variables.brand = brand.id
-        }
-        this.megamenu = await this.$get('category/megamenu', variables)
-        // this.megamenu = (
-        //   await this.$apollo.query({
-        //     query: MEGAMENU,
-        //     variables,
-        //   })
-        // ).data.megamenu
-      } catch (e) {}
-    },
-    async getParentBrands() {
-      // this.loading = true
-      try {
-        this.parentBrands = await this.$get('brand/parentBrands', {
-          featured: true,
-          limit: 30,
-          page: 0,
-        })
-        // this.parentBrands = (
-        //   await this.$apollo.query({
-        //     query: PARENT_BRANDS,
-        //     variables: { featured: true, limit: 30, page: 0 },
-        //     fetchPolicy: 'no-cache',
-        //   })
-        // ).data.parentBrands
-        // console.log("brands to show", this.brands)
-      } catch (e) {
-        // console.log(e)
-      } finally {
-        // this.loading = false
-      }
-    },
+    // async getMegamenu() {
+    //   // this.loading = true
+    //   try {
+    //     const brand = await this.$get('brand/brand', {
+    //       slug: this.$route.params.slug,
+    //     })
+    //     // const brand = (
+    //     //   await this.$apollo.query({
+    //     //     query: BRAND,
+    //     //     variables: { slug: this.$route.params.slug },
+    //     //   })
+    //     // ).data.brand
+    //     const variables = { active: true }
+    //     if (this.brand) {
+    //       variables.brand = brand.id
+    //     }
+    //     this.megamenu = await this.$get('category/megamenu', variables)
+    //     // this.megamenu = (
+    //     //   await this.$apollo.query({
+    //     //     query: MEGAMENU,
+    //     //     variables,
+    //     //   })
+    //     // ).data.megamenu
+    //   } catch (e) {}
+    // },
+    // async getParentBrands() {
+    //   // this.loading = true
+    //   try {
+    //     this.parentBrands = await this.$get('brand/parentBrands', {
+    //       featured: true,
+    //       limit: 30,
+    //       page: 0,
+    //     })
+    //     // this.parentBrands = (
+    //     //   await this.$apollo.query({
+    //     //     query: PARENT_BRANDS,
+    //     //     variables: { featured: true, limit: 30, page: 0 },
+    //     //     fetchPolicy: 'no-cache',
+    //     //   })
+    //     // ).data.parentBrands
+    //     // console.log("brands to show", this.brands)
+    //   } catch (e) {
+    //     // console.log(e)
+    //   } finally {
+    //     // this.loading = false
+    //   }
+    // },
   },
 }
 </script>

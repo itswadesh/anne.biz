@@ -21,7 +21,7 @@
             My Shopping Bag ({{ cart.qty }} Items)
           </div>
           <div class="w-1/2 text-end">
-            Total {{ cart.total | currency(settings.currencySymbol, 2) }}
+            Total {{ cart.total | currency(store.currencySymbol, 2) }}
           </div>
         </div>
         <CartItem v-for="item in cart.items" :key="item._id" :item="item" />
@@ -90,6 +90,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import NuxtLink from '~/components/NuxtLink.vue'
 const CartItem = () => import('~/components/Cart/CartItem')
 // const Offers = () => import('~/components/Cart/Offers')
 const CartSummary = () => import('~/components/Cart/CartSummary')
@@ -103,10 +104,16 @@ export default {
     CartSummary,
     CheckoutHeader,
     CheckoutFooter,
+    NuxtLink,
+  },
+  head() {
+    return {
+      title: 'Payment',
+    }
   },
   computed: {
     ...mapGetters({
-      settings: 'settings',
+      store: 'store',
       user: 'auth/user',
       cart: 'cart/cart',
       checkCart: 'cart/checkCart',

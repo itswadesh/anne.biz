@@ -1,32 +1,72 @@
 <template>
-  <div class="w-full container mx-auto">
-    <div class="w-full flex justify-center text-black mt-12 pt-4 text-3xl">
+  <section
+    class="pt-5 pb-10 px-2 conatiner mx-auto w-full lg:max-w-6xl text-gray-800"
+  >
+    <h4 class="my-5 md:my-10 text-2xl md:text-4xl text-center font-bold">
       Delivery Charges
-    </div>
-    <div class="text-gray-600 text-base font-light mb-8">
-      <div class="my-6">
-        1. GoSport products: For Delivery In a Week, charges are:
-      </div>
-      <div>Orders below Rs. 750 : Rs.100/-</div>
-      <div>Orders below Rs. 750 : Rs.100/-</div>
+    </h4>
 
-      <div class="my-6">
-        2. Anne products: For Delivery In a Week, charges are:
-      </div>
-      <div>Orders below Rs. 750 : Rs.100/-</div>
-      <div>Orders above Rs. 750 : Rs. 0/-</div>
-
-      <div class="my-6">
-        3. YOYOSO products: For Delivery In a Week, charges are:
-      </div>
-      <div>Orders below Rs. 500 : Rs.100/-</div>
-      <div>Orders above Rs. 501 : Rs. 0/-</div>
-
-      <div class="my-6">
-        4. For all other products: For Delivery In a Week, charges are:
-      </div>
-      <div>Orders below Rs. 750 : Rs.100/-</div>
-      <div>Orders above Rs. 750 : Rs. 0/-</div>
-    </div>
-  </div>
+    <Shortcode :content="page.content"></Shortcode>
+  </section>
 </template>
+
+<script>
+const Shortcode = () => import('~/components/Shortcode')
+export default {
+  components: { Shortcode },
+  data() {
+    return {
+      page: {},
+    }
+  },
+  async fetch() {
+    this.page = await this.$get('page/pageSlug', {
+      slug: 'delivery-charges',
+    })
+  },
+  head() {
+    return {
+      title: this.page && this.page.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.page && this.page.metaDescription,
+        },
+        {
+          hid: 'og:description',
+          name: 'Description',
+          property: 'og:description',
+          content: this.page && this.page.metaDescription,
+        },
+        {
+          hid: 'keywords',
+          name: 'Keywords',
+          property: 'keywords',
+          content: this.page && this.page.keywords,
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          property: 'og:title',
+          content: this.page && this.page.title,
+        },
+        // Twitter
+        {
+          name: 'twitter:title',
+          content: this.page && this.page.title,
+        },
+        {
+          name: 'twitter:description',
+          content: this.page && this.page.metaDescription,
+        },
+      ],
+    }
+  },
+  methods: {
+    setPage(page) {
+      this.page = page
+    },
+  },
+}
+</script>

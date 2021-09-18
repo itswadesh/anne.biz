@@ -1,6 +1,6 @@
 <template>
-  <div class="focus:outline-none h-52 md:h-64 lg:h-80 xl:h-96">
-    <div class="flex justify-center">
+  <div class="bg-white h-48 md:h-64 lg:h-80 xl:h-96">
+    <div class="flex items-center justify-center">
       <progress
         v-if="loading"
         class="
@@ -29,34 +29,30 @@
           {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
         </div>
       </template>
-      <div
+
+      <button
         v-for="b in banners"
         :key="b.id"
-        class="p-5 overflow-hidden focus:outline-none"
+        class="z-auto my-auto focus:outline-none"
+        aria-label="Slider Banners"
+        @click="go(b.link)"
       >
-        <button class="z-auto my-auto focus:outline-none" @click="go(b.link)">
-          <div class="rounded-2xl focus:outline-none">
-            <img
-              v-lazy="b.img"
-              class="
-                bg-white
-                object-cover
-                w-full
-                my-auto
-                overflow-hidden
-                bg-white
-                focus:outline-none
-                md:object-cover
-                h-48
-                md:h-64
-                lg:h-80
-                xl:h-96
-                rounded-2xl
-              "
-            />
-          </div>
-        </button>
-      </div>
+        <img
+          v-lazy="`${b.img}?tr=w-1500,h-380,fo-auto`"
+          class="
+            bg-white
+            h-48
+            md:h-64
+            lg:h-80
+            xl:h-96
+            w-full
+            object-cover
+            overflow-hidden
+            bg-white
+          "
+          alt="Slider Banners"
+        />
+      </button>
       <!-- v-if="loading" -->
     </VueSlickCarousel>
   </div>
@@ -80,7 +76,8 @@ export default {
         infinite: true,
         slidesToShow: 1,
         autoplay: true,
-        speed: 500,
+        speed: 2000,
+        lazyLoad: 'progressive',
         responsive: [
           {
             breakpoint: 1024,
@@ -114,7 +111,7 @@ export default {
           },
         ],
       },
-      skeleton: false,
+      skeleton: true,
       loading: false,
     }
   },

@@ -1,183 +1,119 @@
 <template>
-  <div class="w-full xl:ms-3">
+  <div class="w-full xl:ms-5 text-gray-800">
     <!-- <div class="flex flex-row justify-end">
           <Share :product="product" :host="host" />
-          <WishButton rounded :pid="product.id" v-if="product.id" class="p-1 w-7 h-7"/>
+          <WishButton :rounded="true" :pid="product.id" v-if="product.id" class="p-1 w-7 h-7"/>
       </div> -->
+
     <div class="flex flex-row w-full afterSizeSelector">
-      <div v-if="product" class="flex flex-col w-full px-3">
-        <div>
-          <div class="w-full p-2 md:p-0">
-            <span
-              v-if="product.brand"
-              class="py-4 md:py-3 text-primary-500 md:hidden"
-            >
-              {{ product.brand.name }}
-            </span>
-            <div
-              class="
-                py-2
-                text-lg
-                font-medium
-                text-gray-600
-                sm:text-xl
-                md:mt-4 md:py-0
-                xl:mt-0
-                lh75
-              "
-            >
-              {{ product.name }}
-              <!-- <span v-if="product.color">-{{ product.color.name }}</span> -->
-            </div>
+      <div v-if="product" class="flex flex-col w-full px-2">
+        <strong
+          v-if="product.brand"
+          class="leading-3 text-lg sm:text-xl mb-1 uppercase"
+        >
+          {{ product.brand.name }}
+        </strong>
 
-            <!-- size chart demo button  -->
-            <!-- <div>
-              <button
-                @click="sidebar = !sidebar"
-                aria-label="Open Menu"
-                class="overflow-x-hidden overflow-y-hidden transition ease-in-out focus:outline-none duration-1500"
-              >
-                Size chart
-              </button>
-              <div
-                v-if="sidebar"
-                @click="sidebar = false"
-                class="fixed inset-0 z-30 w-screen h-screen bg-black opacity-50 cursor-auto"
-              />
-              <ProductSizeChart
-                class="h-screen"
-                :show="sidebar"
-                :class="sidebar ? 'openSideBar' : 'closeSideBar'"
-                @hideSidebar="sidebar = false"
-              />
-            </div> -->
+        <p class="mb-1.5 sm:mb-3 text-gray-500 text-base sm:text-lg">
+          {{ product.name }}
 
-            <div v-if="reviewSummary" class="flex flex-row mt-4">
-              <div
-                class="
-                  flex flex-row
-                  items-center
-                  justify-center
-                  w-20
-                  h-8
-                  my-auto
-                  text-base
-                  font-normal
-                  tracking-wider
-                  text-gray-600
-                  bg-gray-300
-                  rounded
-                  me-3
-                "
-              >
-                <span class="my-auto me-1">{{ reviewSummary.avg }}</span>
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 20 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10.0517 15.1844L10 15.1532L9.94833 15.1844L3.97123 18.7919L5.55738 11.9927L5.5711 11.9339L5.52548 11.8944L0.244617 7.31961L7.19845 6.72964L7.25854 6.72454L7.28207 6.66902L10 0.256259L12.7179 6.66902L12.7415 6.72454L12.8015 6.72964L19.7554 7.31961L14.4745 11.8944L14.4289 11.9339L14.4426 11.9927L16.0288 18.7919L10.0517 15.1844Z"
-                    fill="#F2B200"
-                    stroke="#95989A"
-                    stroke-width="0.2"
-                  />
-                </svg>
-              </div>
-              <span class="my-auto text-lg font-light text-gray-500">
-                {{ reviewSummary.count }}
-                ratings and
-                {{ reviewSummary.reviews && reviewSummary.reviews.length }}
-                reviews
-              </span>
-            </div>
+          <!-- <span v-if="product.color">-{{ product.color.name }}</span> -->
+        </p>
 
-            <!-- share and add reviews and wishlist icon  -->
-            <div
-              v-if="product"
-              class="flex flex-row justify-between w-full my-1"
-            >
-              <nuxt-link
-                :to="localePath(`/rate-this-product?id=${product.id}`)"
-                class="
-                  py-1
-                  my-auto
-                  text-sm text-gray-600
-                  md:txt-base
-                  sm:text-base
-                  me-3
-                  hover:text-primary-500
-                "
-              >
-                Add a Review
-              </nuxt-link>
-              <!-- <a
-                v-if="settings.liveCommerce"
-                :href="`${NETEASE_WWW}/netease?channelName=${product.id}`"
-                target="blank"
-              >
-                Schedule a demo
-              </a> -->
-              <button
-                v-if="settings.liveCommerce"
-                type="button"
-                @click="populateDemoScheduler(product)"
-              >
-                Schedule a demo
-              </button>
-            </div>
-            <!-- <span v-if="showDemoScheduler">
+        <hr class="mb-1.5 sm:mb-3 border-t border-gray-200 w-full" />
+
+        <!-- size chart demo button  -->
+        <!-- <div v-if="product.sizechart">
+          <button
+            aria-label="Open Menu"
+            class="
+              overflow-x-hidden overflow-y-hidden
+              transition
+              ease-in-out
+              focus:outline-none
+              duration-1500
+            "
+            @click="sidebar = !sidebar"
+          >
+            Size chart
+          </button>
+          <div
+            v-if="sidebar"
+            class="
+              fixed
+              inset-0
+              z-30
+              w-screen
+              h-screen
+              bg-black
+              opacity-50
+              cursor-auto
+            "
+            @click="sidebar = false"
+          />
+          <ProductSizeChart
+            :product="product"
+            class="h-screen"
+            :show="sidebar"
+            :class="sidebar ? 'openSideBar' : 'closeSideBar'"
+            @hideSidebar="sidebar = false"
+          />
+        </div> -->
+
+        <!-- <span v-if="showDemoScheduler">
               <Scheduler
                 :class="showDemoScheduler ? 'open' : 'close'"
                 :product="product"
                 @hide="hideOffers"
               />
             </span> -->
-            <div class="">
-              <div class="sm:py-2">
-                <div
-                  class="
-                    flex flex-row flex-wrap
-                    items-center
-                    my-auto
-                    text-lg
-                    font-medium
-                    text-gray-600
-                    me-3
-                  "
-                >
-                  <div class="flex flex-row my-auto">
-                    <b class="me-1"> MRP </b>
-                    <strike
-                      v-if="product.price < product.mrp"
-                      class="font-light"
-                    >
-                      {{ product.mrp | currency(settings.currencySymbol, 2) }}
-                    </strike>
-                  </div>
-                  <b class="mx-2 my-auto me-2">
-                    {{ product.price | currency(settings.currencySymbol, 2) }}
-                  </b>
-                  <div
-                    v-if="product.discount > 0"
-                    class="my-auto me-1 text-red-600"
-                  >
-                    ({{ product.discount }}% off)
-                  </div>
-                  <div class="my-auto font-light">(Incl. of all taxes)</div>
-                </div>
-              </div>
 
-              <span
-                v-if="product.stock > 0 && product.stock < 5"
-                class="text-lg font-thin text-gray-500"
+        <div>
+          <div class="mb-1.5 sm:mb-3">
+            <div class="flex flex-row my-auto items-baseline mb-1">
+              <b class="me-1 text-lg sm:text-lg"></b>
+
+              <b class="me-2 text-base sm:text-xl">
+                {{ product.price | currency(store.currencySymbol) }}
+              </b>
+
+              <strike
+                v-if="product.price < product.mrp"
+                class="text-base sm:text-lg font-light me-2 text-gray-500"
               >
-                Hurry, only few left!
-              </span>
-              <span class="mt-2 border-b shadow-sm"></span>
-              <!-- <div class="mt-4">
+                {{ product.mrp | currency(store.currencySymbol) }}
+              </strike>
+
+              <div
+                v-if="product.discount > 0"
+                class="text-base sm:text-lg text-primary-700"
+              >
+                ({{ product.discount }}% off)
+              </div>
+            </div>
+
+            <div class="text-sm text-secondary-200 font-medium">
+              inclusive of all taxes
+            </div>
+          </div>
+
+          <div
+            v-if="product.stock > 0 && product.stock < 5"
+            class="
+              text-sm
+              sm:text-base
+              font-light
+              text-accent-900
+              mb-1.5
+              sm:mb-3
+              animate-pulse
+            "
+          >
+            Hurry up, only few left!
+          </div>
+
+          <span class="mb-1.5 sm:mb-3 border-b shadow-sm"></span>
+          <!-- <div class="mt-4">
                 <span class="avl">Available offers</span>
                 <ul class="mt-3 ms-5 subline">
                   <li class="py-2">
@@ -189,11 +125,11 @@
                   <li class="py-2">odit! Porro totam velit iste provident</li>
                 </ul>
               </div> -->
-              <!-- <span class="mt-4 border-b shadow-sm"></span>-->
+          <!-- <span class="mt-4 border-b shadow-sm"></span>-->
 
-              <!-- select options  -->
-              <div class="flex-col">
-                <!-- <div
+          <!-- select options  -->
+          <div class="flex-col">
+            <!-- <div
                   v-if="product.options && product.options.length"
                   class="items-center p-3 px-3 my-3 text-sm bg-gray-100 sizeSelector lg:my-0"
                   :class="{ 'shake-animation': shake }"
@@ -204,7 +140,7 @@
                       :key="o.id"
                       class="flex flex-row my-3"
                     >
-                      <span class="my-auto text-lg text-gray-500 me-3">
+                      <span class="my-auto  text-gray-500 me-3">
                         {{ o.name }}
                      </span>
                       <select
@@ -309,7 +245,7 @@
                             :value="v.id"
                             :id="v.id"
                           />
-                          <span class="-mb-2 text-lg text-gray-600">{{
+                          <span class="-mb-2  text-gray-600">{{
                             v.name
                           }}</span>
                         </label>
@@ -330,7 +266,7 @@
                     </div>
                   </div>
                 </div> -->
-                <!-- <div
+            <!-- <div
                   class="items-center p-3 px-3 my-3 text-sm bg-gray-100 lg:my-0"
                   :class="{ 'shake-animation': shake }"
                 >
@@ -378,66 +314,120 @@
                     </div>
                   </div>
                 </div> -->
-                <!-- <img
+            <!-- <img
                       class="h-3 -mt-1 ms-6 me-2"
                       alt=""
                       src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzOCIgaGVpZ2h0PSIxMiI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMyODc0RjAiIHN0cm9rZS13aWR0aD0iMS4zIj48cGF0aCBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik0zNy4zNS42NUguNjV2MTAuN2gzNi43Vi42NXoiLz48cGF0aCBmaWxsPSIjODc4Nzg3IiBkPSJNNi42NSA4LjY1aDF2Mi43aC0xem00LTNIMTFsLS4zNS0uMzVWNWwtLjE1LjE1LS4xNS0uMTV2LjNsLS4zNS4zNWguMzV2NS43SDEwbC4zNS4zNXYuM2wuMTUtLjE1LjE1LjE1di0uM2wuMzUtLjM1aC0uMzV2LTUuN3ptNSAzSDE2bC0uMzUtLjM1VjhsLS4xNS4xNS0uMTUtLjE1di4zbC0uMzUuMzVoLjM1djIuN0gxNWwuMzUuMzV2LjNsLjE1LS4xNS4xNS4xNXYtLjNsLjM1LS4zNWgtLjM1di0yLjd6bTQtM2gxdjUuN2gtMXptNCAzaDF2Mi43aC0xem05IDBoMXYyLjdoLTF6bS00LTNoMXY1LjdoLTF6Ii8+PC9nPjwvc3ZnPg=="
                     /> -->
-                <!-- <div class="flex items-center text-primary">
+            <!-- <div class="flex items-center text-primary">
                       <span class="">SIZE CHART</span>
                       <i class="block -mt-1 ms-2 fa fa-angle-right"></i>
                     </div> -->
-                <div
-                  v-if="
-                    pg &&
-                    ((pg.colorGroup && pg.colorGroup.length) ||
-                      (pg.sizeGroup && pg.sizeGroup.length))
-                  "
-                  class="my-3 text-sm lg:my-0"
-                >
-                  <div v-if="pg.sizeGroup && pg.sizeGroup.length">
-                    <div class="flex flex-wrap items-center">
-                      <span class="text-lg font-light text-gray-700 me-6">
-                        Sizes:
-                      </span>
-                      <div class="flex flex-wrap">
-                        <nuxt-link
-                          v-for="(i, ix) in pg.sizeGroup"
-                          :key="ix + 's'"
-                          :to="`/${i.slug}?id=${i.id}`"
-                          :class="getClassesForSizeGroup(i, product)"
-                          class="
-                            relative
-                            text-xs
-                            flex
-                            items-center
-                            justify-center
-                            w-12
-                            h-12
-                            m-1
-                            bg-white
-                            border
-                            rounded-full
-                            cursor-pointer
-                            focus:outline-none
-                          "
+            <div
+              v-if="
+                pg &&
+                ((pg.colorGroup && pg.colorGroup.length) ||
+                  (pg.sizeGroup && pg.sizeGroup.length))
+              "
+              class="mb-1.5 sm:mb-3 text-sm tracking-wide"
+            >
+              <div
+                v-if="pg.sizeGroup && pg.sizeGroup.length"
+                class="mb-1.5 sm:mb-3"
+              >
+                <div class="flex flex-col">
+                  <div class="mb-1.5 sm:mb-3 flex items-center">
+                    <h6 class="font-semibold w-36 me-2">SELECT SIZE</h6>
+
+                    <div v-if="product.sizechart">
+                      <button
+                        aria-label="Open Menu"
+                        class="
+                          focus:outline-none
+                          duration-1500
+                          text-primary-500
+                          font-semibold
+                          flex
+                          items-center
+                          space-x-1
+                        "
+                        @click="sidebar = !sidebar"
+                      >
+                        <span>SIZE CHART</span>
+
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
                         >
-                          <div v-if="i.stock < 1" class="absolute inset-x-0">
-                            <div
-                              class="
-                                border-t border-gray-400
-                                transform
-                                rotate-45
-                              "
-                            ></div>
-                          </div>
-                          <div class="uppercase">
-                            {{ i.size.name }}
-                          </div>
-                        </nuxt-link>
-                        <!-- <div
+                          <path
+                            fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                      <div
+                        v-if="sidebar"
+                        class="
+                          fixed
+                          inset-0
+                          z-30
+                          w-screen
+                          h-screen
+                          bg-black
+                          opacity-50
+                          cursor-auto
+                        "
+                        @click="sidebar = false"
+                      />
+                      <ProductSizeChart
+                        :product="product"
+                        class="h-screen"
+                        :show="sidebar"
+                        :class="sidebar ? 'openSideBar' : 'closeSideBar'"
+                        @hideSidebar="sidebar = false"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="flex flex-row items-center space-x-2">
+                    <nuxt-link
+                      v-for="(i, ix) in pg.sizeGroup"
+                      :key="ix + 's'"
+                      :to="`/${i.slug}?id=${i.id}`"
+                      :class="getClassesForSizeGroup(i, product)"
+                      class="
+                        relative
+                        text-sm
+                        font-medium
+                        flex
+                        items-center
+                        justify-center
+                        w-12
+                        h-12
+                        bg-white
+                        border
+                        rounded-full
+                        cursor-pointer
+                        focus:outline-none
+                      "
+                    >
+                      <div v-if="i.stock < 1" class="absolute inset-x-0">
+                        <div
+                          class="border-t border-gray-400 transform rotate-45"
+                        ></div>
+                      </div>
+                      <div class="uppercase">
+                        {{ i.size.name }}
+                      </div>
+                    </nuxt-link>
+                  </div>
+                </div>
+                <!-- <div
                           @click="sidebar = !sidebar" aria-label="Open Menu"
-                          class="my-auto text-sm font-light text-gray-600 underline cursor-pointer ms-2 hover:text-gray-800 hover:font-medium"
+                          class="my-auto text-sm font-light text-gray-600 underline cursor-pointer ms-2 hover:text-gray-800 hover:font-semibold"
                         >
                           Size chart
                         </div>
@@ -454,76 +444,72 @@
                             @hideSidebar="sidebar = false"
                           />
                         </div> -->
-                      </div>
-                    </div>
-                  </div>
+                <!-- size chart demo button  -->
+              </div>
 
-                  <div
-                    v-if="pg.colorGroup && pg.colorGroup.length"
-                    class="mt-3"
-                  >
-                    <div class="flex flex-wrap items-center">
-                      <span class="text-lg font-light text-gray-700 me-4">
-                        Colors:
-                      </span>
-                      <div class="flex flex-wrap overflow-y-auto">
-                        <nuxt-link
-                          v-for="(i, ix) in pg.colorGroup"
-                          :key="ix + 'c'"
-                          :to="`/${i.slug}?id=${i.id}`"
-                          :style="`background: ${i.color.color_code};`"
-                          :class="getClassesForColorGroup(i, product)"
-                          class="
-                            flex
-                            items-center
-                            justify-center
-                            w-12
-                            h-12
-                            m-1
-                            border border-gray-500
-                            hover:border-primary-500
-                            rounded-full
-                            cursor-pointer
-                            focus:outline-none
-                            tooltip
-                          "
-                        >
-                          <div
-                            class="
-                              absolute
-                              z-50
-                              w-auto
-                              p-2
-                              px-4
-                              -mt-24
-                              text-sm
-                              tracking-wider
-                              text-center text-white
-                              transition
-                              duration-75
-                              delay-75
-                              transform
-                              bg-black
-                              rounded-lg
-                              shadow-lg
-                              tooltiptext
-                            "
-                          >
-                            {{ i.color.name }}
-                          </div>
-                          <div
-                            class="absolute shadow-lg triangle tooltiptext"
-                          ></div>
-                        </nuxt-link>
-                        <!-- {{tooltip22}} -->
+              <div v-if="pg.colorGroup && pg.colorGroup.length">
+                <div>
+                  <h6 class="mb-1.5 sm:mb-3 font-semibold w-36 me-2">
+                    AVAILABLE COLORS
+                  </h6>
+
+                  <div class="flex flex-row items-center space-x-2">
+                    <nuxt-link
+                      v-for="(i, ix) in pg.colorGroup"
+                      :key="ix + 'c'"
+                      :to="`/${i.slug}?id=${i.id}`"
+                      :style="`background: ${i.color.color_code};`"
+                      :class="getClassesForColorGroup(i, product)"
+                      class="
+                        flex
+                        items-center
+                        justify-center
+                        w-12
+                        h-12
+                        border border-gray-500
+                        hover:border-primary-500
+                        rounded-full
+                        cursor-pointer
+                        focus:outline-none
+                        tooltip
+                      "
+                    >
+                      <div
+                        class="
+                          absolute
+                          z-50
+                          w-auto
+                          p-2
+                          px-4
+                          -mt-24
+                          text-sm
+                          tracking-wider
+                          text-center text-white
+                          transition
+                          duration-75
+                          delay-75
+                          transform
+                          bg-black
+                          rounded-lg
+                          shadow-lg
+                          tooltiptext
+                        "
+                      >
+                        {{ i.color.name }}
                       </div>
-                    </div>
+                      <div
+                        class="absolute shadow-lg triangle tooltiptext"
+                      ></div>
+                    </nuxt-link>
+                    <!-- {{tooltip22}} -->
                   </div>
-                  <!-- <div class="flex items-center">
+                </div>
+              </div>
+              <!-- <div class="flex items-center">
                     <span class="me-4"> SELECT SIZE</span>
                     
                   </div> -->
-                  <!-- <div
+              <!-- <div
                     class="relative flex flex-wrap px-3 py-4"
                     :class="{ 'shake-animation': shake }"
                   >
@@ -559,120 +545,253 @@
                       </button>
                     </div>
                   </div> -->
-                </div>
-              </div>
-              <!-- <div class="items-center p-3 px-3 my-3 text-sm bg-gray-100 lg:my-0"
+            </div>
+          </div>
+          <!-- <div class="items-center p-3 px-3 my-3 text-sm bg-gray-100 lg:my-0"
           :class="{ 'shake-animation': shake }">
             <div v-if="product.options">
               <div v-for="o in product.options" :key="o.id"> -->
-              <!-- color selector -->
-              <!-- </div>
+          <!-- color selector -->
+          <!-- </div>
             </div>
               </div> -->
-              <div
-                class="flex flex-row justify-between mt-3 text-lg font-light"
+
+          <div class="flex items-center mb-1.5 sm:mb-3">
+            <div
+              class="
+                flex flex-row
+                items-center
+                space-x-2
+                w-36
+                me-2
+                font-semibold
+                whitespace-nowrap
+              "
+            >
+              <span>AVAILABILITY </span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <div
-                  v-if="product.brand"
-                  class="items-center hidden my-auto md:flex"
-                >
-                  <span class="text-gray-500">Brand: </span>
-                  <span class="text-primary-500 ms-1">
-                    {{ product.brand.name }}
-                  </span>
-                </div>
-                <div class="flex items-center my-auto">
-                  <span class="text-gray-500">Availability:</span>
-                  <span
-                    v-if="product.stock > 0"
-                    class="text-secondary-200 ms-1"
-                  >
-                    {{ product.stock }} In Stock
-                  </span>
-                  <span v-else class="ms-1 text-accent-900">
-                    Not Available
-                  </span>
-                </div>
-              </div>
-              <!-- deleivery  -->
-              <div
-                class="
-                  flex flex-col
-                  justify-between
-                  w-full
-                  my-5
-                  mt-6
-                  sm:flex-row
-                "
-              >
-                <!-- <div class="me-3">
-                  <span class="text-lg font-light text-gray-500">Delivery To:</span>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                />
+              </svg>
+            </div>
+
+            <span
+              v-if="product.stock >= 5"
+              class="text-sm text-secondary-200 whitespace-nowrap"
+              >In Stock</span
+            >
+
+            <span
+              v-else-if="product.stock > 0 && product.stock < 5"
+              class="text-sm text-primary-500 whitespace-nowrap"
+            >
+              Only {{ product.stock }} remaining
+            </span>
+
+            <span v-else class="text-sm text-accent-900 whitespace-nowrap">
+              Out of Stock</span
+            >
+          </div>
+
+          <!-- deleivery  -->
+          <div
+            class="
+              flex flex-col
+              justify-between
+              w-full
+              mb-1
+              sm:mb-2 sm:flex-row
+            "
+          >
+            <!-- <div class="me-3">
+                  <span class=" font-light text-gray-500">Delivery To:</span>
                   <input
                     type="text"
                     class="h-12 mt-2 border-none ring-1 ring-primary-500 focus:ring-2 focus:ring-primary-500"
                     placeholder="Enter Pin"
                   />
                 </div> -->
-                <div v-if="product.returnInfo" class="flex">
-                  <div class="flex flex-wrap items-center">
-                    <div class="me-3">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13.64 2.35C12.19 0.9 10.2 0 7.99 0C3.57 0 0 3.58 0 8C0 12.42 3.57 16 7.99 16C11.72 16 14.83 13.45 15.72 10H13.64C12.82 12.33 10.6 14 7.99 14C4.68 14 1.99 11.31 1.99 8C1.99 4.69 4.68 2 7.99 2C9.65 2 11.13 2.69 12.21 3.78L8.99 7H15.99V0L13.64 2.35Z"
-                          fill="#4A4A4A"
-                        />
-                      </svg>
-                    </div>
-                    <div class="text-lg font-light text-gray-500">
-                      {{ product.returnInfo }}
-                    </div>
-                    <!-- <span class="my-auto text-lg font-light text-gray-500"
+            <div v-if="product.returnInfo" class="flex">
+              <div class="flex flex-wrap items-center">
+                <div class="me-3">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.64 2.35C12.19 0.9 10.2 0 7.99 0C3.57 0 0 3.58 0 8C0 12.42 3.57 16 7.99 16C11.72 16 14.83 13.45 15.72 10H13.64C12.82 12.33 10.6 14 7.99 14C4.68 14 1.99 11.31 1.99 8C1.99 4.69 4.68 2 7.99 2C9.65 2 11.13 2.69 12.21 3.78L8.99 7H15.99V0L13.64 2.35Z"
+                      fill="#4A4A4A"
+                    />
+                  </svg>
+                </div>
+                <div class="font-light text-gray-500">
+                  {{ product.returnInfo }}
+                </div>
+                <!-- <span class="my-auto  font-light text-gray-500"
                       >Cash on Delivery available</span >-->
-                  </div>
-                </div>
               </div>
-              <div class="my-5">
-                <div class="flex flex-row items-center">
-                  <span class="text-lg font-light text-gray-500">
-                    Delivery by:
-                  </span>
-                  <span class="text-lg font-light text-gray-700 ms-1">
-                    {{ deliveryDate }}
-                  </span>
-                </div>
-                <!-- <div
-                  class="text-sm font-light text-gray-500 underline cursor-pointer hover:text-gray-800 hover:font-medium"
+            </div>
+          </div>
+
+          <div class="mb-1.5 sm:mb-3">
+            <div class="flex flex-row items-center">
+              <div
+                class="
+                  flex flex-row
+                  items-center
+                  space-x-2
+                  w-36
+                  me-2
+                  font-semibold
+                  whitespace-nowrap
+                "
+              >
+                <span>GET IT BY </span>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                  />
+                </svg>
+              </div>
+
+              <span class="text-sm whitespace-nowrap text-gray-500">
+                {{ deliveryDate }}
+              </span>
+            </div>
+
+            <!-- <div
+                  class="text-sm font-light text-gray-500 underline cursor-pointer hover:text-gray-800 hover:font-semibold"
                 >
                   View Details
                 </div> -->
-              </div>
-              <!-- <span
+          </div>
+          <!-- <span
                 v-if="product.color"
-                class="hidden pb-5 my-6 text-lg font-light text-gray-500 border-b sm:flex xl:my-4"
+                class="hidden pb-5 my-6  font-light text-gray-500 border-b sm:flex xl:my-4"
               >
                 Color:
-                <span class="text-lg font-light text-gray-700 ms-1 ">
+                <span class=" font-light text-gray-700 ms-1 ">
                   {{ product.color.name }}
                 </span>
               </span> -->
+
+          <div v-if="reviewSummary" class="flex flex-row mb-1.5 sm:mb-3">
+            <div
+              class="
+                flex flex-row
+                items-center
+                justify-center
+                w-20
+                h-8
+                my-auto
+                text-base
+                font-normal
+                tracking-wider
+                text-gray-600
+                bg-gray-300
+                rounded
+                me-3
+              "
+            >
+              <span class="my-auto me-1">{{ reviewSummary.avg }}</span>
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 20 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.0517 15.1844L10 15.1532L9.94833 15.1844L3.97123 18.7919L5.55738 11.9927L5.5711 11.9339L5.52548 11.8944L0.244617 7.31961L7.19845 6.72964L7.25854 6.72454L7.28207 6.66902L10 0.256259L12.7179 6.66902L12.7415 6.72454L12.8015 6.72964L19.7554 7.31961L14.4745 11.8944L14.4289 11.9339L14.4426 11.9927L16.0288 18.7919L10.0517 15.1844Z"
+                  fill="#F2B200"
+                  stroke="#95989A"
+                  stroke-width="0.2"
+                />
+              </svg>
             </div>
+            <span class="text-sm text-gray-500">
+              {{ reviewSummary.count }}
+              ratings and
+              {{ reviewSummary.reviews && reviewSummary.reviews.length }}
+              reviews
+            </span>
+          </div>
+
+          <!-- share and add reviews and wishlist icon  -->
+
+          <div
+            v-if="product"
+            class="
+              text-sm
+              sm:text-base
+              flex flex-row
+              justify-between
+              w-full
+              mb-1.5
+              sm:mb-3
+            "
+          >
+            <nuxt-link
+              :to="localePath(`/rate-this-product?id=${product.id}`)"
+              class="me-3 text-primary-500 hover:text-primary-700"
+            >
+              Add a Review
+            </nuxt-link>
+            <!-- <a
+                v-if="settings.liveCommerce"
+                :href="`${NETEASE_WWW}/netease?channelName=${product.id}`"
+                target="blank"
+              >
+                Schedule a demo
+              </a> -->
+            <button
+              v-if="settings.liveCommerce"
+              type="button"
+              @click="populateDemoScheduler(product)"
+            >
+              Schedule a demo
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div v-if="selectedProduct && showDemoScheduler">
+
+    <div v-if="selectedProduct && showDemoScheduler" class="container mx-auto">
       <DemoRequestModal
         :show="showDemoScheduler"
         :product="selectedProduct"
         @close="showDemoScheduler = false"
       />
     </div>
+
+    <hr class="mb-1.5 sm:mb-3 border-t border-gray-200 w-full" />
   </div>
 </template>
 
@@ -681,17 +800,19 @@ import { mapGetters, mapActions, mapMutations } from 'vuex'
 import REVIEWS from '~/gql/review/reviewSummary.gql'
 import { NETEASE_WWW } from '~/shared/config'
 import DemoRequestModal from '~/components/ProductDetails/DemoRequestModal.vue'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 // import Share from '~/components/ProductDetails/Share'
 // import { Checkbox } from '~/shared/components/ui'
 // import WishButton from '~/components/WishButton.vue'
-// import ProductSizeChart from '~/components/ProductDetails/ProductSizeChart'
+import ProductSizeChart from '~/components/ProductDetails/ProductSizeChart'
 export default {
-  components: { DemoRequestModal },
+  components: { DemoRequestModal, NuxtLink, ProductSizeChart },
   props: {
     host: { type: String, default: null },
     pg: { type: Object, default: null },
     product: { type: Object, default: null },
+    reviewSummary: { type: Object, default: null },
     // loading: { type: Boolean },
   },
   data() {
@@ -700,7 +821,7 @@ export default {
       showDemoScheduler: false,
       sidebar: false,
       selectedRadio: null,
-      reviewSummary: null,
+      // reviewSummary: null,
       selectedOptions: {},
       select: null,
       deliveryDate: null,
@@ -716,13 +837,14 @@ export default {
       cart: 'cart/cart',
       getItemQty: 'cart/getItemQty',
       settings: 'settings',
+      store: 'store',
     }),
     // discount() {
     //   return Math.floor(100 - (this.product.price * 100) / this.product.mrp)
     // },
   },
   async created() {
-    await this.getReviews()
+    // await this.getReviews()
     await this.updatedDeliveryDates()
     if (this.product.options) {
       this.product.options.forEach((o) => {
@@ -753,38 +875,38 @@ export default {
       let classes = ''
       if (i.stock < 1) classes = 'border-gray-400 text-gray-400 bg-gray-300'
       else if (i.id === product.id)
-        classes = 'border-primary-500 text-white bg-primary-500'
+        classes = 'border-primary-500 text-primary-500 bg-white'
       else
         classes =
-          'border-gray-500 text-gray-700 hover:text-primary-500 hover:border-primary-500'
+          'border-gray-500 text-gray-700 hover:border-primary-500 bg-white'
       return classes
     },
     getClassesForColorGroup(i, product) {
       let classes = ''
       if (i.stock < 1) classes = 'border-gray-100 text-gray-400'
       else if (i.id === product.id)
-        classes = 'border-primary-500  bg-primary-500'
-      else classes = 'border-gray-500  hover:border-primary-500'
+        classes = 'border-primary-500 bg-primary-500'
+      else classes = 'border-gray-500 hover:border-primary-500'
       return classes
     },
     populateDemoScheduler(p) {
       this.selectedProduct = { id: p.id, name: p.name }
       this.showDemoScheduler = true
     },
-    async getReviews() {
-      const pid = this.$route.query.id
-      if (!pid) return
-      try {
-        this.reviewSummary = await this.$get('review/reviewSummary', { pid })
-        // this.reviewSummary = (
-        //   await this.$apollo.query({
-        //     query: REVIEWS,
-        //     variables: { pid },
-        //     fetchPolicy: 'no-cache',
-        //   })
-        // ).data.reviewSummary
-      } catch (e) {}
-    },
+    // async getReviews() {
+    //   const pid = this.$route.query.id
+    //   if (!pid) return
+    //   try {
+    //     this.reviewSummary = await this.$get('review/reviewSummary', { pid })
+    //     // this.reviewSummary = (
+    //     //   await this.$apollo.query({
+    //     //     query: REVIEWS,
+    //     //     variables: { pid },
+    //     //     fetchPolicy: 'no-cache',
+    //     //   })
+    //     // ).data.reviewSummary
+    //   } catch (e) {}
+    // },
     ...mapMutations({
       clearErr: 'clearErr',
       setErr: 'setErr',

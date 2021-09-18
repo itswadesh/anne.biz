@@ -44,7 +44,7 @@
                   from-secondary-500
                   to-primary-500
                 "
-                >{{ settings.websiteName }}</span
+                >{{ store.name }}</span
               >
             </nuxt-link>
 
@@ -80,8 +80,7 @@
                     class="
                       text-xs
                       font-light
-                      hover:underline
-                      hover:text-gray-800
+                      hover:underline hover:text-gray-800
                       focus:outline-none
                     "
                   >
@@ -89,13 +88,13 @@
                   </nuxt-link>
                 </div>
 
-                <GrnIndGradiantButton
+                <PrimaryButtonRounded
                   class="w-full max-w-sm mx-auto mt-5"
                   type="submit"
                   :disabled="loading"
                 >
                   LOGIN
-                </GrnIndGradiantButton>
+                </PrimaryButtonRounded>
               </form>
               <div
                 class="
@@ -108,10 +107,7 @@
                 "
               >
                 <div class="w-1/2">
-                  <nuxt-link
-                    to="/account/otp-login"
-                    class="ms-auto max-w-max link"
-                  >
+                  <nuxt-link to="/otplogin" class="ms-auto max-w-max link">
                     Login with otp
                   </nuxt-link>
                 </div>
@@ -223,15 +219,17 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import Checkbox from '~/shared/components/ui/Checkbox.vue'
 import SignupStep from '~/components/Login/Email/SignupStep.vue'
-import GrnIndGradiantButton from '~/components/ui/GrnIndGradiantButton.vue'
+import PrimaryButtonRounded from '~/components/ui/PrimaryButtonRounded.vue'
 import { Textbox } from '~/shared/components/ui'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
   components: {
     Checkbox,
     SignupStep,
-    GrnIndGradiantButton,
+    PrimaryButtonRounded,
     Textbox,
+    NuxtLink,
   },
   layout: 'none',
   middleware: ['isGuest'],
@@ -248,9 +246,15 @@ export default {
     }
   },
 
+  head() {
+    return {
+      title: `Email Login | ${this.store.name || ''}`,
+    }
+  },
+
   computed: {
-    settings() {
-      return this.$store.state.settings || {}
+    store() {
+      return this.$store.state.store || {}
     },
   },
   methods: {

@@ -106,6 +106,7 @@
                 uppercase
                 pe-3
                 text-secondary-200
+                hover:text-secondary-400
                 focus:outline-none
               "
             >
@@ -133,13 +134,12 @@
                     </div>
                     <div class="mt-3 text-xs font-medium text-gray-700">
                       Save up to
-                      {{ c.maxAmount | currency(settings.currencySymbol, 2) }}
+                      {{ c.maxAmount | currency(store.currencySymbol, 2) }}
                     </div>
                     <div class="mt-3 text-xs font-medium text-gray-700">
                       {{ c.text }} on minimum purchase of
                       {{
-                        c.minimumCartValue
-                          | currency(settings.currencySymbol, 2)
+                        c.minimumCartValue | currency(store.currencySymbol, 2)
                       }}
                       | Expires on {{ c.validToDate | date }}
                       {{ c.terms }}
@@ -156,7 +156,7 @@
             @submit.stop.prevent="applyOffer(coupon_code)"
           >
             <div class="my-auto text-sm text-gray-500">
-              <!-- Minimum saving {{ 125 | currency(settings.currencySymbol,2) }} -->
+              <!-- Minimum saving {{ 125 | currency(store.currencySymbol,2) }} -->
             </div>
             <button
               :disabled="disabled"
@@ -165,7 +165,7 @@
                 p-2
                 px-4
                 text-black
-                bg-secondary-200
+                bg-secondary-400
                 border
                 rounded
                 shadow
@@ -175,7 +175,7 @@
                 transform
                 ease-in-out
                 hover:opacity-80
-                focus:ring-inset-0 focus:ring-secondary-200 focus:ring-2
+                focus:ring-inset-0 focus:ring-secondary-400 focus:ring-2
               "
             >
               <div v-if="saving" class="flex items-center justify-center">
@@ -220,6 +220,9 @@ import COUPONS from '~/gql/cart/coupons.gql'
 import { Radio } from '~/shared/components/ui'
 
 export default {
+  components: {
+    Radio,
+  },
   data() {
     return {
       coupon_code: null,
@@ -229,14 +232,15 @@ export default {
       saving: false,
     }
   },
+  computed: {
+    ...mapGetters({
+      store: 'store',
+    }),
+  },
   created() {
     this.getCoupons()
   },
-  computed: {
-    ...mapGetters({
-      settings: 'settings',
-    }),
-  },
+
   methods: {
     ...mapActions({ applyCoupon: 'cart/applyCoupon' }),
     async applyOffer(code) {
@@ -269,9 +273,6 @@ export default {
       if (e) this.$router.push(`/c/${e}`)
       this.$emit('hide', true)
     },
-  },
-  components: {
-    Radio,
   },
 }
 </script>

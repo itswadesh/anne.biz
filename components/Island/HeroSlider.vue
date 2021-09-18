@@ -63,32 +63,16 @@
           class="
             object-cover
             w-full
-            h-full
             my-auto
             overflow-hidden
             bg-white
             focus:outline-none
             md:object-cover
+            h-rem
           "
         />
-        <!-- h-rem -->
       </button>
     </VueSlickCarousel>
-
-    <div v-else>
-      <img
-        src="/island/home/banner.jpg"
-        class="
-          object-cover
-          w-full
-          h-full h-rem
-          my-auto
-          overflow-hidden
-          bg-white
-          focus:outline-none
-        "
-      />
-    </div>
   </section>
 </template>
 
@@ -111,6 +95,7 @@ export default {
         slidesToShow: 1,
         autoplay: true,
         speed: 500,
+        lazyLoad: 'progressive',
         responsive: [
           {
             breakpoint: 1024,
@@ -202,9 +187,9 @@ export default {
     height: 20rem;
   }
 }
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
   .h-rem {
-    height: 40rem;
+    height: 43rem;
   }
-} */
+}
 </style>

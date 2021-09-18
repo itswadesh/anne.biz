@@ -4,76 +4,77 @@
       flex flex-col
       items-center
       justify-center
-      h-screen
+      min-h-screen
       p-2
-      text-center text-gray-600
+      text-gray-600
       bg-gradient-to-br
       from-secondary-100
       to-primary-100
     "
   >
-    <div class="w-full max-w-sm mx-auto">
-      <div class="p-2.5 md:p-0 frosted rounded-md shadow-md">
-        <!-- Login side start  -->
+    <div class="px-4 border rounded-lg frosted w-full max-w-sm">
+      <!-- Change success start  -->
 
-        <div class="py-10 mx-auto text-center md:w-10/12">
-          <nuxt-link to="/" class="">
-            <span
-              class="
-                text-4xl
-                font-extrabold
-                text-transparent
-                bg-clip-text bg-gradient-to-br
-                from-secondary-500
-                to-primary-500
-              "
-              >{{ settings.websiteName }}</span
-            >
-          </nuxt-link>
-          <div>
-            <div class="my-5 font-semibold">CHANGE PASSWORD</div>
+      <div class="flex flex-col py-10 mx-auto text-center md:w-10/12">
+        <nuxt-link to="/" class="">
+          <span
+            class="
+              text-4xl
+              font-extrabold
+              text-transparent
+              bg-clip-text bg-gradient-to-br
+              from-green-500
+              to-blue-500
+            "
+            >{{ store.name }}</span
+          >
+        </nuxt-link>
 
-            <form
-              ref="form"
-              novalidate
-              autocomplete="off"
-              :lazy-validation="true"
-              class="flex flex-col my-5 space-y-5"
-              @submit.stop.prevent="submit"
-            >
-              <Textbox
-                v-model="oldPassword"
-                class="w-full"
-                :type="showOldPassword ? 'text' : 'password'"
-                prepend-icon="lock"
-                :append-icon="showOldPassword ? 'visibility' : 'visibility_off'"
-                name="oldPassword"
-                placeholder="Current Password"
-                autofocus
-                @click:append="showOldPassword = !showOldPassword"
-              />
-              <Textbox
-                v-model="password"
-                class="w-full"
-                :type="showNewPassword ? 'text' : 'password'"
-                prepend-icon="lock"
-                :append-icon="showNewPassword ? 'visibility' : 'visibility_off'"
-                placeholder="New Password"
-                name="newPassword"
-                @click:append="showNewPassword = !showNewPassword"
-              />
-            </form>
-            <GrnIndGradiantButton
-              class="w-full mt-10"
-              type="submit"
-              :disabled="loading"
-            >
-              Update Password
-            </GrnIndGradiantButton>
-          </div>
+        <div>
+          <div class="my-5 font-semibold">CHANGE PASSWORD</div>
+
+          <form
+            ref="form"
+            novalidate
+            autocomplete="off"
+            :lazy-validation="true"
+            class="flex flex-col my-5 space-y-5"
+            @submit.stop.prevent="submit"
+          >
+            <Textbox
+              v-model="oldPassword"
+              class="w-full"
+              :type="showOldPassword ? 'text' : 'password'"
+              prepend-icon="lock"
+              :append-icon="showOldPassword ? 'visibility' : 'visibility_off'"
+              name="oldPassword"
+              placeholder="Current Password"
+              autofocus
+              @click:append="showOldPassword = !showOldPassword"
+            />
+
+            <Textbox
+              v-model="password"
+              class="w-full"
+              :type="showNewPassword ? 'text' : 'password'"
+              prepend-icon="lock"
+              :append-icon="showNewPassword ? 'visibility' : 'visibility_off'"
+              placeholder="New Password"
+              name="newPassword"
+              @click:append="showNewPassword = !showNewPassword"
+            />
+          </form>
+
+          <PrimaryButtonRounded
+            class="w-full mt-10"
+            type="submit"
+            :disabled="loading"
+          >
+            Update Password
+          </PrimaryButtonRounded>
         </div>
 
-        <!-- Login side end -->
+        <!-- Change password end -->
       </div>
     </div>
   </section>
@@ -82,11 +83,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Textbox } from '~/shared/components/ui'
-import GrnIndGradiantButton from '~/components/ui/GrnIndGradiantButton.vue'
+import PrimaryButtonRounded from '~/components/ui/PrimaryButtonRounded.vue'
 // const Submit = () => import('~/shared/components/ui/Submit')
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
-  components: { Textbox, GrnIndGradiantButton },
+  components: { Textbox, PrimaryButtonRounded, NuxtLink },
   middleware: ['isAuth'],
   data() {
     return {
@@ -101,12 +103,12 @@ export default {
   },
   head() {
     return {
-      title: 'Change Password',
+      title: `Change Password | ${this.store.name || ''}`,
     }
   },
   computed: {
     ...mapGetters({
-      settings: 'settings',
+      store: 'store',
     }),
   },
   methods: {
@@ -128,7 +130,7 @@ export default {
           password: this.password,
           passwordConfirmation: this.password,
         })
-        this.$router.push('/')
+        this.$router.push(``)
       } catch (e) {}
     },
   },
@@ -137,7 +139,7 @@ export default {
 
 <style scoped>
 .frosted {
-  /* background-color:rgb(150, 139, 224); */
+  background-image: url('/login/bg-lighter.svg');
   backdrop-filter: blur(15px);
   background-color: hsla(0, 0%, 100%, 0.75);
 }

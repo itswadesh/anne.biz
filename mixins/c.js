@@ -51,7 +51,7 @@ export default {
     noOfPages() {
       return Math.ceil(
         this.productCount /
-          (this.$store.state.settings && this.$store.state.settings.pageSize)
+          (this.$store.state.store && this.$store.state.store.pageSize)
       )
     },
   },
@@ -59,8 +59,8 @@ export default {
     this.currentPage = parseInt(this.$route.query.page)
   },
   watch: {
-    '$route.query': {
-      immediate: true,
+    $route: {
+      // immediate: true, // Throws error this.$fetch not a function
       handler(value, oldValue) {
         const q = this.$route.params.q
         const query = { ...this.$route.query }
@@ -77,12 +77,15 @@ export default {
             query[k] !== '' &&
             k !== 'price' &&
             k !== 'age' &&
-            k !== 'discount'
+            k !== 'discount' &&
+            k !== 'store'
           )
             query[k] = query[k].split(',')
         })
         this.fl = query // For selected filters
         if (q) qry.q = q
+        this.$fetch()
+        // console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz', qry)
         // this.getData(qry)
       },
     },
@@ -99,11 +102,12 @@ export default {
     },
     scrollToTop() {
       if (process.client) {
-        window.scroll({
-          behavior: 'smooth',
-          left: 0,
-          top: 0,
-        })
+        // console.log('scroll..........')
+        // window.scroll({
+        //   behavior: 'smooth',
+        //   left: 0,
+        //   top: 300,
+        // })
       }
     },
     changed(e) {
@@ -124,7 +128,7 @@ export default {
       return url
     },
     go(slug) {
-      this.$router.push('/' + slug)
+      this.$router.push(`/${slug}`)
     },
     facetRemoved(f) {
       this.fl = f
@@ -174,7 +178,7 @@ export default {
       this.meta.end = false
       this.meta.skip = 0
       this.meta.limit =
-        this.$store.state.settings && this.$store.state.settings.pageSize
+        this.$store.state.store && this.$store.state.store.pageSize
       this.products = [] // Reset query parameters
     },
     async getWishlist() {

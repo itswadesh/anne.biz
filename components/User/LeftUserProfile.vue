@@ -1,243 +1,255 @@
 <template>
-  <div
+  <aside
     class="
       fixed
+      lg:stickey lg:top-16
       inset-0
-      z-50
+      lg:inset-y-0
+      z-30
       flex flex-col
-      w-5/6
-      max-w-sm
+      w-64
+      h-full
       overflow-x-hidden overflow-y-auto
       transition
       bg-white
-      shadow-lg
-      lg:z-0 lg:w-72
-      md:w-96
-      lg:relative
+      shadow-md
+      border-r
+      text-gray-800
     "
   >
-    <button
-      aria-label="Open sidebar"
-      class="
-        absolute
-        right-0
-        inline-flex
-        items-center
-        justify-center
-        w-8
-        h-8
-        rounded
-        hover:bg-gray-100
-        lg:hidden
-        focus:outline-none
-      "
-      @click="hideSidebar(null)"
-    >
-      <svg
-        class="w-5 h-5 text-primary-500"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
-    </button>
-    <div class="max-w-full mt-4">
-      <div class="h-full mx-auto">
-        <!-- <LeftOptions /> -->
-        <div v-if="ifAccountPages" class="">
-          <div class="flex justify-end lg:justify-center">
-            <span
-              class="
-                flex flex-col
-                items-center
-                justify-center
-                w-full
-                py-10
-                border-b
-              "
-            >
-              <div v-if="user" class="px-3">
-                <img
-                  v-lazy="user.avatar"
-                  alt=""
-                  class="object-contain w-24 h-24 border rounded-full"
-                />
-              </div>
-              <div
-                v-if="user"
-                class="
-                  flex flex-col
-                  my-auto
-                  mt-2
-                  text-xl
-                  font-semibold
-                  text-color
-                "
-              >
-                <span class="py-2 text-center">
-                  Hello, {{ user && user.firstName }}
-                </span>
-                <span class="text-sm font-normal text-center text-gray-400">
-                  {{ user.email }}
-                </span>
-              </div>
-            </span>
-          </div>
-          <div
-            class="flex items-center justify-center w-full my-4 text-gray-600"
+    <!-- <LeftOptions /> -->
+    <div v-if="ifAccountPages" class="">
+      <div class="relative background h-auto w-full bg-cover bg-no-repeat">
+        <button
+          aria-label="Open sidebar"
+          class="
+            absolute
+            right-0
+            top-0
+            inline-flex
+            items-center
+            justify-center
+            w-8
+            h-8
+            rounded
+            hover:bg-gray-200
+            lg:hidden
+            focus:outline-none
+          "
+          @click="hideSidebar(null)"
+        >
+          <svg
+            class="w-5 h-5 text-primary-500"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            <ul class="flex flex-col items-start justify-center w-full mx-auto">
-              <!-- dashboard -->
-              <li
-                v-for="(i, ix) in dashboardMenuItems"
-                :key="ix"
-                class="w-full"
-              >
-                <nuxt-link
-                  v-if="i"
-                  :to="localePath(i.link)"
-                  exact-active-class="text-primary-500"
-                  class="
-                    flex flex-row
-                    w-full
-                    px-4
-                    py-3
-                    mx-auto
-                    ease-in-out
-                    transform
-                    border-white
-                    cursor-pointer
-                    border-s-4
-                    md:border-white
-                    hover:bg-yellow-100
-                    hover:text-primary-500
-                    hover:border-primary-500
-                    lg:hover:text-primary-500
-                  "
-                  @click.native="$emit('hideSidebar', true)"
-                >
-                  <h3 class="flex flex-row w-full">
-                    <span
-                      class="w-6 h-6 my-auto me-2 text-primary-500"
-                      v-html="i.icon"
-                    />
-                    <span class="tracking-wider">{{ i.text }}</span>
-                  </h3>
-                </nuxt-link>
-              </li>
-              <!-- logout -->
-              <li class="w-full">
-                <button
-                  type="button"
-                  class="
-                    flex flex-row
-                    w-full
-                    px-5
-                    py-3
-                    mx-auto
-                    transition
-                    duration-300
-                    ease-in-out
-                    transform
-                    border-white
-                    cursor-pointer
-                    focus:outline-none
-                    border-s-4
-                    md:border-white
-                    hover:bg-yellow-100
-                    hover:text-primary-500
-                    hover:border-primary-500
-                    lg:hover:text-primary-500
-                  "
-                  @click="Logout"
-                >
-                  <svg
-                    class="w-6 h-6 my-auto me-2 text-primary-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span class="tracking-wider">Logout</span>
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div v-else class="w-full my-6 text-gray-600">
-          <div
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <div class="flex justify-end lg:justify-center">
+          <span
             class="
-              uppercase
-              tracking-wider
-              text-lg
-              font-medium
-              text-gray-600
-              ps-4
+              flex flex-col
+              items-center
+              justify-center
+              w-full
+              px-2
+              py-10
+              border-b
             "
           >
-            categories
-          </div>
-          <ul class="overflow-auto font-light max-h-screen mt-3">
-            <li
-              v-for="(c, i) in sideMegamenu"
-              :key="i"
-              class="w-full overflow-hidden border-b tab"
+            <div
+              v-if="user"
+              class="
+                w-24
+                h-24
+                border-2 border-gray-300
+                rounded-full
+                overflow-hidden
+                flex
+                items-center
+                justify-center
+                bg-gray-100
+              "
             >
-              <input
-                :id="'tab-multi-' + i"
-                class="absolute opacity-0"
-                type="checkbox"
-                name="tabs"
+              <img
+                v-if="!user.avatar"
+                src="/leadership-profile.png"
+                alt=""
+                class="object-cover object-top w-full h-full"
               />
-              <label
-                class="block px-5 py-2 leading-normal cursor-pointer"
-                :for="'tab-multi-' + i"
-                :class="{
-                  'text-yellow-500': i % 6 == 0,
-                  'text-purple-500': i % 6 == 1,
-                  'text-red-500': i % 6 == 2,
-                  'text-green-500': i % 6 == 3,
-                  'text-pink-500': i % 6 == 4,
-                  'text-blue-500': i % 6 == 5,
-                }"
+              <img
+                v-else
+                :src="user.avatar"
+                alt=""
+                class="object-cover object-top w-full h-full"
+              />
+            </div>
+
+            <div
+              v-if="user"
+              class="flex flex-col my-auto mt-2 text-lg font-semibold"
+            >
+              <span class="mb-2 text-center">
+                Hello, {{ user && user.firstName }}
+              </span>
+
+              <span class="text-sm font-normal text-center text-gray-400">
+                {{ user.email }}
+              </span>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center w-full my-4 text-gray-500">
+        <ul class="flex flex-col items-start justify-center w-full mx-auto">
+          <!-- dashboard -->
+          <li v-for="(i, ix) in dashboardMenuItems" :key="ix" class="w-full">
+            <nuxt-link
+              v-if="i"
+              :to="localePath(i.link)"
+              exact-active-class="bg-primary-100 text-primary-500"
+              class="
+                flex flex-row
+                w-full
+                px-4
+                py-3
+                mx-auto
+                ease-in-out
+                transform
+                border-white
+                cursor-pointer
+                border-s-4
+                hover:bg-primary-100
+                hover:text-primary-500
+                hover:border-primary-500
+              "
+              @click.native="$emit('hideSidebar', true)"
+            >
+              <h3 class="flex flex-row w-full">
+                <span class="w-6 h-6 my-auto me-2" v-html="i.icon" />
+
+                <span class="flex-1 tracking-wider">{{ i.text }}</span>
+              </h3>
+            </nuxt-link>
+          </li>
+
+          <!-- logout -->
+
+          <li class="w-full">
+            <button
+              type="button"
+              class="
+                flex flex-row
+                w-full
+                px-5
+                py-3
+                mx-auto
+                transition
+                duration-300
+                ease-in-out
+                transform
+                border-white
+                cursor-pointer
+                focus:outline-none
+                border-s-4
+                text-gray-500
+                md:border-white
+                hover:bg-yellow-100
+                hover:text-primary-500
+                hover:border-primary-500
+                lg:hover:text-primary-500
+              "
+              @click="Logout"
+            >
+              <svg
+                class="w-6 h-6 my-auto me-2"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
               >
-                <nuxt-link :to="slug(c.slug)">
-                  {{ c.name }}
-                </nuxt-link>
-              </label>
-              <div
-                class="
-                  overflow-hidden
-                  leading-normal
-                  bg-gray-100
-                  border-l-2 border-indigo-500
-                  tab-content
-                "
-              >
-                <nuxt-link
-                  v-for="ch in c.children"
-                  :key="ch.id"
-                  :to="`/c/${ch.slug}`"
-                  class="block px-5 py-2 ms-2 hover:font-semibold"
-                >
-                  {{ ch.name }}
-                </nuxt-link>
-              </div>
-            </li>
-          </ul>
-          <!-- <ul class="flex flex-col items-start justify-center w-full mx-auto">
+                <path
+                  fill-rule="evenodd"
+                  d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+
+              <span class="tracking-wider">Logout</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div v-else class="w-full my-6 text-gray-600">
+      <div
+        class="uppercase tracking-wider text-lg font-medium text-gray-600 ps-4"
+      >
+        categories
+      </div>
+
+      <ul class="overflow-auto font-light max-h-screen mt-3">
+        <li
+          v-for="(c, i) in megamenu"
+          :key="i"
+          class="w-full overflow-hidden border-b tab"
+        >
+          <input
+            :id="'tab-multi-' + i"
+            class="absolute opacity-0"
+            type="checkbox"
+            name="tabs"
+          />
+
+          <label
+            class="block px-5 py-2 leading-normal cursor-pointer"
+            :for="'tab-multi-' + i"
+            :class="{
+              'text-yellow-500': i % 6 == 0,
+              'text-purple-500': i % 6 == 1,
+              'text-red-500': i % 6 == 2,
+              'text-green-500': i % 6 == 3,
+              'text-pink-500': i % 6 == 4,
+              'text-blue-500': i % 6 == 5,
+            }"
+          >
+            <nuxt-link :to="slug(c.slug)">
+              {{ c.name }}
+            </nuxt-link>
+          </label>
+
+          <div
+            class="
+              overflow-hidden
+              leading-normal
+              bg-gray-100
+              border-l-2 border-indigo-500
+              tab-content
+            "
+          >
+            <nuxt-link
+              v-for="ch in c.children"
+              :key="ch.id"
+              :to="`/c/${ch.slug}`"
+              class="block px-5 py-2 ms-2 hover:font-semibold"
+            >
+              {{ ch.name }}
+            </nuxt-link>
+          </div>
+        </li>
+      </ul>
+
+      <!-- <ul class="flex flex-col items-start justify-center w-full mx-auto">
           <li
             class="w-full mb-2 ms-2"
             v-for="(c, index) in sideMegamenu"
@@ -275,10 +287,8 @@
             </nuxt-link>
           </li>
         </ul> -->
-        </div>
-      </div>
     </div>
-  </div>
+  </aside>
 </template>
 
 <script>
@@ -286,8 +296,10 @@ import { mapActions, mapMutations, mapGetters } from 'vuex'
 import SIGNOUT from '~/gql/user/signOut.gql'
 import GET_MEGAMENU from '~/gql/category/megamenu.gql'
 import BRAND from '~/gql/brand/brand.gql'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
+  components: { NuxtLink },
   props: {
     show: { type: Boolean },
   },
@@ -363,14 +375,14 @@ export default {
                   <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                 </svg>`,
         },
-        {
-          link: '/my/demo-requests',
-          text: 'Demo Requests',
-          description: 'All your prime demo requests',
-          icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-</svg>`,
-        },
+        //         {
+        //           link: '/my/demo-requests',
+        //           text: 'Demo Requests',
+        //           description: 'All your prime demo requests',
+        //           icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        //   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        // </svg>`,
+        //         },
         // {
         //   link: '/',
         //   text: 'Payments',
@@ -470,14 +482,14 @@ export default {
       return currPath.includes('/my')
     },
   },
-  watch: {
-    $route(to, from) {
-      this.refreshSideMegaMenu()
-    },
-  },
-  created() {
-    this.refreshSideMegaMenu()
-  },
+  // watch: {
+  //   $route(to, from) {
+  //     this.refreshSideMegaMenu()
+  //   },
+  // },
+  // created() {
+  //   this.refreshSideMegaMenu()
+  // },
   methods: {
     ...mapMutations({ success: 'success', setErr: 'setErr' }),
     ...mapActions({ logout: 'auth/logout' }),
@@ -486,40 +498,40 @@ export default {
       if (this.brand) url = `/c/${cSlug}?brand=${this.brand.id}`
       return this.localePath(url)
     },
-    async refreshSideMegaMenu() {
-      try {
-        let brand = null
-        const bv = {}
-        const slug = this.$route.params.slug
-        const brandId = this.$route.query.brand
-        if (brandId) bv.id = brandId
-        else if (slug) bv.slug = slug
-        try {
-          if (bv.id || bv.slug) {
-            this.brand = brand = await this.$get('brand/brand', bv)
-            // this.brand = brand = (
-            //   await this.$apollo.query({
-            //     query: BRAND,
-            //     variables: bv,
-            //   })
-            // ).data.brand
-          }
-        } catch (e) {}
-        const variables = {}
-        // if (this.$route.path.includes('/brand/') || (brand && brand.id)) {
-        if (brand && brand.id) variables.brand = brand.id
-        if (slug && !this.$route.path.includes('/brand/')) variables.slug = slug
-        // console.log('aaaaaaaaaaaaaaaa', variables)
-        this.sideMegamenu = await this.$get('category/megamenu', variables)
-        // this.sideMegamenu = (
-        //   await this.$apollo.query({
-        //     query: GET_MEGAMENU,
-        //     variables,
-        //     fetchPolicy: 'no-cache',
-        //   })
-        // ).data.megamenu
-      } catch (e) {}
-    },
+    // async refreshSideMegaMenu() {
+    //   try {
+    //     let brand = null
+    //     const bv = {}
+    //     const slug = this.$route.params.slug
+    //     const brandId = this.$route.query.brand
+    //     if (brandId) bv.id = brandId
+    //     else if (slug) bv.slug = slug
+    //     try {
+    //       if (bv.id || bv.slug) {
+    //         this.brand = brand = await this.$get('brand/brand', bv)
+    //         // this.brand = brand = (
+    //         //   await this.$apollo.query({
+    //         //     query: BRAND,
+    //         //     variables: bv,
+    //         //   })
+    //         // ).data.brand
+    //       }
+    //     } catch (e) {}
+    //     const variables = {}
+    //     // if (this.$route.path.includes('/brand/') || (brand && brand.id)) {
+    //     if (brand && brand.id) variables.brand = brand.id
+    //     if (slug && !this.$route.path.includes('/brand/')) variables.slug = slug
+    //     // console.log('aaaaaaaaaaaaaaaa', variables)
+    //     this.sideMegamenu = await this.$get('category/megamenu', variables)
+    //     // this.sideMegamenu = (
+    //     //   await this.$apollo.query({
+    //     //     query: GET_MEGAMENU,
+    //     //     variables,
+    //     //     fetchPolicy: 'no-cache',
+    //     //   })
+    //     // ).data.megamenu
+    //   } catch (e) {}
+    // },
     // async getCategories() {
     // console.log('get categories')
     // try {
@@ -538,7 +550,7 @@ export default {
     // },
     go(url) {
       this.$emit('hideSidebar', true)
-      this.$router.push(url)
+      this.$router.push(`${url}`)
     },
     hideSidebar(e) {
       this.sidebar = false
@@ -559,6 +571,9 @@ export default {
 }
 </script>
 <style scoped>
+.background {
+  background-image: url('/sidebar-background.jpg');
+}
 .center-text {
   position: relative;
   text-align: center;

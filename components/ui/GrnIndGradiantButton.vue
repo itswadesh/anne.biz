@@ -27,7 +27,13 @@
     </div>
     <div v-else>
       <svg
-        class="w-6 h-6 mx-auto text-white animate-spin"
+        class="mx-auto text-white animate-spin"
+        :class="{
+          'w-4 h-4': loadingringsize == 'xs',
+          'h-5 w-5': loadingringsize == 'sm',
+          'h-6 w-6': loadingringsize == 'base',
+          'h-7 w-7': loadingringsize == 'lg',
+        }"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -57,6 +63,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    loadingringsize: {
+      type: String,
+      default: 'base',
+    },
   },
   // data() {
   //   return {
@@ -70,8 +80,15 @@ export default {
 <style scoped>
 .gradient {
   display: flex;
-  background: linear-gradient(120deg, #fb7801, #000000, #fb7801);
-  background-size: 200%;
+  background: linear-gradient(
+    120deg,
+    #10b981,
+    #6366f1,
+    #10b981,
+    #6366f1,
+    #10b981
+  );
+  background-size: 300%;
   transition: 0.8s;
 }
 

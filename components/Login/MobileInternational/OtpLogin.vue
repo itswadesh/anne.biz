@@ -15,13 +15,12 @@
             p-4
             pt-16
             text-primary-500
-            md:flex-shrink-0 md:flex md:flex-col
-            md:items-center
+            md:flex-shrink-0 md:flex md:flex-col md:items-center
           "
         >
           <!-- <img
-            v-lazy="settings.logo"
-            :alt="settings.websiteName"
+            v-lazy="store.logo"
+            :alt="store.name"
             class="absolute z-10 hidden object-contain w-32 h-32 md:flex -top-20"
                 /> -->
           <img

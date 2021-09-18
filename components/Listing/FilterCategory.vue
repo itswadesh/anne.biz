@@ -10,8 +10,7 @@
             text-gray-600
             rounded
             cursor-pointer
-            hover:bg-yellow-100
-            hover:text-yellow-600
+            hover:bg-yellow-100 hover:text-yellow-600
           "
         >
           <Radio

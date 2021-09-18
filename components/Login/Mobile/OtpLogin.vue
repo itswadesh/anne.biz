@@ -4,10 +4,7 @@
       z-10
       align-middle
       shadow-lg
-      lg:mt-20
-      lg:overflow-y-auto
-      lg:fixed
-      lg:inset-0
+      lg:mt-20 lg:overflow-y-auto lg:fixed lg:inset-0
     "
   >
     <div
@@ -32,8 +29,7 @@
           transition-all
           transform
           text-start
-          lg:my-8
-          lg:align-middle
+          lg:my-8 lg:align-middle
         "
         role="dialog"
         aria-modal="true"
@@ -47,8 +43,7 @@
               h-full
               bg-white
               shadow-md
-              lg:rounded-lg
-              lg:w-3/5
+              lg:rounded-lg lg:w-3/5
             "
           >
             <div class="hidden w-1/2 h-full p-6 sm:flex">
@@ -97,7 +92,7 @@
                     "
                   >
                     <img
-                      v-lazy="settings.logo"
+                      v-lazy="store.logo"
                       class="object-contain w-48 h-20 my-auto lg:h-12 lg:w-44"
                     />
                   </nuxt-link>
@@ -171,9 +166,10 @@
 <script>
 import EnterOtp from './EnterOtp'
 import EnterMobileNumber from './EnterMobileNumber'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
-  components: { EnterMobileNumber, EnterOtp },
+  components: { EnterMobileNumber, EnterOtp, NuxtLink },
   props: {
     closeButton: { type: Boolean, default: true },
   },
@@ -185,8 +181,8 @@ export default {
     }
   },
   computed: {
-    settings() {
-      return this.$store.state.settings || {}
+    store() {
+      return this.$store.state.store || {}
     },
   },
   methods: {

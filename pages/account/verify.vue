@@ -27,7 +27,7 @@
                 from-secondary-500
                 to-primary-500
               "
-              >{{ settings.websiteName }}</span
+              >{{ store.name }}</span
             >
           </nuxt-link>
           <div>
@@ -64,13 +64,18 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Heading } from '~/shared/components'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
-  components: { Heading },
+  components: { Heading, NuxtLink },
   layout: 'none',
-
+  head() {
+    return {
+      title: `Verify | ${this.store.name || ''}`,
+    }
+  },
   computed: {
-    ...mapGetters({ settings: 'settings', error: 'error' }),
+    ...mapGetters({ store: 'store', error: 'error' }),
   },
   async created() {
     try {
@@ -80,7 +85,7 @@ export default {
         password: this.password,
         passwordConfirmation: this.password,
       })
-      this.$router.push('/account/verification-success')
+      this.$router.push(`/account/verification-success`)
     } catch (e) {
       this.$store.commit('setErr', e)
     }

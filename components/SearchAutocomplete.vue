@@ -10,33 +10,28 @@
         <form
           novalidate
           autocomplete="off"
-          class="flex flex-row w-full"
+          class="flex flex-row w-full relative"
           @submit.stop.prevent="submit"
         >
           <!-- tablet and desktop input -->
           <input
             v-model="selectedVal"
             :placeholder="
-              (settings && settings.searchbarText) ||
-              'Search for products, brands...'
+              (store && store.searchbarText) || 'Search for products, brands...'
             "
             class="
-              relative
               hidden
-              w-full
-              p-2
-              ps-4
-              pe-10
-              font-light
-              truncate
-              rounded
-              shadow
               sm:flex
-              text-normal
-              placeholder
-              focus:outline-none focus:ring-1
-              sm:focus:ring-2
-              focus:ring-yellow-600
+              w-full
+              h-10
+              px-10
+              pr-4
+              my-auto
+              text-xs
+              bg-gray-100
+              border-0
+              rounded-sm
+              focus:bg-white focus:border focus:outline-none
             "
             @keyup.enter="
               $event.target.blur()
@@ -49,41 +44,28 @@
           <!-- mobile view input -->
           <input
             :placeholder="
-              (settings && settings.searchbarText) ||
-              'Search for products, brands...'
+              (store && store.searchbarText) || 'Search for products, brands...'
             "
             class="
-              relative
-              w-full
-              p-2
-              ps-4
-              font-light
-              truncate
-              rounded
-              shadow
               sm:hidden
-              text-normal
-              placeholder
-              focus:outline-none focus:ring-1
-              sm:focus:ring-2
-              focus:ring-yellow-600
+              w-full
+              h-10
+              px-10
+              pr-4
+              my-auto
+              text-xs
+              bg-gray-100
+              border-0
+              rounded-sm
+              focus:bg-white focus:border focus:outline-none
             "
             @focus="onFocusedMobile()"
           />
-          <div class="flex justify-end h-full">
+          <div class="absolute left-3 h-full">
             <!-- search icon -->
             <svg
               style="margin-top: 10px"
-              class="
-                absolute
-                flex
-                justify-end
-                w-5
-                h-5
-                my-auto
-                text-sm text-gray-500
-                me-3
-              "
+              class="w-5 h-5 text-sm text-gray-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -157,6 +139,9 @@ export default {
     settings() {
       return this.$store.state.settings || {}
     },
+    store() {
+      return this.$store.state.store || {}
+    },
   },
   methods: {
     submit() {
@@ -211,7 +196,7 @@ export default {
       if (this.selectedVal === null || this.selectedVal === '') return
       try {
         const result = await this.$axios.$get('/api/products/autocomplete', {
-          params: { q: this.selectedVal },
+          params: { q: this.selectedVal, store: this.store.id },
         })
         // console.log(result)
         this.products = result.data
@@ -220,7 +205,7 @@ export default {
       }
     },
     onFocusedMobile() {
-      this.$router.push('/search-suggestions')
+      this.$router.push(`/search-suggestions`)
     },
     onFocused() {
       //

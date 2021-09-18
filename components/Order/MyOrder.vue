@@ -1,23 +1,28 @@
 <template>
-  <div class="h-full mx-auto">
+  <div class="container w-full mx-auto">
     <div class="z-0 lg:mx-auto lg:container">
       <!--  -->
       <OrderListSkeleton v-if="loading" />
-      <div v-if="myOrders" class="w-full text-gray-700">
+
+      <div v-if="myOrders" class="w-full text-gray-800">
         <div
           v-if="myOrders.count == 0"
           class="w-full h-full m-2 bg-white border shadow"
         >
           <div class="flex flex-col p-6">
             <span class="text-xl font-semibold">My Order</span>
+
             <div class="flex flex-col items-center justify-center p-5">
               <img
                 v-lazy="'/img/no-order.svg'"
                 alt="emptycart"
                 class="object-contain h-48 w-52"
               />
+
               <span class="p-3 text-xl">Your have't ordered yet!!</span>
+
               <span class="text-xs">Add items to it now.</span>
+
               <nuxt-link :to="localePath('/')">
                 <button
                   class="
@@ -45,14 +50,18 @@
             </div>
           </div>
         </div>
+
         <!-- <div class="flex flex-col w-2/3 lg:w-1/2 md:flex-row">
           <span class="py-2 my-auto text-2xl font-semibold me-5">Your Orders</span>
           <span class="hidden my-auto text-sm text-gray-600 lg:flex">
             Edit, Delete, track, Re-order items
          </span>
         </div> -->
+
         <!--  -->
+
         <!--v-if="orders"  -->
+
         <div v-if="myOrders.count > 0">
           <div
             class="
@@ -65,8 +74,8 @@
               mx-auto
               bg-white
               border
-              rounded-sm
-              shadow-sm
+              rounded-md
+              shadow-md
             "
           >
             <div
@@ -86,6 +95,7 @@
                   class="w-full p-2 px-2 my-auto text-sm border-0 rounded bg-gray-50 ring-1 ring-gray-600 focus:ring-2 focus:ring-yellow-600"
                   placeholder="Serach Items"
                 />
+
                 <span class="my-auto -ms-8 top-2">
                   <svg
                     class="w-5 h-5 text-gray-500"
@@ -103,25 +113,19 @@
                   </svg>
                 </span>
               </div> -->
+
               <nuxt-link
                 :to="localePath('cart')"
                 class="my-auto text-sm text-blue-400 underline lg:hidden"
               >
                 Back to Cart
               </nuxt-link>
+
               <div class="flex flex-row">
-                <div
-                  class="
-                    relative
-                    flex flex-shrink-0
-                    my-auto
-                    text-lg
-                    font-normal
-                    text-gray-700
-                  "
-                >
+                <div class="tracking-wide">
                   {{ myOrders.count }} Orders Placed
                 </div>
+
                 <!-- <select
                   name=""
                   id=""
@@ -133,6 +137,7 @@
                 </select> -->
               </div>
             </div>
+
             <!-- <span
               class="flex-row hidden my-auto text-sm bg-gray-200 border rounded lg:flex"
             >
@@ -153,6 +158,7 @@
               </select>
             </span> -->
           </div>
+
           <!-- v-ripple="'rgba(255, 255, 255, 0.5)'" -->
           <!-- <div class="flex flex-row justify-between p-1 my-4 lg:hidden">
             <div
@@ -178,19 +184,30 @@
             </div>
           </div> -->
           <!-- desktop view starts -->
+
           <div v-if="myOrders" class="">
             <div
               v-for="(order, ix) in myOrders.data"
               :key="ix + 's'"
               class="hidden w-full mx-auto mb-2 lg:container lg:block"
             >
-              <div class="flex items-center p-3 text-sm text-gray-500">
+              <div class="flex items-center p-3 sm:p-5 text-sm text-gray-500">
                 <div>Order No: {{ order.orderNo }}</div>
+
                 <div class="ms-2 text-xs text-gray-400">
                   Order Date: {{ order.createdAt | date }}
                 </div>
               </div>
-              <table class="min-w-full divide-y divide-gray-200">
+
+              <table
+                class="
+                  min-w-full
+                  divide-y divide-gray-200
+                  border
+                  rounded-md
+                  shadow-md
+                "
+              >
                 <thead class="bg-gray-50">
                   <tr>
                     <th
@@ -208,6 +225,7 @@
                     >
                       #
                     </th>
+
                     <th
                       scope="col"
                       class="
@@ -223,6 +241,7 @@
                     >
                       Image
                     </th>
+
                     <th
                       scope="col"
                       class="
@@ -238,6 +257,7 @@
                     >
                       Name
                     </th>
+
                     <th
                       scope="col"
                       class="
@@ -253,6 +273,7 @@
                     >
                       Qty
                     </th>
+
                     <th
                       scope="col"
                       class="
@@ -268,6 +289,7 @@
                     >
                       Price
                     </th>
+
                     <th
                       scope="col"
                       class="
@@ -283,6 +305,7 @@
                     >
                       Shipping
                     </th>
+
                     <th
                       scope="col"
                       class="
@@ -298,6 +321,7 @@
                     >
                       Total
                     </th>
+
                     <th
                       scope="col"
                       class="
@@ -313,6 +337,7 @@
                     >
                       Status
                     </th>
+
                     <!-- <th
                       scope="col"
                       class="
@@ -330,6 +355,7 @@
                     </th> -->
                   </tr>
                 </thead>
+
                 <tbody class="bg-white divide-y divide-gray-200">
                   <!-- :class="{ 'bg-gray-100': ix % 2 == 0 }" -->
                   <tr
@@ -351,51 +377,57 @@
                     >
                       {{ iix + 1 }}
                     </td>
-                    <td
-                      class="text-sm text-gray-900 text-start"
-                      scope="col p-1"
-                    >
+
+                    <td class="text-sm text-gray-900 text-start">
                       <img
                         v-lazy="i.img"
                         alt=""
-                        class="object-cover w-20 h-20"
+                        class="object-cover w-20 h-20 p-1"
                       />
                     </td>
+
                     <td class="text-sm text-gray-900 text-start" scope="col">
                       {{ i.name }}
                     </td>
+
                     <td class="text-sm text-center text-gray-900" scope="col">
                       {{ i.qty }}
                     </td>
+
                     <td class="text-sm text-center text-gray-900" scope="col">
-                      {{ i.price | currency(settings.currencySymbol, 2) }}
+                      {{ i.price | currency(store.currencySymbol, 2) }}
                     </td>
+
                     <td class="text-sm text-center text-gray-900" scope="col">
-                      {{
-                        i.shippingCharge | currency(settings.currencySymbol, 2)
-                      }}
+                      {{ i.shippingCharge | currency(store.currencySymbol, 2) }}
                     </td>
+
                     <td class="text-sm text-center text-gray-900" scope="col">
-                      {{ i.total | currency(settings.currencySymbol, 2) }}
+                      {{ i.total | currency(store.currencySymbol, 2) }}
                     </td>
+
                     <td class="ps-4 text-sm text-gray-900" scope="col">
                       <span class="text-primary-500">{{ i.status }}</span>
+
                       <!-- <a
-                        v-if="settings.liveCommerce"
+                        v-if="store.liveCommerce"
                         :href="`${NETEASE_WWW}/netease?channelName=${order.id}-${i.pid}`"
                         target="_"
                       >
                         Schedule Demo
                       </a> -->
+
                       <button
-                        v-if="settings.liveCommerce"
+                        v-if="store.liveCommerce"
                         type="button"
                         @click="populateDemoScheduler(i)"
                       >
                         Schedule a demo
                       </button>
+
                       <!-- :class="showDemoScheduler ? 'open' : 'close'" -->
                     </td>
+
                     <!-- <td class="text-sm text-center text-gray-900" scope="col">
                      
                     </td> -->
@@ -407,21 +439,33 @@
               class="flex flex-row p-3 mx-auto font-semibold text-gray-600 capitalize bg-gray-200 border"
             >
               <span class="w-1/4 ps-5">items</span>
+
               <span class="flex flex-row justify-around w-3/4">
+
                 </span>Order Id</span>
+
                 </span>Status</span>
+
                 </span>Order Date</span>
+
                 </span>Delivered Date</span>
+
                 </span>Price</span>
+
                 <span class="text-gray-200">No heading</span>
               </span>
             </div>
+
             <div v-if="myOrders">
               <div>
                 <div class="flex flex-row p-3 mx-auto bg-white border-b">
+
                   <span class="w-1/4 ps-5">
+
                     <div class="flex flex-row">
+
                       <span class="w-1/3 me-2">
+                      
                         <img
                           src=""
                           alt="pic"
@@ -454,7 +498,7 @@
                    </span>
                     </span>Order Date</span>
                     </span>Delivered Date</span>
-                    <span class="text-secondary-200">Price</span>
+                    <span class="text-secondary-400">Price</span>
                     <span class="flex flex-col my-auto space-y-2">
                       <nuxt-link :to="localePath('/order-tracking')">
                         <button
@@ -464,7 +508,7 @@
                         </button>
                       </nuxt-link>
                       <button
-                        class="p-2 px-4 font-semibold bg-white border reorder hover:bg-gray-50 text-secondary-200 border-secondary-200 focus:outline-none"
+                        class="p-2 px-4 font-semibold bg-white border reorder hover:bg-gray-50 text-secondary-400 border-secondary-400 focus:outline-none"
                       >
                         Re Order
                       </button>
@@ -524,22 +568,20 @@
                   <div>
                     Price:
                     <b class="text-gray-500">
-                      {{ i.price | currency(settings.currencySymbol, 2) }}
+                      {{ i.price | currency(store.currencySymbol, 2) }}
                       * {{ i.qty }}
                     </b>
                   </div>
                   <div>
                     Delivery:
                     <b class="text-gray-500">
-                      {{
-                        i.shippingCharge | currency(settings.currencySymbol, 2)
-                      }}
+                      {{ i.shippingCharge | currency(store.currencySymbol, 2) }}
                     </b>
                   </div>
                   <div>
                     Total:
                     <b class="text-gray-500">
-                      {{ i.total | currency(settings.currencySymbol, 2) }}
+                      {{ i.total | currency(store.currencySymbol, 2) }}
                     </b>
                   </div>
                 </div>
@@ -592,8 +634,9 @@ import OrderListSkeleton from '~/components/AllSkeletons/OrderListSkeleton.vue'
 import DemoRequestModal from '~/components/ProductDetails/DemoRequestModal.vue'
 import MY_ORDERS from '~/gql/order/myOrders.gql'
 import { NETEASE_WWW } from '~/shared/config'
+import NuxtLink from '~/components/NuxtLink.vue'
 export default {
-  components: { OrderListSkeleton, DemoRequestModal },
+  components: { OrderListSkeleton, DemoRequestModal, NuxtLink },
   data() {
     return {
       selectedProduct: {},
@@ -608,6 +651,7 @@ export default {
   computed: {
     ...mapGetters({
       settings: 'settings',
+      store: 'store',
     }),
   },
   async created() {
@@ -619,7 +663,7 @@ export default {
       this.showDemoScheduler = true
     },
     go(url) {
-      this.$router.push(url)
+      this.$router.push(`${url}`)
     },
     onSelect(val) {
       this.select = val

@@ -1,16 +1,19 @@
 <template>
-  <section class="border-t-2 pt-10 px-4 text-center">
+  <section class="border-t-2 pt-5 md:pt-10 px-4 text-center">
     <div class="max-w-md mx-auto">
       <h1 class="font-semibold text-3xl">Want More?</h1>
-      <h6 class="mt-4 text-sm">Sign up for the latest fashion and offers</h6>
+      <h6 class="mt-2 md:mt-4 text-sm">
+        Sign up for the latest fashion and offers
+      </h6>
 
-      <div class="hidden md:block mt-10 relative">
+      <div class="mt-5 md:mt-10 relative">
         <input
           type="text"
           class="
             border-2 border-black
             rounded
-            p-3
+            p-2
+            md:p-3
             w-full
             focus:outline-none
             focus:ring-0
@@ -26,54 +29,24 @@
             inset-y-0
             uppercase
             text-sm
-            font-semibold
+            font-medium
+            md:font-semibold
             text-white
             bg-black
             rounded-r
-            py-3
-            px-9
+            py-2
+            md:py-3
+            px-6
+            md:px-9
           "
         >
           Subscribe
         </button>
       </div>
-
-      <div class="mt-10 md:hidden">
-        <input
-          type="text"
-          class="
-            border-2
-            rounded
-            p-3
-            w-full
-            focus:outline-none focus:ring-0 focus:ring-offset-0
-            border-gray-200
-          "
-          placeholder="Enter your email"
-        />
-      </div>
-
-      <div class="mt-10 flex items-center justify-center space-x-5">
+      <div class="mt-5 md:mt-10 flex items-center justify-center space-x-5">
         <Checkbox>Women </Checkbox>
         <Checkbox>Men </Checkbox>
         <Checkbox>Kids </Checkbox>
-      </div>
-
-      <div class="mt-10 md:hidden">
-        <button
-          class="
-            w-full
-            uppercase
-            text-sm
-            font-semibold
-            text-white
-            bg-black
-            rounded
-            py-3
-          "
-        >
-          Subscribe
-        </button>
       </div>
 
       <h6 class="mt-5 md:mt-10 text-xs text-gray-400">
@@ -90,9 +63,11 @@
 
 <script>
 import Checkbox from '~/shared/components/ui/Checkbox.vue'
+import NuxtLink from '~/components/NuxtLink.vue'
 export default {
   components: {
     Checkbox,
+    NuxtLink,
   },
 }
 </script>

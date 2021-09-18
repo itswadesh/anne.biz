@@ -9,26 +9,15 @@
       @showFilter="showMobileFilter = true"
       @hide="showMobileFilter = false"
     />
-    <div class="container flex mx-auto sm:mt-6 xl:mt-0">
+    <div class="flex">
       <DesktopFilters
-        class="
-          sticky
-          top-0
-          flex-none
-          hidden
-          max-w-xs
-          min-h-screen
-          mt-5
-          bg-gray-100
-          shadow
-          ms-4
-          lg:block
-        "
+        class="sticky top-0 hidden lg:block"
         :facets="facets"
         :fl="fl"
         @clearAllFilters="clearAllFilters"
       />
-      <div class="relative w-full px-4">
+
+      <div class="w-full">
         <HeaderBody
           :category="category"
           :count="productCount"
@@ -36,14 +25,16 @@
           @removed="facetRemoved"
           @showFilters="showMobileFilter = true"
         />
+
         <!-- <ProductSkeleton /> -->
-        <NoProduct v-if="(!products || !products.length) && !loading" />
-        <div v-else class="sm:mt-0">
+
+        <div>
           <div
-            v-if="loading"
+            v-if="$fetchState.pending"
             class="
               grid grid-cols-2
-              gap-4
+              gap-3
+              md:gap-4
               sm:grid-cols-3
               lg:grid-cols-3
               xl:grid-cols-4
@@ -52,37 +43,33 @@
           >
             <ProductSkeleton v-for="(p, ix) in 10" :key="ix + '-1'" />
           </div>
+          <p v-else-if="$fetchState.error">Error while fetching products</p>
+
           <div
             v-else-if="products && products.length > 0"
             class="
-              flex flex-col flex-shrink-0
-              w-full
-              h-full
-              mt-4
-              sm:mt-2
-              nowrap
-              flex-nowrap
+              px-3
+              py-3
+              sm:py-0 sm:px-3
+              md:px-4
+              grid grid-cols-2
+              gap-3
+              md:gap-4
+              sm:grid-cols-3
+              xl:grid-cols-4
+              2xl:grid-cols-5
             "
           >
-            <div
-              class="
-                grid grid-cols-2
-                gap-4
-                sm:grid-cols-3
-                lg:grid-cols-3
-                xl:grid-cols-4
-                2xl:grid-cols-5
-              "
-            >
-              <ProductCardEs
-                v-for="(p, ix) in products"
-                :key="ix"
-                class="slide-up-item"
-                :product="p._source"
-                :pid="p._id"
-              />
-            </div>
+            <HomePageProduct
+              v-for="(p, ix) in products"
+              :key="ix"
+              class="slide-up-item"
+              :product="p._source"
+              :pid="p._id"
+            />
           </div>
+          <NoProduct v-else />
+
           <!-- <infinite-loading @infinite="loadMore($route.query.page)"></infinite-loading> -->
 
           <!-- <div class="pagination_box">
@@ -97,6 +84,7 @@
             ></v-pagination>
           </div>-->
         </div>
+
         <Pagination
           class="mt-5"
           :count="noOfPages"
@@ -111,8 +99,9 @@
 <script>
 import CATEGORY from '~/gql/category/category.gql'
 import c from '~/mixins/c.js'
-import { DESCRIPTION, KEYWORDS, sharingLogo } from '~/shared/config'
-import ProductCardEs from '~/components/Listing/ProductCardEs.vue'
+import { DESCRIPTION, KEYWORDS } from '~/shared/config'
+// import ProductCardEs from '~/components/Listing/ProductCardEs.vue'
+import HomePageProduct from '~/components/Home/HomePageProduct.vue'
 import ProductSkeleton from '~/components/ProductSkeleton.vue'
 import Megamenu from '~/components/Home/Megamenu.vue'
 import Pagination from '~/shared/components/ui/Pagination.vue'
@@ -121,71 +110,142 @@ export default {
   components: {
     Pagination,
     ProductSkeleton,
-    ProductCardEs,
+    HomePageProduct,
+    // ProductCardEs,
     Megamenu,
   },
   mixins: [c],
-  layout: 'search',
-  async asyncData({ route, query, params, $axios, app, store }) {
-    let products = []
-    let category = {}
+  asyncData({ params, app, store }) {
+    const { title, keywords, description, favicon, logoMobile } =
+      store.state.store || {} // err = null
+    return { title, keywords, description, favicon, logoMobile }
+  },
+  async fetch() {
     let facets = []
     let fl = {}
-    let err = null
-    let productCount = 0
-    const client = app.apolloProvider.defaultClient
-    try {
-      const cslug = route.params.slug
-      if (cslug) {
-        category = (
-          await client.query({
-            query: CATEGORY,
-            variables: {
-              slug: cslug,
-              store: store.state.store && store.state.store.id,
-            },
-            fetchPolicy: 'no-cache',
-          })
-        ).data.category
-      }
-      const q = params.slug || null
-      const qry = { ...query }
-      delete qry.brand
-      if (q) qry.categories = q
-      // if (cslug) qry.categories = cslug
-      const result = await $axios.$get('/api/products/es', {
-        params: { ...qry },
+    // let err = null
+    // let productCount = 0
+    // const client = app.apolloProvider.defaultClient
+    const storeId = this.$store.state.store && this.$store.state.store.id
+    // try {
+    const cslug = this.$route.params.slug
+    if (cslug) {
+      this.category = await this.$get('category/category', {
+        slug: cslug,
       })
-      products = result.data
-      
-      productCount = result.facets.style_count.value
-      facets = result.facets && result.facets.all_aggs
-      Object.keys(qry).map(function (k, i) {
-        if (
-          qry[k] &&
-          !Array.isArray(qry[k]) &&
-          qry[k] !== null &&
-          qry[k] !== '' &&
-          k !== 'price' &&
-          k !== 'age' &&
-          k !== 'discount'
-        )
-          qry[k] = qry[k].split(',')
-      })
-      fl = { ...qry } // For selected filters
-      return { products, category, productCount, facets, fl, err: null }
-    } catch (e) {
-      if (e && e.response && e.response.data) {
-        err = e.response.data
-      } else if (e && e.response) {
-        err = e.response
-      } else {
-        err = e
-      }
-      console.log('/c/_slug err...', e)
-      return { products, category, productCount, facets: [], fl: {}, err }
+      // this.category = (
+      //   await client.query({
+      //     query: CATEGORY,
+      //     variables: {
+      //       slug: cslug,
+      //       store: storeId,
+      //     },
+      //     fetchPolicy: 'no-cache',
+      //   })
+      // ).data.category
     }
+    const q = cslug || null
+    const query = this.$route.query
+    query.store = storeId || '23sdf43rfs5fdgsdf'
+    const qry = { ...query }
+    delete qry.brand
+    if (q) qry.categories = q
+    // if (cslug) qry.categories = cslug
+    const result = await this.$axios.$get('/api/products/es', {
+      params: { ...qry },
+    })
+    this.products = result.data
+    this.productCount = result.facets && result.facets.style_count.value
+    facets = result.facets && result.facets.all_aggs
+    Object.keys(qry).map(function (k, i) {
+      if (
+        qry[k] &&
+        !Array.isArray(qry[k]) &&
+        qry[k] !== null &&
+        qry[k] !== '' &&
+        k !== 'price' &&
+        k !== 'age' &&
+        k !== 'discount'
+      )
+        qry[k] = qry[k].split(',')
+    })
+    fl = { ...qry } // For selected filters
+    this.fl = fl
+    this.facets = facets
+    // return { products, category, productCount, facets, fl, err: null }
+    // } catch (e) {
+    //   if (e && e.response && e.response.data) {
+    //     err = e.response.data
+    //   } else if (e && e.response) {
+    //     err = e.response
+    //   } else {
+    //     err = e
+    //   }
+    //   console.log('/c/_slug err...', e)
+    //   return { products, category, productCount, facets: [], fl: {}, err }
+    // }
   },
+  // async asyncData({ route, query, params, $axios, app, store }) {
+  //   let products = []
+  //   let category = {}
+  //   let facets = []
+  //   let fl = {}
+  //   let err = null
+  //   let productCount = 0
+  //   const client = app.apolloProvider.defaultClient
+  //   const storeId = store.state.store && store.state.store.id
+  //   try {
+  //     const cslug = route.params.slug
+  //     if (cslug) {
+  //       category = (
+  //         await client.query({
+  //           query: CATEGORY,
+  //           variables: {
+  //             slug: cslug,
+  //             store: storeId,
+  //           },
+  //           fetchPolicy: 'no-cache',
+  //         })
+  //       ).data.category
+  //     }
+  //     const q = params.slug || null
+  //     query.store = storeId || '23sdf43rfs5fdgsdf'
+  //     const qry = { ...query }
+  //     delete qry.brand
+  //     if (q) qry.categories = q
+  //     // if (cslug) qry.categories = cslug
+  //     const result = await $axios.$get('/api/products/es', {
+  //       params: { ...qry },
+  //     })
+  //     products = result.data
+  //     productCount = result.facets && result.facets.style_count.value
+  //     facets = result.facets && result.facets.all_aggs
+  //     Object.keys(qry).map(function (k, i) {
+  //       if (
+  //         qry[k] &&
+  //         !Array.isArray(qry[k]) &&
+  //         qry[k] !== null &&
+  //         qry[k] !== '' &&
+  //         k !== 'price' &&
+  //         k !== 'age' &&
+  //         k !== 'discount'
+  //       )
+  //         qry[k] = qry[k].split(',')
+  //     })
+  //     fl = { ...qry } // For selected filters
+  //     return { products, category, productCount, facets, fl, err: null }
+  //   } catch (e) {
+  //     if (e && e.response && e.response.data) {
+  //       err = e.response.data
+  //     } else if (e && e.response) {
+  //       err = e.response
+  //     } else {
+  //       err = e
+  //     }
+  //     console.log('/c/_slug err...', e)
+  //     return { products, category, productCount, facets: [], fl: {}, err }
+  //   }
+  // },
   head() {
     const host = process.server
       ? this.$ssrContext.req.headers.host
@@ -226,7 +286,7 @@ export default {
         },
         {
           property: 'og:image',
-          content: host + ((this.category && this.category.img) || sharingLogo),
+          content: (this.category && this.category.img) || this.logoMobile,
         },
         {
           property: 'og:image:width',
@@ -252,13 +312,12 @@ export default {
       ],
     }
   },
-  watchQuery: true,
-  created() {
-    this.scrollToTop()
-    this.currentPage = parseInt(this.$route.query.page)
-    // let query = { ...this.$route.query };
-    // this.fl = query;
-  },
+  // watchQuery: true,
+  // fetch() {
+  // this.scrollToTop()
+  // let query = { ...this.$route.query };
+  // this.fl = query;
+  // },
   mounted() {
     // this.getWishlist() // This was causing node undefined error when page is refreshed
   },

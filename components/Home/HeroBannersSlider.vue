@@ -1,20 +1,22 @@
 <template>
-  <div v-if="banners && banners.length" class="mt-5">
-    <div
-      class="relative flex text-3xl font-bold text-center text-gray-700 px-3"
-    >
-      <h3 class="text-sm md:text-xl font-medium">{{ title }}</h3>
-      <div class="absolute right-0 me-3 top-0 flex">
+  <div
+    v-if="banners && banners.length"
+    class="container mx-auto bg-white sm:px-10 text-gray-700"
+  >
+    <div class="mb-5 relative flex px-2 lg:px-3">
+      <h3 v-if="title" class="text-base md:text-xl font-medium">{{ title }}</h3>
+      <div v-else class="h-6 md:h-8 w-full"></div>
+
+      <div class="absolute right-0 mr-2 lg:mr-3 top-0 flex">
         <button
           class="
             flex
             items-center
             justify-center
-            w-4
-            h-4
-            md:w-8
-            md:h-8
-            me-2
+            w-6
+            h-6
+            md:w-8 md:h-8
+            mr-2
             text-gray-800
             transition
             duration-300
@@ -24,8 +26,7 @@
             cursor-pointer
             focus:outline-none
             active:scale-90
-            hover:bg-gray-300
-            hover:shadow
+            hover:bg-gray-300 hover:shadow
           "
           @click="showPrev"
         >
@@ -48,10 +49,9 @@
             flex
             items-center
             justify-center
-            w-4
-            h-4
-            md:w-8
-            md:h-8
+            w-6
+            h-6
+            md:w-8 md:h-8
             text-gray-800
             transition
             duration-300
@@ -61,8 +61,7 @@
             cursor-pointer
             focus:outline-none
             active:scale-90
-            hover:bg-gray-300
-            hover:shadow
+            hover:bg-gray-300 hover:shadow
           "
           @click="showNext"
         >
@@ -82,18 +81,19 @@
       </div>
     </div>
 
-    <div class="mt-2 md:mt-6">
-      <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
-        <button
-          v-for="b in banners"
-          :key="b.id"
-          class="overflow-hidden focus:outline-none p-1 lg:p-3"
-          @click="go(b.link)"
-        >
-          <img v-lazy="b.img" class="object-cover rounded-2xl bg-white" />
-        </button>
-      </VueSlickCarousel>
-    </div>
+    <VueSlickCarousel v-bind="sliderSettings" ref="carousel">
+      <button
+        v-for="b in banners"
+        :key="b.id"
+        class="overflow-hidden focus:outline-none px-1 lg:px-3"
+        @click="go(b.link)"
+      >
+        <img
+          v-lazy="`${b.img}?tr=w-375,h-430,fo-auto`"
+          class="h-full w-full object-cover rounded-2xl bg-white"
+        />
+      </button>
+    </VueSlickCarousel>
   </div>
 </template>
 

@@ -3,18 +3,19 @@
     v-if="images && images.length > 1"
     class="
       z-0
-      flex flex-col
+      flex flex-row
+      md:flex-col
       justify-center
+      xl:justify-start
       items-center
       overflow-hidden
       md:mx-0 md:w-24
-      pb-8
     "
   >
     <VueSlickCarousel
       v-bind="settings"
       :arrows="true"
-      class="w-auto h26"
+      class="w-auto h-rem"
       :class="images.length > 4 ? 'py-10' : ''"
     >
       <template #prevArrow="arrowOption" class="absolute top-0">
@@ -29,23 +30,33 @@
           {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
         </div>
       </template>
-      <div
-        v-for="(img, ix) in images"
-        :key="ix"
-        class="
-          flex
-          justify-center
-          items-center
-          overflow-hidden
-          md:w-full
-          focus:outline-none
-        "
-      >
+      <div v-for="(img, ix) in images" :key="ix" class="overflow-hidden">
         <!-- :class="images.length > 4 ? 'mt-8' : ''" -->
         <img
           :key="img"
-          v-lazy="img"
+          v-lazy="imgVideo(img)"
           alt=""
+          class="
+            object-cover
+            overflow-hidden
+            bg-white
+            border
+            p-0.5
+            rounded-sm
+            smallimg
+            hover:border-primary-500
+            w-full
+            h-full
+          "
+          :class="{ 'border-primary-500': img === selectedImage }"
+          @mouseenter="$emit('selectedImage', img)"
+        />
+        <!-- <youtube
+          v-else
+          ref="youtube"
+          :video-id="youtubeVideoId(img)"
+          :resize="true"
+          :fit-parent="true"
           class="
             object-contain
             mx-auto
@@ -60,7 +71,7 @@
           "
           :class="{ 'border-primary-500': img === selectedImage }"
           @mouseenter="$emit('selectedImage', img)"
-        />
+        /> -->
       </div>
       <template #nextArrow="arrowOption" class="absolute bottom-0">
         <div
@@ -145,7 +156,7 @@ export default {
 </script>
 
 <style>
-.h26 {
+.h-rem {
   height: 27.1rem;
 }
 .smallimg {

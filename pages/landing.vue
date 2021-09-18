@@ -3,7 +3,7 @@
     <div class="relative justify-center w-full">
       <video
         class="object-cover w-full h-48 md:h-96 lg:h-125"
-        :src="'https://res.cloudinary.com/misiki/video/upload/q_auto/v1625855820/anne/video_wiaoqe.mp4?q_auto'"
+        :src="'https://res.cloudinary.com/anne-biz/video/upload/q_auto/v1631807948/video_wiaoqe_m9u8ih.mp4?q_auto'"
         autoplay
         loop
         muted
@@ -33,10 +33,7 @@
         class="
           w-full
           text-center
-          lg:bg-white
-          lg:absolute
-          lg:bg-opacity-60
-          lg:bottom-0
+          lg:bg-white lg:absolute lg:bg-opacity-60 lg:bottom-0
         "
       >
         <div class="mx-4 lg:mx-auto lg:w-2/3">
@@ -54,8 +51,7 @@
                 focus:outline-none
                 px-9
                 bg-primary-500
-                hover:bg-gray-200
-                hover:text-primary-500
+                hover:bg-gray-200 hover:text-primary-500
               "
               @click="saveLanding()"
             >
@@ -213,6 +209,11 @@ Unlock engagement, awareness with tech-enabled Live Shopping eCommerce brands.`,
           description: `Try with a free DEMO and take your live sales events to the next level.`,
         },
       ],
+    }
+  },
+  head() {
+    return {
+      title: 'Landing',
     }
   },
   methods: {

@@ -1,19 +1,18 @@
 <template>
   <div
     class="
-      flex-row
-      justify-center
+      p-3
+      sm:p-5
       w-full
-      p-2
-      text-sm
-      font-semibold
-      text-center
-      bg-white
-      text-primary-500
-      -z-2
+      flex flex-row
+      items-center
+      justify-center
+      whitespace-nowrap
+      text-gray-500 text-sm text-center
     "
   >
-    <span>Policy© 2007-{{ year }} {{ settings.websiteName }}</span>
+    <span class="text-base mr-1">©</span
+    ><span> Policy 2007-{{ year }} {{ store.name }}</span>
   </div>
 </template>
 <script>
@@ -24,8 +23,8 @@ export default {
     }
   },
   computed: {
-    settings() {
-      return this.$store.state.settings || {}
+    store() {
+      return this.$store.state.store || {}
     },
   },
 }

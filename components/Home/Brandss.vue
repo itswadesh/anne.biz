@@ -62,8 +62,10 @@
 
 <script>
 import BRANDS from '~/gql/brand/brands.gql'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
+  components: { NuxtLink },
   data() {
     return {
       brands: false,

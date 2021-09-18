@@ -101,21 +101,16 @@
     </div>
 
     <WantMore class="mb-20" />
-    <WhiteFooter />
   </section>
 </template>
 
 <script>
 import WantMore from '~/components/Island/WantMore.vue'
-import WhiteFooter from '~/components/Island/WhiteFooter.vue'
 
 export default {
   components: {
     WantMore,
-    WhiteFooter,
   },
-
-  layout: 'none',
 
   data() {
     return {
@@ -124,6 +119,11 @@ export default {
         { query: `There's a problem with my order` },
         { query: `How can i track my order?` },
       ],
+    }
+  },
+  head() {
+    return {
+      title: 'Contact Us',
     }
   },
 }

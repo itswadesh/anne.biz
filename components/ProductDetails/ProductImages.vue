@@ -1,16 +1,8 @@
 <template>
   <div class="flex flex-col flex-shrink-0 bg-white hfull nowrap">
     <div class="sm:ms-3 xl:me-0">
-      <div class="flex flex-row justify-end pb-4 pe-4 md:hidden">
-        <Share :product="product" :host="host" />
-        <WishButton
-          v-if="product.id"
-          :rounded="true"
-          :pid="product.id"
-          class="p-1 w-7 h-7"
-        />
-      </div>
       <!-- desktop xl and above -->
+
       <!-- <div
         v-if="!loading"
         class="flex-col hidden w-full md:flex-row-reverse xl:hidden widths"
@@ -23,7 +15,6 @@
             overflow-hidden
             bg-white
             border-2
-            rounded-sm
             widths
           "
         >
@@ -75,28 +66,26 @@
       <!-- desktop view -->
       <div
         v-if="img"
-        class="flex-col hidden w-auto md:flex-row-reverse sm:flex"
+        class="
+          container
+          mx-auto
+          hidden
+          w-auto
+          md:flex-row-reverse
+          sm:flex sm:flex-col
+        "
       >
-        <div
-          class="
-            relative
-            z-10
-            mx-auto
-            overflow-hidden
-            bg-white
-            border-2
-            rounded-sm
-            widths
-          "
-        >
-          <div class="absolute right-0 flex justify-end m-3">
+        <div class="relative z-10 overflow-hidden bg-white widths">
+          <div class="z-50 absolute top-0 right-0">
             <WishButton
               v-if="product.id"
-              :rounded="true"
+              rounded
+              :exist-in-wishlist="existInWishlist"
               :pid="product.id"
-              class="z-50 hidden w-8 h-8 p-1 md:flex"
+              class="p-1 w-8 h-8"
             />
           </div>
+
           <img
             v-if="!youtubeVideoId(selectedImage)"
             v-lazy="selectedImage"
@@ -111,75 +100,89 @@
             "
             @click="handleClick"
           />
-          <div v-else class="w-12">
+
+          <div v-else>
             <youtube
               ref="youtube"
               :video-id="youtubeVideoId(selectedImage)"
               :resize="true"
+              :fit-parent="true"
             />
           </div>
         </div>
-        <div>
-          <ProductImgThumbnails
-            :images="images"
-            :selected-image="selectedImage || img"
-            class="container px-2 mx-auto overflow-hidden cursor-pointer"
-            @selectedImage="popup"
-          />
-        </div>
+
+        <ProductImgThumbnails
+          class="md:mr-5"
+          :images="images"
+          :selected-image="selectedImage || img"
+          @selectedImage="popup"
+        />
       </div>
 
       <!-- mobile view -->
-      <div class="w-full">
-        <div v-if="images && images.length" class="mx-auto sm:hidden">
-          <div class="w-full mx-auto widths">
-            <VueSlickCarousel
-              ref="c1"
-              :as-nav-for="$refs.c2"
-              :focus-on-select="true"
+
+      <div v-if="images && images.length" class="container mx-auto sm:hidden">
+        <div class="relative z-10 overflow-hidden bg-white widths">
+          <div class="z-50 absolute top-0 right-0">
+            <WishButton
+              v-if="product.id"
+              rounded
+              :pid="product.id"
+              :exist-in-wishlist="existInWishlist"
+              class="p-1 w-7 h-7"
+            />
+          </div>
+
+          <VueSlickCarousel
+            ref="c1"
+            :as-nav-for="$refs.c2"
+            :focus-on-select="true"
+          >
+            <div
+              v-for="(im, ix) in images"
+              :key="ix"
+              class="bg-white h-80 focus:outline-none"
             >
-              <div
-                v-for="(im, ix) in images"
-                :key="ix"
-                class="bg-white border h-80 focus:outline-none"
-              >
-                <img
-                  v-lazy="im"
-                  class="object-cover w-full h-full bg-gray-300"
+              <img
+                v-if="!youtubeVideoId(im)"
+                v-lazy="im"
+                alt=""
+                class="object-contain w-full h-full bg-white"
+                @click="handleClick"
+              />
+
+              <div v-else>
+                <youtube
+                  ref="youtube"
+                  :video-id="youtubeVideoId(im)"
+                  :resize="true"
+                  :fit-parent="true"
                 />
               </div>
-            </VueSlickCarousel>
-          </div>
-          <div class="w-full mt-10 px-7">
-            <VueSlickCarousel
-              ref="c2"
-              :as-nav-for="$refs.c1"
-              :slides-to-show="4"
-              :focus-on-select="true"
-              class="mx-auto"
+            </div>
+          </VueSlickCarousel>
+        </div>
+
+        <div class="w-full mt-5 sm:mt-10">
+          <VueSlickCarousel
+            ref="c2"
+            :as-nav-for="$refs.c1"
+            :slides-to-show="4"
+            :focus-on-select="true"
+            class="mx-auto"
+          >
+            <div
+              v-for="(ig, ix) in images"
+              :key="ix"
+              class="h-16 w-16 mx-auto focus:outline-none"
+              @click="selectedImage = ig"
             >
-              <div
-                v-for="(ig, ix) in images"
-                :key="ix"
-                class="h-20 mx-auto focus:outline-none"
-                @click="selectedImage = ig"
-              >
-                <img
-                  v-lazy="ig"
-                  class="
-                    object-cover
-                    w-16
-                    h-16
-                    mx-auto
-                    my-2
-                    bg-gray-300
-                    border
-                    rounded
-                  "
-                />
-              </div>
-            </VueSlickCarousel>
-          </div>
+              <img
+                v-lazy="imgVideo(ig)"
+                class="object-contain w-16 h-16 mx-auto bg-white"
+              />
+            </div>
+          </VueSlickCarousel>
         </div>
       </div>
     </div>
@@ -213,6 +216,7 @@ export default {
     img: { type: String, default: null },
     host: { type: String, default: null },
     product: { type: Object, default: null },
+    existInWishlist: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -363,10 +367,10 @@ export default {
 .zoom-in {
   cursor: zoom-in;
 }
-.widths {
+/* .widths {
   width: 295px;
   height: 291px;
-}
+} */
 @media only screen and (min-width: 640px) {
   .widths {
     width: 470px;

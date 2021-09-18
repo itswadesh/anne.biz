@@ -11,8 +11,7 @@
           rounded
           -ms-16
           lg:mt-6
-          md:ms-0
-          md:items-center
+          md:ms-0 md:items-center
           focus:outline-none
         "
       >
@@ -57,8 +56,7 @@
                 ease-in-out
                 transform
                 md:h-48
-                hover:-translate-y-1
-                hover:scale-110
+                hover:-translate-y-1 hover:scale-110
               "
             />
           </span>
@@ -72,7 +70,7 @@
               <span class="text-gray-800">Shop Now</span>
               <h1 class="m-2 mx-auto">
                 <span class="font-semibold text-secondary-200 text">
-                  {{ price | currency(settings.currencySymbol, 2) }}
+                  {{ price | currency(store.currencySymbol, 2) }}
                 </span>
               </h1>
             </span>
@@ -85,15 +83,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import NuxtLink from '~/components/NuxtLink.vue'
 export default {
+  components: { NuxtLink },
   props: {
-    id: { type: String },
-    slug: { type: String },
-    name: { type: String },
-    price: { type: String },
-    img: { type: String },
+    id: { type: String, default: null },
+    slug: { type: String, default: null },
+    name: { type: String, default: null },
+    price: { type: String, default: null },
+    img: { type: String, default: null },
   },
-
   data() {
     return {
       isActive: true,
@@ -102,7 +101,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      settings: 'settings',
+      store: 'store',
     }),
     user() {
       return this.$store.state.auth.user

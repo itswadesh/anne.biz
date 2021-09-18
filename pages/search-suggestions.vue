@@ -30,7 +30,7 @@
                 ref="q"
                 autofocus
                 :placeholder="
-                  (settings && settings.searchbarText) ||
+                  (store && store.searchbarText) ||
                   'Search for products, brands...'
                 "
                 :value="q"
@@ -191,8 +191,9 @@
 </template>
 <script>
 import POPULAR_SEARCHES from '~/gql/search/popularSearches.gql'
-
+import NuxtLink from '~/components/NuxtLink.vue'
 export default {
+  components: { NuxtLink },
   layout: 'none',
   data() {
     return {
@@ -201,9 +202,14 @@ export default {
       autocomplete: null,
     }
   },
+  head() {
+    return {
+      title: 'Search Suggestions',
+    }
+  },
   computed: {
-    settings() {
-      return this.$store.state.settings || {}
+    store() {
+      return this.$store.state.store || {}
     },
   },
   created() {

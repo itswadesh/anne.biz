@@ -38,7 +38,7 @@
                   <span class="my-2 text-sm text-primary-500">Bruice</span>
                   <span class="flex flex-row my-2 text-sm font-normal">
                     <span class="me-1">Price:</span>
-                    <span class="text-priamary-400">1988</span>
+                    <span class="text-secondary-400">1988</span>
                   </span>
                 </div>
               </div>
@@ -107,7 +107,7 @@
                         >
                           <div
                             v-if="index < 3"
-                            class="w-full h-full bg-secondary-200"
+                            class="w-full h-full bg-secondary-400"
                             :class="{
                               'rounded-s-3xl': index == 0,
                               'rounded-e-3xl:': index == tracking.length - 1,
@@ -389,7 +389,7 @@
                         <div class="z-10 items-center w-full h-full my-auto">
                           <div
                             v-if="index < 3"
-                            class="w-full h-full bg-secondary-200"
+                            class="w-full h-full bg-secondary-400"
                           >
                             <div
                               class="
@@ -443,7 +443,9 @@
 </template>
 
 <script>
+import NuxtLink from '~/components/NuxtLink.vue'
 export default {
+  components: { NuxtLink },
   data() {
     return {
       tracking: [

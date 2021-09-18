@@ -37,7 +37,7 @@
               {{ order.vendor.lastName }}
             </h6>
             <h4 class="mt-2 text-xl font-semibold">
-              {{ order.price | currency(settings.currencySymbol, 2) }}
+              {{ order.price | currency(store.currencySymbol, 2) }}
             </h4>
           </div>
         </div>
@@ -190,10 +190,12 @@ import ORDER from '~/gql/order/order.gql'
 import ORDER_ITEM from '~/gql/order/orderItem.gql'
 import OrderTracking from '~/components/Order/OrderTracking.vue'
 import ReturnTracking from '~/components/Order/ReturnTracking.vue'
+import NuxtLink from '~/components/NuxtLink.vue'
 export default {
   components: {
     OrderTracking,
     ReturnTracking,
+    NuxtLink,
   },
   layout: 'account',
   middleware: ['isAuth'],
@@ -210,7 +212,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ settings: 'settings' }),
+    ...mapGetters({ store: 'store' }),
   },
   created() {
     dayjs.extend(advancedFormat)

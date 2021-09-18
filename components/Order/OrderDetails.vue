@@ -49,7 +49,7 @@
               <span class="mb-2">{{ i.name }}</span>
               <span class="text-sm text-gray-500">Color : color</span>
               <span class="text-sm text-gray-500">Quantity : {{ i.qty }}</span>
-              <span>{{ i.price | currency(settings.currencySymbol, 2) }}</span>
+              <span>{{ i.price | currency(store.currencySymbol, 2) }}</span>
             </div>
           </div>
           <div class="flex flex-col mt-3 lg:flex-row md:mt-0">
@@ -81,7 +81,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import ORDER_DETAILS from '~/gql/order/order.gql'
+import NuxtLink from '~/components/NuxtLink.vue'
+
 export default {
+  components: { NuxtLink },
   data() {
     return {
       order: null,
@@ -98,7 +101,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      settings: 'settings',
+      store: 'store',
     }),
   },
   created() {

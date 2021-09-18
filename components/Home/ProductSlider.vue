@@ -1,180 +1,239 @@
 <template>
-  <div class="h-auto sm:mb-2">
-    <div class="h-auto">
-      <div class="focus:outline-none">
-        <div class="flex justify-center border-b">
-          <span
+  <main v-if="details && details.length" class="bg-white text-gray-700">
+    <div class="pb-5 md:pb-10 flex items-center justify-center space-x-2">
+      <hr class="h-1 border-gray-300 flex-1" />
+
+      <div
+        class="
+          flex
+          items-center
+          justify-center
+          text-center text-white text-sm
+          sm:text-base
+          font-semibold
+          tracking-wider
+          uppercase
+          py-2
+          px-8
+          bg-primary-500
+        "
+      >
+        {{ heading }}
+      </div>
+
+      <hr class="h-1 border-gray-300 flex-1" />
+    </div>
+
+    <section v-if="details">
+      <!-- Above 1024px  -->
+
+      <div class="hidden lg:block">
+        <div class="flex justify-center items-center">
+          <progress
+            v-if="loading"
             class="
-              pb-2
-              mt-2
-              text-xl text-center
-              sm:text-2xl
-              lg:text-3xl
-              md:-mt-4
-              border-b2
-              text-primary-500
-              border-secondary-500
-              md:ms-6
+              absolute
+              z-10
+              justify-center
+              block
+              m-3
+              material-progress-circular
+            "
+          />
+        </div>
+
+        <div class="relative">
+          <div
+            class="
+              absolute
+              z-20
+              top-36
+              left-0
+              ml-5
+              flex
+              items-center
+              justify-center
             "
           >
-            {{ heading }}
-          </span>
-        </div>
-        <div class="conatiner focus:outline-none">
-          <!-- v-if="loading" -->
-          <!-- <ProductSliderSkeleton /> -->
-          <VueSlickCarousel v-if="details && details.length" v-bind="settings">
-            <template #prevArrow="arrowOption">
-              <div
+            <button class="focus:outline-none" @click="showPrev">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
                 class="
-                  invisible
-                  text-primary-500
-                  custom-arrow custom-arrow1
-                  md:visible
+                  h-6
+                  w-6
+                  md:h-10 md:w-10
+                  text-gray-500
+                  hover:text-gray-800
                 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-              </div>
-            </template>
-            <div
-              v-for="product in details"
-              :key="product.id"
-              class="flex flex-col mb-6 justify-items-center focus:outline-none"
-            >
-              <ProductSliderCards
-                bg-color="white"
-                :product="product"
-                class="m-1 sm:m-2 focus:outline-none"
-              />
-            </div>
-            <template #nextArrow="arrowOption">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div>
+            <VueSlickCarousel v-bind="settings" ref="carousel">
               <div
-                class="
-                  invisible
-                  custom-arrow
-                  text-primary-500
-                  custom-arrow2
-                  md:visible
-                "
+                v-for="product in details"
+                :key="product.id"
+                class="pr-5 w-full"
               >
-                {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                <HomePageProduct :product="product" />
               </div>
-            </template>
-          </VueSlickCarousel>
+            </VueSlickCarousel>
+          </div>
+
+          <div
+            class="
+              absolute
+              z-20
+              top-36
+              right-0
+              mr-5
+              flex
+              items-center
+              justify-center
+            "
+          >
+            <button class="focus:outline-none" @click="showNext">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="
+                  h-6
+                  w-6
+                  md:h-10 md:w-10
+                  text-gray-500
+                  hover:text-gray-800
+                "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+
+      <!-- Below 1024px  -->
+
+      <div class="lg:hidden overflow-x-auto">
+        <div
+          v-if="details && details.length"
+          v-bind="settings"
+          class="flex flex-row items-start justify-start space-x-2"
+        >
+          <div v-for="product in details" :key="product.id">
+            <HomePageProduct :product="product" class="w-36 sm:w-56" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script>
-import ProductSliderCards from '~/components/Home/ProductSliderCards.vue'
+import HomePageProduct from '~/components/Home/HomePageProduct.vue'
 // import ProductSliderSkeleton from '~/components/AllSkeletons/ProductSliderSkeleton'
+
 export default {
   components: {
     // ProductSliderSkeleton,
-    ProductSliderCards,
+    HomePageProduct,
   },
+
   props: {
     details: {
       type: Array,
-      default: null,
+      default: () => [],
     },
     heading: {
       type: String,
       default: null,
     },
   },
+
   data() {
     return {
-      isWishlist: false,
-      products: null,
       loading: false,
 
       settings: {
-        dots: false,
-        infinite: false,
-        speed: 500,
+        centerMode: false,
+        focusOnSelect: false,
+        infinite: true,
+        arrows: false,
         slidesToShow: 6,
         slidesToScroll: 1,
-        initialSlide: 0,
+        autoplay: false,
+        speed: 500,
         responsive: [
           {
             breakpoint: 1536,
             settings: {
               slidesToShow: 6,
-              slidesToScroll: 1,
-              infinite: true,
-              dots: false,
             },
           },
           {
             breakpoint: 1280,
             settings: {
               slidesToShow: 5,
-              slidesToScroll: 1,
-              infinite: true,
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 4,
-              slidesToScroll: 1,
-              infinite: true,
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1,
-              infinite: true,
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 640,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              infinite: false,
-              dots: false,
             },
           },
         ],
       },
     }
   },
+
+  methods: {
+    go(url) {
+      this.$router.push(this.localePath(url))
+    },
+
+    showNext() {
+      this.$refs.carousel.next()
+    },
+
+    showPrev() {
+      this.$refs.carousel.prev()
+    },
+  },
 }
 </script>
 
 <style scoped>
-.border-b2 {
-  border-bottom: 3px solid;
+::-webkit-scrollbar {
+  width: 10px;
 }
-.custom-arrow {
-  margin-right: 7px;
-  height: 80px;
-  width: 46px;
-  padding: 6px;
-  padding-top: 23px;
-  box-shadow: 10px;
+
+/* Track */
+::-webkit-scrollbar-track {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
 }
-.slick-prev::before,
-.slick-next::before {
-  font-size: 40px;
-  line-height: 1;
-  opacity: 1;
-  box-shadow: 10px;
-  -webkit-font-smoothing: antialiased;
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
 }
-.slick-prev {
-  margin-left: -25px;
-  z-index: 1;
-  left: 0;
-  box-shadow: 10px;
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  --tw-divide-opacity: 1;
+  border-color: rgba(209, 213, 219, var(--tw-divide-opacity));
 }
 </style>

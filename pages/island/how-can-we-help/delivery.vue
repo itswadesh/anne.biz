@@ -155,7 +155,7 @@
     </div>
 
     <WantMore class="mb-20" />
-    <WhiteFooter />
+    <!-- <WhiteFooter /> -->
   </section>
 </template>
 
@@ -169,8 +169,6 @@ export default {
     WhiteFooter,
   },
 
-  layout: 'none',
-
   data() {
     return {
       items: [
@@ -178,6 +176,12 @@ export default {
         { query: `There's a problem with my order` },
         { query: `How can i track my order?` },
       ],
+    }
+  },
+
+  head() {
+    return {
+      title: 'Delivery',
     }
   },
 }

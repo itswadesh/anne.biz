@@ -10,7 +10,7 @@ import {
 import { pwa } from './config/index'
 console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzz', HTTP_ENDPOINT, WWW_URL)
 // const whitelist = ['preview-img-item']
-const whitelistPatterns = [/(slick-+|swal2-)/]
+const whitelistPatterns = [/^slick-/, /^swal2-/, /^mx-/] // mx- is for vue2-datepicker
 export default {
   server: {
     host: '0.0.0.0',
@@ -37,7 +37,7 @@ export default {
     // { src: '~/plugins/init', ssr: false },
     // { src: '~/plugins/directives.js', ssr:false },
   ],
-  components: true,
+  // components: true,
   buildModules: [
     '@nuxtjs/dotenv',
     '@nuxtjs/apollo',
@@ -45,6 +45,7 @@ export default {
     'nuxt-purgecss',
     'nuxt-webfontloader',
     // '@nuxtjs/google-analytics',
+    '@nuxt/image',
     '@nuxtjs/pwa',
     'vue-social-sharing/nuxt',
     // 'nuxt-vite',
@@ -87,7 +88,7 @@ export default {
   // },
   webfontloader: {
     google: {
-      families: ['Inter:400,700&display=swap'],
+      families: ['Inter:100,200,300,400,500,600,700&display=swap'],
     },
   },
   axios: {
@@ -113,6 +114,8 @@ export default {
   proxy: {
     '/graphql': HTTP_ENDPOINT,
     '/api': HTTP_ENDPOINT,
+    '/auth': HTTP_ENDPOINT,
+    '/images': HTTP_ENDPOINT,
   },
   build: {
     babel: {

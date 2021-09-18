@@ -1,12 +1,13 @@
-h4
 <template>
-  <div v-if="facets" class="w-64 p-4 min-h-screen">
-    <div class="border-b">
-      <h5 class="text-sm font-bold uppercase">CATEGORIES</h5>
+  <div v-if="facets" class="w-72 min-h-screen border-r">
+    <div v-if="megamenu && megamenu.length > 0" class="border-b p-4">
+      <h5 class="mb-4 text-sm font-bold uppercase leading-3 tracking-wide">
+        CATEGORIES
+      </h5>
 
-      <ul class="mt-2 overflow-y-auto max-h-72">
+      <ul class="overflow-y-auto max-h-72">
         <li
-          v-for="(c, i) in sideMegamenu"
+          v-for="(c, i) in megamenu"
           :key="i"
           class="
             font-light
@@ -14,7 +15,7 @@ h4
             overflow-hidden
             border-t
             tab
-            py-2
+            mb-2
             cursor-pointer
           "
         >
@@ -92,8 +93,8 @@ h4
       </ul>
     </div>
 
-    <div class="flex items-center justify-between py-4 border-b">
-      <h5 class="text-sm font-bold uppercase">FILTERS</h5>
+    <div class="flex items-center justify-between p-4 border-b leading-3">
+      <h5 class="font-bold uppercase tracking-wide">FILTERS</h5>
 
       <button
         class="
@@ -170,11 +171,13 @@ h4
         facets.brands.all.buckets &&
         facets.brands.all.buckets.length > 0
       "
-      class="mt-4 border-b"
+      class="p-4 border-b"
     >
-      <h5 class="text-sm font-bold uppercase">BRAND</h5>
+      <h5 class="mb-4 text-sm font-bold uppercase leading-3 tracking-wide">
+        BRAND
+      </h5>
 
-      <ul class="mt-2 overflow-y-auto max-h-72">
+      <ul class="overflow-y-auto max-h-72">
         <li
           v-for="b in facets.brands &&
           facets.brands.all &&
@@ -186,7 +189,7 @@ h4
             class="
               flex
               items-center
-              my-2
+              mb-2
               tracking-wider
               text-sm
               font-light
@@ -209,11 +212,13 @@ h4
         facets.genders.all.buckets &&
         facets.genders.all.buckets.length > 0
       "
-      class="mt-4 border-b"
+      class="p-4 border-b"
     >
-      <h5 class="text-sm font-bold uppercase">GENDER</h5>
+      <h5 class="mb-4 text-sm font-bold uppercase leading-3 tracking-wide">
+        GENDER
+      </h5>
 
-      <ul class="mt-2 overflow-y-auto max-h-72">
+      <ul class="overflow-y-auto max-h-72">
         <li
           v-for="b in facets.genders &&
           facets.genders.all &&
@@ -225,7 +230,7 @@ h4
             class="
               flex
               items-center
-              my-2
+              mb-2
               tracking-wider
               text-sm
               font-light
@@ -248,11 +253,13 @@ h4
         facets.colors.all.buckets &&
         facets.colors.all.buckets.length > 0
       "
-      class="mt-4 border-b"
+      class="p-4 border-b"
     >
-      <h5 class="text-sm font-bold uppercase">COLOR</h5>
+      <h5 class="mb-4 text-sm font-bold uppercase leading-3 tracking-wide">
+        COLOR
+      </h5>
 
-      <ul class="mt-2 overflow-y-auto max-h-72">
+      <ul class="overflow-y-auto max-h-72">
         <li
           v-for="b in facets.colors &&
           facets.colors.all &&
@@ -264,7 +271,7 @@ h4
             class="
               flex
               items-center
-              my-2
+              mb-2
               tracking-wider
               text-sm
               font-light
@@ -289,11 +296,13 @@ h4
         facets.sizes.all.buckets.length > 0
       "
       color="primary"
-      class="mt-4 border-b"
+      class="p-4 border-b"
     >
-      <h5 class="text-sm font-bold uppercase">SIZES</h5>
+      <h5 class="mb-4 text-sm font-bold uppercase leading-3 tracking-wide">
+        SIZES
+      </h5>
 
-      <ul class="mt-2 overflow-y-auto max-h-72">
+      <ul class="overflow-y-auto max-h-72">
         <li
           v-for="b in facets.sizes &&
           facets.sizes.all &&
@@ -305,7 +314,7 @@ h4
             class="
               flex
               items-center
-              my-2
+              mb-2
               tracking-wider
               text-sm
               font-light
@@ -331,11 +340,13 @@ h4
         getTotalDocCount(facets.price.all.buckets) > 0
       "
       color="primary"
-      class="mt-4 border-b"
+      class="p-4 border-b"
     >
-      <h5 class="text-sm font-bold uppercase">PRICE RANGE</h5>
+      <h5 class="mb-4 text-sm font-bold uppercase leading-3 tracking-wide">
+        PRICE RANGE
+      </h5>
 
-      <ul class="mt-2 overflow-y-auto max-h-72">
+      <ul class="overflow-y-auto max-h-72">
         <li
           v-for="b in facets.price &&
           facets.price.all &&
@@ -348,7 +359,7 @@ h4
             class="
               flex
               items-center
-              my-2
+              mb-2
               tracking-wider
               text-sm
               font-light
@@ -374,11 +385,13 @@ h4
         getTotalDocCount(facets.age.all.buckets) > 0
       "
       color="primary"
-      class="mt-4 border-b"
+      class="p-4 border-b"
     >
-      <h5 class="text-sm font-bold uppercase">AGE GROUP</h5>
+      <h5 class="mb-4 text-sm font-bold uppercase leading-3 tracking-wide">
+        AGE GROUP
+      </h5>
 
-      <ul class="mt-2 overflow-y-auto max-h-72">
+      <ul class="overflow-y-auto max-h-72">
         <li
           v-for="b in facets.age && facets.age.all && facets.age.all.buckets"
           v-if="b.doc_count > 0"
@@ -389,7 +402,7 @@ h4
             class="
               flex
               items-center
-              my-2
+              mb-2
               tracking-wider
               text-sm
               font-light
@@ -415,11 +428,13 @@ h4
         getTotalDocCount(facets.discount.all.buckets) > 0
       "
       color="primary"
-      class="mt-4 border-b"
+      class="p-4 border-b"
     >
-      <h5 class="text-sm font-bold uppercase">Discount</h5>
+      <h5 class="mb-4 text-sm font-bold uppercase leading-3 tracking-wide">
+        Discount
+      </h5>
 
-      <ul class="mt-2 overflow-y-auto max-h-72">
+      <ul class="overflow-y-auto max-h-72">
         <li
           v-for="b in facets.discount &&
           facets.discount.all &&
@@ -432,7 +447,7 @@ h4
             class="
               flex
               items-center
-              my-2
+              mb-2
               tracking-wider
               text-sm
               font-light
@@ -517,14 +532,16 @@ h4
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import { Checkbox, Radio } from '~/shared/components/ui'
 import { constructURL } from '~/lib/'
 import PARENT_BRANDS from '~/gql/brand/parentBrands.gql'
 import GET_MEGAMENU from '~/gql/category/megamenu.gql'
 import BRAND from '~/gql/brand/brand.gql'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
-  components: { Checkbox, Radio },
+  components: { Checkbox, Radio, NuxtLink },
   props: {
     clear: Boolean,
     fl: {
@@ -546,8 +563,11 @@ export default {
       sideMegamenu: null,
     }
   },
+  computed: {
+    ...mapGetters({ megamenu: 'megamenu' }),
+  },
   created() {
-    this.refreshSideMegaMenu()
+    // this.refreshSideMegaMenu()
     // try {
     //   this.sideMegamenu = (
     //     await this.$apollo.query({
@@ -559,43 +579,43 @@ export default {
     // } catch (e) {}
   },
   methods: {
-    async refreshSideMegaMenu() {
-      try {
-        let brand = null
-        const bv = {}
-        const slug = this.$route.params.slug
-        const brandId = this.$route.query.brand
-        if (brandId) bv.id = brandId
-        else if (slug) bv.slug = slug
-        try {
-          if (bv.id || bv.slug) {
-            this.brand = await this.$get('brand/brand', {
-              query: BRAND,
-              variables: bv,
-            })
-            // this.brand = brand = (
-            //   await this.$apollo.query({
-            //     query: BRAND,
-            //     variables: bv,
-            //   })
-            // ).data.brand
-          }
-        } catch (e) {}
-        const variables = {}
-        // if (this.$route.path.includes('/brand/') || (brand && brand.id)) {
-        if (brand && brand.id) variables.brand = brand.id
-        if (slug && !this.$route.path.includes('/brand/')) variables.slug = slug
-        // console.log('aaaaaaaaaaaaaaaa', variables)
-        this.sideMegamenu = await this.$get('category/megamenu', variables)
-        // this.sideMegamenu = (
-        //   await this.$apollo.query({
-        //     query: GET_MEGAMENU,
-        //     variables,
-        //     fetchPolicy: 'no-cache',
-        //   })
-        // ).data.megamenu
-      } catch (e) {}
-    },
+    // async refreshSideMegaMenu() {
+    //   try {
+    //     const brand = null
+    //     const bv = {}
+    //     const slug = this.$route.params.slug
+    //     const brandId = this.$route.query.brand
+    //     if (brandId) bv.id = brandId
+    //     else if (slug) bv.slug = slug
+    //     try {
+    //       if (bv.id || bv.slug) {
+    //         this.brand = await this.$get('brand/brand', {
+    //           query: BRAND,
+    //           variables: bv,
+    //         })
+    //         // this.brand = brand = (
+    //         //   await this.$apollo.query({
+    //         //     query: BRAND,
+    //         //     variables: bv,
+    //         //   })
+    //         // ).data.brand
+    //       }
+    //     } catch (e) {}
+    //     const variables = {}
+    //     // if (this.$route.path.includes('/brand/') || (brand && brand.id)) {
+    //     if (brand && brand.id) variables.brand = brand.id
+    //     if (slug && !this.$route.path.includes('/brand/')) variables.slug = slug
+    //     // console.log('aaaaaaaaaaaaaaaa', variables)
+    //     this.sideMegamenu = await this.$get('category/megamenu', variables)
+    //     // this.sideMegamenu = (
+    //     //   await this.$apollo.query({
+    //     //     query: GET_MEGAMENU,
+    //     //     variables,
+    //     //     fetchPolicy: 'no-cache',
+    //     //   })
+    //     // ).data.megamenu
+    //   } catch (e) {}
+    // },
     slug(slug) {
       let s = `/c/${slug}`
       if (this.brand) s = `/c/${slug}?brand=${this.brand.id}`
@@ -610,7 +630,7 @@ export default {
     },
     scrollToTop() {
       if (process.client) {
-        window.scroll({ behavior: 'smooth', left: 0, top: 150 })
+        // window.scroll({ behavior: 'smooth', left: 0, top: 200 })
       }
     },
     categoryChanged(i) {
@@ -619,7 +639,7 @@ export default {
     changed(e) {
       this.scrollToTop()
       this.fl[e.model] = e.checked
-      const url = constructURL('/search', this.fl)
+      const url = constructURL(`/search`, this.fl)
 
       this.$router.push(url)
     },
@@ -627,35 +647,35 @@ export default {
       const ix = this.fl[k].indexOf(i)
       this.fl[k].splice(ix, 1)
       // this.$emit("removed", this.fl);
-      const url = constructURL('/search', this.fl)
+      const url = constructURL(`/search`, this.fl)
       this.$router.push(url)
     },
     checkCategory() {},
     go(slug) {
       this.$router.push('/' + slug)
     },
-    async getParentBrands() {
-      // this.loading = true
-      try {
-        this.parentBrands = await this.$get('brand/parentBrands', {
-          featured: true,
-          limit: 5,
-          page: 0,
-        })
-        // this.parentBrands = (
-        //   await this.$apollo.query({
-        //     query: PARENT_BRANDS,
-        //     variables: { featured: true, limit: 5, page: 0 },
-        //     fetchPolicy: 'no-cache',
-        //   })
-        // ).data.parentBrands
-        // console.log("brands to show", this.brands)
-      } catch (e) {
-        // console.log(e)
-      } finally {
-        // this.loading = false
-      }
-    },
+    // async getParentBrands() {
+    //   // this.loading = true
+    //   try {
+    //     this.parentBrands = await this.$get('brand/parentBrands', {
+    //       featured: true,
+    //       limit: 5,
+    //       page: 0,
+    //     })
+    //     // this.parentBrands = (
+    //     //   await this.$apollo.query({
+    //     //     query: PARENT_BRANDS,
+    //     //     variables: { featured: true, limit: 5, page: 0 },
+    //     //     fetchPolicy: 'no-cache',
+    //     //   })
+    //     // ).data.parentBrands
+    //     // console.log("brands to show", this.brands)
+    //   } catch (e) {
+    //     // console.log(e)
+    //   } finally {
+    //     // this.loading = false
+    //   }
+    // },
   },
 }
 </script>

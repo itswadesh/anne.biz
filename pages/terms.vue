@@ -115,7 +115,18 @@
     </ul>
   </section>
 </template>
+<script>
+import NuxtLink from '~/components/NuxtLink.vue'
 
+export default {
+  components: { NuxtLink },
+  head() {
+    return {
+      title: 'Terms and Conditions',
+    }
+  },
+}
+</script>
 <style scoped>
 h6 {
   @apply text-sm md:text-base;

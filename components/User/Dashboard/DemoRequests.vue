@@ -114,7 +114,7 @@
                             <div class="text-accent-900">
                               {{
                                 w.product.price
-                                  | currency(settings.currencySymbol, 2)
+                                  | currency(store.currencySymbol, 2)
                               }}
                             </div>
                             <strike
@@ -123,7 +123,7 @@
                             >
                               {{
                                 w.product.mrp
-                                  | currency(settings.currencySymbol, 2)
+                                  | currency(store.currencySymbol, 2)
                               }}
                             </strike>
                             <div
@@ -230,6 +230,7 @@ import { mapGetters } from 'vuex'
 import WishlistSkeleton from '~/components/AllSkeletons/WishlistSkeleton.vue'
 import MY_SCHEDULE_DEMOS from '~/gql/scheduleDemo/myScheduleDemos.gql'
 import { NETEASE_WWW } from '~/shared/config'
+import NuxtLink from '~/components/NuxtLink.vue'
 
 export default {
   components: { WishlistSkeleton },
@@ -243,7 +244,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      settings: 'settings',
+      store: 'store',
     }),
   },
 

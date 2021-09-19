@@ -1,17 +1,19 @@
 <template>
-  <div>
+  <section>
     <Megamenu class="hidden w-full xl:flex" :brand="$route.query.brand" />
+
     <MobileFilters
-      class="sticky top-0 z-20 flex-none mt-16 sm:hidden"
+      class="sticky top-0 z-20 flex-none mt-16 md:hidden"
       :count="productCount"
       :facets="facets"
       :fl="fl"
       @showFilter="showMobileFilter = true"
       @hide="showMobileFilter = false"
     />
+
     <div class="flex">
       <DesktopFilters
-        class="sticky top-0 hidden lg:block"
+        class="sticky top-0 hidden md:block"
         :facets="facets"
         :fl="fl"
         @clearAllFilters="clearAllFilters"
@@ -19,6 +21,7 @@
 
       <div class="w-full">
         <HeaderBody
+          class="hidden md:block"
           :category="category"
           :count="productCount"
           :fl="fl"
@@ -32,26 +35,36 @@
           <div
             v-if="$fetchState.pending"
             class="
+              container
+              mx-auto
+              px-3
+              py-3
+              sm:px-3
+              md:p-4
               grid grid-cols-2
               gap-3
               md:gap-4
               sm:grid-cols-3
-              lg:grid-cols-3
               xl:grid-cols-4
               2xl:grid-cols-5
             "
           >
             <ProductSkeleton v-for="(p, ix) in 10" :key="ix + '-1'" />
           </div>
-          <p v-else-if="$fetchState.error">Error while fetching products</p>
+
+          <p v-else-if="$fetchState.error" class="p-5 sm:p-10 text-center">
+            Error while fetching products
+          </p>
 
           <div
             v-else-if="products && products.length > 0"
             class="
+              container
+              mx-auto
               px-3
               py-3
-              sm:py-0 sm:px-3
-              md:px-4
+              sm:px-3
+              md:p-4
               grid grid-cols-2
               gap-3
               md:gap-4
@@ -68,6 +81,7 @@
               :pid="p._id"
             />
           </div>
+
           <NoProduct v-else />
 
           <!-- <infinite-loading @infinite="loadMore($route.query.page)"></infinite-loading> -->
@@ -81,7 +95,7 @@
               :disabled="loading"
               :classes="bootstrapPaginationClasses"
               :labels="paginationAnchorTexts"
-            ></v-pagination>
+            ></v-pagination>     
           </div>-->
         </div>
 
@@ -93,9 +107,11 @@
         />
       </div>
     </div>
+
     <!-- <RightSideBar /> -->
-  </div>
+  </section>
 </template>
+
 <script>
 import CATEGORY from '~/gql/category/category.gql'
 import c from '~/mixins/c.js'
@@ -104,6 +120,7 @@ import { DESCRIPTION, KEYWORDS } from '~/shared/config'
 import HomePageProduct from '~/components/Home/HomePageProduct.vue'
 import ProductSkeleton from '~/components/ProductSkeleton.vue'
 import Megamenu from '~/components/Home/Megamenu.vue'
+import HeaderBody from '~/components/HeaderBody.vue'
 import Pagination from '~/shared/components/ui/Pagination.vue'
 
 export default {
@@ -113,13 +130,16 @@ export default {
     HomePageProduct,
     // ProductCardEs,
     Megamenu,
+    HeaderBody,
   },
   mixins: [c],
+
   asyncData({ params, app, store }) {
     const { title, keywords, description, favicon, logoMobile } =
       store.state.store || {} // err = null
     return { title, keywords, description, favicon, logoMobile }
   },
+
   async fetch() {
     let facets = []
     let fl = {}
@@ -246,6 +266,7 @@ export default {
   //     return { products, category, productCount, facets: [], fl: {}, err }
   //   }
   // },
+
   head() {
     const host = process.server
       ? this.$ssrContext.req.headers.host
@@ -318,9 +339,11 @@ export default {
   // let query = { ...this.$route.query };
   // this.fl = query;
   // },
+
   mounted() {
     // this.getWishlist() // This was causing node undefined error when page is refreshed
   },
+
   methods: {
     // scrollToTop() {
     //   if (process.client) {
@@ -348,6 +371,7 @@ export default {
   },
 }
 </script>
+
 <style scoped>
 /* .pagination {
   list-style-type: none !important;

@@ -5,11 +5,11 @@
       class="
         px-4
         py-2
-        font-thin
-        tracking-wide
+        font-light
         text-center
         bg-gray-800
         text-white text-sm
+        tracking-wider
       "
     >
       We are upgrading. Will not take much time.
@@ -177,7 +177,6 @@
 
             <div class="hidden text-sm lg:block">Wishlist</div>
           </nuxt-link>
-
           <nuxt-link class="relative" to="/cart">
             <div
               class="

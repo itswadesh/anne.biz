@@ -1,45 +1,73 @@
 <template>
   <div>
     <Megamenu class="hidden w-full xl:flex" />
+
     <HeroSlider v-if="brand && brand.img" :banners="[{ img: brand.img }]" />
+
     <MobileFilters
-      class="sticky top-0 z-20 flex-none mt-16 sm:hidden"
+      class="sticky top-0 z-20 flex-none mt-16 md:hidden"
       :count="productCount"
       :facets="facets"
       :fl="fl"
       @showFilter="showMobileFilter = true"
       @hide="showMobileFilter = false"
     />
-    <div class="container flex mx-auto sm:mt-6 xl:mt-0">
+
+    <div class="flex">
       <DesktopFilters
-        class="
-          sticky
-          top-0
-          flex-none
-          hidden
-          max-w-xs
-          min-h-screen
-          mt-5
-          bg-gray-100
-          shadow
-          ms-4
-          lg:block
-        "
+        class="sticky top-0 hidden md:block"
         :facets="facets"
         :fl="fl"
         @clearAllFilters="clearAllFilters"
       />
-      <div class="relative w-full px-4">
+
+      <div class="relative w-full">
         <HeaderBody
+          class="hidden md:block"
           :category="category"
           :count="productCount"
           :fl="fl"
           @removed="facetRemoved"
           @showFilters="showMobileFilter = true"
         />
+
         <!-- <ProductSkeleton /> -->
+
         <NoProduct v-if="(!products || !products.length) && !loading" />
-        <div v-else class="sm:mt-0">
+
+        <div v-else>
+          <div
+            class="
+              container
+              mx-auto
+              px-3
+              py-3
+              sm:px-3
+              md:p-4
+              grid grid-cols-2
+              gap-3
+              md:gap-4
+              sm:grid-cols-3
+              xl:grid-cols-4
+              2xl:grid-cols-5
+            "
+          >
+            <div v-if="loading" class="flex flex-wrap justify-between">
+              <ProductSkeleton v-for="(p, ix) in 10" :key="ix + '-1'" />
+            </div>
+
+            <HomePageProduct
+              v-for="(p, ix) in products"
+              v-else-if="products && products.length > 0"
+              :key="ix"
+              class="slide-up-item"
+              :product="p._source"
+              :pid="p._id"
+            />
+
+            <!-- <infinite-loading @infinite="loadMore($route.query.page)"></infinite-loading> -->
+          </div>
+
           <div
             v-if="loading"
             class="
@@ -53,37 +81,7 @@
           >
             <ProductSkeleton v-for="(p, ix) in 10" :key="ix + '-1'" />
           </div>
-          <div
-            v-else-if="products && products.length > 0"
-            class="
-              flex flex-col flex-shrink-0
-              w-full
-              h-full
-              mt-4
-              sm:mt-2
-              nowrap
-              flex-nowrap
-            "
-          >
-            <div
-              class="
-                grid grid-cols-2
-                gap-4
-                sm:grid-cols-3
-                lg:grid-cols-3
-                xl:grid-cols-4
-                2xl:grid-cols-5
-              "
-            >
-              <HomePageProduct
-                v-for="(p, ix) in products"
-                :key="ix"
-                class="slide-up-item"
-                :product="p._source"
-                :pid="p._id"
-              />
-            </div>
-          </div>
+
           <!-- <infinite-loading @infinite="loadMore($route.query.page)"></infinite-loading> -->
 
           <!-- <div class="pagination_box">
@@ -98,6 +96,7 @@
             ></v-pagination>
           </div>-->
         </div>
+
         <Pagination
           class="mt-5"
           :count="noOfPages"
@@ -106,9 +105,11 @@
         />
       </div>
     </div>
+
     <!-- <RightSideBar /> -->
   </div>
 </template>
+
 <script>
 import BRAND from '~/gql/brand/brand.gql'
 import c from '~/mixins/c.js'
@@ -117,6 +118,7 @@ import HomePageProduct from '~/components/Home/HomePageProduct.vue'
 // import ProductCardEs from '~/components/Listing/ProductCardEs.vue'
 import ProductSkeleton from '~/components/ProductSkeleton.vue'
 import Megamenu from '~/components/Home/Megamenu.vue'
+import HeaderBody from '~/components/HeaderBody.vue'
 import Pagination from '~/shared/components/ui/Pagination.vue'
 import HeroSlider from '~/components/Home/HeroSlider.vue'
 
@@ -127,10 +129,12 @@ export default {
     HomePageProduct,
     // ProductCardEs,
     Megamenu,
+    HeaderBody,
     HeroSlider,
   },
+
   mixins: [c],
-  layout: 'search',
+
   async asyncData({ route, query, params, $axios, app }) {
     let products = []
     let brand = {}
@@ -183,6 +187,7 @@ export default {
       return { products, brand, productCount, facets: [], fl: {}, err }
     }
   },
+
   head() {
     const host = process.server
       ? this.$ssrContext.req.headers.host
@@ -247,16 +252,20 @@ export default {
       ],
     }
   },
+
   watchQuery: true,
+
   created() {
     this.scrollToTop()
     this.currentPage = parseInt(this.$route.query.page)
     // let query = { ...this.$route.query };
     // this.fl = query;
   },
+
   mounted() {
     // this.getWishlist() // This was causing node undefined error when page is refreshed
   },
+
   methods: {
     // scrollToTop() {
     //   if (process.client) {
@@ -284,6 +293,7 @@ export default {
   },
 }
 </script>
+
 <style scoped>
 .pagination {
   list-style-type: none !important;

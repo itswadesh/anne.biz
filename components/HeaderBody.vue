@@ -1,178 +1,60 @@
 <template>
-  <div class="w-full">
-    <div
-      class="
-        w-full
-        hidden
-        lg:flex
-        flex-row
-        items-center
-        justify-between
-        text-sm
-        font-light
-        text-gray-500
-        py-2
-        px-4
-      "
-    >
-      <div v-if="count !== 0" class="flex flex-row">
-        <!-- <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="
-            w-5
-            h-5
-            
-            cursor-pointer
-            me-1
-            hover:text-primary-500
-          "
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
-          />
-        </svg> -->
-        <!-- <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"
-          />
-        </svg> -->
+  <div class="w-full padding text-sm border-b">
+    <div class="grid grid-cols-3 items-center gap-5 place-content-between">
+      <div class="col-span-1 justify-self-start">
         <Breadcrumb
           v-if="category && category.name"
           :path="category && category.pathA"
           :name="category.name"
         />
-        <!-- <span
-          v-if="category && category.name"
-          class="capitalize cursor-pointer ms-1 hover:text-primary-500"
-        >
-          {{ category.name }}
-        </span> -->
-        <!-- <span
-          v-else
-          class="capitalize cursor-pointer ms-1 hover:text-primary-500"
-        >
-          {{ $route.params.q }}
-        </span> -->
       </div>
 
-      <div class="flex items-center space-x-2">
-        <span class="font-bold"> {{ count || 'No' }} </span
-        ><span>items found for</span>
+      <div
+        class="
+          col-span-1
+          font-light
+          text-center
+          flex
+          space-x-1
+          items-center
+          justify-self-center
+          overflow-hidden
+          whitespace-nowrap
+          overflow-ellipsis
+        "
+      >
+        <span class="font-bold"> {{ count || 'No' }} </span>
+
+        <span>items found for</span>
 
         <span
           v-if="category && category.name && category.name !== ''"
           class="font-bold"
-          >{{ category.name }}
+        >
+          {{ category.name }}
         </span>
 
-        <span v-else class="font-bold"
-          ><q>{{ $route.params.q }} </q></span
-        >
+        <q v-else class="font-bold"> {{ $route.params.q }} </q>
       </div>
 
-      <div class="flex items-center">
-        <span class="me-2">SORT BY</span>
+      <div class="col-span-1 justify-self-end flex items-center">
+        <h6 class="hidden lg:block text-xs font-light tracking-wide me-2">
+          SORT BY :
+        </h6>
 
         <select
           v-model="sortBy"
           class="
+            py-1
             text-sm
             font-light
-            border border-gray-300
+            border-gray-300
             rounded
-            focus:ring-0 focus:border-blue-500
-            hover:shadow
             focus:outline-none
           "
           @change="sort"
         >
-          <option
-            v-for="(s, ix) in sorts"
-            v-if="s"
-            :key="ix"
-            class="bg-transparent text-start"
-            :value="s.val"
-          >
-            {{ s.name }}
-          </option>
-        </select>
-      </div>
-    </div>
-
-    <div
-      class="
-        flex-row
-        justify-between
-        hidden
-        w-full
-        mb-2
-        sm:flex sm:px-4
-        xs:block
-        lg:hidden
-      "
-    >
-      <div
-        class="
-          flex
-          items-center
-          text-base
-          font-light
-          rounded
-          pe-5
-          text-start
-          hover:bg-gray-200
-        "
-        @click="$emit('showFilters')"
-      >
-        Filter
-      </div>
-
-      <div
-        class="
-          flex-1
-          hidden
-          px-4
-          my-auto
-          text-base
-          font-light
-          text-center
-          md:block
-        "
-      >
-        <b> {{ count }} </b>items
-      </div>
-      <div class="items-center text-center text-gray-700 text-primary">
-        <select
-          v-model="sortBy"
-          class="
-            text-sm
-            font-light
-            border-none
-            rounded
-            text-primary-500
-            focus:ring-primary-500
-            hover:shadow
-            focus:outline-none
-          "
-          @change="sort"
-        >
-          <option
-            v-for="(s, ix) in sorts"
-            :key="ix"
-            class="bg-white"
-            :value="s.val"
-          >
+          <option v-for="(s, ix) in sorts" v-if="s" :key="ix" :value="s.val">
             {{ s.name }}
           </option>
         </select>
@@ -258,3 +140,16 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+@media (max-width: 1280px) {
+  .padding {
+    padding: 7px;
+  }
+}
+@media (min-width: 1280px) {
+  .padding {
+    padding: 9px;
+  }
+}
+</style>
